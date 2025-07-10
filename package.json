@@ -19,5 +19,9 @@
   "bugs": {
     "url": "https://github.com/Tubaleviao/hikaku/issues"
   },
-  "homepage": "https://github.com/Tubaleviao/hikaku#readme"
+  "homepage": "https://github.com/Tubaleviao/hikaku#readme",
+  "devDependencies": {
+    "@types/node": "^24.0.12",
+    "typescript": "^5.8.3"
+  }
 }

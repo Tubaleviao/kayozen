@@ -2,26 +2,18 @@
   "name": "hikaku",
   "packageManager": "yarn@4.9.2",
   "version": "1.0.0",
-  "description": "school organizer",
-  "main": "app.js",
+  "main": "src/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Tubaleviao/hikaku.git"
-  },
-  "keywords": [
-    "school"
-  ],
   "author": "tubaleviao",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/Tubaleviao/hikaku/issues"
-  },
-  "homepage": "https://github.com/Tubaleviao/hikaku#readme",
   "devDependencies": {
+    "@types/express": "^5",
     "@types/node": "^24.0.12",
     "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "express": "^5.1.0"
   }
 }

@@ -1,4 +1,19 @@
 {
+  "exclude": [
+      "packages/**/tests/**",
+      "packages/**/dist/**"
+    ],
+    "references": [
+      {
+        "path": "./packages/shared"
+      },
+      {
+        "path": "./packages/frontend"
+      },
+      {
+        "path": "./packages/backend"
+      }
+    ],
   "compilerOptions": {
     "lib": ["es2024", "ESNext.Array", "ESNext.Collection", "ESNext.Iterator"],
     "target": "es2022",
@@ -10,5 +25,6 @@
     "moduleResolution": "node16",
     "rootDir": "./src",
     "outDir": "./dist",
+    "composite": true
   }
 }

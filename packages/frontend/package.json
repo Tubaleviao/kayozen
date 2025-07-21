@@ -1,7 +1,0 @@
-{
-  "name": "frontend",
-  "packageManager": "yarn@4.9.2",
-  "version": "0.1.0",
-  "author": "tubaleviao",
-  "license": "MIT"
-}

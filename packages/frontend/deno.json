@@ -1,5 +1,5 @@
 {
 	"name": "@hikaku/frontend",
 	"version": "0.1.0",
-	"exports": "./src/app.ts"
+	"exports": "./src/main.ts"
 }

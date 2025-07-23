@@ -1,9 +1,10 @@
 {
 	"workspace": ["packages/*"],
 	"tasks": {
-		"dev": "deno run --allow-net --allow-env --watch --env-file deno.ts"
+		"back": "deno task -f backend start"
 	},
 	"imports": {
+		"@oak/oak": "jsr:@oak/oak@^17.1.5",
 		"@std/assert": "jsr:@std/assert@1"
 	},
 	"fmt": {

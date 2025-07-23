@@ -1,5 +1,8 @@
 {
 	"name": "@hikaku/backend",
 	"version": "0.1.0",
-	"exports": "./src/app.ts"
+	"exports": "./app.ts",
+	"tasks": {
+		"start": "deno run --env-file --allow-env --allow-net --allow-read app.ts"
+	}
 }

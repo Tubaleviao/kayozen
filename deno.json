@@ -1,7 +1,8 @@
 {
 	"workspace": ["packages/*"],
 	"tasks": {
-		"back": "deno task -f backend start"
+		"back": "deno task -f backend start",
+		"build": "deno run --allow-run --allow-read --allow-write scripts/build.ts"
 	},
 	"imports": {
 		"@oak/oak": "jsr:@oak/oak@^17.1.5",

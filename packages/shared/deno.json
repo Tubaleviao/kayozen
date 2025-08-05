@@ -1,5 +1,0 @@
-{
-	"name": "@hikaku/shared",
-	"version": "0.1.0",
-	"exports": "./src/app.ts"
-}

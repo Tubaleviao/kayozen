@@ -1,8 +1,8 @@
 async function clearDir(path: string) {
-  for await (const entry of Deno.readDir(path)) {
-    const entryPath = `${path}/${entry.name}`;
-    await Deno.remove(entryPath);
-  }
+	for await (const entry of Deno.readDir(path)) {
+		const entryPath = `${path}/${entry.name}`
+		await Deno.remove(entryPath)
+	}
 }
 
 const buildFront = new Deno.Command("npx", {
@@ -16,7 +16,7 @@ const buildStatus = await buildFront.output()
 const source = "packages/frontend/dist/frontend/browser"
 const destiny = "packages/backend/public"
 if (buildStatus.success) {
-    await clearDir(destiny)
+	await clearDir(destiny)
 	for await (const entry of Deno.readDir(source)) {
 		await Deno.copyFile(`${source}/${entry.name}`, `${destiny}/${entry.name}`)
 	}

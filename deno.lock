@@ -1045,9 +1045,12 @@
     }
   },
   "redirects": {
+    "https://deno.land/x/oauth2_client/mod.ts": "https://deno.land/x/oauth2_client@v1.0.3/mod.ts",
     "https://esm.sh/@types/babel__helper-validator-identifier@~7.15.2/index.d.ts": "https://esm.sh/@types/babel__helper-validator-identifier@7.15.2/index.d.ts"
   },
   "remote": {
+    "https://deno.land/std@0.203.0/encoding/_util.ts": "f368920189c4fe6592ab2e93bd7ded8f3065b84f95cd3e036a4a10a75649dcba",
+    "https://deno.land/std@0.203.0/encoding/base64.ts": "cc03110d6518170aeaa68ec97f89c6d6e2276294b30807e7332591d7ce2e4b72",
     "https://deno.land/std@0.208.0/assert/assert.ts": "9a97dad6d98c238938e7540736b826440ad8c1c1e54430ca4c4e623e585607ee",
     "https://deno.land/std@0.208.0/assert/assertion_error.ts": "4d0bde9b374dfbcbe8ac23f54f567b77024fb67dbb1906a852d67fe050d42f56",
     "https://deno.land/std@0.208.0/fs/_util.ts": "fbf57dcdc9f7bc8128d60301eece608246971a7836a3bb1e78da75314f08b978",
@@ -1384,6 +1387,17 @@
     "https://deno.land/x/fresh@1.7.3/src/server/types.ts": "cf4943a6d3e7df100aed20f243c0464cebb6af657749f742bd2c13e78c40dff2",
     "https://deno.land/x/fresh@1.7.3/src/types.ts": "05169e3389979d8283de0ec1db3a765324ffd730b6af29ffe02752f341ae7d35",
     "https://deno.land/x/fresh@1.7.3/versions.json": "953bb3cfa81ef8048733f47431f6683447aec211dd149a341a7d7244cf72d2cd",
+    "https://deno.land/x/oauth2_client@v1.0.3/mod.ts": "ea54c0a894d3303a80552ca65835b5b104d16415343b24e191f08e7f5db90ff7",
+    "https://deno.land/x/oauth2_client@v1.0.3/src/authorization_code_grant.ts": "36bd2147353bfb1aee6ce21e0d861b20783803acad677663c197254c1db37b39",
+    "https://deno.land/x/oauth2_client@v1.0.3/src/client_credentials_grant.ts": "482b46799288ea1f869fde760ee28cc7884044878a362abfbfc5beca9db9276f",
+    "https://deno.land/x/oauth2_client@v1.0.3/src/errors.ts": "7603479b80386b5cc7e384c2af5f5262ed7c2123e4e297d9f21e95515f8a803a",
+    "https://deno.land/x/oauth2_client@v1.0.3/src/grant_base.ts": "fcdcf24a70ea1900641d9597ea2b6e21c4f057896a1ef9a091dc2b617209c31e",
+    "https://deno.land/x/oauth2_client@v1.0.3/src/implicit_grant.ts": "04d3df679e6723203eb879457e35ddefd056bdbe3dab8be3f9c5cdedc7951afb",
+    "https://deno.land/x/oauth2_client@v1.0.3/src/oauth2_client.ts": "4e5ec26676661a3f69544826a4c27b30cc07dfcfc77f86981c324aaa53291a11",
+    "https://deno.land/x/oauth2_client@v1.0.3/src/pkce.ts": "8606e8d2b90ed8de6ecca23cfa85489059a00793c40f7b471de878891f6fd3d8",
+    "https://deno.land/x/oauth2_client@v1.0.3/src/refresh_token_grant.ts": "22cb1598e48fb037b4111a446573f7b48a3b361b58de58af17ba097221b12b54",
+    "https://deno.land/x/oauth2_client@v1.0.3/src/resource_owner_password_credentials.ts": "13638438c4bdcfc9e1e43b6064a3604ce947dcda00a24025073cec6d4d17aba5",
+    "https://deno.land/x/oauth2_client@v1.0.3/src/types.ts": "3327c2e81bc483e91843fb103595dd304393c3ac2a530d1c89200b6a5cf75e13",
     "https://deno.land/x/ts_morph@21.0.1/common/DenoRuntime.ts": "a505f1feae9a77c8f6ab1c18c55d694719e96573f68e9c36463b243e1bef4c3e",
     "https://deno.land/x/ts_morph@21.0.1/common/mod.ts": "01985d2ee7da8d1caee318a9d07664774fbee4e31602bc2bb6bb62c3489555ed",
     "https://deno.land/x/ts_morph@21.0.1/common/ts_morph_common.js": "236475fb18476307e07b3a97dc92fe8fb69e4a9df4ca59aa098dd6430bae7237",

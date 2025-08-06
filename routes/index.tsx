@@ -13,7 +13,7 @@ export default function Home() {
 					height="128"
 					alt="the Fresh logo: a sliced lemon dripping with juice"
 				/>
-				<h1 class="text-4xl font-bold">Welcome to Hikaku</h1>
+				<h1 class="text-4xl font-bold">Welcome to Zenkayo</h1>
 			</div>
 		</div>
 	)

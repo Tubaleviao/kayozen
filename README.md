@@ -1,4 +1,4 @@
-# hikaku
+# Zenkayo
 
 School organizer
 

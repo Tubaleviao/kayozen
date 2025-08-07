@@ -3,22 +3,22 @@ version: "3.8"
 services:
   app:
     build: .
-    container_name: fresh-app
+    container_name: app
     ports:
       - "8000:8000"
     environment:
-      - DATABASE_URL=postgres://user:password@db:5432/freshdb
+      - DATABASE_URL=postgres://zen:k41o@db:5432/zenkayo
     depends_on:
       - db
 
   db:
-    image: postgres:15
-    container_name: fresh-db
+    image: postgres:17
+    container_name: db
     restart: always
     environment:
-      POSTGRES_DB: freshdb
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: password
+      POSTGRES_DB: zenkayo
+      POSTGRES_USER: zen
+      POSTGRES_PASSWORD: k41o
     volumes:
       - db-data:/var/lib/postgresql/data
     ports:

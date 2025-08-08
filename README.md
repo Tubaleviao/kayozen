@@ -1,4 +1,4 @@
-# Zenkayo
+# Kayozen
 
 School organizer
 

@@ -7,7 +7,7 @@ services:
     ports:
       - "8000:8000"
     environment:
-      - DATABASE_URL=postgres://zen:k41o@db:5432/zenkayo
+      - DATABASE_URL=postgres://zen:k41o@db:5432/kayozen
     depends_on:
       - db
 
@@ -16,7 +16,7 @@ services:
     container_name: db
     restart: always
     environment:
-      POSTGRES_DB: zenkayo
+      POSTGRES_DB: kayozen
       POSTGRES_USER: zen
       POSTGRES_PASSWORD: k41o
     volumes:

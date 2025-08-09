@@ -2,13 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
-html, body {
+html {
 	font-family: "Inter", sans-serif;
-	background-color: #ffffff;
-	color: #1f2937;
+	background-color: theme("colors.kayozen.light.background");
+	color: theme("colors.kayozen.light.text");
 }
 
-.dark {
-	background-color: #1f2937;
-	color: #ffffff;
+html.dark {
+	background-color: theme("colors.kayozen.dark.background");
+	color: theme("colors.kayozen.dark.text");
+}
+
+/* Optional smooth color transition */
+* {
+	transition: background-color 0.25s ease, color 0.25s ease;
 }

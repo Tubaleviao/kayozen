@@ -1,6 +1,7 @@
 import { useState } from "preact/hooks"
 import { SupportedLang, t } from "../utils/i18n.ts"
 import { useTheme } from "../hooks/useTheme.ts"
+import { Button } from "./Button.tsx"
 
 export default function LoginBox() {
 	const [lang, setLang] = useState<SupportedLang>("pt")
@@ -14,19 +15,19 @@ export default function LoginBox() {
 				<div class="w-full max-w-md bg-white dark:bg-gray-800 p-8 rounded-lg shadow-md relative">
 					{/* Botões de Ações (idioma e tema) */}
 					<div class="absolute top-4 right-4 flex gap-2">
-						<button
+						<Button
 							onClick={toggleLang}
 							class="text-sm text-gray-600 dark:text-gray-300 hover:underline"
 						>
 							{lang === "pt" ? "🇧🇷 PT" : "🇺🇸 EN"}
-						</button>
-						<button
+						</Button>
+						<Button
 							onClick={toggleTheme}
 							class="text-gray-600 dark:text-gray-300 hover:text-blue-500 text-lg"
 							title="Trocar tema"
 						>
 							{darkMode ? "🌞" : "🌙"}
-						</button>
+						</Button>
 					</div>
 
 					<h1 class="text-2xl font-bold text-center mb-6 text-gray-800 dark:text-white">

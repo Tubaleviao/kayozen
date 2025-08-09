@@ -1,5 +1,6 @@
 import { useState } from "preact/hooks"
 import { useTheme } from "../hooks/useTheme.ts"
+import { Button } from "./Button.tsx"
 
 interface NavbarProps {
 	itens?: { name: string; page: string }[]
@@ -10,24 +11,18 @@ export default function Navbar({ itens = [] }: NavbarProps) {
 	const { darkMode, toggleTheme } = useTheme()
 
 	return (
-		<nav
-			class={(darkMode
-				? "bg-kayozen-blue-dark text-white"
-				: "bg-kayozen-blue-light text-black") + " shadow-md"}
-		>
+		<nav class="bg-kayozen-light-surface text-kayozen-light-text 
+      dark:bg-kayozen-dark-surface dark:text-kayozen-dark-text shadow-md">
 			<div class="max-w-screen-lg mx-auto px-4 py-3 flex items-center justify-between">
-				{/* Logo / Inicio */}
 				<a
 					href="/"
-					class={(darkMode
-						? "text-kayozen-blue-light"
-						: "text-kayozen-blue-dark") + " text-lg font-bold"}
+					class="text-kayozen-light-text dark:text-kayozen-dark-text text-lg font-bold"
 				>
 					Kayozen
 				</a>
 
 				{/* Botão Hamburguer (mobile) */}
-				<button
+				<Button
 					class="lg:hidden p-2 rounded hover:bg-white/10 transition"
 					onClick={() => setMenuOpen(!menuOpen)}
 				>
@@ -46,21 +41,16 @@ export default function Navbar({ itens = [] }: NavbarProps) {
 							d="M4 6h16M4 12h16M4 18h16"
 						/>
 					</svg>
-				</button>
+				</Button>
 
 				{/* Menu Desktop */}
 				<ul class="hidden lg:flex gap-6">
-					<li>
-						<a href="/" class="hover:text-kayozen-accent transition">Início</a>
-					</li>
-					<li>
-						<a href="/sobre" class="hover:text-kayozen-accent transition">
-							Quem somos
-						</a>
-					</li>
 					{itens.map((item) => (
 						<li>
-							<a href={item.page} class="hover:text-kayozen-accent transition">
+							<a
+								href={item.page}
+								class="hover:text-kayozen-light-primary dark:hover:text-kayozen-dark-primary transition"
+							>
 								{item.name}
 							</a>
 						</li>
@@ -68,10 +58,7 @@ export default function Navbar({ itens = [] }: NavbarProps) {
 					<li>
 						<a
 							href="/login"
-							class={(darkMode
-								? "bg-kayozen-bg-btn-light"
-								: "bg-kayozen-bg-btn-dark") +
-								" px-4 py-2 rounded hover:bg-emerald-600 transition"}
+							class="px-4 py-2 rounded hover:text-kayozen-light-primary dark:hover:text-kayozen-dark-primary transition"
 						>
 							Login
 						</a>

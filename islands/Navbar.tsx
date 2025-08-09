@@ -7,13 +7,22 @@ interface NavbarProps {
 
 export default function Navbar({ itens = [] }: NavbarProps) {
 	const [menuOpen, setMenuOpen] = useState(false)
-		const { darkMode, toggleTheme } = useTheme()
+	const { darkMode, toggleTheme } = useTheme()
 
 	return (
-		<nav class={ (darkMode ? "bg-kayozen-bg-dark text-white" : "bg-kayozen-bg-light text-black") + " shadow-md"}>
+		<nav
+			class={(darkMode
+				? "bg-kayozen-blue-dark text-white"
+				: "bg-kayozen-blue-light text-black") + " shadow-md"}
+		>
 			<div class="max-w-screen-lg mx-auto px-4 py-3 flex items-center justify-between">
 				{/* Logo / Inicio */}
-				<a href="/" class={(darkMode ? "text-kayozen-title-light": "text-kayozen-title-dark") + " text-lg font-bold"}>
+				<a
+					href="/"
+					class={(darkMode
+						? "text-kayozen-blue-light"
+						: "text-kayozen-blue-dark") + " text-lg font-bold"}
+				>
 					Kayozen
 				</a>
 
@@ -59,7 +68,10 @@ export default function Navbar({ itens = [] }: NavbarProps) {
 					<li>
 						<a
 							href="/login"
-							class="px-4 py-2 bg-kayozen-green rounded hover:bg-emerald-600 transition"
+							class={(darkMode
+								? "bg-kayozen-bg-btn-light"
+								: "bg-kayozen-bg-btn-dark") +
+								" px-4 py-2 rounded hover:bg-emerald-600 transition"}
 						>
 							Login
 						</a>
@@ -68,8 +80,9 @@ export default function Navbar({ itens = [] }: NavbarProps) {
 						<button
 							type="button"
 							onClick={toggleTheme}
-							class="p-2 rounded-full hover:opacity-80 transition"
+							class="rounded-full hover:opacity-80 transition"
 							aria-label="Toggle Theme"
+							title={darkMode ? "Set to Light mode" : "Set to Dark Mode"}
 						>
 							{darkMode ? "☀️" : "🌙"}
 						</button>

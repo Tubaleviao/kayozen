@@ -10,12 +10,19 @@ export default {
 			colors: {
 				"kayozen-blue": "#2850acff",
 				"kayozen-dark": "#0B1120",
-				"kayozen-green": "#059669",
 				"kayozen-accent": "#22D3EE",
-        "kayozen-bg-dark": "#054A91",
-        "kayozen-title-light": "#054A91",
-        "kayozen-bg-light": "#B0D7FF",
-        "kayozen-title-dark": "#B0D7FF"
+				"kayozen-bg-dark": "#054A91",
+				"kayozen-title-light": "#054A91",
+				"kayozen-bg-light": "#B0D7FF",
+				"kayozen-title-dark": "#B0D7FF",
+				"kayozen-bg-btn-dark": "#7ac977ff",
+				"kayozen-bg-btn-light": "#2b6e25ff",
+				// pallet:
+				"kayozen-blue-dark": "#054A91",
+				"kayozen-blue-light": "#B0D7FF",
+				"kayozen-orange": "#E6C79C",
+				"kayozen-green": "#00A676",
+				"kayozen-blue-middle": "#6DAEDB",
 			},
 			keyframes: {
 				fadeIn: {

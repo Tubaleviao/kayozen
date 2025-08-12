@@ -9,6 +9,13 @@ export type TranslationKey =
 	| "login.google"
 	| "login.no_account"
 	| "login.signup"
+	| "index.welcome"
+	| "index.description"
+	| "index.start"
+	| "footer.rights"
+	| "footer.about"
+	| "footer.contact"
+	| "footer.privacy"
 
 const translations: Record<SupportedLang, Record<TranslationKey, string>> = {
 	pt: {
@@ -20,6 +27,13 @@ const translations: Record<SupportedLang, Record<TranslationKey, string>> = {
 		"login.google": "Entrar com Google",
 		"login.no_account": "Não tem uma conta?",
 		"login.signup": "Cadastre-se",
+		"index.welcome": "Bem-vindo ao",
+		"index.description": "Cadastre-se",
+		"index.start": "Cadastre-se",
+		"footer.rights": "Todos os direitos reservados.",
+		"footer.about": "Sobre",
+		"footer.contact": "Contato",
+		"footer.privacy": "Privacidade",
 	},
 	en: {
 		"login.title": "Sign in to Haikaku",
@@ -30,6 +44,13 @@ const translations: Record<SupportedLang, Record<TranslationKey, string>> = {
 		"login.google": "Sign in with Google",
 		"login.no_account": "Don't have an account?",
 		"login.signup": "Sign up",
+		"index.welcome": "Bem-vindo ao",
+		"index.description": "Cadastre-se",
+		"index.start": "Cadastre-se",
+		"footer.rights": "Cadastre-se",
+		"footer.about": "Cadastre-se",
+		"footer.contact": "Cadastre-se",
+		"footer.privacy": "Cadastre-se",
 	},
 }
 

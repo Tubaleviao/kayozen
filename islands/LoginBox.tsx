@@ -1,43 +1,20 @@
-import { useState } from "preact/hooks"
-import { SupportedLang, t } from "../utils/i18n.ts"
-import { useTheme } from "../hooks/useTheme.ts"
-import { Button } from "./Button.tsx"
+import { useTranslation } from "../hooks/useTranslation.ts"
 
 export default function LoginBox() {
-	const [lang, setLang] = useState<SupportedLang>("pt")
-	const { darkMode, toggleTheme } = useTheme()
-
-	const toggleLang = () => setLang((v) => (v === "pt" ? "en" : "pt"))
+	const { t } = useTranslation()
 
 	return (
-		<div class={darkMode ? "dark" : ""}>
-			<div class="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center px-4">
-				<div class="w-full max-w-md bg-white dark:bg-gray-800 p-8 rounded-lg shadow-md relative">
-					{/* Botões de Ações (idioma e tema) */}
-					<div class="absolute top-4 right-4 flex gap-2">
-						<Button
-							onClick={toggleLang}
-							class="text-sm text-gray-600 dark:text-gray-300 hover:underline"
-						>
-							{lang === "pt" ? "🇧🇷 PT" : "🇺🇸 EN"}
-						</Button>
-						<Button
-							onClick={toggleTheme}
-							class="text-gray-600 dark:text-gray-300 hover:text-blue-500 text-lg"
-							title="Trocar tema"
-						>
-							{darkMode ? "🌞" : "🌙"}
-						</Button>
-					</div>
-
+		<div>
+			<div class="flex-grow bg-gray-50 dark:bg-gray-900 flex items-center justify-center px-4">
+				<div class="w-screen max-w-md bg-white dark:bg-gray-800 p-8 rounded-lg shadow-md relative">
 					<h1 class="text-2xl font-bold text-center mb-6 text-gray-800 dark:text-white">
-						{t("login.title", lang)}
+						{t("login.title")}
 					</h1>
 
 					<form method="POST" action="/api/login/email" class="space-y-4">
 						<div>
 							<label class="block text-sm font-medium text-gray-700 dark:text-gray-300">
-								{t("login.email", lang)}
+								{t("login.email")}
 							</label>
 							<input
 								type="email"
@@ -49,7 +26,7 @@ export default function LoginBox() {
 
 						<div>
 							<label class="block text-sm font-medium text-gray-700 dark:text-gray-300">
-								{t("login.password", lang)}
+								{t("login.password")}
 							</label>
 							<input
 								type="password"
@@ -63,14 +40,14 @@ export default function LoginBox() {
 							type="submit"
 							class="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition"
 						>
-							{t("login.button", lang)}
+							{t("login.button")}
 						</button>
 					</form>
 
 					<div class="flex items-center my-6">
 						<div class="flex-grow h-px bg-gray-300 dark:bg-gray-600" />
 						<span class="mx-4 text-gray-500 dark:text-gray-400 text-sm">
-							{t("login.or", lang)}
+							{t("login.or")}
 						</span>
 						<div class="flex-grow h-px bg-gray-300 dark:bg-gray-600" />
 					</div>
@@ -84,16 +61,16 @@ export default function LoginBox() {
 							alt="Google logo"
 							class="w-5 h-5"
 						/>
-						<span>{t("login.google", lang)}</span>
+						<span>{t("login.google")}</span>
 					</a>
 
 					<p class="text-center text-sm text-gray-500 dark:text-gray-400 mt-6">
-						{t("login.no_account", lang)}{" "}
+						{t("login.no_account")}{" "}
 						<a
 							href="#"
 							class="text-blue-600 dark:text-blue-400 hover:underline"
 						>
-							{t("login.signup", lang)}
+							{t("login.signup")}
 						</a>
 					</p>
 				</div>

@@ -6,7 +6,9 @@ interface NavbarProps {
 	itens?: { name: string; page: string }[]
 }
 
-export default function Navbar({ itens = [] }: NavbarProps) {
+export default function Navbar(
+	{ itens = [{ name: "Quem Somos", page: "/about" }] }: NavbarProps,
+) {
 	const [menuOpen, setMenuOpen] = useState(false)
 	const { darkMode, toggleTheme } = useTheme()
 
@@ -81,21 +83,11 @@ export default function Navbar({ itens = [] }: NavbarProps) {
 			{menuOpen && (
 				<div class="lg:hidden px-4 pb-4 animate-fadeIn">
 					<ul class="flex flex-col gap-3">
-						<li>
-							<a href="/" class="hover:text-kayozen-accent transition">
-								Início
-							</a>
-						</li>
-						<li>
-							<a href="/sobre" class="hover:text-kayozen-accent transition">
-								Quem somos
-							</a>
-						</li>
 						{itens.map((item) => (
 							<li>
 								<a
 									href={item.page}
-									class="hover:text-kayozen-accent transition"
+									class="hover:text-kayozen-light-primary dark:hover:text-kayozen-dark-primary transition"
 								>
 									{item.name}
 								</a>
@@ -104,7 +96,7 @@ export default function Navbar({ itens = [] }: NavbarProps) {
 						<li>
 							<a
 								href="/login"
-								class="px-4 py-2 border border-kayozen-accent text-kayozen-accent rounded hover:bg-kayozen-accent hover:text-white transition"
+								class="hover:text-kayozen-light-primary dark:hover:text-kayozen-dark-primary transition"
 							>
 								Login
 							</a>

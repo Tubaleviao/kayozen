@@ -1,4 +1,5 @@
 import { type PageProps } from "$fresh/server.ts"
+import { TranslationProvider } from "../components/TranslationContext.tsx"
 export default function App({ Component }: PageProps) {
 	return (
 		<html>
@@ -13,7 +14,9 @@ export default function App({ Component }: PageProps) {
 				/>
 			</head>
 			<body>
-				<Component />
+				<TranslationProvider>
+					<Component />
+				</TranslationProvider>
 			</body>
 		</html>
 	)

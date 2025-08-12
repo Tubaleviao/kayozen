@@ -1,19 +1,19 @@
 import { JSX } from "preact"
 
 export function Button(
-	{ children, className = "", ...other }: JSX.HTMLAttributes<HTMLButtonElement> & {to?: string},
+	{ children, className = "", ...other }:
+		& JSX.HTMLAttributes<HTMLButtonElement>
+		& { to?: string },
 ) {
-	const handleClick = () =>{
+	const handleClick = () => {
 		globalThis.location.href = other.to || ""
 	}
 	return (
 		<button
-			onClick={ other.to ? handleClick : other.onClick }
+			onClick={other.to ? handleClick : other.onClick}
 			class={`px-4 py-2 rounded-md font-medium 
               bg-kayozen-light-primary text-white
               hover:bg-kayozen-light-secondary
-              dark:bg-kayozen-dark-primary dark:text-kayozen-dark-text
-              dark:hover:bg-kayozen-dark-secondary
               transition-colors ${className}`}
 			{...other}
 		>

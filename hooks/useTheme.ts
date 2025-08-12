@@ -1,12 +1,12 @@
 import { useEffect, useState } from "preact/hooks"
+import { usePersistency } from "./usePersistency.ts"
 
 export function useTheme() {
 	const [darkMode, setDarkMode] = useState(false)
+	const [theme, setTheme] = usePersistency<"light" | "dark">("theme", "light")
 
 	useEffect(() => {
-		const saved = localStorage.getItem("theme")
-		const isDark = saved === "dark"
-
+		const isDark = theme === "dark"
 		document.documentElement.classList.toggle("dark", isDark)
 		setDarkMode(isDark)
 	}, [])
@@ -17,11 +17,11 @@ export function useTheme() {
 
 		if (isDark) {
 			html.classList.remove("dark")
-			localStorage.setItem("theme", "light")
+			setTheme("light")
 			setDarkMode(false)
 		} else {
 			html.classList.add("dark")
-			localStorage.setItem("theme", "dark")
+			setTheme("dark")
 			setDarkMode(true)
 		}
 	}

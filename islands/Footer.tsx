@@ -1,8 +1,8 @@
-import { useTranslation } from "../hooks/useTranslation.ts"
 import type { SupportedLang } from "../utils/i18n.ts"
+import { useTranslationContext } from "./TranslationContext.tsx"
 
 export default function Footer() {
-	const { t, lang, setLang } = useTranslation()
+	const { t, lang, setLang } = useTranslationContext()
 
 	const handleChange = (e: Event) => {
 		const value = (e.target as HTMLSelectElement).value as SupportedLang

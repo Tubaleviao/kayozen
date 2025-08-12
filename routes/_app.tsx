@@ -1,5 +1,5 @@
 import { type PageProps } from "$fresh/server.ts"
-import { TranslationProvider } from "../components/TranslationContext.tsx"
+import { TranslationProvider } from "../islands/TranslationContext.tsx"
 export default function App({ Component }: PageProps) {
 	return (
 		<html>

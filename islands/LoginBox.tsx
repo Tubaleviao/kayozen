@@ -1,7 +1,7 @@
-import { useTranslation } from "../hooks/useTranslation.ts"
+import { useTranslationContext } from "./TranslationContext.tsx"
 
 export default function LoginBox() {
-	const { t } = useTranslation()
+	const { t } = useTranslationContext()
 
 	return (
 		<div>

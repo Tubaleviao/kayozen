@@ -14,6 +14,7 @@ import * as $login from "./routes/login.tsx"
 import * as $Button from "./islands/Button.tsx"
 import * as $Footer from "./islands/Footer.tsx"
 import * as $LoginBox from "./islands/LoginBox.tsx"
+import * as $Main from "./islands/Main.tsx"
 import * as $Navbar from "./islands/Navbar.tsx"
 import * as $TranslationContext from "./islands/TranslationContext.tsx"
 import type { Manifest } from "$fresh/server.ts"
@@ -34,6 +35,7 @@ const manifest = {
 		"./islands/Button.tsx": $Button,
 		"./islands/Footer.tsx": $Footer,
 		"./islands/LoginBox.tsx": $LoginBox,
+		"./islands/Main.tsx": $Main,
 		"./islands/Navbar.tsx": $Navbar,
 		"./islands/TranslationContext.tsx": $TranslationContext,
 	},

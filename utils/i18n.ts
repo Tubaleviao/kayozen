@@ -1,7 +1,7 @@
 export type SupportedLang = "pt" | "en"
 
 export type TranslationKey =
-	| "login.title"
+	| "login.signin"
 	| "login.email"
 	| "login.password"
 	| "login.button"
@@ -19,7 +19,7 @@ export type TranslationKey =
 
 const translations: Record<SupportedLang, Record<TranslationKey, string>> = {
 	pt: {
-		"login.title": "Entrar no Haikaku",
+		"login.signin": "Entrar no",
 		"login.email": "E-mail",
 		"login.password": "Senha",
 		"login.button": "Entrar",
@@ -28,15 +28,16 @@ const translations: Record<SupportedLang, Record<TranslationKey, string>> = {
 		"login.no_account": "Não tem uma conta?",
 		"login.signup": "Cadastre-se",
 		"index.welcome": "Bem-vindo ao",
-		"index.description": "Cadastre-se",
-		"index.start": "Cadastre-se",
+		"index.description":
+			"Seu sistema inteligente para gestão de disponibilidade de professores.",
+		"index.start": "Começar",
 		"footer.rights": "Todos os direitos reservados.",
 		"footer.about": "Sobre",
 		"footer.contact": "Contato",
 		"footer.privacy": "Privacidade",
 	},
 	en: {
-		"login.title": "Sign in to Haikaku",
+		"login.signin": "Sign in to",
 		"login.email": "Email",
 		"login.password": "Password",
 		"login.button": "Sign in",
@@ -44,13 +45,13 @@ const translations: Record<SupportedLang, Record<TranslationKey, string>> = {
 		"login.google": "Sign in with Google",
 		"login.no_account": "Don't have an account?",
 		"login.signup": "Sign up",
-		"index.welcome": "Bem-vindo ao",
-		"index.description": "Cadastre-se",
-		"index.start": "Cadastre-se",
-		"footer.rights": "Cadastre-se",
-		"footer.about": "Cadastre-se",
-		"footer.contact": "Cadastre-se",
-		"footer.privacy": "Cadastre-se",
+		"index.welcome": "Welcome to",
+		"index.description": "Your smart system for managing teacher availability.",
+		"index.start": "Start",
+		"footer.rights": "All rights reserved.",
+		"footer.about": "About",
+		"footer.contact": "Contact",
+		"footer.privacy": "Privacy",
 	},
 }
 

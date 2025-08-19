@@ -1,14 +1,22 @@
 import { useState } from "preact/hooks"
 import { useTheme } from "../hooks/useTheme.ts"
 import { Button } from "./Button.tsx"
+import { useTranslationContext } from "./TranslationContext.tsx"
+import { TranslationKey } from "../utils/i18n.ts"
 
 interface NavbarProps {
-	itens?: { name: string; page: string }[]
+	itens?: { key: TranslationKey; page: string }[]
 }
 
 export default function Navbar(
-	{ itens = [{ name: "Quem Somos", page: "/about" }] }: NavbarProps,
+	{
+		itens = [{ key: "nav.we", page: "/about" }, {
+			key: "nav.login",
+			page: "/login",
+		}],
+	}: NavbarProps,
 ) {
+	const { t } = useTranslationContext()
 	const [menuOpen, setMenuOpen] = useState(false)
 	const { darkMode, toggleTheme } = useTheme()
 
@@ -23,12 +31,10 @@ export default function Navbar(
 					Kayozen
 				</a>
 
-				{/* Botão Hamburguer (mobile) */}
 				<Button
 					class="lg:hidden p-2 rounded hover:bg-white/10 transition"
 					onClick={() => setMenuOpen(!menuOpen)}
 				>
-					{/* Ícone */}
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						class="h-6 w-6"
@@ -53,25 +59,17 @@ export default function Navbar(
 								href={item.page}
 								class="hover:text-kayozen-light-primary dark:hover:text-kayozen-dark-primary transition"
 							>
-								{item.name}
+								{t(item.key)}
 							</a>
 						</li>
 					))}
-					<li>
-						<a
-							href="/login"
-							class="px-4 py-2 rounded hover:text-kayozen-light-primary dark:hover:text-kayozen-dark-primary transition"
-						>
-							Login
-						</a>
-					</li>
 					<li>
 						<button
 							type="button"
 							onClick={toggleTheme}
 							class="rounded-full hover:opacity-80 transition"
-							aria-label="Toggle Theme"
-							title={darkMode ? "Set to Light mode" : "Set to Dark Mode"}
+							aria-label={t("nav.theme")}
+							title={darkMode ? t("nav.light") : t("nav.dark")}
 						>
 							{darkMode ? "☀️" : "🌙"}
 						</button>
@@ -89,18 +87,10 @@ export default function Navbar(
 									href={item.page}
 									class="hover:text-kayozen-light-primary dark:hover:text-kayozen-dark-primary transition"
 								>
-									{item.name}
+									{t(item.key)}
 								</a>
 							</li>
 						))}
-						<li>
-							<a
-								href="/login"
-								class="hover:text-kayozen-light-primary dark:hover:text-kayozen-dark-primary transition"
-							>
-								Login
-							</a>
-						</li>
 					</ul>
 				</div>
 			)}

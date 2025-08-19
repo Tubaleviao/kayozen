@@ -16,6 +16,14 @@ export type TranslationKey =
 	| "footer.about"
 	| "footer.contact"
 	| "footer.privacy"
+	| "error.404.title"
+	| "error.404.message"
+	| "error.404.back"
+	| "nav.we"
+	| "nav.login"
+	| "nav.light"
+	| "nav.dark"
+	| "nav.theme"
 
 const translations: Record<SupportedLang, Record<TranslationKey, string>> = {
 	pt: {
@@ -35,6 +43,14 @@ const translations: Record<SupportedLang, Record<TranslationKey, string>> = {
 		"footer.about": "Sobre",
 		"footer.contact": "Contato",
 		"footer.privacy": "Privacidade",
+		"error.404.title": "404 - Página não encontrada",
+		"error.404.message": "A página que você procura não existe.",
+		"error.404.back": "Voltar para a página inicial",
+		"nav.we": "Quem Somos",
+		"nav.light": "Set to Light mode",
+		"nav.dark": "Set to Dark mode",
+		"nav.theme": "Toggle Theme",
+		"nav.login": "Login",
 	},
 	en: {
 		"login.signin": "Sign in to",
@@ -52,6 +68,14 @@ const translations: Record<SupportedLang, Record<TranslationKey, string>> = {
 		"footer.about": "About",
 		"footer.contact": "Contact",
 		"footer.privacy": "Privacy",
+		"error.404.title": "404 - Page not found",
+		"error.404.message": "The page you were looking for doesn't exist.",
+		"error.404.back": "Go back home",
+		"nav.we": "The Team",
+		"nav.light": "Mudar para o Modo Claro",
+		"nav.dark": "Mudar para o Modo Escuro",
+		"nav.theme": "Alternar tema",
+		"nav.login": "Login",
 	},
 }
 

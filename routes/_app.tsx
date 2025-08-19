@@ -1,5 +1,6 @@
 import { type PageProps } from "$fresh/server.ts"
 import { TranslationProvider } from "../islands/TranslationContext.tsx"
+
 export default function App({ Component }: PageProps) {
 	return (
 		<html>
@@ -13,7 +14,7 @@ export default function App({ Component }: PageProps) {
 					href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
 				/>
 			</head>
-			<body>
+			<body class="bg-kayozen-light-background dark:bg-kayozen-dark-background">
 				<TranslationProvider>
 					<Component />
 				</TranslationProvider>

@@ -8,7 +8,10 @@ export default function LoginBox() {
 			<div class="flex-grow bg-gray-50 dark:bg-gray-900 flex items-center justify-center px-4">
 				<div class="w-screen max-w-md bg-white dark:bg-gray-800 p-8 rounded-lg shadow-md relative">
 					<h1 class="text-2xl font-bold text-center mb-6 text-gray-800 dark:text-white">
-						{t("login.title")}
+						{t("login.signin") + " "}
+						<span class="text-kayozen-light-primary dark:text-kayozen-dark-primary">
+							Kayozen
+						</span>
 					</h1>
 
 					<form method="POST" action="/api/login/email" class="space-y-4">

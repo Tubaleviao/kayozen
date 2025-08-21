@@ -24,6 +24,7 @@ export type TranslationKey =
 	| "nav.light"
 	| "nav.dark"
 	| "nav.theme"
+	| "login.remember"
 
 const translations: Record<SupportedLang, Record<TranslationKey, string>> = {
 	pt: {
@@ -35,6 +36,7 @@ const translations: Record<SupportedLang, Record<TranslationKey, string>> = {
 		"login.google": "Entrar com Google",
 		"login.no_account": "Não tem uma conta?",
 		"login.signup": "Cadastre-se",
+		"login.remember": "Manter conectado",
 		"index.welcome": "Bem-vindo ao",
 		"index.description":
 			"Seu sistema inteligente para gestão de disponibilidade de professores.",
@@ -61,6 +63,7 @@ const translations: Record<SupportedLang, Record<TranslationKey, string>> = {
 		"login.google": "Sign in with Google",
 		"login.no_account": "Don't have an account?",
 		"login.signup": "Sign up",
+		"login.remember": "Keep me signed in",
 		"index.welcome": "Welcome to",
 		"index.description": "Your smart system for managing teacher availability.",
 		"index.start": "Start",

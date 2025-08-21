@@ -1,4 +1,5 @@
 import { FreshContext, PageProps } from "$fresh/server.ts"
+import Navbar from "../islands/Navbar.tsx"
 import { getSessionEmail } from "../utils/middleware.ts"
 
 interface Data {
@@ -21,7 +22,8 @@ export const handler = async (
 
 export default function Dashboard({ data }: PageProps<Data>) {
 	return (
-		<div class="p-4">
+		<>
+		<Navbar />
 			<h1 class="text-2xl font-bold">Bem-vindo ao Haikaku</h1>
 			<p class="mt-2">
 				Você está logado como <strong>{data.email}</strong>.
@@ -32,6 +34,6 @@ export default function Dashboard({ data }: PageProps<Data>) {
 			>
 				Sair
 			</a>
-		</div>
+		</>
 	)
 }

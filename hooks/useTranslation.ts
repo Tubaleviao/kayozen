@@ -1,18 +1,9 @@
-// /hooks/useTranslation.ts
-import { useCallback, useEffect } from "preact/hooks"
+import { useCallback } from "preact/hooks"
 import { SupportedLang, t as translate, TranslationKey } from "../utils/i18n.ts"
 import { usePersistency } from "./usePersistency.ts"
 
-export function useTranslation() {
-	const [lang, setLang] = usePersistency<SupportedLang>("app_lang", "pt")
-
-	useEffect(() => {
-		setLang(lang || "pt")
-	}, [])
-
-	useEffect(() => {
-		localStorage.setItem("lang", lang)
-	}, [lang])
+export function useTranslation(defaultLang: SupportedLang = "pt") {
+	const [lang, setLang] = usePersistency<SupportedLang>("lang", defaultLang)
 
 	const t = useCallback(
 		(key: TranslationKey) => translate(key, lang),

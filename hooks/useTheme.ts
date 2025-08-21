@@ -7,7 +7,6 @@ export function useTheme() {
 
 	useEffect(() => {
 		const isDark = theme === "dark"
-		document.documentElement.classList.toggle("dark", isDark)
 		setDarkMode(isDark)
 	}, [])
 

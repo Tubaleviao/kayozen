@@ -14,9 +14,12 @@ const TranslationContext = createContext<TranslationContextType | undefined>(
 )
 
 export function TranslationProvider(
-	{ children }: { children: preact.ComponentChildren },
+	{ children, defaultLang = "pt" }: {
+		children: preact.ComponentChildren
+		defaultLang?: SupportedLang
+	},
 ) {
-	const { lang, setLang, t } = useTranslation()
+	const { lang, setLang, t } = useTranslation(defaultLang)
 
 	return (
 		<TranslationContext.Provider value={{ lang, setLang, t }}>

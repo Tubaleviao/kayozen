@@ -28,7 +28,9 @@
 		"tailwindcss": "npm:tailwindcss@3.4.1",
 		"tailwindcss/": "npm:/tailwindcss@3.4.1/",
 		"tailwindcss/plugin": "npm:/tailwindcss@3.4.1/plugin.js",
-		"$std/": "https://deno.land/std@0.216.0/"
+		"$std/": "https://deno.land/std@0.216.0/",
+		"bcrypt": "https://deno.land/x/bcrypt/mod.ts",
+		"postgres": "https://deno.land/x/postgres/mod.ts"
 	},
 	"fmt": {
 		"semiColons": false,

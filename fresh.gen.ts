@@ -13,12 +13,14 @@ import * as $dashboard from "./routes/dashboard.tsx"
 import * as $greet_name_ from "./routes/greet/[name].tsx"
 import * as $index from "./routes/index.tsx"
 import * as $login from "./routes/login.tsx"
+import * as $signup from "./routes/signup.tsx"
 import * as $Button from "./islands/Button.tsx"
 import * as $Error404 from "./islands/Error404.tsx"
 import * as $Footer from "./islands/Footer.tsx"
 import * as $LoginBox from "./islands/LoginBox.tsx"
 import * as $Main from "./islands/Main.tsx"
 import * as $Navbar from "./islands/Navbar.tsx"
+import * as $SignupBox from "./islands/SignupBox.tsx"
 import * as $TranslationContext from "./islands/TranslationContext.tsx"
 import type { Manifest } from "$fresh/server.ts"
 
@@ -35,6 +37,7 @@ const manifest = {
 		"./routes/greet/[name].tsx": $greet_name_,
 		"./routes/index.tsx": $index,
 		"./routes/login.tsx": $login,
+		"./routes/signup.tsx": $signup,
 	},
 	islands: {
 		"./islands/Button.tsx": $Button,
@@ -43,6 +46,7 @@ const manifest = {
 		"./islands/LoginBox.tsx": $LoginBox,
 		"./islands/Main.tsx": $Main,
 		"./islands/Navbar.tsx": $Navbar,
+		"./islands/SignupBox.tsx": $SignupBox,
 		"./islands/TranslationContext.tsx": $TranslationContext,
 	},
 	baseUrl: import.meta.url,

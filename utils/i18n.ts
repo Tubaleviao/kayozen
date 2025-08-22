@@ -25,6 +25,18 @@ export type TranslationKey =
 	| "nav.dark"
 	| "nav.theme"
 	| "login.remember"
+	| "signup.title"
+	| "signup.name"
+	| "signup.email"
+	| "signup.password"
+	| "signup.confirmPassword"
+	| "signup.accept_terms"
+	| "signup.button"
+	| "signup.loading"
+	| "signup.or"
+	| "signup.google"
+	| "signup.already_account"
+	| "signup.signin"
 
 const translations: Record<SupportedLang, Record<TranslationKey, string>> = {
 	pt: {
@@ -49,10 +61,22 @@ const translations: Record<SupportedLang, Record<TranslationKey, string>> = {
 		"error.404.message": "A página que você procura não existe.",
 		"error.404.back": "Voltar para a página inicial",
 		"nav.we": "Quem Somos",
-		"nav.light": "Set to Light mode",
-		"nav.dark": "Set to Dark mode",
-		"nav.theme": "Toggle Theme",
+		"nav.light": "Mudar para o Modo Claro",
+		"nav.dark": "Mudar para o Modo Escuro",
+		"nav.theme": "Alternar tema",
 		"nav.login": "Login",
+		"signup.title": "Crie sua conta",
+		"signup.name": "Nome",
+		"signup.email": "Email",
+		"signup.password": "Senha",
+		"signup.confirmPassword": "Confirmar senha",
+		"signup.accept_terms": "Eu aceito os termos e condições",
+		"signup.button": "Cadastrar",
+		"signup.loading": "Criando conta...",
+		"signup.or": "Ou cadastre-se com",
+		"signup.google": "Cadastre-se com Google",
+		"signup.already_account": "Já tem uma conta?",
+		"signup.signin": "Entrar"
 	},
 	en: {
 		"login.signin": "Sign in to",
@@ -75,10 +99,22 @@ const translations: Record<SupportedLang, Record<TranslationKey, string>> = {
 		"error.404.message": "The page you were looking for doesn't exist.",
 		"error.404.back": "Go back home",
 		"nav.we": "The Team",
-		"nav.light": "Mudar para o Modo Claro",
-		"nav.dark": "Mudar para o Modo Escuro",
-		"nav.theme": "Alternar tema",
 		"nav.login": "Login",
+		"nav.light": "Set to Light mode",
+		"nav.dark": "Set to Dark mode",
+		"nav.theme": "Toggle Theme",
+		"signup.title": "Create your account",
+		"signup.name": "Full name",
+		"signup.email": "Email",
+		"signup.password": "Password",
+		"signup.confirmPassword": "Confirm password",
+		"signup.accept_terms": "I accept the terms and conditions",
+		"signup.button": "Sign Up",
+		"signup.loading": "Creating account...",
+		"signup.or": "Or sign up with",
+		"signup.google": "Sign up with Google",
+		"signup.already_account": "Already have an account?",
+		"signup.signin": "Sign in"
 	},
 }
 

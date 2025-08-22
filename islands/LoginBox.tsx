@@ -84,7 +84,7 @@ export default function LoginBox() {
 				<p class="text-center text-sm text-kayozen-light-muted dark:kayozen-dark-muted mt-6">
 					{t("login.no_account")}{" "}
 					<a
-						href="#"
+						href="/signup"
 						class="text-blue-600 dark:text-blue-400 hover:underline"
 					>
 						{t("login.signup")}

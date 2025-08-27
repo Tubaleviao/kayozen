@@ -20,13 +20,13 @@ export const handler = async (
 	return resp
 }
 
-export default function Dashboard({ data }: PageProps<Data>) {
+export default function Dashboard({ data: { email } }: PageProps<Data>) {
 	return (
 		<>
-		<Navbar />
+		<Navbar user={{ email, name: "teste" }} />
 			<h1 class="text-2xl font-bold">Bem-vindo ao Haikaku</h1>
 			<p class="mt-2">
-				Você está logado como <strong>{data.email}</strong>.
+				Você está logado como <strong>{email}</strong>.
 			</p>
 			<a
 				href="/api/logout"

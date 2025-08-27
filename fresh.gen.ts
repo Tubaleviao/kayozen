@@ -9,6 +9,7 @@ import * as $api_callback from "./routes/api/callback.ts"
 import * as $api_login_email from "./routes/api/login/email.ts"
 import * as $api_login_index from "./routes/api/login/index.ts"
 import * as $api_logout from "./routes/api/logout.ts"
+import * as $api_signup from "./routes/api/signup.tsx"
 import * as $dashboard from "./routes/dashboard.tsx"
 import * as $greet_name_ from "./routes/greet/[name].tsx"
 import * as $index from "./routes/index.tsx"
@@ -33,6 +34,7 @@ const manifest = {
 		"./routes/api/login/email.ts": $api_login_email,
 		"./routes/api/login/index.ts": $api_login_index,
 		"./routes/api/logout.ts": $api_logout,
+		"./routes/api/signup.tsx": $api_signup,
 		"./routes/dashboard.tsx": $dashboard,
 		"./routes/greet/[name].tsx": $greet_name_,
 		"./routes/index.tsx": $index,

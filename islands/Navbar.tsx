@@ -5,15 +5,20 @@ import { useTranslationContext } from "./TranslationContext.tsx"
 import { TranslationKey } from "../utils/i18n.ts"
 
 interface NavbarProps {
+  	user?: User | null;
 	itens?: { key: TranslationKey; page: string }[]
+}
+
+interface User {
+  name: string;
+  email: string;
+  avatarUrl?: string;
 }
 
 export default function Navbar(
 	{
-		itens = [{ key: "nav.we", page: "/about" }, {
-			key: "nav.login",
-			page: "/login",
-		}],
+		itens = [{ key: "nav.we", page: "/about" }],
+		user,
 	}: NavbarProps,
 ) {
 	const { t } = useTranslationContext()
@@ -74,6 +79,27 @@ export default function Navbar(
 							{darkMode ? "☀️" : "🌙"}
 						</button>
 					</li>
+
+					{/* Avatar / Login */}
+					<li>
+						{user ? (
+						<a href="/profile" class="flex items-center gap-2">
+							<img
+							src={user.avatarUrl ?? "/user.svg"}
+							alt={user.name}
+							title={user.name}
+							class="w-8 h-8 rounded-full border border-gray-300 dark:border-gray-600"
+							/>
+						</a>
+						) : (
+						<a
+							href="/login"
+							class="px-4 py-2 bg-kayozen-light-primary dark:bg-kayozen-dark-primary text-white rounded-lg hover:opacity-90 transition"
+						>
+							{t("nav.login")}
+						</a>
+						)}
+					</li>
 				</ul>
 			</div>
 
@@ -91,6 +117,25 @@ export default function Navbar(
 								</a>
 							</li>
 						))}
+						<li>
+						{user ? (
+							<a href="/profile" class="flex items-center gap-2">
+							<img
+								src={user.avatarUrl ?? "/user.svg"}
+								alt={user.name}
+								class="w-8 h-8 rounded-full border border-gray-300 dark:border-gray-600"
+							/>
+							<span>{user.name}</span>
+							</a>
+						) : (
+							<a
+							href="/login"
+							class="px-4 py-2 bg-kayozen-light-primary dark:bg-kayozen-dark-primary text-white rounded-lg hover:opacity-90 transition"
+							>
+							{t("nav.login")}
+							</a>
+						)}
+						</li>
 					</ul>
 				</div>
 			)}

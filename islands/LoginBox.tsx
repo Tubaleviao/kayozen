@@ -74,7 +74,7 @@ export default function LoginBox() {
 					class="flex items-center justify-center gap-2 bg-white dark:bg-gray-700 text-gray-700 dark:text-white border border-gray-300 dark:border-gray-600 rounded-lg px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 shadow"
 				>
 					<img
-						src="https://www.svgrepo.com/show/475656/google-color.svg"
+						src="/google.svg"
 						alt="Google logo"
 						class="w-5 h-5"
 					/>

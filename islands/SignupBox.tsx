@@ -30,7 +30,9 @@ export default function SignupBox() {
 			})
 
 			if (!res.ok) {
-				throw new Error("Signup failed")
+				const errorResponse = new Response(res.body)
+				const errorJson = await errorResponse.json()
+				throw new Error(errorJson?.error || "Signup failed")
 			}
 
 			// Exemplo: redirecionar ao dashboard

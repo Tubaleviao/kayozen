@@ -76,7 +76,7 @@ const translations: Record<SupportedLang, Record<TranslationKey, string>> = {
 		"signup.or": "Ou cadastre-se com",
 		"signup.google": "Cadastre-se com Google",
 		"signup.already_account": "Já tem uma conta?",
-		"signup.signin": "Entrar"
+		"signup.signin": "Entrar",
 	},
 	en: {
 		"login.signin": "Sign in to",
@@ -114,7 +114,7 @@ const translations: Record<SupportedLang, Record<TranslationKey, string>> = {
 		"signup.or": "Or sign up with",
 		"signup.google": "Sign up with Google",
 		"signup.already_account": "Already have an account?",
-		"signup.signin": "Sign in"
+		"signup.signin": "Sign in",
 	},
 }
 

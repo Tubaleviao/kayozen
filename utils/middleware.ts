@@ -1,12 +1,25 @@
-export function getSessionEmail(req: Request): string | null {
-	const cookie = req.headers.get("cookie")
-	if (!cookie) return null
+import { verify } from "djwt"
+import { JWT_SECRET } from "./constants.ts"
+import { getUserByEmail } from "./db.ts"
 
-	const match = cookie.match(/auth_token=([^;]+)/)
-	if (!match) return null
+export async function getSessionUser(
+	req: Request,
+): Promise<string[] | undefined> {
+	try {
+		const cookie = req.headers.get("cookie")
+		if (!cookie) return
 
-	const email = decodeURIComponent(match[1])
+		const match = cookie.match(/auth_token=([^;]+)/)
+		if (!match) return
 
-	// Aqui você poderia validar o token contra um banco, JWT etc.
-	return email
+		const jwt = match[1]
+
+		const payload: any = await verify(jwt, JWT_SECRET)
+
+		const user = await getUserByEmail(payload.email)
+		return user.columns
+	} catch (error) {
+		console.error("Authentication error:", error)
+		return
+	}
 }

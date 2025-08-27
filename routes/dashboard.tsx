@@ -1,6 +1,6 @@
 import { FreshContext, PageProps } from "$fresh/server.ts"
 import Navbar from "../islands/Navbar.tsx"
-import { getSessionEmail } from "../utils/middleware.ts"
+import { getSessionUser } from "../utils/middleware.ts"
 
 interface Data {
 	email: string
@@ -10,7 +10,7 @@ export const handler = async (
 	req: Request,
 	ctx: FreshContext,
 ): Promise<Response> => {
-	const email = getSessionEmail(req)
+	const [username, email, picture] = await getSessionUser(req) || []
 
 	if (!email) {
 		return new Response(null, { status: 302, headers: { "Location": "/" } })
@@ -23,8 +23,8 @@ export const handler = async (
 export default function Dashboard({ data: { email } }: PageProps<Data>) {
 	return (
 		<>
-		<Navbar user={{ email, name: "teste" }} />
-			<h1 class="text-2xl font-bold">Bem-vindo ao Haikaku</h1>
+			<Navbar user={{ email, name: "teste" }} />
+			<h1 class="text-2xl font-bold">Bem-vindo ao Kayozen</h1>
 			<p class="mt-2">
 				Você está logado como <strong>{email}</strong>.
 			</p>

@@ -18,7 +18,7 @@ export function usePersistency<T>(key: keyof KayozenState, defaultValue: T) {
 	useEffect(() => {
 		if (typeof window !== "undefined") {
 			try {
-				setCookie("kayo"+key, value as string)
+				setCookie("kayo" + key, value as string)
 			} catch (e) {
 				console.warn(`Error writing cookie key kayo"${key}":`, e)
 			}

@@ -1,4 +1,6 @@
 import { Pool } from "@db/postgres"
+import { makeUsername } from "./make_username.ts"
+import { DbUser } from "./interfaces.ts"
 
 const DB_URL = Deno.env.get("DATABASE_URL") ??
 	"postgres://tuba:rato12@localhost:5432/kayozen"
@@ -14,26 +16,32 @@ export async function query(sql: string, params?: unknown[]) {
 	}
 }
 
-export async function saveUser(user: any) {
+export async function saveUser(user: any): Promise<DbUser> {
 	const client = await pool.connect()
+	let dbUser: DbUser
 	try {
-		return await client.queryObject<any>(
-			"INSERT INTO users (username, email, picture) VALUES ($1, $2, $3)",
-			[user.name, user.email, user.picture],
+		let qObj = await client.queryObject<any>(
+			"INSERT INTO users (username, name, email, google_picture) VALUES ($1, $2, $3, $4)",
+			[makeUsername(10), user.name, user.email, user.picture],
 		)
+		dbUser = qObj.rows[0]
 	} finally {
 		client.release()
 	}
+	return dbUser
 }
 
-export async function getUserByEmail(email: string) {
+export async function getUserByEmail(email: string): Promise<DbUser> {
 	const client = await pool.connect()
+	let dbUser: DbUser
 	try {
-		return await client.queryObject<any>(
-			"SELECT username, email, picture from users WHERE email = $1",
+		let qObj = await client.queryObject<any>(
+			"SELECT * from users WHERE email = $1",
 			[email],
 		)
+		dbUser = qObj.rows[0]
 	} finally {
 		client.release()
 	}
+	return dbUser
 }

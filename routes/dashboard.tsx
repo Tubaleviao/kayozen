@@ -1,32 +1,33 @@
 import { FreshContext, PageProps } from "$fresh/server.ts"
 import Navbar from "../islands/Navbar.tsx"
+import { DbUser } from "../utils/interfaces.ts"
 import { getSessionUser } from "../utils/middleware.ts"
 
 interface Data {
-	email: string
+	dbUser: DbUser
 }
 
 export const handler = async (
 	req: Request,
 	ctx: FreshContext,
 ): Promise<Response> => {
-	const [username, email, picture] = await getSessionUser(req) || []
+	const dbUser = await getSessionUser(req)
 
-	if (!email) {
+	if (!dbUser?.email) {
 		return new Response(null, { status: 302, headers: { "Location": "/" } })
 	}
 
-	const resp = await ctx.render({ email })
+	const resp = await ctx.render({ dbUser })
 	return resp
 }
 
-export default function Dashboard({ data: { email } }: PageProps<Data>) {
+export default function Dashboard({ data: { dbUser } }: PageProps<Data>) {
 	return (
 		<>
-			<Navbar user={{ email, name: "teste" }} />
+			<Navbar user={dbUser} />
 			<h1 class="text-2xl font-bold">Bem-vindo ao Kayozen</h1>
 			<p class="mt-2">
-				Você está logado como <strong>{email}</strong>.
+				Você está logado como <strong>{dbUser.email}</strong>.
 			</p>
 			<a
 				href="/api/logout"

@@ -1,7 +1,8 @@
 import { JWT_SECRET } from "../../utils/constants.ts"
-import { saveUser } from "../../utils/db.ts"
+import { getUserByEmail, saveUser } from "../../utils/db.ts"
 import client from "../../utils/google_oauth.ts"
 import { create } from "djwt"
+import { DbUser, GoogleUser } from "../../utils/interfaces.ts"
 
 export const handler = async (req: Request): Promise<Response> => {
 	const url = new URL(req.url)
@@ -15,7 +16,7 @@ export const handler = async (req: Request): Promise<Response> => {
 	const tokens = await client.code.getToken(req.url, { codeVerifier })
 
 	sessionStorage.setItem("accessToken", tokens.accessToken)
-	const userInfo = await fetch(
+	const userInfo: GoogleUser = await fetch(
 		"https://www.googleapis.com/oauth2/v3/userinfo",
 		{
 			headers: {
@@ -24,17 +25,22 @@ export const handler = async (req: Request): Promise<Response> => {
 		},
 	).then((res) => res.json())
 
+	const user: DbUser = userInfo.email
+		? await getUserByEmail(userInfo.email)
+		: await saveUser(userInfo)
+
 	console.log("User info:", userInfo)
-	const user = await saveUser(userInfo)
+
 	const ONE_DAY = 24 * 60 * 60
 
-	console.log("user", user)
+	console.log("DB User:", user)
 	const payload = {
-		name: user.columns?.[0], // Database ID
-		email: user.columns?.[1],
-		picture: user.columns?.[2],
+		name: user.name,
+		email: user.email,
+		picture: user.google_picture,
 		exp: Math.floor(Date.now() / 1000) + ONE_DAY * 30,
 	}
+	console.log("Calback", payload)
 	const jwt = await create({ alg: "HS512", typ: "JWT" }, payload, JWT_SECRET)
 
 	const headers = new Headers({

@@ -3,16 +3,11 @@ import { useTheme } from "../hooks/useTheme.ts"
 import { Button } from "./Button.tsx"
 import { useTranslationContext } from "./TranslationContext.tsx"
 import { TranslationKey } from "../utils/i18n.ts"
+import { DbUser } from "../utils/interfaces.ts"
 
 interface NavbarProps {
-	user?: User | null
+	user?: DbUser | null
 	itens?: { key: TranslationKey; page: string }[]
-}
-
-interface User {
-	name: string
-	email: string
-	avatarUrl?: string
 }
 
 export default function Navbar(
@@ -86,7 +81,7 @@ export default function Navbar(
 							? (
 								<a href="/profile" class="flex items-center gap-2">
 									<img
-										src={user.avatarUrl ?? "/user.svg"}
+										src={user.google_picture ?? "/user.svg"}
 										alt={user.name}
 										title={user.name}
 										class="w-8 h-8 rounded-full border border-gray-300 dark:border-gray-600"
@@ -124,7 +119,7 @@ export default function Navbar(
 								? (
 									<a href="/profile" class="flex items-center gap-2">
 										<img
-											src={user.avatarUrl ?? "/user.svg"}
+											src={user.google_picture ?? "/user.svg"}
 											alt={user.name}
 											class="w-8 h-8 rounded-full border border-gray-300 dark:border-gray-600"
 										/>

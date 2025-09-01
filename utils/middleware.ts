@@ -1,25 +1,29 @@
 import { verify } from "djwt"
 import { JWT_SECRET } from "./constants.ts"
 import { getUserByEmail } from "./db.ts"
+import { DbUser } from "./interfaces.ts"
 
 export async function getSessionUser(
 	req: Request,
-): Promise<string[] | undefined> {
+): Promise<DbUser | undefined> {
+	let dbUser
 	try {
 		const cookie = req.headers.get("cookie")
-		if (!cookie) return
+		if (!cookie) throw new Error("No Cookie")
 
 		const match = cookie.match(/auth_token=([^;]+)/)
-		if (!match) return
+		if (!match) throw new Error("No auth_token")
 
+		console.log("Match", match)
 		const jwt = match[1]
 
 		const payload: any = await verify(jwt, JWT_SECRET)
 
-		const user = await getUserByEmail(payload.email)
-		return user.columns
+		dbUser = await getUserByEmail(payload.email)
+		if (!dbUser.email) throw new Error("User was deleted")
+		console.log("getSessionUser", dbUser, payload)
 	} catch (error) {
 		console.error("Authentication error:", error)
-		return
 	}
+	return dbUser
 }

@@ -1,6 +1,7 @@
 import { Handlers } from "$fresh/server.ts"
 import { hash } from "bcrypt"
 import { query } from "../../utils/db.ts"
+import { makeUsername } from "../../utils/make_username.ts"
 
 interface Data {
 	error?: string
@@ -35,8 +36,8 @@ export const handler: Handlers<Data> = {
 
 		try {
 			await query(
-				"INSERT INTO users (username, email, password_hash) VALUES ($1, $2, $3)",
-				[name, email, passwordHash],
+				"INSERT INTO users (username, name, email, password_hash) VALUES ($1, $2, $3, $4)",
+				[makeUsername(), name, email, passwordHash],
 			)
 		} catch (err) {
 			if (String(err).includes("duplicate key")) {

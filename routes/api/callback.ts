@@ -2,7 +2,7 @@ import { JWT_SECRET } from "../../utils/constants.ts"
 import { getUserByEmail, saveUser } from "../../utils/db.ts"
 import client from "../../utils/google_oauth.ts"
 import { create } from "djwt"
-import { DbUser, GoogleUser } from "../../utils/interfaces.ts"
+import { DbUser, GoogleUser, JwtPayload } from "../../utils/interfaces.ts"
 
 export const handler = async (req: Request): Promise<Response> => {
 	const url = new URL(req.url)
@@ -15,7 +15,6 @@ export const handler = async (req: Request): Promise<Response> => {
 	const codeVerifier = sessionStorage.getItem("codeVerifier") || ""
 	const tokens = await client.code.getToken(req.url, { codeVerifier })
 
-	sessionStorage.setItem("accessToken", tokens.accessToken)
 	const userInfo: GoogleUser = await fetch(
 		"https://www.googleapis.com/oauth2/v3/userinfo",
 		{
@@ -34,14 +33,14 @@ export const handler = async (req: Request): Promise<Response> => {
 	const ONE_DAY = 24 * 60 * 60
 
 	console.log("DB User:", user)
-	const payload = {
+	const payload: JwtPayload = {
 		name: user.name,
 		email: user.email,
-		picture: user.google_picture,
 		exp: Math.floor(Date.now() / 1000) + ONE_DAY * 30,
 	}
 	console.log("Calback", payload)
 	const jwt = await create({ alg: "HS512", typ: "JWT" }, payload, JWT_SECRET)
+	sessionStorage.setItem("jwt", jwt)
 
 	const headers = new Headers({
 		"Set-Cookie": `auth_token=${jwt}; Path=/; HttpOnly; SameSite=Lax; Max-Age=${

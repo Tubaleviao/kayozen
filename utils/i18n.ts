@@ -24,6 +24,8 @@ export type TranslationKey =
 	| "nav.light"
 	| "nav.dark"
 	| "nav.theme"
+	| "nav.profile"
+	| "nav.logout"
 	| "login.remember"
 	| "signup.title"
 	| "signup.name"
@@ -65,6 +67,8 @@ const translations: Record<SupportedLang, Record<TranslationKey, string>> = {
 		"nav.dark": "Mudar para o Modo Escuro",
 		"nav.theme": "Alternar tema",
 		"nav.login": "Login",
+		"nav.logout": "Sair",
+		"nav.profile": "Perfil",
 		"signup.title": "Crie sua conta",
 		"signup.name": "Nome",
 		"signup.email": "Email",
@@ -103,6 +107,8 @@ const translations: Record<SupportedLang, Record<TranslationKey, string>> = {
 		"nav.light": "Set to Light mode",
 		"nav.dark": "Set to Dark mode",
 		"nav.theme": "Toggle Theme",
+		"nav.logout": "Logout",
+		"nav.profile": "Profile",
 		"signup.title": "Create your account",
 		"signup.name": "Full name",
 		"signup.email": "Email",

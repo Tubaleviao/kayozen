@@ -1,3 +1,6 @@
+import { Payload } from "djwt"
+import { SupportedLang } from "./i18n.ts"
+
 export interface DbUser {
 	id: Int16Array
 	name: string
@@ -14,4 +17,16 @@ export interface GoogleUser {
 	picture: string
 	given_name: string
 	family_name: string
+}
+
+export interface JwtPayload extends Payload {
+	name: string
+	email: string
+	exp: number
+}
+
+export interface KayozenState {
+	theme: "light" | "dark"
+	lang: SupportedLang
+	dbUser: DbUser
 }

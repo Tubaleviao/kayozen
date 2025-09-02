@@ -1,11 +1,6 @@
 import { PageProps } from "$fresh/server.ts"
 import { TranslationProvider } from "../islands/TranslationContext.tsx"
-import { SupportedLang } from "../utils/i18n.ts"
-
-export interface KayozenState {
-	theme: "light" | "dark"
-	lang: SupportedLang
-}
+import { KayozenState } from "../utils/interfaces.ts"
 
 export default function App({ Component, state }: PageProps) {
 	const { theme, lang = "pt" }: Partial<KayozenState> = state

@@ -1,7 +1,7 @@
 import { verify } from "djwt"
 import { JWT_SECRET } from "./constants.ts"
 import { getUserByEmail } from "./db.ts"
-import { DbUser } from "./interfaces.ts"
+import { DbUser, JwtPayload } from "./interfaces.ts"
 
 export async function getSessionUser(
 	req: Request,
@@ -17,7 +17,7 @@ export async function getSessionUser(
 		console.log("Match", match)
 		const jwt = match[1]
 
-		const payload: any = await verify(jwt, JWT_SECRET)
+		const payload: JwtPayload = await verify(jwt, JWT_SECRET)
 
 		dbUser = await getUserByEmail(payload.email)
 		if (!dbUser.email) throw new Error("User was deleted")

@@ -32,9 +32,14 @@ export default {
 					"0%": { opacity: "0", transform: "translateY(10px)" },
 					"100%": { opacity: "1", transform: "translateY(0)" },
 				},
+				"school-glow": {
+					"0%, 100%": { opacity: "1", filter: "brightness(1)" },
+					"50%": { opacity: "0.8", filter: "brightness(1.3)" },
+				},
 			},
 			animation: {
 				fadeIn: "fadeIn 0.6s ease-out",
+				"school-glow": "school-glow 2.5s ease-in-out infinite",
 			},
 		},
 	},

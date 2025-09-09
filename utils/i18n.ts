@@ -39,6 +39,18 @@ export type TranslationKey =
 	| "signup.google"
 	| "signup.already_account"
 	| "signup.signin"
+	| "school.create_title"
+	| "school.create_hint"
+	| "school.default_name"
+	| "school.error_create"
+	| "school.error_unexpected"
+	| "school.aria_label"
+	| "school.tooltip"
+	| "school.label"
+	| "school.click_hint"
+	| "school.creating"
+	| "school.detail_title"
+	| "school.detail_id"
 
 const translations: Record<SupportedLang, Record<TranslationKey, string>> = {
 	pt: {
@@ -81,6 +93,18 @@ const translations: Record<SupportedLang, Record<TranslationKey, string>> = {
 		"signup.google": "Cadastre-se com Google",
 		"signup.already_account": "Já tem uma conta?",
 		"signup.signin": "Entrar",
+		"school.create_title": "Crie sua primeira escola",
+		"school.create_hint": "Clique no ícone abaixo para começar",
+		"school.default_name": "Minha primeira escola",
+		"school.error_create": "Falha ao criar a escola",
+		"school.error_unexpected": "Erro inesperado",
+		"school.aria_label": "Criar escola",
+		"school.tooltip": "Clique para criar uma escola",
+		"school.label": "ESCOLA",
+		"school.click_hint": "Clique para criar",
+		"school.creating": "Criando escola…",
+		"school.detail_title": "Escola",
+		"school.detail_id": "ID",
 	},
 	en: {
 		"login.signin": "Sign in to",
@@ -121,6 +145,18 @@ const translations: Record<SupportedLang, Record<TranslationKey, string>> = {
 		"signup.google": "Sign up with Google",
 		"signup.already_account": "Already have an account?",
 		"signup.signin": "Sign in",
+		"school.create_title": "Create your first school",
+		"school.create_hint": "Click the icon below to start",
+		"school.default_name": "My first school",
+		"school.error_create": "Failed to create school",
+		"school.error_unexpected": "Unexpected error",
+		"school.aria_label": "Create school",
+		"school.tooltip": "Click to create a school",
+		"school.label": "SCHOOL",
+		"school.click_hint": "Click to create",
+		"school.creating": "Creating school…",
+		"school.detail_title": "School",
+		"school.detail_id": "ID",
 	},
 }
 

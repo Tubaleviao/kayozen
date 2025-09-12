@@ -5,9 +5,7 @@ const client = new OAuth2Client({
 	clientSecret: Deno.env.get("GOOGLE_CLIENT_SECRET")!,
 	authorizationEndpointUri: "https://accounts.google.com/o/oauth2/v2/auth",
 	tokenUri: "https://oauth2.googleapis.com/token",
-	redirectUri: `${Deno.env.get("GOOGLE_REDIRECT")}${
-		Deno.env.get("PORT") ? ":" + Deno.env.get("PORT") : ":8000"
-	}/api/callback`,
+	redirectUri: `${Deno.env.get("GOOGLE_REDIRECT")}/api/callback`,
 	defaults: {
 		scope: "openid email profile",
 	},

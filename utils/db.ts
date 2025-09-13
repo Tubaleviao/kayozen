@@ -1,6 +1,7 @@
 import { Pool } from "@db/postgres"
 import { makeUsername } from "./make_username.ts"
 import { DbUser, GoogleUser } from "./interfaces.ts"
+import { v1 } from "jsr:@std/uuid";
 
 const DB_URL = Deno.env.get("DATABASE_URL") ??
 	"postgres://tuba:rato12@localhost:5432/kayozen"
@@ -21,8 +22,8 @@ export async function saveUser(user: GoogleUser): Promise<DbUser> {
 	let dbUser: DbUser
 	try {
 		const qObj = await client.queryObject<DbUser>(
-			"INSERT INTO users (username, name, email, google_picture) VALUES ($1, $2, $3, $4)",
-			[makeUsername(10), user.name, user.email, user.picture],
+			"INSERT INTO peaple (id, username, name, email, google_picture) VALUES ($1, $2, $3, $4)",
+			[v1.generate(), makeUsername(10), user.name, user.email, user.picture],
 		)
 		dbUser = qObj.rows[0]
 	} finally {
@@ -36,7 +37,7 @@ export async function getUserByEmail(email: string): Promise<DbUser> {
 	let dbUser: DbUser
 	try {
 		const qObj = await client.queryObject<DbUser>(
-			"SELECT * from users WHERE email = $1",
+			"SELECT * from people WHERE email = $1",
 			[email],
 		)
 		dbUser = qObj.rows[0]

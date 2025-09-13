@@ -1,16 +1,16 @@
-DROP TABLE IF EXISTS organization;
-DROP TABLE IF EXISTS school;
-DROP TABLE IF EXISTS org_school;
-DROP TABLE IF EXISTS lecture;
-DROP TABLE IF EXISTS class;
-DROP TABLE IF EXISTS subject;
-DROP TABLE IF EXISTS role;
-DROP TABLE IF EXISTS employee_school;
-DROP TABLE IF EXISTS lecture_employee;
-DROP TABLE IF EXISTS student_lecture;
-DROP TABLE IF EXISTS student_class;
-DROP TABLE IF EXISTS person;
-DROP TABLE IF EXISTS person_role;
+DROP TABLE IF EXISTS organization CASCADE;
+DROP TABLE IF EXISTS school CASCADE;
+DROP TABLE IF EXISTS org_school CASCADE;
+DROP TABLE IF EXISTS lecture CASCADE;
+DROP TABLE IF EXISTS class CASCADE;
+DROP TABLE IF EXISTS subject CASCADE;
+DROP TABLE IF EXISTS role CASCADE;
+DROP TABLE IF EXISTS employee_school CASCADE;
+DROP TABLE IF EXISTS lecture_employee CASCADE;
+DROP TABLE IF EXISTS student_lecture CASCADE;
+DROP TABLE IF EXISTS student_class CASCADE;
+DROP TABLE IF EXISTS people CASCADE;
+DROP TABLE IF EXISTS person_role CASCADE;
 
 CREATE TABLE organization (
 id INTEGER PRIMARY KEY NOT NULL,
@@ -28,7 +28,7 @@ CREATE TABLE role (
 id INTEGER PRIMARY KEY NOT NULL,
 name VARCHAR(100) NOT NULL UNIQUE);
 
-CREATE TABLE person (
+CREATE TABLE people (
 id VARCHAR(20) PRIMARY KEY NOT NULL,
 name VARCHAR(250) NOT NULL,
 username VARCHAR(50) NOT NULL UNIQUE,
@@ -44,7 +44,7 @@ cnpj VARCHAR(20) NOT NULL UNIQUE,
 name VARCHAR(250) NOT NULL UNIQUE,
 owner_id VARCHAR(20) NOT NULL,
 created_at TIMESTAMP NOT NULL,
-FOREIGN KEY(owner_id) REFERENCES person(id));
+FOREIGN KEY(owner_id) REFERENCES people(id));
 
 CREATE TABLE org_school (
 organization INTEGER NOT NULL,
@@ -65,26 +65,26 @@ CREATE TABLE employee_school (
 school VARCHAR(20) NOT NULL,
 employee VARCHAR(20) NOT NULL,
 FOREIGN KEY(school) REFERENCES school(cnpj),
-FOREIGN KEY(employee) REFERENCES person(id));
+FOREIGN KEY(employee) REFERENCES people(id));
 
 CREATE TABLE lecture_employee (
 lecture INTEGER NOT NULL,
 employee  VARCHAR(20) NOT NULL,
 FOREIGN KEY(lecture) REFERENCES lecture(id),
-FOREIGN KEY(employee ) REFERENCES person(id));
+FOREIGN KEY(employee ) REFERENCES people(id));
 
 CREATE TABLE student_lecture (
 lecture integer NOT NULL,
 student VARCHAR(20) NOT NULL,
 FOREIGN KEY(lecture ) REFERENCES lecture(id),
-FOREIGN KEY(student) REFERENCES person(id));
+FOREIGN KEY(student) REFERENCES people(id));
 
 CREATE TABLE student_class (
 student VARCHAR(20) NOT NULL,
 class INTEGER NOT NULL,
 joined TIMESTAMP NOT NULL,
 departed TIMESTAMP,
-FOREIGN KEY(student) REFERENCES person(id),
+FOREIGN KEY(student) REFERENCES people(id),
 FOREIGN KEY(class) REFERENCES class(id));
 
 CREATE TABLE person_role (
@@ -93,5 +93,5 @@ person VARCHAR(20) NOT NULL,
 role INTEGER NOT NULL,
 enrolled TIMESTAMP NOT NULL,
 unenrolled TIMESTAMP NOT NULL,
-FOREIGN KEY(person) REFERENCES person(id),
+FOREIGN KEY(person) REFERENCES people(id),
 FOREIGN KEY(role) REFERENCES role(id));

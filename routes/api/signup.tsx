@@ -2,6 +2,8 @@ import { Handlers } from "$fresh/server.ts"
 import { hash } from "bcrypt"
 import { query } from "../../utils/db.ts"
 import { makeUsername } from "../../utils/make_username.ts"
+import { v1 } from "jsr:@std/uuid"
+import { getAuthHeader } from "../../utils/getAuthHeader.ts"
 
 interface Data {
 	error?: string
@@ -33,11 +35,12 @@ export const handler: Handlers<Data> = {
 		}
 
 		const passwordHash = await hash(password)
+		console.log(v1.generate()) // 9e9ec5e0-90f8-11f0-9972-79d21e5c3323
 
 		try {
 			await query(
-				"INSERT INTO users (username, name, email, password_hash) VALUES ($1, $2, $3, $4)",
-				[makeUsername(), name, email, passwordHash],
+				"INSERT INTO people (id, username, name, email, password_hash) VALUES ($1, $2, $3, $4, $5)",
+				[v1.generate(), makeUsername(), name, email, passwordHash],
 			)
 		} catch (err) {
 			if (String(err).includes("duplicate key")) {
@@ -51,7 +54,9 @@ export const handler: Handlers<Data> = {
 			})
 		}
 
-		return new Response(JSON.stringify({ success: true }), { status: 200 })
+		const headers = await getAuthHeader(name, email)
+
+		return new Response(JSON.stringify({ success: true }), { status: 200, headers })
 	},
 
 	async GET(_, ctx) {

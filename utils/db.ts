@@ -22,7 +22,7 @@ export async function saveUser(user: GoogleUser): Promise<DbUser> {
 	let dbUser: DbUser
 	try {
 		const qObj = await client.queryObject<DbUser>(
-			"INSERT INTO peaple (id, username, name, email, google_picture) VALUES ($1, $2, $3, $4)",
+			"INSERT INTO people (id, username, name, email, google_picture) VALUES ($1, $2, $3, $4, $5)",
 			[v1.generate(), makeUsername(10), user.name, user.email, user.picture],
 		)
 		dbUser = qObj.rows[0]

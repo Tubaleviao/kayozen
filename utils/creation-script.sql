@@ -1,5 +1,5 @@
 DROP TABLE IF EXISTS organization CASCADE;
-DROP TABLE IF EXISTS school CASCADE;
+DROP TABLE IF EXISTS schools CASCADE;
 DROP TABLE IF EXISTS org_school CASCADE;
 DROP TABLE IF EXISTS lecture CASCADE;
 DROP TABLE IF EXISTS class CASCADE;
@@ -33,15 +33,15 @@ id VARCHAR(36) PRIMARY KEY NOT NULL,
 name VARCHAR(250) NOT NULL,
 username VARCHAR(50) NOT NULL UNIQUE,
 email VARCHAR(100) NOT NULL UNIQUE,
-password_hash varchar NOT NULL,
+password_hash varchar,
 cpf VARCHAR(20) UNIQUE,
 google_picture VARCHAR,
 created_at TIMESTAMP DEFAULT now());
 
-CREATE TABLE school (
+CREATE TABLE schools (
 id VARCHAR(36) PRIMARY KEY NOT NULL,
 cnpj VARCHAR(20) UNIQUE,
-name VARCHAR(250) NOT NULL UNIQUE,
+name VARCHAR(250),
 owner_id VARCHAR(36) NOT NULL,
 created_at TIMESTAMP DEFAULT now(),
 FOREIGN KEY(owner_id) REFERENCES people(id));
@@ -50,7 +50,7 @@ CREATE TABLE org_school (
 organization INTEGER NOT NULL,
 school VARCHAR(36) NOT NULL,
 FOREIGN KEY(organization) REFERENCES organization(id),
-FOREIGN KEY(school) REFERENCES school(id));
+FOREIGN KEY(school) REFERENCES schools(id));
 
 CREATE TABLE lecture (
 id INTEGER PRIMARY KEY NOT NULL,
@@ -59,12 +59,12 @@ school VARCHAR(36) NOT NULL,
 start_time TIMESTAMP NOT NULL,
 end_time TIMESTAMP NOT NULL,
 FOREIGN KEY(subject) REFERENCES subject(id),
-FOREIGN KEY(school) REFERENCES school(id));
+FOREIGN KEY(school) REFERENCES schools(id));
 
 CREATE TABLE employee_school (
 school VARCHAR(36) NOT NULL,
 employee VARCHAR(36) NOT NULL,
-FOREIGN KEY(school) REFERENCES school(id),
+FOREIGN KEY(school) REFERENCES schools(id),
 FOREIGN KEY(employee) REFERENCES people(id));
 
 CREATE TABLE lecture_employee (

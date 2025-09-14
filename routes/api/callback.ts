@@ -30,7 +30,11 @@ export const handler = async (req: Request): Promise<Response> => {
 	if(userInfo.email){
 		const dbUser = await getUserByEmail(userInfo.email)
 		if(dbUser) user = dbUser
-		else user = await saveUser(userInfo)
+		else{
+			const dbResponse = await saveUser(userInfo)
+			if(dbResponse) user = dbResponse
+			else return new Response("Could not insert new user", { status: 500 })
+		}
 	} else {
 		const error = "Could not get user info from google"
 		console.error(error)

@@ -6,7 +6,7 @@ import Navbar from "../../islands/Navbar.tsx"
 import { KayozenState } from "../../utils/interfaces.ts"
 
 interface Data {
-	school?: { id: number; name: string }
+	school?: { id: string; name: string }
 }
 
 export const handler: Handlers<Data> = {
@@ -26,7 +26,7 @@ export default function SchoolPage({ state, data }: PageProps<Data>) {
 	return (
 		<>
 			<Navbar user={dbUser} />
-			<main class="min-h-screen flex items-center justify-center bg-kayozen-light-background dark:bg-kayozen-dark-background">
+			<main class="flex-grow max-w-screen-lg mx-auto px-4 py-10 animate-fadeIn">
 				<div class="text-center space-y-2">
 					<h1 class="text-2xl font-bold text-kayozen-light-text dark:text-kayozen-dark-text">
 						{t("school.detail_title")}: {school?.name}

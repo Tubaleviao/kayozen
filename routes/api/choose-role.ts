@@ -16,9 +16,9 @@ export const handler: Handlers = {
       return new Response("Unauthorized", { status: 401 });
     }
 
-    await query("UPDATE people SET role = $1 WHERE id = $2", [
-      role,
+    await query("insert into person_role (person, role, enrolled) values ($1, $2, NOW())", [
       user.id,
+      role,
     ]);
 
     return Response.redirect(new URL("/dashboard", req.url));

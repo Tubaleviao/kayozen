@@ -1,7 +1,8 @@
 // routes/api/schools.ts
 import { Handlers } from "$fresh/server.ts"
-import { query } from "../../utils/db.ts"
-import { DbUser } from "../../utils/interfaces.ts"
+import { v1 } from "jsr:@std/uuid"
+import { DbUser } from "../../../utils/interfaces.ts"
+import { query } from "../../../utils/db.ts"
 
 export const handler: Handlers = {
 	async POST(req, ctx) {
@@ -14,7 +15,7 @@ export const handler: Handlers = {
 		}
 
 		const body = await req.json().catch(() => ({}))
-		const name = (body.name ?? "").trim()
+		const name = (body.name ?? "Your School").trim()
 		if (!name) {
 			return new Response(JSON.stringify({ error: "Name required" }), {
 				status: 400,
@@ -22,11 +23,11 @@ export const handler: Handlers = {
 			})
 		}
 
+		const id = v1.generate()
 		const q = await query(
-			"INSERT INTO schools (name, owner_id) VALUES ($1, $2) RETURNING id",
-			[name, user.id],
+			"INSERT INTO schools (id, name, owner_id) VALUES ($1, $2, $3) RETURNING id",
+			[id, name, user.id],
 		) as any
-		const id = q.rows?.[0]?.id
 
 		return new Response(JSON.stringify({ id }), {
 			status: 200,

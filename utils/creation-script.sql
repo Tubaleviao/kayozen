@@ -101,7 +101,7 @@ unenrolled TIMESTAMP,
 FOREIGN KEY(person) REFERENCES people(id),
 FOREIGN KEY(role) REFERENCES roles(name));
 
-INSERT INTO roles (name) VALUES 
-  ('student'),
+INSERT INTO roles (name) 
+VALUES ('student'),
   ('teacher'),
   ('coordinator')

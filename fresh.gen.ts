@@ -10,7 +10,7 @@ import * as $api_choose_role from "./routes/api/choose-role.ts"
 import * as $api_login_email from "./routes/api/login/email.ts"
 import * as $api_login_index from "./routes/api/login/index.ts"
 import * as $api_logout from "./routes/api/logout.ts"
-import * as $api_schools from "./routes/api/schools/index.ts"
+import * as $api_schools_index from "./routes/api/schools/index.ts"
 import * as $api_signup from "./routes/api/signup.tsx"
 import * as $choose_role from "./routes/choose-role.tsx"
 import * as $dashboard from "./routes/dashboard.tsx"
@@ -42,7 +42,7 @@ const manifest = {
 		"./routes/api/login/email.ts": $api_login_email,
 		"./routes/api/login/index.ts": $api_login_index,
 		"./routes/api/logout.ts": $api_logout,
-		"./routes/api/schools.ts": $api_schools,
+		"./routes/api/schools/index.ts": $api_schools_index,
 		"./routes/api/signup.tsx": $api_signup,
 		"./routes/choose-role.tsx": $choose_role,
 		"./routes/dashboard.tsx": $dashboard,

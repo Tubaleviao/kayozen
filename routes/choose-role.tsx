@@ -1,5 +1,8 @@
 import Navbar from "../islands/Navbar.tsx";
 import ChooseRoleBox from "../islands/ChooseRoleBox.tsx";
+import { defautGuard } from "../utils/guards.ts"
+
+export const handler = defautGuard
 
 export default function ChooseRolePage() {
   return (

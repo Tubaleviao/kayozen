@@ -1,15 +1,12 @@
 // routes/schools/new.tsx
-import { Handlers, PageProps } from "$fresh/server.ts"
+import { PageProps } from "$fresh/server.ts"
 import CreateSchool from "../../islands/CreateSchool.tsx"
 import Navbar from "../../islands/Navbar.tsx"
 import { useTranslationContext } from "../../islands/TranslationContext.tsx"
+import { defautGuard } from "../../utils/guards.ts"
 import { KayozenState } from "../../utils/interfaces.ts"
 
-export const handler: Handlers = {
-	async GET(_req, ctx) {
-		return ctx.render({})
-	},
-}
+export const handler = defautGuard
 
 export default function NewSchoolPage({ state }: PageProps) {
 	const { dbUser }: Partial<KayozenState> = state

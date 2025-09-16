@@ -6,11 +6,13 @@ import * as $_404 from "./routes/_404.tsx"
 import * as $_app from "./routes/_app.tsx"
 import * as $_middleware from "./routes/_middleware.ts"
 import * as $api_callback from "./routes/api/callback.ts"
+import * as $api_choose_role from "./routes/api/choose-role.ts"
 import * as $api_login_email from "./routes/api/login/email.ts"
 import * as $api_login_index from "./routes/api/login/index.ts"
 import * as $api_logout from "./routes/api/logout.ts"
 import * as $api_schools from "./routes/api/schools.ts"
 import * as $api_signup from "./routes/api/signup.tsx"
+import * as $choose_role from "./routes/choose-role.tsx"
 import * as $dashboard from "./routes/dashboard.tsx"
 import * as $greet_name_ from "./routes/greet/[name].tsx"
 import * as $index from "./routes/index.tsx"
@@ -19,6 +21,7 @@ import * as $schools_id_ from "./routes/schools/[id].tsx"
 import * as $schools_index from "./routes/schools/index.tsx"
 import * as $signup from "./routes/signup.tsx"
 import * as $Button from "./islands/Button.tsx"
+import * as $ChooseRoleBox from "./islands/ChooseRoleBox.tsx"
 import * as $CreateSchool from "./islands/CreateSchool.tsx"
 import * as $Error404 from "./islands/Error404.tsx"
 import * as $Footer from "./islands/Footer.tsx"
@@ -35,11 +38,13 @@ const manifest = {
 		"./routes/_app.tsx": $_app,
 		"./routes/_middleware.ts": $_middleware,
 		"./routes/api/callback.ts": $api_callback,
+		"./routes/api/choose-role.ts": $api_choose_role,
 		"./routes/api/login/email.ts": $api_login_email,
 		"./routes/api/login/index.ts": $api_login_index,
 		"./routes/api/logout.ts": $api_logout,
 		"./routes/api/schools.ts": $api_schools,
 		"./routes/api/signup.tsx": $api_signup,
+		"./routes/choose-role.tsx": $choose_role,
 		"./routes/dashboard.tsx": $dashboard,
 		"./routes/greet/[name].tsx": $greet_name_,
 		"./routes/index.tsx": $index,
@@ -50,6 +55,7 @@ const manifest = {
 	},
 	islands: {
 		"./islands/Button.tsx": $Button,
+		"./islands/ChooseRoleBox.tsx": $ChooseRoleBox,
 		"./islands/CreateSchool.tsx": $CreateSchool,
 		"./islands/Error404.tsx": $Error404,
 		"./islands/Footer.tsx": $Footer,

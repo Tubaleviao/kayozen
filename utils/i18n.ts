@@ -51,6 +51,15 @@ export type TranslationKey =
 	| "school.creating"
 	| "school.detail_title"
 	| "school.detail_id"
+	| "roles.title"
+	| "roles.choose"
+	| "roles.student"
+	| "roles.teacher"
+	| "roles.coordinator"
+	| "roles.student_desc"
+	| "roles.teacher_desc"
+	| "roles.coordinator_desc"
+	| "roles.confirm"
 
 const translations: Record<SupportedLang, Record<TranslationKey, string>> = {
 	pt: {
@@ -105,6 +114,15 @@ const translations: Record<SupportedLang, Record<TranslationKey, string>> = {
 		"school.creating": "Criando escola…",
 		"school.detail_title": "Escola",
 		"school.detail_id": "ID",
+		"roles.title": "Escolha seu papel",
+		"roles.choose": "Selecione como você deseja usar o Kayozen",
+		"roles.student": "Estudante",
+		"roles.teacher": "Professor",
+		"roles.coordinator": "Coordenador",
+		"roles.student_desc": "Acesse materiais, veja horários e participe das aulas.",
+		"roles.teacher_desc": "Gerencie aulas, disponibilize materiais e acompanhe alunos.",
+		"roles.coordinator_desc": "Administre professores, turmas e toda a instituição.",
+		"roles.confirm": "Confirmar",
 	},
 	en: {
 		"login.signin": "Sign in to",
@@ -157,6 +175,15 @@ const translations: Record<SupportedLang, Record<TranslationKey, string>> = {
 		"school.creating": "Creating school…",
 		"school.detail_title": "School",
 		"school.detail_id": "ID",
+		"roles.title": "Choose your role",
+		"roles.choose": "Select how you want to use Kayozen",
+		"roles.student": "Student",
+		"roles.teacher": "Teacher",
+		"roles.coordinator": "Coordinator",
+		"roles.student_desc": "Access materials, view schedules, and join classes.",
+		"roles.teacher_desc": "Manage classes, provide materials, and track students.",
+		"roles.coordinator_desc": "Manage teachers, classrooms, and the whole institution.",
+		"roles.confirm": "Confirm",
 	},
 }
 

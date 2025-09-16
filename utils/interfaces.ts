@@ -2,7 +2,7 @@ import { Payload } from "djwt"
 import { SupportedLang } from "./i18n.ts"
 
 export interface DbUser {
-	id: Int16Array
+	id: string
 	name: string
 	username: string
 	email: string

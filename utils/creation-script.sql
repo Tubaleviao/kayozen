@@ -5,12 +5,12 @@ DROP TABLE IF EXISTS lecture CASCADE;
 DROP TABLE IF EXISTS class CASCADE;
 DROP TABLE IF EXISTS subject CASCADE;
 DROP TABLE IF EXISTS roles CASCADE;
-DROP TABLE IF EXISTS employee_school CASCADE;
 DROP TABLE IF EXISTS lecture_employee CASCADE;
 DROP TABLE IF EXISTS student_lecture CASCADE;
 DROP TABLE IF EXISTS student_class CASCADE;
 DROP TABLE IF EXISTS people CASCADE;
 DROP TABLE IF EXISTS person_role CASCADE;
+DROP TABLE IF EXISTS person_school CASCADE;
 
 CREATE TABLE organization (
 id SERIAL PRIMARY key,
@@ -62,13 +62,6 @@ end_time TIMESTAMP NOT NULL,
 FOREIGN KEY(subject) REFERENCES subject(id),
 FOREIGN KEY(school) REFERENCES schools(id));
 
-CREATE TABLE employee_school (
-id SERIAL PRIMARY key,
-school VARCHAR(36) NOT NULL,
-employee VARCHAR(36) NOT NULL,
-FOREIGN KEY(school) REFERENCES schools(id),
-FOREIGN KEY(employee) REFERENCES people(id));
-
 CREATE TABLE lecture_employee (
 id SERIAL PRIMARY key,
 lecture INTEGER NOT NULL,
@@ -101,7 +94,15 @@ unenrolled TIMESTAMP,
 FOREIGN KEY(person) REFERENCES people(id),
 FOREIGN KEY(role) REFERENCES roles(name));
 
+CREATE TABLE person_school (
+id SERIAL PRIMARY key,
+school VARCHAR(36) NOT NULL,
+person VARCHAR(36) NOT NULL,
+FOREIGN KEY(school) REFERENCES schools(id),
+FOREIGN KEY(person) REFERENCES people(id));
+
 INSERT INTO roles (name) 
 VALUES ('student'),
   ('teacher'),
   ('coordinator')
+  

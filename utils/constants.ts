@@ -4,3 +4,5 @@ export const JWT_SECRET = await crypto.subtle.generateKey(
 	["sign", "verify"],
 )
 export const ONE_DAY = 24 * 60 * 60
+
+export type Role = "student" | "teacher" | "coordinator"

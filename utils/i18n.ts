@@ -60,6 +60,20 @@ export type TranslationKey =
 	| "roles.teacher_desc"
 	| "roles.coordinator_desc"
 	| "roles.confirm"
+	| "dashboard.welcome"
+	| "dashboard.no_role"
+	| "dashboard.choose_role_button"
+	| "dashboard.no_school"
+	| "dashboard.create_school_button"
+	| "dashboard.overview"
+	| "dashboard.current_role"
+	| "dashboard.current_school"
+	| "dashboard.logout"
+	| "dashboard.role.student"
+	| "dashboard.role.teacher"
+	| "dashboard.role.coordinator"
+	| "dashboard.role.add_new"
+	| "dashboard.school.add_new"
 
 const translations: Record<SupportedLang, Record<TranslationKey, string>> = {
 	pt: {
@@ -123,6 +137,21 @@ const translations: Record<SupportedLang, Record<TranslationKey, string>> = {
 		"roles.teacher_desc": "Gerencie aulas, disponibilize materiais e acompanhe alunos.",
 		"roles.coordinator_desc": "Administre professores, turmas e toda a instituição.",
 		"roles.confirm": "Confirmar",
+		"dashboard.welcome": "Bem-vindo ao Kayozen",
+		"dashboard.no_role": "Você ainda não possui um papel. Escolha um para continuar.",
+		"dashboard.choose_role_button": "Escolher Papel",
+		"dashboard.no_school": "Você ainda não possui uma escola. Crie uma para continuar.",
+		"dashboard.create_school_button": "Criar Escola",
+		"dashboard.overview": "Visão Geral do Painel",
+		"dashboard.current_role": "Papel Atual",
+		"dashboard.current_school": "Escola Atual",
+		"dashboard.logout": "Sair",
+		"dashboard.role.student": "Aluno",
+		"dashboard.role.teacher": "Professor",
+		"dashboard.role.coordinator": "Coordenador",
+		"dashboard.role.add_new": "Adicionar novo papel",
+		"dashboard.school.add_new": "Adicionar nova escola",
+
 	},
 	en: {
 		"login.signin": "Sign in to",
@@ -184,6 +213,20 @@ const translations: Record<SupportedLang, Record<TranslationKey, string>> = {
 		"roles.teacher_desc": "Manage classes, provide materials, and track students.",
 		"roles.coordinator_desc": "Manage teachers, classrooms, and the whole institution.",
 		"roles.confirm": "Confirm",
+		"dashboard.welcome": "Welcome to Kayozen",
+		"dashboard.no_role": "You don’t have a role yet. Please choose one to continue.",
+		"dashboard.choose_role_button": "Choose Role",
+		"dashboard.no_school": "You don’t have a school yet. Please create one to continue.",
+		"dashboard.create_school_button": "Create School",
+		"dashboard.overview": "Dashboard Overview",
+		"dashboard.current_role": "Current Role",
+		"dashboard.current_school": "Current School",
+		"dashboard.logout": "Logout",
+		"dashboard.role.student": "Student",
+		"dashboard.role.teacher": "Teacher",
+		"dashboard.role.coordinator": "Coordinator",
+		"dashboard.role.add_new": "Add new role",
+		"dashboard.school.add_new": "Add new school",
 	},
 }
 

@@ -22,8 +22,8 @@ export default function CreateSchool() {
 				const data = await res.json().catch(() => ({}))
 				throw new Error(data?.error ?? t("school.error_create"))
 			}
-
 			const data = await res.json()
+			
 			window.location.href = `/schools/${data.id}`
 		} catch (e) {
 			setErr(e instanceof Error ? e.message : t("school.error_unexpected"))

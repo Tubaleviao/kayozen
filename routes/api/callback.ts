@@ -41,9 +41,9 @@ export const handler = async (req: Request): Promise<Response> => {
 		return new Response(error, { status: 500 })
 	}
 
-	console.log("User info:", userInfo)
+	//console.log("User info:", userInfo)
 
-	console.log("DB User:", user)
+	//console.log("DB User:", user)
 
 	const headers = await getAuthHeader(user.name, user.email)
 

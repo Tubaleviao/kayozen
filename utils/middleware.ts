@@ -14,14 +14,14 @@ export async function getSessionUser(
 		const match = cookie.match(/auth_token=([^;]+)/)
 		if (!match) throw new Error("No auth_token")
 
-		console.log("Match", match)
+		//console.log("Match", match)
 		const jwt = match[1]
 
 		const payload: JwtPayload = await verify(jwt, JWT_SECRET)
 
 		dbUser = await getUserByEmail(payload.email)
 		if (!dbUser.email) throw new Error("User was deleted")
-		console.log("getSessionUser", dbUser, payload)
+		//console.log("getSessionUser", dbUser, payload)
 	} catch (error) {
 		console.error("Authentication error:", error)
 	}

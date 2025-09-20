@@ -14,7 +14,7 @@ interface Data {
 export const handler = defautGuard;
 
 export default function Dashboard(
-  { data: { dbUser, currentRole, currentSchool } }: PageProps<Data>,
+  { data: { dbUser } }: PageProps<Data>,
 ) {
   const { t } = useTranslationContext();
 
@@ -37,8 +37,8 @@ export default function Dashboard(
                     class="px-3 py-2 rounded bg-kayozen-light-surface dark:bg-kayozen-dark-surface border border-kayozen-light-muted dark:border-kayozen-dark-muted"
                   >
                     {dbUser.roles?.map((role) => (
-                      <option selected={role.name === currentRole}>
-                        {t(`dashboard.role.${role.name}`)}
+                      <option selected>
+                        {t(`dashboard.role.${role.role}`)}
                       </option>
                     ))}
                     <option value="new">{t("dashboard.role.add_new")}</option>
@@ -51,7 +51,7 @@ export default function Dashboard(
                     class="px-3 py-2 rounded bg-kayozen-light-surface dark:bg-kayozen-dark-surface border border-kayozen-light-muted dark:border-kayozen-dark-muted"
                   >
                     {dbUser.schools?.map((school) => (
-                      <option selected={school.name === currentSchool}>{school.name}</option>
+                      <option selected>{school.name}</option>
                     ))}
                     <option value="new">{t("dashboard.school.add_new")}</option>
                   </select>
@@ -77,28 +77,13 @@ export default function Dashboard(
           <div class="bg-kayozen-light-surface dark:bg-kayozen-dark-surface p-6 rounded-lg shadow-md text-center">
             <p class="mb-4">{t("dashboard.no_school")}</p>
             <a
-              href="/schools/new"
+              href="/schools"
               class="inline-block bg-kayozen-light-secondary dark:bg-kayozen-dark-secondary text-white px-4 py-2 rounded hover:opacity-90 transition"
             >
               {t("dashboard.create_school_button")}
             </a>
           </div>
         )}
-
-        {hasRole && hasSchool && (
-          <div class="mt-6">
-            <h2 class="text-xl font-semibold">{t("dashboard.overview")}</h2>
-            <p class="mt-2">{t("dashboard.current_role")}: <strong>{currentRole}</strong></p>
-            <p>{t("dashboard.current_school")}: <strong>{currentSchool}</strong></p>
-          </div>
-        )}
-
-        <a
-          href="/api/logout"
-          class="mt-8 inline-block bg-red-500 text-white px-4 py-2 rounded hover:opacity-90"
-        >
-          {t("dashboard.logout")}
-        </a>
       </main>
     </div>
   );

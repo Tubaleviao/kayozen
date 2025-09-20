@@ -16,7 +16,9 @@ export interface DbUser {
 
 export interface DbRole {
 	id: string
-	name: Role
+	role: Role
+	person: string
+	enrolled: string
 }
 
 export interface School{

@@ -49,10 +49,11 @@ export async function getUserByEmail(email: string): Promise<DbUser> {
 			)
 			dbUser.roles = roles.rows
 			const schools = await client.queryObject<School>(
-				"SELECT * from person_school WHERE person = $1",
+				"SELECT * from schools WHERE owner_id = $1",
 				[dbUser.id],
 			)
 			dbUser.schools = schools.rows
+			//console.log(schools.rows)
 		}
 	} finally {
 		client.release()

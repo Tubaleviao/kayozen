@@ -133,14 +133,19 @@ const translations: Record<SupportedLang, Record<TranslationKey, string>> = {
 		"roles.student": "Estudante",
 		"roles.teacher": "Professor",
 		"roles.coordinator": "Coordenador",
-		"roles.student_desc": "Acesse materiais, veja horários e participe das aulas.",
-		"roles.teacher_desc": "Gerencie aulas, disponibilize materiais e acompanhe alunos.",
-		"roles.coordinator_desc": "Administre professores, turmas e toda a instituição.",
+		"roles.student_desc":
+			"Acesse materiais, veja horários e participe das aulas.",
+		"roles.teacher_desc":
+			"Gerencie aulas, disponibilize materiais e acompanhe alunos.",
+		"roles.coordinator_desc":
+			"Administre professores, turmas e toda a instituição.",
 		"roles.confirm": "Confirmar",
 		"dashboard.welcome": "Bem-vindo ao Kayozen",
-		"dashboard.no_role": "Você ainda não possui um papel. Escolha um para continuar.",
+		"dashboard.no_role":
+			"Você ainda não possui um papel. Escolha um para continuar.",
 		"dashboard.choose_role_button": "Escolher Papel",
-		"dashboard.no_school": "Você ainda não possui uma escola. Crie uma para continuar.",
+		"dashboard.no_school":
+			"Você ainda não possui uma escola. Crie uma para continuar.",
 		"dashboard.create_school_button": "Criar Escola",
 		"dashboard.overview": "Visão Geral do Painel",
 		"dashboard.current_role": "Papel Atual",
@@ -151,7 +156,6 @@ const translations: Record<SupportedLang, Record<TranslationKey, string>> = {
 		"dashboard.role.coordinator": "Coordenador",
 		"dashboard.role.add_new": "Adicionar novo papel",
 		"dashboard.school.add_new": "Adicionar nova escola",
-
 	},
 	en: {
 		"login.signin": "Sign in to",
@@ -210,13 +214,17 @@ const translations: Record<SupportedLang, Record<TranslationKey, string>> = {
 		"roles.teacher": "Teacher",
 		"roles.coordinator": "Coordinator",
 		"roles.student_desc": "Access materials, view schedules, and join classes.",
-		"roles.teacher_desc": "Manage classes, provide materials, and track students.",
-		"roles.coordinator_desc": "Manage teachers, classrooms, and the whole institution.",
+		"roles.teacher_desc":
+			"Manage classes, provide materials, and track students.",
+		"roles.coordinator_desc":
+			"Manage teachers, classrooms, and the whole institution.",
 		"roles.confirm": "Confirm",
 		"dashboard.welcome": "Welcome to Kayozen",
-		"dashboard.no_role": "You don’t have a role yet. Please choose one to continue.",
+		"dashboard.no_role":
+			"You don’t have a role yet. Please choose one to continue.",
 		"dashboard.choose_role_button": "Choose Role",
-		"dashboard.no_school": "You don’t have a school yet. Please create one to continue.",
+		"dashboard.no_school":
+			"You don’t have a school yet. Please create one to continue.",
 		"dashboard.create_school_button": "Create School",
 		"dashboard.overview": "Dashboard Overview",
 		"dashboard.current_role": "Current Role",

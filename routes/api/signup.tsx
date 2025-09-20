@@ -56,7 +56,10 @@ export const handler: Handlers<Data> = {
 
 		const headers = await getAuthHeader(name, email)
 
-		return new Response(JSON.stringify({ success: true }), { status: 200, headers })
+		return new Response(JSON.stringify({ success: true }), {
+			status: 200,
+			headers,
+		})
 	},
 
 	async GET(_, ctx) {

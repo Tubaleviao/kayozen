@@ -21,7 +21,7 @@ export interface DbRole {
 	enrolled: string
 }
 
-export interface School{
+export interface School {
 	id: string
 	cnpj: string
 	name: string

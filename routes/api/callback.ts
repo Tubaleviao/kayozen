@@ -27,12 +27,12 @@ export const handler = async (req: Request): Promise<Response> => {
 
 	let user: DbUser
 
-	if(userInfo.email){
+	if (userInfo.email) {
 		const dbUser = await getUserByEmail(userInfo.email)
-		if(dbUser) user = dbUser
-		else{
+		if (dbUser) user = dbUser
+		else {
 			const dbResponse = await saveUser(userInfo)
-			if(dbResponse) user = dbResponse
+			if (dbResponse) user = dbResponse
 			else return new Response("Could not insert new user", { status: 500 })
 		}
 	} else {

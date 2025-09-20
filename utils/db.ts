@@ -1,7 +1,7 @@
 import { Pool, QueryObjectResult } from "@db/postgres"
 import { makeUsername } from "./make_username.ts"
 import { DbRole, DbUser, GoogleUser, School } from "./interfaces.ts"
-import { v1 } from "jsr:@std/uuid";
+import { v1 } from "jsr:@std/uuid"
 import { Role } from "./constants.ts"
 
 const DB_URL = Deno.env.get("DATABASE_URL") ??
@@ -29,7 +29,7 @@ export async function saveUser(user: GoogleUser): Promise<DbUser | undefined> {
 	} finally {
 		client.release()
 	}
-	if(qObj.query.result_type === 1) return await getUserByEmail(user.email)
+	if (qObj.query.result_type === 1) return await getUserByEmail(user.email)
 	else console.error("Error trying to insert user")
 }
 
@@ -42,7 +42,7 @@ export async function getUserByEmail(email: string): Promise<DbUser> {
 			[email],
 		)
 		dbUser = person.rows[0]
-		if(dbUser){
+		if (dbUser) {
 			const roles = await client.queryObject<DbRole>(
 				"SELECT * from person_role WHERE person = $1",
 				[dbUser.id],

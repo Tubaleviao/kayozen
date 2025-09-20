@@ -23,7 +23,6 @@ export default function NewSchoolPage({ state }: PageProps) {
 					<p class="text-kayozen-light-muted dark:text-kayozen-dark-muted">
 						{t("school.create_hint")}
 					</p>
-
 					<CreateSchool />
 				</section>
 			</main>

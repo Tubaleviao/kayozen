@@ -35,7 +35,7 @@ export const handler: Handlers<Data> = {
 		}
 
 		const passwordHash = await hash(password)
-		console.log(v1.generate()) // 9e9ec5e0-90f8-11f0-9972-79d21e5c3323
+		//console.log(v1.generate()) // 9e9ec5e0-90f8-11f0-9972-79d21e5c3323
 
 		try {
 			await query(
@@ -56,7 +56,10 @@ export const handler: Handlers<Data> = {
 
 		const headers = await getAuthHeader(name, email)
 
-		return new Response(JSON.stringify({ success: true }), { status: 200, headers })
+		return new Response(JSON.stringify({ success: true }), {
+			status: 200,
+			headers,
+		})
 	},
 
 	async GET(_, ctx) {

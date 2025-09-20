@@ -23,13 +23,18 @@ export const handler: Handlers = {
 			})
 		}
 
-		const id = v1.generate()
-		const q = await query(
-			"INSERT INTO schools (id, name, owner_id) VALUES ($1, $2, $3) RETURNING id",
-			[id, name, user.id],
+		const schoolId = v1.generate()
+		await query(
+			"INSERT INTO schools (id, name, owner_id) VALUES ($1, $2, $3)", // RETURNING ID
+			[schoolId, name, user.id],
 		) as any
 
-		return new Response(JSON.stringify({ id }), {
+		await query(
+			"INSERT INTO person_school (school, person) VALUES ($1, $2)",
+			[schoolId, user.id],
+		) as any
+
+		return new Response(JSON.stringify({ id: schoolId }), {
 			status: 200,
 			headers: { "Content-Type": "application/json" },
 		})

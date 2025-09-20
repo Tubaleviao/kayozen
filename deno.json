@@ -8,17 +8,8 @@
 		"preview": "deno run -A main.ts",
 		"update": "deno run -A -r https://fresh.deno.dev/update ."
 	},
-	"lint": {
-		"rules": {
-			"tags": [
-				"fresh",
-				"recommended"
-			]
-		}
-	},
-	"exclude": [
-		"**/_fresh/*"
-	],
+	"lint": { "rules": { "tags": ["fresh", "recommended"] } },
+	"exclude": ["**/_fresh/*"],
 	"imports": {
 		"$fresh/": "https://deno.land/x/fresh@1.7.3/",
 		"@db/postgres": "jsr:@db/postgres@^0.19.5",
@@ -32,12 +23,6 @@
 		"bcrypt": "https://deno.land/x/bcrypt@v0.4.1/mod.ts",
 		"djwt": "https://deno.land/x/djwt@v3.0.2/mod.ts"
 	},
-	"fmt": {
-		"semiColons": false,
-		"useTabs": true
-	},
-	"compilerOptions": {
-		"jsx": "react-jsx",
-		"jsxImportSource": "preact"
-	}
+	"fmt": { "semiColons": false, "useTabs": true },
+	"compilerOptions": { "jsx": "react-jsx", "jsxImportSource": "preact" }
 }

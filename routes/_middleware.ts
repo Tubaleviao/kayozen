@@ -3,6 +3,7 @@ import { verify } from "djwt"
 import { DbUser, JwtPayload } from "../utils/interfaces.ts"
 import { JWT_SECRET } from "../utils/constants.ts"
 import { db } from "../utils/db.ts"
+import { logError } from "../utils/errors.ts"
 
 export async function handler(req: Request, ctx: FreshContext) {
 	const cookie = req.headers.get("cookie")
@@ -15,8 +16,8 @@ export async function handler(req: Request, ctx: FreshContext) {
 		try {
 			const payload: JwtPayload = await verify(jwt, JWT_SECRET)
 			dbUser = await db.getUserByEmail(payload.email)
-		} catch (e: any) {
-			if (e) console.error(e.message)
+		} catch (error: any) {
+			logError(error)
 			const resp = await ctx.next()
 			resp.headers.append(
 				"Set-Cookie",

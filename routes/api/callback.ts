@@ -2,6 +2,7 @@ import { db } from "../../utils/db.ts"
 import client from "../../utils/google_oauth.ts"
 import { DbUser, GoogleUser } from "../../utils/interfaces.ts"
 import { getAuthHeader } from "../../utils/getAuthHeader.ts"
+import { logError } from "../../utils/errors.ts"
 
 export const handler = async (req: Request): Promise<Response> => {
 	const url = new URL(req.url)
@@ -35,7 +36,7 @@ export const handler = async (req: Request): Promise<Response> => {
 		}
 	} else {
 		const error = "Could not get user info from google"
-		console.error(error)
+		logError(error)
 		return new Response(error, { status: 500 })
 	}
 

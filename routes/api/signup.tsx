@@ -4,6 +4,7 @@ import { db } from "../../utils/db.ts"
 import { makeUsername } from "../../utils/make_username.ts"
 import { v1 } from "jsr:@std/uuid"
 import { getAuthHeader } from "../../utils/getAuthHeader.ts"
+import { logError } from "../../utils/errors.ts"
 
 interface Data {
 	error?: string
@@ -47,7 +48,7 @@ export const handler: Handlers<Data> = {
 					status: 400,
 				})
 			}
-			console.error("DB Error:", err)
+			logError(err)
 			return new Response(JSON.stringify({ error: "Internal error" }), {
 				status: 500,
 			})

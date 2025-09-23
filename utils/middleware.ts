@@ -2,6 +2,7 @@ import { verify } from "djwt"
 import { JWT_SECRET } from "./constants.ts"
 import { db } from "./db.ts"
 import { DbUser, JwtPayload } from "./interfaces.ts"
+import { logError } from "./errors.ts"
 
 export async function getSessionUser(
 	req: Request,
@@ -20,8 +21,8 @@ export async function getSessionUser(
 
 		dbUser = await db.getUserByEmail(payload.email)
 		if (!dbUser.email) throw new Error("User was deleted")
-	} catch (error) {
-		console.error("Authentication error:", error)
+	} catch (error: any) {
+		logError(error)
 	}
 	return dbUser
 }

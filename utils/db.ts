@@ -14,24 +14,19 @@ export class DbGateway {
 
 	async query(sql: string, params?: unknown[]) {
 		const client = await this.pool.connect()
-		try {
-			return await client.queryObject(sql, params)
-		} finally {
-			client.release()
-		}
+		const dbObj = await client.queryObject(sql, params)
+		client.release()
+		return dbObj
 	}
 
 	async saveUser(user: GoogleUser): Promise<DbUser | undefined> {
 		const client = await this.pool.connect()
 		let qObj: QueryObjectResult
-		try {
-			qObj = await client.queryObject(
-				"INSERT INTO people (id, username, name, email, google_picture) VALUES ($1, $2, $3, $4, $5)",
-				[v1.generate(), makeUsername(10), user.name, user.email, user.picture],
-			)
-		} finally {
-			client.release()
-		}
+		qObj = await client.queryObject(
+			"INSERT INTO people (id, username, name, email, google_picture) VALUES ($1, $2, $3, $4, $5)",
+			[v1.generate(), makeUsername(10), user.name, user.email, user.picture],
+		)
+		client.release()
 		if (qObj.query.result_type === 1) {
 			return await this.getUserByEmail(user.email)
 		} else console.error("Error trying to insert user")

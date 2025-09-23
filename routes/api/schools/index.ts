@@ -2,7 +2,7 @@
 import { Handlers } from "$fresh/server.ts"
 import { v1 } from "jsr:@std/uuid"
 import { DbUser } from "../../../utils/interfaces.ts"
-import { query } from "../../../utils/db.ts"
+import { db } from "../../../utils/db.ts"
 
 export const handler: Handlers = {
 	async POST(req, ctx) {
@@ -24,12 +24,12 @@ export const handler: Handlers = {
 		}
 
 		const schoolId = v1.generate()
-		await query(
+		await db.query(
 			"INSERT INTO schools (id, name, owner_id) VALUES ($1, $2, $3)", // RETURNING ID
 			[schoolId, name, user.id],
 		) as any
 
-		await query(
+		await db.query(
 			"INSERT INTO person_school (school, person) VALUES ($1, $2)",
 			[schoolId, user.id],
 		) as any

@@ -1,6 +1,6 @@
 import { Handlers } from "$fresh/server.ts"
 import { hash } from "bcrypt"
-import { query } from "../../utils/db.ts"
+import { db } from "../../utils/db.ts"
 import { makeUsername } from "../../utils/make_username.ts"
 import { v1 } from "jsr:@std/uuid"
 import { getAuthHeader } from "../../utils/getAuthHeader.ts"
@@ -35,10 +35,9 @@ export const handler: Handlers<Data> = {
 		}
 
 		const passwordHash = await hash(password)
-		//console.log(v1.generate()) // 9e9ec5e0-90f8-11f0-9972-79d21e5c3323
 
 		try {
-			await query(
+			await db.query(
 				"INSERT INTO people (id, username, name, email, password_hash) VALUES ($1, $2, $3, $4, $5)",
 				[v1.generate(), makeUsername(), name, email, passwordHash],
 			)

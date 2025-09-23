@@ -1,5 +1,5 @@
 import { Handlers } from "$fresh/server.ts"
-import { query } from "../../utils/db.ts" // your db helper
+import { db } from "../../utils/db.ts" // your db helper
 import { DbUser } from "../../utils/interfaces.ts"
 
 export const handler: Handlers = {
@@ -16,7 +16,7 @@ export const handler: Handlers = {
 			return new Response("Unauthorized", { status: 401 })
 		}
 
-		await query(
+		await db.query(
 			"insert into person_role (person, role, enrolled) values ($1, $2, NOW())",
 			[
 				user.id,

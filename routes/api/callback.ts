@@ -1,8 +1,6 @@
-import { JWT_SECRET, ONE_DAY } from "../../utils/constants.ts"
-import { getUserByEmail, saveUser } from "../../utils/db.ts"
+import { db } from "../../utils/db.ts"
 import client from "../../utils/google_oauth.ts"
-import { create } from "djwt"
-import { DbUser, GoogleUser, JwtPayload } from "../../utils/interfaces.ts"
+import { DbUser, GoogleUser } from "../../utils/interfaces.ts"
 import { getAuthHeader } from "../../utils/getAuthHeader.ts"
 
 export const handler = async (req: Request): Promise<Response> => {
@@ -28,10 +26,10 @@ export const handler = async (req: Request): Promise<Response> => {
 	let user: DbUser
 
 	if (userInfo.email) {
-		const dbUser = await getUserByEmail(userInfo.email)
+		const dbUser = await db.getUserByEmail(userInfo.email)
 		if (dbUser) user = dbUser
 		else {
-			const dbResponse = await saveUser(userInfo)
+			const dbResponse = await db.saveUser(userInfo)
 			if (dbResponse) user = dbResponse
 			else return new Response("Could not insert new user", { status: 500 })
 		}

@@ -2,61 +2,59 @@ import { Pool, QueryObjectResult } from "@db/postgres"
 import { makeUsername } from "./make_username.ts"
 import { DbRole, DbUser, GoogleUser, School } from "./interfaces.ts"
 import { v1 } from "jsr:@std/uuid"
-import { Role } from "./constants.ts"
 
 const DB_URL = Deno.env.get("DATABASE_URL") ??
 	"postgres://tuba:rato12@localhost:5432/kayozen"
 
-const pool = new Pool(DB_URL, 3, true)
+export class DbGateway {
+	private pool = new Pool(DB_URL, 3, true)
+	private dbUser: DbUser | undefined
 
-export async function query(sql: string, params?: unknown[]) {
-	const client = await pool.connect()
-	try {
-		return await client.queryObject(sql, params)
-	} finally {
+	constructor() {}
+
+	async query(sql: string, params?: unknown[]) {
+		const client = await this.pool.connect()
+		const dbObj = await client.queryObject(sql, params)
 		client.release()
+		return dbObj
 	}
-}
 
-export async function saveUser(user: GoogleUser): Promise<DbUser | undefined> {
-	const client = await pool.connect()
-	let qObj: QueryObjectResult
-	try {
+	async saveUser(user: GoogleUser): Promise<DbUser | undefined> {
+		const client = await this.pool.connect()
+		let qObj: QueryObjectResult
 		qObj = await client.queryObject(
 			"INSERT INTO people (id, username, name, email, google_picture) VALUES ($1, $2, $3, $4, $5)",
 			[v1.generate(), makeUsername(10), user.name, user.email, user.picture],
 		)
-	} finally {
 		client.release()
+		if (qObj.query.result_type === 1) {
+			return await this.getUserByEmail(user.email)
+		} else console.error("Error trying to insert user")
 	}
-	if (qObj.query.result_type === 1) return await getUserByEmail(user.email)
-	else console.error("Error trying to insert user")
-}
 
-export async function getUserByEmail(email: string): Promise<DbUser> {
-	const client = await pool.connect()
-	let dbUser: DbUser
-	try {
+	async getUserByEmail(email: string): Promise<DbUser> {
+		if (this.dbUser && this.dbUser.email === email) return this.dbUser
+		const client = await this.pool.connect()
 		const person = await client.queryObject<DbUser>(
 			"SELECT * from people WHERE email = $1",
 			[email],
 		)
-		dbUser = person.rows[0]
-		if (dbUser) {
+		this.dbUser = person.rows[0]
+		if (this.dbUser) {
 			const roles = await client.queryObject<DbRole>(
 				"SELECT * from person_role WHERE person = $1",
-				[dbUser.id],
+				[this.dbUser.id],
 			)
-			dbUser.roles = roles.rows
+			this.dbUser.roles = roles.rows
 			const schools = await client.queryObject<School>(
 				"SELECT * from schools WHERE owner_id = $1",
-				[dbUser.id],
+				[this.dbUser.id],
 			)
-			dbUser.schools = schools.rows
-			//console.log(schools.rows)
+			this.dbUser.schools = schools.rows
 		}
-	} finally {
 		client.release()
+		return this.dbUser
 	}
-	return dbUser
 }
+
+export const db = new DbGateway()

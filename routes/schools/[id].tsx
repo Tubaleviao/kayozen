@@ -1,6 +1,6 @@
 // routes/schools/[id].tsx
 import { Handlers, PageProps } from "$fresh/server.ts"
-import { query } from "../../utils/db.ts"
+import { db } from "../../utils/db.ts"
 import { useTranslationContext } from "../../islands/TranslationContext.tsx"
 import Navbar from "../../islands/Navbar.tsx"
 import { KayozenState } from "../../utils/interfaces.ts"
@@ -12,7 +12,7 @@ interface Data {
 export const handler: Handlers<Data> = {
 	async GET(_req, ctx) {
 		const { id } = ctx.params
-		const q = await query("SELECT id, name FROM schools WHERE id = $1", [id])
+		const q = await db.query("SELECT id, name FROM schools WHERE id = $1", [id])
 		const school = q.rows?.[0] as any
 		if (!school) return new Response("Not found", { status: 404 })
 		return ctx.render({ school })

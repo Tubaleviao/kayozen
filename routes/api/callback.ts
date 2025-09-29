@@ -3,6 +3,7 @@ import client from "../../utils/google_oauth.ts"
 import { DbUser, GoogleUser } from "../../utils/interfaces.ts"
 import { getAuthHeader } from "../../utils/getAuthHeader.ts"
 import { logError } from "../../utils/errors.ts"
+import { handleError } from "../../utils/errorHandler.ts"
 
 export const handler = async (req: Request): Promise<Response> => {
 	const url = new URL(req.url)
@@ -27,7 +28,12 @@ export const handler = async (req: Request): Promise<Response> => {
 	let user: DbUser
 
 	if (userInfo.email) {
-		const dbUser = await db.getUserByEmail(userInfo.email)
+		let dbUser
+		try {
+			dbUser = await db.getUserByEmail(userInfo.email)
+		} catch (error: any) {
+			return handleError(error, req)
+		}
 		if (dbUser) user = dbUser
 		else {
 			const dbResponse = await db.saveUser(userInfo)
@@ -39,12 +45,6 @@ export const handler = async (req: Request): Promise<Response> => {
 		logError(error)
 		return new Response(error, { status: 500 })
 	}
-
-	//console.log("User info:", userInfo)
-
-	//console.log("DB User:", user)
-
 	const headers = await getAuthHeader(user.name, user.email)
-
 	return new Response(null, { status: 307, headers })
 }

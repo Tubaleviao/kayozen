@@ -12,8 +12,8 @@ export async function getSessionUser(
 		const cookie = req.headers.get("cookie")
 		if (!cookie) throw new Error("No Cookie")
 
-		const match = cookie.match(/auth_token=([^;]+)/)
-		if (!match) throw new Error("No auth_token")
+		const match = cookie.match(/kayotoken=([^;]+)/)
+		if (!match) throw new Error("No kayotoken")
 
 		const jwt = match[1]
 

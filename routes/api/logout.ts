@@ -1,6 +1,6 @@
 export const handler = (): Response => {
 	const headers = new Headers({
-		"Set-Cookie": "auth_token=; Path=/; Max-Age=0;",
+		"Set-Cookie": "kayotoken=; Path=/; Max-Age=0;",
 		"Location": "/",
 	})
 

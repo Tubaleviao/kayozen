@@ -12,7 +12,7 @@ export const getAuthHeader = async (name: string, email: string) => {
 	sessionStorage.setItem("jwt", jwt)
 
 	const headers = new Headers({
-		"Set-Cookie": `auth_token=${jwt}; Path=/; HttpOnly; SameSite=Lax; Max-Age=${
+		"Set-Cookie": `kayotoken=${jwt}; Path=/; HttpOnly; SameSite=Lax; Max-Age=${
 			ONE_DAY * 30
 		};`,
 		"Location": "/dashboard",

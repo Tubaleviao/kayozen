@@ -3,6 +3,7 @@
 // This file is automatically updated during development when running `dev.ts`.
 
 import * as $_404 from "./routes/_404.tsx"
+import * as $_500 from "./routes/_500.tsx"
 import * as $_app from "./routes/_app.tsx"
 import * as $_middleware from "./routes/_middleware.ts"
 import * as $api_callback from "./routes/api/callback.ts"
@@ -14,6 +15,7 @@ import * as $api_schools_index from "./routes/api/schools/index.ts"
 import * as $api_signup from "./routes/api/signup.tsx"
 import * as $choose_role from "./routes/choose-role.tsx"
 import * as $dashboard from "./routes/dashboard.tsx"
+import * as $db_offline from "./routes/db-offline.tsx"
 import * as $greet_name_ from "./routes/greet/[name].tsx"
 import * as $index from "./routes/index.tsx"
 import * as $login from "./routes/login.tsx"
@@ -35,6 +37,7 @@ import type { Manifest } from "$fresh/server.ts"
 const manifest = {
 	routes: {
 		"./routes/_404.tsx": $_404,
+		"./routes/_500.tsx": $_500,
 		"./routes/_app.tsx": $_app,
 		"./routes/_middleware.ts": $_middleware,
 		"./routes/api/callback.ts": $api_callback,
@@ -46,6 +49,7 @@ const manifest = {
 		"./routes/api/signup.tsx": $api_signup,
 		"./routes/choose-role.tsx": $choose_role,
 		"./routes/dashboard.tsx": $dashboard,
+		"./routes/db-offline.tsx": $db_offline,
 		"./routes/greet/[name].tsx": $greet_name_,
 		"./routes/index.tsx": $index,
 		"./routes/login.tsx": $login,

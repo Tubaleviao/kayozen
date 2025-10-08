@@ -8,7 +8,7 @@ const DB_URL = Deno.env.get("DATABASE_URL") ??
 
 export class DbGateway {
 	private pool = new Pool(DB_URL, 3, true)
-	private dbUser: DbUser | undefined
+	dbUser: DbUser | undefined
 
 	constructor() {}
 
@@ -41,19 +41,33 @@ export class DbGateway {
 		)
 		this.dbUser = person.rows[0]
 		if (this.dbUser) {
-			const roles = await client.queryObject<DbRole>(
-				"SELECT * from person_role WHERE person = $1",
-				[this.dbUser.id],
-			)
-			this.dbUser.roles = roles.rows
-			const schools = await client.queryObject<School>(
-				"SELECT * from schools WHERE owner_id = $1",
-				[this.dbUser.id],
-			)
-			this.dbUser.schools = schools.rows
+			const roles = await this.getRoleByPerson(this.dbUser.id)
+			this.dbUser.roles = roles
+			const schools = await this.getSchoolByPerson(this.dbUser.id)
+			this.dbUser.schools = schools
 		}
 		client.release()
 		return this.dbUser
+	}
+
+	async getRoleByPerson(person: string): Promise<DbRole[]> {
+		const client = await this.pool.connect()
+		const roles = await client.queryObject<DbRole>(
+			"SELECT * from person_role WHERE person = $1",
+			[person],
+		)
+		client.release()
+		return roles.rows
+	}
+
+	async getSchoolByPerson(person: string): Promise<School[]> {
+		const client = await this.pool.connect()
+		const schools = await client.queryObject<School>(
+			"SELECT * from schools WHERE owner_id = $1",
+			[person],
+		)
+		client.release()
+		return schools.rows
 	}
 }
 

@@ -34,6 +34,9 @@ export const handler: Handlers = {
 			[schoolId, user.id],
 		) as any
 
+		const userSchools = await db.getSchoolByPerson(user.id)
+		if (db.dbUser) db.dbUser.schools = userSchools
+
 		return new Response(JSON.stringify({ id: schoolId }), {
 			status: 200,
 			headers: { "Content-Type": "application/json" },

@@ -24,6 +24,9 @@ export const handler: Handlers = {
 			],
 		)
 
+		const userRoles = await db.getRoleByPerson(user.id)
+		if (db?.dbUser) db.dbUser.roles = userRoles
+
 		return Response.redirect(new URL("/dashboard", req.url))
 	},
 }

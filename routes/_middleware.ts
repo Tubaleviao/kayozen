@@ -17,7 +17,12 @@ export async function handler(req: Request, ctx: FreshContext) {
 			const payload: JwtPayload = await verify(jwt, JWT_SECRET)
 			dbUser = await db.getUserByEmail(payload.email)
 		} catch (error: any) {
-			return handleError(error, req)
+			handleError(error, req)
+			const headers = new Headers({
+				"Set-Cookie": "kayotoken=; Path=/; Max-Age=0;",
+				"Location": "/",
+			})
+			return new Response(null, { headers, status: 302 })
 		}
 	}
 	ctx.state = { theme, lang, dbUser }

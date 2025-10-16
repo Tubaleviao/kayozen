@@ -1,9 +1,10 @@
 import { useEffect, useState } from "preact/hooks"
 import { usePersistency } from "./usePersistency.ts"
+import { Theme } from "../utils/interfaces.ts"
 
 export function useTheme() {
 	const [darkMode, setDarkMode] = useState(false)
-	const [theme, setTheme] = usePersistency<"light" | "dark">("theme", "light")
+	const [theme, setTheme] = usePersistency<Theme>("theme", "light")
 
 	useEffect(() => {
 		const isDark = theme === "dark"

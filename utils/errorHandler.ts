@@ -1,6 +1,10 @@
 import { logError } from "./errors.ts"
 
-export function handleError(error: unknown, req: Request, headers?: HeadersInit): Response {
+export function handleError(
+	error: unknown,
+	req: Request,
+	headers?: HeadersInit,
+): Response {
 	logError(error)
 
 	// Banco offline

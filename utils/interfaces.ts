@@ -1,6 +1,13 @@
 import { Payload } from "djwt"
 import { SupportedLang } from "./i18n.ts"
 import { Role } from "./constants.ts"
+import type { FreshContext as BaseFreshContext } from "$fresh/server.ts"
+
+export type Theme = "light" | "dark"
+
+export interface FreshContext extends BaseFreshContext {
+	state: Partial<KayozenState>
+}
 
 export interface DbUser {
 	id: string
@@ -43,7 +50,7 @@ export interface JwtPayload extends Payload {
 }
 
 export interface KayozenState {
-	theme: "light" | "dark"
+	theme: Theme
 	lang: SupportedLang
 	dbUser: DbUser
 }

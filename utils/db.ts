@@ -1,6 +1,6 @@
 import { Pool, QueryObjectResult } from "@db/postgres"
 import { makeUsername } from "./make_username.ts"
-import { DbRole, DbUser, GoogleUser, School } from "./interfaces.ts"
+import { DbRole, DbUser, GooglePerson, School } from "./interfaces.ts"
 import { v1 } from "jsr:@std/uuid"
 
 const DB_URL = Deno.env.get("DATABASE_URL") ??
@@ -19,20 +19,30 @@ export class DbGateway {
 		return dbObj
 	}
 
-	async saveUser(user: GoogleUser): Promise<DbUser | undefined> {
+	async saveUser(user: GooglePerson): Promise<DbUser | undefined> {
 		const client = await this.pool.connect()
-		let qObj: QueryObjectResult
-		qObj = await client.queryObject(
-			"INSERT INTO people (id, username, name, email, google_picture) VALUES ($1, $2, $3, $4, $5)",
-			[v1.generate(), makeUsername(10), user.name, user.email, user.picture],
-		)
-		client.release()
-		if (qObj.query.result_type === 1) {
-			return await this.getUserByEmail(user.email)
-		} else console.error("Error trying to insert user")
+		const email = user.emailAddresses?.[0].value
+		if (email) {
+			let qObj: QueryObjectResult
+			qObj = await client.queryObject(
+				"INSERT INTO people (id, username, name, email, google_picture) VALUES ($1, $2, $3, $4, $5)",
+				[
+					v1.generate(),
+					makeUsername(10),
+					user.names?.[0].displayName,
+					email,
+					user.photos?.[0].url,
+				],
+			)
+			client.release()
+			if (qObj.query.result_type === 1) {
+				return await this.getUserByEmail(email)
+			} else console.error("Error trying to insert user")
+		}
 	}
 
 	async getUserByEmail(email: string): Promise<DbUser> {
+		console.log("Getting user from DB...")
 		if (this.dbUser && this.dbUser.email === email) return this.dbUser
 		const client = await this.pool.connect()
 		const person = await client.queryObject<DbUser>(

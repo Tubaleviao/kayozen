@@ -24,7 +24,7 @@ export async function handler(req: Request, ctx: FreshContext) {
 	if (isTheme(potentialTheme)) theme = potentialTheme
 
 	const failedHeaders = {
-		"Set-Cookie": "auth_token=; Path=/; HttpOnly; SameSite=Lax; Max-Age=0",
+		"Set-Cookie": "kayotoken=; Path=/; HttpOnly; SameSite=Lax; Max-Age=0",
 	}
 	ctx.state = { theme, lang, dbUser }
 

@@ -35,12 +35,40 @@ export interface School {
 	created_at: string
 }
 
-export interface GoogleUser {
-	email: string
-	name: string
-	picture: string
-	given_name: string
-	family_name: string
+export interface GooglePerson {
+	resourceName: string
+	etag: string
+	names?: GoogleName[]
+	photos?: GooglePhoto[]
+	emailAddresses?: GoogleEmailAddress[]
+}
+
+export interface GoogleName {
+	metadata: GoogleMetadata
+	displayName: string
+	familyName: string
+	givenName: string
+	displayNameLastFirst?: string
+	unstructuredName?: string
+}
+
+export interface GooglePhoto {
+	metadata: GoogleMetadata
+	url: string
+}
+
+export interface GoogleEmailAddress {
+	metadata: GoogleMetadata & { verified?: boolean }
+	value: string
+}
+
+export interface GoogleMetadata {
+	primary?: boolean
+	sourcePrimary?: boolean
+	source: {
+		type: "PROFILE" | "ACCOUNT" | string
+		id: string
+	}
 }
 
 export interface JwtPayload extends Payload {

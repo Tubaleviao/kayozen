@@ -19,6 +19,7 @@ import * as $db_offline from "./routes/db-offline.tsx"
 import * as $greet_name_ from "./routes/greet/[name].tsx"
 import * as $index from "./routes/index.tsx"
 import * as $login from "./routes/login.tsx"
+import * as $plans from "./routes/plans.tsx"
 import * as $schools_id_ from "./routes/schools/[id].tsx"
 import * as $schools_index from "./routes/schools/index.tsx"
 import * as $signup from "./routes/signup.tsx"
@@ -30,6 +31,7 @@ import * as $Footer from "./islands/Footer.tsx"
 import * as $LoginBox from "./islands/LoginBox.tsx"
 import * as $Main from "./islands/Main.tsx"
 import * as $Navbar from "./islands/Navbar.tsx"
+import * as $Plans from "./islands/Plans.tsx"
 import * as $SignupBox from "./islands/SignupBox.tsx"
 import * as $TranslationContext from "./islands/TranslationContext.tsx"
 import type { Manifest } from "$fresh/server.ts"
@@ -53,6 +55,7 @@ const manifest = {
 		"./routes/greet/[name].tsx": $greet_name_,
 		"./routes/index.tsx": $index,
 		"./routes/login.tsx": $login,
+		"./routes/plans.tsx": $plans,
 		"./routes/schools/[id].tsx": $schools_id_,
 		"./routes/schools/index.tsx": $schools_index,
 		"./routes/signup.tsx": $signup,
@@ -66,6 +69,7 @@ const manifest = {
 		"./islands/LoginBox.tsx": $LoginBox,
 		"./islands/Main.tsx": $Main,
 		"./islands/Navbar.tsx": $Navbar,
+		"./islands/Plans.tsx": $Plans,
 		"./islands/SignupBox.tsx": $SignupBox,
 		"./islands/TranslationContext.tsx": $TranslationContext,
 	},

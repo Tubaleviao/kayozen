@@ -80,5 +80,13 @@ export interface JwtPayload extends Payload {
 export interface KayozenState {
 	theme: Theme
 	lang: SupportedLang
-	dbUser: DbUser
+	dbUser?: DbUser
+	currentRole?: string
+	currentSchool?: string
+}
+
+export interface Plan {
+	key: "basic" | "pro" | "enterprise"
+	price: string
+	url: string
 }

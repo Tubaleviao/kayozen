@@ -3,6 +3,23 @@ export type SupportedLang = "pt" | "en"
 // Traduções (dinâmicas, sem precisar listar todas as keys manualmente)
 export const translations = {
 	pt: {
+		billing: {
+			title: "Escolha seu plano",
+			subtitle: "Escolha o plano que melhor atende sua escola.",
+			choose_plan: "Selecionar plano",
+
+			basic: "Básico",
+			basic_desc:
+				"Ideal para escolas pequenas. Inclui até 5 professores e 2 escolas.",
+
+			pro: "Pro",
+			pro_desc: "Para escolas em crescimento, com recursos ilimitados.",
+
+			enterprise: "Enterprise",
+			enterprise_desc:
+				"Soluções completas e personalizadas para grandes instituições.",
+			contact_us: "Fale conosco",
+		},
 		login: {
 			signin: "Entrar no",
 			email: "E-mail",
@@ -114,6 +131,23 @@ export const translations = {
 		},
 	},
 	en: {
+		billing: {
+			title: "Choose your plan",
+			subtitle: "Select the plan that best fits your school.",
+			choose_plan: "Choose plan",
+
+			basic: "Basic",
+			basic_desc:
+				"Ideal for small schools. Includes up to 5 teachers and 2 schools.",
+
+			pro: "Pro",
+			pro_desc: "For growing schools, with unlimited features.",
+
+			enterprise: "Enterprise",
+			enterprise_desc:
+				"Complete and customized solutions for large institutions.",
+			contact_us: "Contact us",
+		},
 		login: {
 			signin: "Sign in to",
 			email: "Email",

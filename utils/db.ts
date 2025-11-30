@@ -4,7 +4,7 @@ import { DbRole, DbUser, GooglePerson, School } from "./interfaces.ts"
 import { v1 } from "jsr:@std/uuid"
 
 const DB_URL = Deno.env.get("DATABASE_URL") ??
-	"postgres://tuba:rato12@localhost:5432/kayozen"
+	"postgres://tuba:rato12@localhost:5432/kayozen?connect_timeout=3"
 
 export class DbGateway {
 	private pool = new Pool(DB_URL, 3, true)

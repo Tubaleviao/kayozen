@@ -23,7 +23,6 @@ import * as $plans from "./routes/plans.tsx"
 import * as $schools_id_ from "./routes/schools/[id].tsx"
 import * as $schools_index from "./routes/schools/index.tsx"
 import * as $signup from "./routes/signup.tsx"
-import * as $Button from "./islands/Button.tsx"
 import * as $ChooseRoleBox from "./islands/ChooseRoleBox.tsx"
 import * as $CreateSchool from "./islands/CreateSchool.tsx"
 import * as $Error404 from "./islands/Error404.tsx"
@@ -61,7 +60,6 @@ const manifest = {
 		"./routes/signup.tsx": $signup,
 	},
 	islands: {
-		"./islands/Button.tsx": $Button,
 		"./islands/ChooseRoleBox.tsx": $ChooseRoleBox,
 		"./islands/CreateSchool.tsx": $CreateSchool,
 		"./islands/Error404.tsx": $Error404,

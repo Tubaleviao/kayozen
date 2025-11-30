@@ -1,4 +1,4 @@
-import { Button } from "./Button.tsx"
+import { Button } from "../components/Button.tsx"
 import { useTranslationContext } from "./TranslationContext.tsx"
 
 export default function Main() {

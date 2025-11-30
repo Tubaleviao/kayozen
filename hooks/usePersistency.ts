@@ -1,6 +1,6 @@
 import { useEffect, useState } from "preact/hooks"
-import { getCookie, setCookie } from "../components/cookies.ts"
-import { KayozenState } from "../routes/_app.tsx"
+import { getCookie, setCookie } from "../utils/cookies.ts"
+import { KayozenState } from "../utils/interfaces.ts"
 
 export function usePersistency<T>(key: keyof KayozenState, defaultValue: T) {
 	const [value, setValue] = useState<T>(() => {

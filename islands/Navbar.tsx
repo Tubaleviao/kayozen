@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "preact/hooks"
 import { useTheme } from "../hooks/useTheme.ts"
-import { Button } from "./Button.tsx"
+import { Button } from "../components/Button.tsx"
 import { useTranslationContext } from "./TranslationContext.tsx"
 import { TranslationKey } from "../utils/i18n.ts"
 import { DbUser } from "../utils/interfaces.ts"

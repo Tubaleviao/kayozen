@@ -7,10 +7,18 @@ export function handleError(
 ): Response {
 	logError(error)
 
-	// Banco offline
+	// Recusado ativamente
 	if (
 		error instanceof Error &&
 		error.name == "ConnectionRefused"
+	) {
+		return Response.redirect(new URL("/db-offline", req.url))
+	}
+
+	// URL ou domínio do banco errados
+	if (
+		error instanceof Error &&
+		error.message == "DBConnectionTimeout"
 	) {
 		return Response.redirect(new URL("/db-offline", req.url))
 	}

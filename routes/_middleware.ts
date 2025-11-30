@@ -5,7 +5,7 @@ import type {
 	JwtPayload,
 	Theme,
 } from "../utils/interfaces.ts"
-import { JWT_SECRET } from "../utils/constants.ts"
+import { JWT_SECRET, PROTECTED_ROUTES } from "../utils/constants.ts"
 import { db } from "../utils/db.ts"
 import { handleError } from "../utils/errorHandler.ts"
 import { isLang, isTheme } from "../utils/guards.ts"
@@ -28,7 +28,12 @@ export async function handler(req: Request, ctx: FreshContext) {
 	}
 	ctx.state = { theme, lang, dbUser }
 
-	if (jwt) {
+	const url = new URL(req.url)
+	const isProtected = PROTECTED_ROUTES.some((route) =>
+		url.pathname.startsWith(route)
+	)
+
+	if (jwt && isProtected) {
 		try {
 			const payload: JwtPayload = await verify(jwt, JWT_SECRET)
 			dbUser = await db.getUserByEmail(payload.email)

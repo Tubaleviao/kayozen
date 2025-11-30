@@ -108,12 +108,9 @@ export default function Navbar(
 								</button>
 							)
 							: (
-								<a
-									href="/login"
-									class="px-4 py-2 bg-kayozen-light-primary dark:bg-kayozen-dark-primary text-white rounded-lg hover:opacity-90 transition"
-								>
-									{t("nav.login")}
-								</a>
+								<Button to="/login">
+									{`${t("nav.login")}`}
+								</Button>
 							)}
 
 						{/* Dropdown */}

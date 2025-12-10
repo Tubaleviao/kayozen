@@ -31,13 +31,11 @@ export async function handler(req: Request, ctx: FreshContext) {
 	if (jwt) {
 		try {
 			const payload: JwtPayload = await verify(jwt, JWT_SECRET)
-			dbUser = await db.getUserByEmail(payload.email)
-			if (!dbUser) {
-				return new Response("User not found", {
-					status: 409,
-					headers: failedHeaders,
-				})
+			const user = await db.getUserByEmail(payload.email);
+			if (!user) {
+				return handleError(new Error("Unauthorized"), req, failedHeaders);
 			}
+			dbUser = user
 		} catch (error: any) {
 			return handleError(error, req, failedHeaders)
 		}

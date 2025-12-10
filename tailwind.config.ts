@@ -3,7 +3,9 @@ import { type Config } from "tailwindcss"
 export default {
 	darkMode: "class",
 	content: [
-		"{routes,islands,components}/**/*.{ts,tsx,js,jsx}",
+		"./routes/**/*.{ts,tsx,js,jsx}",
+		"./components/**/*.{ts,tsx,js,jsx}",
+		"./islands/**/*.{ts,tsx,js,jsx}",
 	],
 	theme: {
 		extend: {
@@ -33,8 +35,8 @@ export default {
 					"100%": { opacity: "1", transform: "translateY(0)" },
 				},
 				"school-glow": {
-					"0%, 100%": { opacity: "1", filter: "brightness(1)" },
-					"50%": { opacity: "0.8", filter: "brightness(1.3)" },
+					"0%, 100%": { opacity: "1", transform: "scale(1)" },
+					"50%": { opacity: "0.8", transform: "scale(1.02)" },
 				},
 			},
 			animation: {

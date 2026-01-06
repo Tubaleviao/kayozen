@@ -4,6 +4,7 @@ import Navbar from "../islands/Navbar.tsx"
 import { defautGuard } from "../utils/guards.ts"
 import { KayozenState } from "../utils/interfaces.ts"
 import { useTranslationContext } from "../islands/TranslationContext.tsx"
+import SchoolAddTeacherIllustration from "../components/SchoolProfArt.tsx"
 
 export const handler = defautGuard
 
@@ -52,6 +53,8 @@ export default function Dashboard(
 						</div>
 					)}
 				</div>
+
+				<SchoolAddTeacherIllustration />
 
 				{!hasRole && (
 					<div class="bg-kayozen-light-surface dark:bg-kayozen-dark-surface p-6 rounded-lg shadow-md text-center mb-6">

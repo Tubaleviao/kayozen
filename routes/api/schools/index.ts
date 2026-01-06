@@ -1,22 +1,21 @@
 // routes/api/schools.ts
 import { Handlers } from "$fresh/server.ts"
 import { v1 } from "jsr:@std/uuid"
-import { DbUser } from "../../../utils/interfaces.ts"
 import { db } from "../../../utils/db.ts"
 
 export const handler: Handlers = {
 	async POST(req, ctx) {
-		const user = ctx.state?.dbUser as DbUser
-		if (!user) {
+		const body = await req.json().catch(() => ({}))
+		const {userId, name} = body
+		if (!userId) {
 			return new Response(JSON.stringify({ error: "Unauthorized" }), {
 				status: 401,
 				headers: { "Content-Type": "application/json" },
 			})
 		}
 
-		const body = await req.json().catch(() => ({}))
-		const name = (body.name ?? "Your School").trim()
-		if (!name) {
+		const schoolName = (name ?? "Your School").trim()
+		if (!schoolName) {
 			return new Response(JSON.stringify({ error: "Name required" }), {
 				status: 400,
 				headers: { "Content-Type": "application/json" },
@@ -26,16 +25,13 @@ export const handler: Handlers = {
 		const schoolId = v1.generate()
 		await db.query(
 			"INSERT INTO schools (id, name, owner_id) VALUES ($1, $2, $3)", // RETURNING ID
-			[schoolId, name, user.id],
+			[schoolId, schoolName, userId],
 		) as any
 
 		await db.query(
 			"INSERT INTO person_school (school, person) VALUES ($1, $2)",
-			[schoolId, user.id],
+			[schoolId, userId],
 		) as any
-
-		const userSchools = await db.getSchoolByPerson(user.id)
-		if (db.dbUser) db.dbUser.schools = userSchools
 
 		return new Response(JSON.stringify({ id: schoolId }), {
 			status: 200,

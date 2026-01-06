@@ -51,7 +51,7 @@ export class DbGateway {
 	}
 
 	async getUserByEmail(email: string): Promise<DbUser | undefined> {
-		console.log("Getting user from DB...")
+		console.log("Getting User By Email from DB...")
 		let client
 		try {
 			client = await this.safeConnect()

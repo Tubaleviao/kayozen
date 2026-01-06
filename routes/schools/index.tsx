@@ -8,8 +8,7 @@ import { KayozenState } from "../../utils/interfaces.ts"
 
 export const handler = defautGuard
 
-export default function NewSchoolPage({ state }: PageProps) {
-	const { dbUser }: Partial<KayozenState> = state
+export default function NewSchoolPage({ data: { dbUser } }: PageProps<KayozenState>,) {
 	const { t } = useTranslationContext()
 
 	return (
@@ -23,7 +22,7 @@ export default function NewSchoolPage({ state }: PageProps) {
 					<p class="text-kayozen-light-muted dark:text-kayozen-dark-muted">
 						{t("school.create_hint")}
 					</p>
-					<CreateSchool />
+					<CreateSchool user={dbUser} />
 				</section>
 			</main>
 		</>

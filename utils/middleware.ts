@@ -20,7 +20,7 @@ export async function getSessionUser(
 		const payload: JwtPayload = await verify(jwt, JWT_SECRET)
 
 		dbUser = await db.getUserByEmail(payload.email)
-		if (!dbUser.email) throw new Error("User was deleted")
+		if (!dbUser?.email) throw new Error("User was deleted")
 	} catch (error: any) {
 		logError(error)
 	}

@@ -1,8 +1,13 @@
 // islands/CreateSchool.tsx
 import { useState } from "preact/hooks"
 import { useTranslationContext } from "./TranslationContext.tsx"
+import { DbUser } from "../utils/interfaces.ts"
 
-export default function CreateSchool() {
+interface CreateSchoolProps {
+	user?: DbUser | null
+}
+
+export default function CreateSchool({ user }: CreateSchoolProps) {
 	const { t } = useTranslationContext()
 	const [loading, setLoading] = useState(false)
 	const [err, setErr] = useState<string | null>(null)
@@ -15,7 +20,7 @@ export default function CreateSchool() {
 			const res = await fetch("/api/schools", {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
-				body: JSON.stringify({ name: t("school.default_name") }),
+				body: JSON.stringify({ name: t("school.default_name"), userId: user?.id }),
 			})
 
 			if (!res.ok) {

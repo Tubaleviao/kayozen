@@ -1,6 +1,7 @@
 import { useState } from "preact/hooks"
 import { useTranslationContext } from "./TranslationContext.tsx"
 import { TranslationKey } from "../utils/i18n.ts"
+import { DbUser } from "../utils/interfaces.ts"
 
 interface Role {
 	key: TranslationKey
@@ -9,8 +10,11 @@ interface Role {
 	icon: string
 	disabled?: boolean
 }
+interface ChoseRoleProps {
+	user?: DbUser | null
+}
 
-export default function ChooseRoleBox() {
+export default function ChooseRoleBox( {user}: ChoseRoleProps) {
 	const { t } = useTranslationContext()
 	const [selectedRole, setSelectedRole] = useState<string | null>(null)
 
@@ -100,6 +104,7 @@ export default function ChooseRoleBox() {
 			<div class="mt-8 text-center">
 				<form method="POST" action="/api/choose-role">
 					<input type="hidden" name="role" value={selectedRole ?? ""} />
+					<input type="hidden" name="id" value={user?.id ?? ""} />
 					<button
 						type="submit"
 						disabled={!selectedRole}

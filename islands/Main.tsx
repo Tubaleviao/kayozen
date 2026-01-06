@@ -1,4 +1,5 @@
 import { Button } from "../components/Button.tsx"
+import SchoolAddTeacherIllustration from "../components/SchoolProfArt.tsx"
 import { useTranslationContext } from "./TranslationContext.tsx"
 
 export default function Main() {

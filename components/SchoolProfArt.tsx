@@ -1,4 +1,9 @@
-export default function SchoolAddTeacherIllustration() {
+interface SchoolAndTeacherInterface{
+  addProf: string,
+  schoolName: string
+}
+
+export default function SchoolAddTeacherIllustration( {addProf, schoolName }: SchoolAndTeacherInterface ) {
   return (
     <svg
       viewBox="0 0 600 300"
@@ -51,7 +56,7 @@ export default function SchoolAddTeacherIllustration() {
         font-weight="600"
         fill="#42351eff"
       >
-        Escola
+        {schoolName}
       </text>
       <rect x="120" y="170" width="40" height="70" rx="4" fill="#9b6e4aff" />
       <rect x="80" y="150" width="30" height="30" rx="4" fill="#71abf1ff" />
@@ -97,8 +102,10 @@ export default function SchoolAddTeacherIllustration() {
       {/* ===== ADD BUTTON ===== */}
       <g
         style="cursor: pointer"
+        aria-label="Add Prof"
         onClick={() => console.log("Adicionar professor")}
       >
+        <title>{addProf}</title>
         {/* Pulse ring */}
         <circle
           cx="420"
@@ -133,11 +140,6 @@ export default function SchoolAddTeacherIllustration() {
           stroke-linecap="round"
         />
       </g>
-
-      {/* Label */}
-      <text x="380" y="220" font-size="14" fill="#374151">
-        Adicionar professor
-      </text>
     </svg>
   )
 }

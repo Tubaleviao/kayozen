@@ -36,6 +36,7 @@ export const translations = {
 			description:
 				"Seu sistema inteligente para gestão de disponibilidade de professores.",
 			start: "Começar",
+			add_prof: "Adicionar Professor"
 		},
 		footer: {
 			rights: "Todos os direitos reservados.",
@@ -163,6 +164,7 @@ export const translations = {
 			welcome: "Welcome to",
 			description: "Your smart system for managing teacher availability.",
 			start: "Start",
+			add_prof: "Add Professor"
 		},
 		footer: {
 			rights: "All rights reserved.",

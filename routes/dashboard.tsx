@@ -54,8 +54,6 @@ export default function Dashboard(
 					)}
 				</div>
 
-				<SchoolAddTeacherIllustration />
-
 				{!hasRole && (
 					<div class="bg-kayozen-light-surface dark:bg-kayozen-dark-surface p-6 rounded-lg shadow-md text-center mb-6">
 						<p class="mb-4">{t("dashboard.no_role")}</p>
@@ -79,6 +77,11 @@ export default function Dashboard(
 						</a>
 					</div>
 				)}
+
+				{hasSchool && hasRole && (
+					<SchoolAddTeacherIllustration addProf={t("index.add_prof")} schoolName={dbUser?.schools ? dbUser?.schools[0].name : "NaN"} />
+				)}
+				
 			</main>
 		</div>
 	)

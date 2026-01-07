@@ -124,6 +124,13 @@ export const translations = {
 			school: {
 				add_new: "Adicionar nova escola",
 			},
+			modal: {
+				new_professor: "Novo Professor",
+				create: "Criar",
+				cancel: "Cancelar",
+				optional_email: "Email (Opcional)",
+				name: "Nome"
+			}
 		},
 		db_offline: {
 			title: "Banco de Dados Offline",
@@ -252,6 +259,13 @@ export const translations = {
 			school: {
 				add_new: "Add new school",
 			},
+			modal: {
+				new_professor: "New Professor",
+				create: "Create",
+				cancel: "Cancel",
+				optional_email: "Email (Optional)",
+				name: "Name"
+			}
 		},
 		db_offline: {
 			title: "Database Offline",

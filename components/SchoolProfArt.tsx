@@ -1,9 +1,10 @@
 interface SchoolAndTeacherInterface{
   addProf: string,
-  schoolName: string
+  schoolName: string,
+  createProfessor: () => void
 }
 
-export default function SchoolAddTeacherIllustration( {addProf, schoolName }: SchoolAndTeacherInterface ) {
+export default function SchoolAddTeacherIllustration( {addProf, schoolName, createProfessor }: SchoolAndTeacherInterface ) {
   return (
     <svg
       viewBox="0 0 600 300"
@@ -103,7 +104,7 @@ export default function SchoolAddTeacherIllustration( {addProf, schoolName }: Sc
       <g
         style="cursor: pointer"
         aria-label="Add Prof"
-        onClick={() => console.log("Adicionar professor")}
+        onClick={createProfessor}
       >
         <title>{addProf}</title>
         {/* Pulse ring */}

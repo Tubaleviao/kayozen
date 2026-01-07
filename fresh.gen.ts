@@ -23,6 +23,7 @@ import * as $plans from "./routes/plans.tsx"
 import * as $schools_id_ from "./routes/schools/[id].tsx"
 import * as $schools_index from "./routes/schools/index.tsx"
 import * as $signup from "./routes/signup.tsx"
+import * as $AddProfessor from "./islands/AddProfessor.tsx"
 import * as $ChooseRoleBox from "./islands/ChooseRoleBox.tsx"
 import * as $CreateSchool from "./islands/CreateSchool.tsx"
 import * as $Error404 from "./islands/Error404.tsx"
@@ -30,6 +31,7 @@ import * as $Footer from "./islands/Footer.tsx"
 import * as $LoginBox from "./islands/LoginBox.tsx"
 import * as $Main from "./islands/Main.tsx"
 import * as $Navbar from "./islands/Navbar.tsx"
+import * as $NewProfessorModal from "./islands/NewProfessorModal.tsx"
 import * as $Plans from "./islands/Plans.tsx"
 import * as $SignupBox from "./islands/SignupBox.tsx"
 import * as $TranslationContext from "./islands/TranslationContext.tsx"
@@ -60,6 +62,7 @@ const manifest = {
 		"./routes/signup.tsx": $signup,
 	},
 	islands: {
+		"./islands/AddProfessor.tsx": $AddProfessor,
 		"./islands/ChooseRoleBox.tsx": $ChooseRoleBox,
 		"./islands/CreateSchool.tsx": $CreateSchool,
 		"./islands/Error404.tsx": $Error404,
@@ -67,6 +70,7 @@ const manifest = {
 		"./islands/LoginBox.tsx": $LoginBox,
 		"./islands/Main.tsx": $Main,
 		"./islands/Navbar.tsx": $Navbar,
+		"./islands/NewProfessorModal.tsx": $NewProfessorModal,
 		"./islands/Plans.tsx": $Plans,
 		"./islands/SignupBox.tsx": $SignupBox,
 		"./islands/TranslationContext.tsx": $TranslationContext,

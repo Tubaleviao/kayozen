@@ -4,7 +4,7 @@ import Navbar from "../islands/Navbar.tsx"
 import { defautGuard } from "../utils/guards.ts"
 import { KayozenState } from "../utils/interfaces.ts"
 import { useTranslationContext } from "../islands/TranslationContext.tsx"
-import SchoolAddTeacherIllustration from "../components/SchoolProfArt.tsx"
+import AddProfessor from "../islands/AddProfessor.tsx"
 
 export const handler = defautGuard
 
@@ -79,7 +79,7 @@ export default function Dashboard(
 				)}
 
 				{hasSchool && hasRole && (
-					<SchoolAddTeacherIllustration addProf={t("index.add_prof")} schoolName={dbUser?.schools ? dbUser?.schools[0].name : "NaN"} />
+					<AddProfessor schoolName={dbUser?.schools ? dbUser?.schools[0].name : "NaN"} />
 				)}
 				
 			</main>

@@ -36,6 +36,7 @@ export const translations = {
 			description:
 				"Seu sistema inteligente para gestão de disponibilidade de professores.",
 			start: "Começar",
+			add_prof: "Adicionar Professor"
 		},
 		footer: {
 			rights: "Todos os direitos reservados.",
@@ -123,6 +124,15 @@ export const translations = {
 			school: {
 				add_new: "Adicionar nova escola",
 			},
+			modal: {
+				new_professor: "Novo Professor",
+				create: "Criar",
+				cancel: "Cancelar",
+				optional_email: "Email (Opcional)",
+				name: "Nome",
+				subject: "Disciplina",
+				fictitious: "Fictício"
+			}
 		},
 		db_offline: {
 			title: "Banco de Dados Offline",
@@ -163,6 +173,7 @@ export const translations = {
 			welcome: "Welcome to",
 			description: "Your smart system for managing teacher availability.",
 			start: "Start",
+			add_prof: "Add Professor"
 		},
 		footer: {
 			rights: "All rights reserved.",
@@ -250,6 +261,15 @@ export const translations = {
 			school: {
 				add_new: "Add new school",
 			},
+			modal: {
+				new_professor: "New Professor",
+				create: "Create",
+				cancel: "Cancel",
+				optional_email: "Email (Optional)",
+				name: "Name",
+				subject: "Subject",
+				fictitious: "Fictitious"
+			}
 		},
 		db_offline: {
 			title: "Database Offline",

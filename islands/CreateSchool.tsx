@@ -29,7 +29,7 @@ export default function CreateSchool({ user }: CreateSchoolProps) {
 			}
 			const data = await res.json()
 
-			window.location.href = `/schools/${data.id}`
+			globalThis.location.href = `/schools/${data.id}`
 		} catch (e) {
 			setErr(e instanceof Error ? e.message : t("school.error_unexpected"))
 		} finally {

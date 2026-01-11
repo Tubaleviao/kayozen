@@ -79,7 +79,7 @@ export default function Dashboard(
 				)}
 
 				{hasSchool && hasRole && (
-					<AddProfessor schoolName={dbUser?.schools ? dbUser?.schools[0].name : "NaN"} />
+					<AddProfessor school={dbUser?.schools ? dbUser?.schools[0] : undefined} />
 				)}
 				
 			</main>

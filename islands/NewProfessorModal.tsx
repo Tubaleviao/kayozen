@@ -3,9 +3,10 @@ import { useTranslationContext } from "./TranslationContext.tsx"
 interface Props {
   open: boolean;
   onClose: () => void;
+  schoolId: string
 }
 
-export default function NewProfessorModal({ open, onClose }: Props) {
+export default function NewProfessorModal({ open, onClose, schoolId }: Props) {
   const { t } = useTranslationContext()
 
   if (!open) return null;
@@ -26,17 +27,43 @@ export default function NewProfessorModal({ open, onClose }: Props) {
 
         <form
           class="space-y-4"
-          onSubmit={(e) => {
+          onSubmit={async (e) => {
             e.preventDefault();
 
             const form = e.currentTarget;
             const data = new FormData(form);
 
-            console.log({
+            const professor = {
               name: data.get("name"),
               email: data.get("email"),
               subject: data.get("subject"),
-            });
+              fictitious: data.get("fictitious") ?? "on",
+              schoolId
+            }
+
+            try {
+              //setLoading(true)
+              //setErr(null)
+
+              const res = await fetch("/api/professor", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(professor),
+              })
+
+              if (!res.ok) {
+                const data = await res.json().catch(() => ({}))
+                throw new Error(data?.error ?? t("school.error_create"))
+              }
+              const data = await res.json()
+
+              data.success ? window.location.href = `/dashboard` : console.error(data.error)
+            } catch (e) {
+              //setErr(e instanceof Error ? e.message : t("school.error_unexpected"))
+              console.error(e)
+            } finally {
+              //setLoading(false)
+            }
 
           }}
         >
@@ -56,9 +83,14 @@ export default function NewProfessorModal({ open, onClose }: Props) {
 
           <input
             name="subject"
-            placeholder="Disciplina"
+            placeholder={t("dashboard.modal.subject")}
             class="w-full rounded-lg border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
+
+          <div class="flex items-center mb-4">
+            <input name="fictitious" type="checkbox" class="w-4 h-4 border border-default-medium rounded-xs bg-neutral-secondary-medium focus:ring-2 focus:ring-brand-soft" checked disabled />
+            <label class="select-none ms-2 text-sm font-medium text-heading">{t("dashboard.modal.fictitious")}?</label>
+          </div>
 
           <div class="flex justify-end gap-2 pt-2">
             <button

@@ -129,7 +129,9 @@ export const translations = {
 				create: "Criar",
 				cancel: "Cancelar",
 				optional_email: "Email (Opcional)",
-				name: "Nome"
+				name: "Nome",
+				subject: "Disciplina",
+				fictitious: "Fictício"
 			}
 		},
 		db_offline: {
@@ -264,7 +266,9 @@ export const translations = {
 				create: "Create",
 				cancel: "Cancel",
 				optional_email: "Email (Optional)",
-				name: "Name"
+				name: "Name",
+				subject: "Subject",
+				fictitious: "Fictitious"
 			}
 		},
 		db_offline: {

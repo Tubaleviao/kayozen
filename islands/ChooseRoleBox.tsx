@@ -14,7 +14,7 @@ interface ChoseRoleProps {
 	user?: DbUser | null
 }
 
-export default function ChooseRoleBox( {user}: ChoseRoleProps) {
+export default function ChooseRoleBox({ user }: ChoseRoleProps) {
 	const { t } = useTranslationContext()
 	const [selectedRole, setSelectedRole] = useState<string | null>(null)
 

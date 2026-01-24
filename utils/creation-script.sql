@@ -1,6 +1,6 @@
+DROP TABLE IF EXISTS org_school CASCADE;
 DROP TABLE IF EXISTS organization CASCADE;
 DROP TABLE IF EXISTS schools CASCADE;
-DROP TABLE IF EXISTS org_school CASCADE;
 DROP TABLE IF EXISTS lecture CASCADE;
 DROP TABLE IF EXISTS class CASCADE;
 DROP TABLE IF EXISTS subject CASCADE;
@@ -90,7 +90,7 @@ CREATE TABLE person_role (
 id SERIAL PRIMARY key,
 person VARCHAR(36) NOT NULL,
 role varchar(100) NOT NULL,
-enrolled TIMESTAMP NOT NULL DEFAULT now(),
+enrolled TIMESTAMP DEFAULT now(),
 unenrolled TIMESTAMP,
 FOREIGN KEY(person) REFERENCES people(id),
 FOREIGN KEY(role) REFERENCES roles(name));
@@ -105,5 +105,4 @@ FOREIGN KEY(person) REFERENCES people(id));
 INSERT INTO roles (name) 
 VALUES ('student'),
   ('teacher'),
-  ('coordinator')
-  
+  ('coordinator');

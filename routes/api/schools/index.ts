@@ -6,7 +6,7 @@ import { db } from "../../../utils/db.ts"
 export const handler: Handlers = {
 	async POST(req, ctx) {
 		const body = await req.json().catch(() => ({}))
-		const {userId, name} = body
+		const { userId, name } = body
 		if (!userId) {
 			return new Response(JSON.stringify({ error: "Unauthorized" }), {
 				status: 401,

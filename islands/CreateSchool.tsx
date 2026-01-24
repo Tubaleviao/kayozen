@@ -20,7 +20,10 @@ export default function CreateSchool({ user }: CreateSchoolProps) {
 			const res = await fetch("/api/schools", {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
-				body: JSON.stringify({ name: t("school.default_name"), userId: user?.id }),
+				body: JSON.stringify({
+					name: t("school.default_name"),
+					userId: user?.id,
+				}),
 			})
 
 			if (!res.ok) {

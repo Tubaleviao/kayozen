@@ -79,9 +79,10 @@ export default function Dashboard(
 				)}
 
 				{hasSchool && hasRole && (
-					<AddProfessor school={dbUser?.schools ? dbUser?.schools[0] : undefined} />
+					<AddProfessor
+						school={dbUser?.schools ? dbUser?.schools[0] : undefined}
+					/>
 				)}
-				
 			</main>
 		</div>
 	)

@@ -1,7 +1,7 @@
 import { Pool, QueryObjectResult } from "@db/postgres"
 import { makeUsername } from "./make_username.ts"
 import { DbRole, DbUser, GooglePerson, School } from "./interfaces.ts"
-import { v1 } from "jsr:@std/uuid"
+import { v1 } from "uuid"
 import { DB_TIMEOUT } from "./constants.ts"
 
 const DB_URL = Deno.env.get("DATABASE_URL") ??
@@ -32,8 +32,7 @@ export class DbGateway {
 		const client = await this.safeConnect()
 		const email = user.emailAddresses?.[0].value
 		if (email) {
-			let qObj: QueryObjectResult
-			qObj = await client.queryObject(
+			const qObj: QueryObjectResult = await client.queryObject(
 				"INSERT INTO people (id, username, name, email, google_picture) VALUES ($1, $2, $3, $4, $5)",
 				[
 					v1.generate(),

@@ -1,22 +1,60 @@
 import { useTranslationContext } from "./TranslationContext.tsx"
+import { createElement } from "preact/src/index.d.ts"
 
 interface Props {
 	open: boolean
-	onClose: () => void
+	onClose: (msg?: { ok: boolean; text: string }) => void
 	schoolId: string
 }
 
 export default function NewProfessorModal({ open, onClose, schoolId }: Props) {
 	const { t } = useTranslationContext()
-
 	if (!open) return null
+
+	const createProfessorCall =
+		() => async (e: createElement.JSX.TargetedSubmitEvent<HTMLFormElement>) => {
+			e.preventDefault()
+
+			const form = e.currentTarget
+			const data = new FormData(form)
+			const msg = { ok: false, text: "" }
+
+			const professor = {
+				name: data.get("name"),
+				email: data.get("email"),
+				subject: data.get("subject"),
+				fictitious: data.get("fictitious") ?? "on",
+				schoolId,
+			}
+
+			try {
+				const res = await fetch("/api/professor", {
+					method: "POST",
+					headers: { "Content-Type": "application/json" },
+					body: JSON.stringify(professor),
+				})
+
+				if (!res.ok) {
+					const data = await res.json().catch(() => ({}))
+					throw new Error(data?.error ?? t("school.error_create"))
+				}
+				const data = await res.json()
+
+				msg.ok = data.success
+				msg.text = data.error
+			} catch (e) {
+				console.error(e)
+			} finally {
+				onClose(msg)
+			}
+		}
 
 	return (
 		<div class="fixed inset-0 z-50 flex items-center justify-center">
 			{/* Backdrop */}
 			<div
 				class="absolute inset-0 bg-black/40"
-				onClick={onClose}
+				onClick={() => onClose()}
 			/>
 
 			{/* Modal */}
@@ -27,46 +65,7 @@ export default function NewProfessorModal({ open, onClose, schoolId }: Props) {
 
 				<form
 					class="space-y-4"
-					onSubmit={async (e) => {
-						e.preventDefault()
-
-						const form = e.currentTarget
-						const data = new FormData(form)
-
-						const professor = {
-							name: data.get("name"),
-							email: data.get("email"),
-							subject: data.get("subject"),
-							fictitious: data.get("fictitious") ?? "on",
-							schoolId,
-						}
-
-						try {
-							//setLoading(true)
-							//setErr(null)
-
-							const res = await fetch("/api/professor", {
-								method: "POST",
-								headers: { "Content-Type": "application/json" },
-								body: JSON.stringify(professor),
-							})
-
-							if (!res.ok) {
-								const data = await res.json().catch(() => ({}))
-								throw new Error(data?.error ?? t("school.error_create"))
-							}
-							const data = await res.json()
-
-							data.success
-								? window.location.href = `/dashboard`
-								: console.error(data.error)
-						} catch (e) {
-							//setErr(e instanceof Error ? e.message : t("school.error_unexpected"))
-							console.error(e)
-						} finally {
-							//setLoading(false)
-						}
-					}}
+					onSubmit={createProfessorCall()}
 				>
 					<input
 						name="name"
@@ -104,7 +103,7 @@ export default function NewProfessorModal({ open, onClose, schoolId }: Props) {
 					<div class="flex justify-end gap-2 pt-2">
 						<button
 							type="button"
-							onClick={onClose}
+							onClick={() => onClose()}
 							class="rounded-lg px-4 py-2 text-gray-600 hover:bg-gray-100"
 						>
 							{t("dashboard.modal.cancel")}

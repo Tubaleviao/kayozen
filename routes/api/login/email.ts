@@ -8,7 +8,6 @@ export const handler = async (req: Request, _ctx: FreshContext) => {
 	console.log(form, form.get("remember"))
 	const userEmail = form.get("email")?.toString() || ""
 	const user = await db.getUserByEmail(userEmail)
-	console.log(user)
 
 	if (!user) return new Response("User not found", { status: 400 })
 

@@ -35,6 +35,7 @@ import * as $Navbar from "./islands/Navbar.tsx"
 import * as $NewProfessorModal from "./islands/NewProfessorModal.tsx"
 import * as $Plans from "./islands/Plans.tsx"
 import * as $SignupBox from "./islands/SignupBox.tsx"
+import * as $ToastProvider from "./islands/ToastProvider.tsx"
 import * as $TranslationContext from "./islands/TranslationContext.tsx"
 import type { Manifest } from "$fresh/server.ts"
 
@@ -75,6 +76,7 @@ const manifest = {
 		"./islands/NewProfessorModal.tsx": $NewProfessorModal,
 		"./islands/Plans.tsx": $Plans,
 		"./islands/SignupBox.tsx": $SignupBox,
+		"./islands/ToastProvider.tsx": $ToastProvider,
 		"./islands/TranslationContext.tsx": $TranslationContext,
 	},
 	baseUrl: import.meta.url,

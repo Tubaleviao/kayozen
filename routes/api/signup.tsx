@@ -2,7 +2,7 @@ import { Handlers } from "$fresh/server.ts"
 import { hash } from "bcrypt"
 import { db } from "../../utils/db.ts"
 import { makeUsername } from "../../utils/make_username.ts"
-import { v1 } from "jsr:@std/uuid"
+import { v1 } from "uuid"
 import { getAuthHeader } from "../../utils/getAuthHeader.ts"
 import { logError } from "../../utils/errors.ts"
 

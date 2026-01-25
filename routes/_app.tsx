@@ -1,4 +1,5 @@
 import { PageProps } from "$fresh/server.ts"
+import ToastProvider from "../islands/ToastProvider.tsx"
 import { TranslationProvider } from "../islands/TranslationContext.tsx"
 import { KayozenState } from "../utils/interfaces.ts"
 
@@ -18,7 +19,9 @@ export default function App({ Component, state }: PageProps) {
 			</head>
 			<body class="bg-kayozen-light-background dark:bg-kayozen-dark-background">
 				<TranslationProvider defaultLang={lang}>
-					<Component />
+					<ToastProvider>
+						<Component />
+					</ToastProvider>
 				</TranslationProvider>
 			</body>
 		</html>

@@ -9,9 +9,7 @@ export default function Home({ state }: PageProps) {
 	return (
 		<div class="flex flex-col min-h-screen">
 			<Navbar user={dbUser} />
-
 			<Main />
-
 			<Footer />
 		</div>
 	)

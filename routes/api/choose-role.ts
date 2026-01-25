@@ -2,7 +2,7 @@ import { Handlers } from "$fresh/server.ts"
 import { db } from "../../utils/db.ts"
 
 export const handler: Handlers = {
-	async POST(req, ctx) {
+	async POST(req, _ctx) {
 		const form = await req.formData()
 		const role = form.get("role")?.toString()
 		const userId = form.get("id")?.toString()

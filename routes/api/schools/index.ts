@@ -1,10 +1,10 @@
 // routes/api/schools.ts
 import { Handlers } from "$fresh/server.ts"
-import { v1 } from "jsr:@std/uuid"
+import { v1 } from "uuid"
 import { db } from "../../../utils/db.ts"
 
 export const handler: Handlers = {
-	async POST(req, ctx) {
+	async POST(req, _ctx) {
 		const body = await req.json().catch(() => ({}))
 		const { userId, name } = body
 		if (!userId) {

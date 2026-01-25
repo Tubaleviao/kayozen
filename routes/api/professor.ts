@@ -1,7 +1,7 @@
 import { Handlers } from "$fresh/server.ts"
 import { db } from "../../utils/db.ts"
 import { makeUsername } from "../../utils/make_username.ts"
-import { v1 } from "jsr:@std/uuid"
+import { v1 } from "uuid"
 import { logError } from "../../utils/errors.ts"
 
 interface Data {
@@ -27,8 +27,8 @@ export const handler: Handlers<Data> = { // needs to be protected in the future
 			const personId = v1.generate()
 
 			await db.query(
-				"INSERT INTO people (id, username, name, email) VALUES ($1, $2, $3, $4)",
-				[personId, makeUsername(), name, email],
+				"INSERT INTO people (id, username, name, email, fictitious) VALUES ($1, $2, $3, $4, $5)",
+				[personId, makeUsername(), name, email, true],
 			)
 
 			await db.query(
@@ -38,7 +38,7 @@ export const handler: Handlers<Data> = { // needs to be protected in the future
 
 			await db.query(
 				"INSERT INTO person_role (person, role) VALUES ($1, $2)",
-				[personId, "professor"],
+				[personId, "teacher"],
 			)
 		} catch (err) {
 			if (String(err).includes("duplicate key")) {

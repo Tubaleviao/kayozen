@@ -92,6 +92,7 @@ export const translations = {
 			creating: "Criando escola…",
 			detail_title: "Escola",
 			detail_id: "ID",
+			professor_created: "Professor criado com sucesso!",
 		},
 		roles: {
 			title: "Escolha seu papel",
@@ -229,6 +230,7 @@ export const translations = {
 			creating: "Creating school…",
 			detail_title: "School",
 			detail_id: "ID",
+			professor_created: "Professor created successfully!",
 		},
 		roles: {
 			title: "Choose your role",

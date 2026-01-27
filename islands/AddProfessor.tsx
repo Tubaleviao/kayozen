@@ -24,7 +24,7 @@ export default function AddProfessor({ school }: Props) {
 				open={open}
 				onClose={(msg) => {
 					setOpen(false)
-					if (msg?.ok) toast.success(msg.text ?? "Success!")
+					if (msg?.ok) toast.success(msg.text ?? t("school.professor_created"))
 					else toast.error(msg?.text ?? t("school.error_unexpected"))
 				}}
 				schoolId={school?.id ?? "undefined"}

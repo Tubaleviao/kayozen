@@ -24,14 +24,14 @@ export const handler: Handlers = {
 
 		const schoolId = v1.generate()
 		await db.query(
-			"INSERT INTO schools (id, name, owner_id) VALUES ($1, $2, $3)", // RETURNING ID
+			"INSERT INTO schools (id, name, owner_id) VALUES ($1, $2, $3)",
 			[schoolId, schoolName, userId],
-		) as any
+		)
 
 		await db.query(
 			"INSERT INTO person_school (school, person) VALUES ($1, $2)",
 			[schoolId, userId],
-		) as any
+		)
 
 		return new Response(JSON.stringify({ id: schoolId }), {
 			status: 200,

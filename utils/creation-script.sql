@@ -1,6 +1,6 @@
+DROP TABLE IF EXISTS org_school CASCADE;
 DROP TABLE IF EXISTS organization CASCADE;
 DROP TABLE IF EXISTS schools CASCADE;
-DROP TABLE IF EXISTS org_school CASCADE;
 DROP TABLE IF EXISTS lecture CASCADE;
 DROP TABLE IF EXISTS class CASCADE;
 DROP TABLE IF EXISTS subject CASCADE;
@@ -32,9 +32,10 @@ CREATE TABLE people (
 id VARCHAR(36) PRIMARY KEY NOT NULL,
 name VARCHAR(250) NOT NULL,
 username VARCHAR(50) NOT NULL UNIQUE,
-email VARCHAR(100) NOT NULL UNIQUE,
+email VARCHAR(100),
 password_hash varchar,
-cpf VARCHAR(20) UNIQUE,
+fictitious BOOLEAN NOT NULL DEFAULT FALSE,
+cpf VARCHAR(20),
 google_picture VARCHAR,
 created_at TIMESTAMP DEFAULT now());
 
@@ -89,7 +90,7 @@ CREATE TABLE person_role (
 id SERIAL PRIMARY key,
 person VARCHAR(36) NOT NULL,
 role varchar(100) NOT NULL,
-enrolled TIMESTAMP NOT NULL,
+enrolled TIMESTAMP DEFAULT now(),
 unenrolled TIMESTAMP,
 FOREIGN KEY(person) REFERENCES people(id),
 FOREIGN KEY(role) REFERENCES roles(name));
@@ -104,5 +105,4 @@ FOREIGN KEY(person) REFERENCES people(id));
 INSERT INTO roles (name) 
 VALUES ('student'),
   ('teacher'),
-  ('coordinator')
-  
+  ('coordinator');

@@ -8,7 +8,9 @@ import { KayozenState } from "../../utils/interfaces.ts"
 
 export const handler = defautGuard
 
-export default function NewSchoolPage({ data: { dbUser } }: PageProps<KayozenState>,) {
+export default function NewSchoolPage(
+	{ data: { dbUser } }: PageProps<KayozenState>,
+) {
 	const { t } = useTranslationContext()
 
 	return (

@@ -6,11 +6,13 @@ import { PageProps } from "$fresh/server.ts"
 
 export const handler = defautGuard
 
-export default function ChooseRolePage({ data: { dbUser } }: PageProps<KayozenState>,) {
+export default function ChooseRolePage(
+	{ data: { dbUser } }: PageProps<KayozenState>,
+) {
 	return (
 		<div class="min-h-screen bg-kayozen-light-background dark:bg-kayozen-dark-background text-kayozen-light-text dark:text-kayozen-dark-text">
 			<Navbar />
-			<ChooseRoleBox user={ dbUser } />
+			<ChooseRoleBox user={dbUser} />
 		</div>
 	)
 }

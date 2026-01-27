@@ -1,9 +1,7 @@
 import { Handlers } from "$fresh/server.ts"
-import { hash } from "bcrypt"
 import { db } from "../../utils/db.ts"
 import { makeUsername } from "../../utils/make_username.ts"
 import { v1 } from "uuid"
-import { getAuthHeader } from "../../utils/getAuthHeader.ts"
 import { logError } from "../../utils/errors.ts"
 
 interface Data {
@@ -11,36 +9,36 @@ interface Data {
 	success?: boolean
 }
 
-export const handler: Handlers<Data> = {
+export const handler: Handlers<Data> = { // needs to be protected in the future
 	async POST(req, _ctx) {
 		const form = await req.json()
 
-		const { name, email, password, confirmPassword, acceptTerms } = form
+		const { name, email, subject, schoolId } = form
 
-		if (!name || !email || !password || !confirmPassword) {
+		if (!name || !subject || !schoolId) {
+			console.error("missing fields", name, subject, schoolId)
 			return new Response(JSON.stringify({ error: "Missing fields" }), {
 				status: 400,
 			})
 		}
 
-		if (password !== confirmPassword) {
-			return new Response(JSON.stringify({ error: "Passwords do not match" }), {
-				status: 400,
-			})
-		}
-
-		if (!acceptTerms) {
-			return new Response(JSON.stringify({ error: "Terms not accepted" }), {
-				status: 400,
-			})
-		}
-
-		const passwordHash = await hash(password)
-
 		try {
+			// insert person_role, person_school
+			const personId = v1.generate()
+
 			await db.query(
-				"INSERT INTO people (id, username, name, email, password_hash) VALUES ($1, $2, $3, $4, $5)",
-				[v1.generate(), makeUsername(), name, email, passwordHash],
+				"INSERT INTO people (id, username, name, email, fictitious) VALUES ($1, $2, $3, $4, $5)",
+				[personId, makeUsername(), name, email, true],
+			)
+
+			await db.query(
+				"INSERT INTO subject (name) VALUES ($1)",
+				[subject],
+			)
+
+			await db.query(
+				"INSERT INTO person_role (person, role) VALUES ($1, $2)",
+				[personId, "teacher"],
 			)
 		} catch (err) {
 			if (String(err).includes("duplicate key")) {
@@ -54,11 +52,8 @@ export const handler: Handlers<Data> = {
 			})
 		}
 
-		const headers = await getAuthHeader(name, email)
-
 		return new Response(JSON.stringify({ success: true }), {
 			status: 200,
-			headers,
 		})
 	},
 

@@ -36,9 +36,9 @@ export async function handler(req: Request, ctx: FreshContext) {
 	if (jwt && isProtected) {
 		try {
 			const payload: JwtPayload = await verify(jwt, JWT_SECRET)
-			const user = await db.getUserByEmail(payload.email);
+			const user = await db.getUserByEmail(payload.email)
 			if (!user) {
-				return handleError(new Error("Unauthorized"), req, failedHeaders);
+				return handleError(new Error("Unauthorized"), req, failedHeaders)
 			}
 			dbUser = user
 		} catch (error: any) {

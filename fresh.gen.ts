@@ -25,6 +25,7 @@ import * as $plans from "./routes/plans.tsx"
 import * as $schools_id_ from "./routes/schools/[id].tsx"
 import * as $schools_index from "./routes/schools/index.tsx"
 import * as $signup from "./routes/signup.tsx"
+import * as $AboutContent from "./islands/AboutContent.tsx"
 import * as $AddProfessor from "./islands/AddProfessor.tsx"
 import * as $ChooseRoleBox from "./islands/ChooseRoleBox.tsx"
 import * as $CreateSchool from "./islands/CreateSchool.tsx"
@@ -67,6 +68,7 @@ const manifest = {
 		"./routes/signup.tsx": $signup,
 	},
 	islands: {
+		"./islands/AboutContent.tsx": $AboutContent,
 		"./islands/AddProfessor.tsx": $AddProfessor,
 		"./islands/ChooseRoleBox.tsx": $ChooseRoleBox,
 		"./islands/CreateSchool.tsx": $CreateSchool,

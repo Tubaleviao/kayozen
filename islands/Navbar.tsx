@@ -12,7 +12,10 @@ interface NavbarProps {
 
 export default function Navbar(
 	{
-		itens = [{ key: "nav.about", page: "/about" }, { key: "nav.plans", page: "/plans" }],
+		itens = [{ key: "nav.about", page: "/about" }, {
+			key: "nav.plans",
+			page: "/plans",
+		}],
 		user,
 	}: NavbarProps,
 ) {

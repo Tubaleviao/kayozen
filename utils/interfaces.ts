@@ -30,9 +30,9 @@ export interface DbRole {
 
 export interface School {
 	id: string
-	cnpj: string
+	cnpj?: string
 	name: string
-	created_at: string
+	created_at?: string
 }
 
 export interface GooglePerson {

@@ -36,6 +36,7 @@ import * as $Main from "./islands/Main.tsx"
 import * as $Navbar from "./islands/Navbar.tsx"
 import * as $NewProfessorModal from "./islands/NewProfessorModal.tsx"
 import * as $Plans from "./islands/Plans.tsx"
+import * as $SchoolDetailsEditor from "./islands/SchoolDetailsEditor.tsx"
 import * as $SignupBox from "./islands/SignupBox.tsx"
 import * as $ToastProvider from "./islands/ToastProvider.tsx"
 import * as $TranslationContext from "./islands/TranslationContext.tsx"
@@ -79,6 +80,7 @@ const manifest = {
 		"./islands/Navbar.tsx": $Navbar,
 		"./islands/NewProfessorModal.tsx": $NewProfessorModal,
 		"./islands/Plans.tsx": $Plans,
+		"./islands/SchoolDetailsEditor.tsx": $SchoolDetailsEditor,
 		"./islands/SignupBox.tsx": $SignupBox,
 		"./islands/ToastProvider.tsx": $ToastProvider,
 		"./islands/TranslationContext.tsx": $TranslationContext,

@@ -2,7 +2,10 @@ import { PageProps } from "$fresh/server.ts"
 import Footer from "../islands/Footer.tsx"
 import Navbar from "../islands/Navbar.tsx"
 import Plans from "../islands/Plans.tsx"
+import { defautGuard } from "../utils/guards.ts"
 import { KayozenState, Plan } from "../utils/interfaces.ts"
+
+export const handler = defautGuard
 
 export default function PlansPage({ data }: PageProps<KayozenState>) {
 	const plans: Plan[] = [

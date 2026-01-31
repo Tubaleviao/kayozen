@@ -33,7 +33,8 @@ export const translations = {
 			choose_plan: "Selecionar plano",
 
 			free: "Gratuito",
-			free_desc: "Este é o plano que todos tem por padrão: Permite a criação de uma escola.",
+			free_desc:
+				"Este é o plano que todos tem por padrão: Permite a criação de uma escola.",
 			basic: "Básico",
 			basic_desc:
 				"Ideal para escolas pequenas. Inclui até 2 escolas e 2 funções.",
@@ -107,6 +108,13 @@ export const translations = {
 			signin: "Entrar",
 		},
 		school: {
+			update_success: "Escola atualizada com sucesso!",
+			update_error: "Erro ao atualizar a escola",
+			form: {
+				name: "Nome da escola",
+				cnpj: "CNPJ",
+				save: "Salvar alterações",
+			},
 			create_title: "Crie sua primeira escola",
 			create_hint: "Clique no ícone abaixo para começar",
 			default_name: "Minha primeira escola",
@@ -166,6 +174,10 @@ export const translations = {
 			title: "Banco de Dados Offline",
 			description:
 				"Nosso banco de dados está indisponível no momento. Tente novamente mais tarde.",
+		},
+		common: {
+			save: "Save",
+			saving: "Saving...",
 		},
 	},
 	en: {
@@ -272,6 +284,13 @@ export const translations = {
 			signin: "Sign in",
 		},
 		school: {
+			update_success: "School updated successfully!",
+			update_error: "Failed to update school",
+			form: {
+				name: "School name",
+				cnpj: "CNPJ",
+				save: "Save changes",
+			},
 			create_title: "Create your first school",
 			create_hint: "Click the icon below to start",
 			default_name: "My first school",
@@ -331,6 +350,10 @@ export const translations = {
 			title: "Database Offline",
 			description:
 				"Our database is currently unreachable. Please try again later.",
+		},
+		common: {
+			save: "Save",
+			saving: "Saving...",
 		},
 	},
 } as const

@@ -16,6 +16,17 @@ export default function Plans(
 			</p>
 
 			<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+				<div class="rounded-2xl p-6 shadow-md bg-kayozen-light-surface dark:bg-kayozen-dark-surface border border-kayozen-light-border dark:border-kayozen-dark-border flex flex-col justify-between">
+					<div>
+						<h2 class="text-xl font-semibold mb-2">
+							{t(`billing.free`)}
+						</h2>
+
+						<p class="text-sm text-kayozen-light-muted dark:text-kayozen-dark-muted mb-6">
+							{t(`billing.free_desc`)}
+						</p>
+					</div>
+				</div>
 				{plans.map((plan) => (
 					<div class="rounded-2xl p-6 shadow-md bg-kayozen-light-surface dark:bg-kayozen-dark-surface border border-kayozen-light-border dark:border-kayozen-dark-border flex flex-col justify-between">
 						<div>

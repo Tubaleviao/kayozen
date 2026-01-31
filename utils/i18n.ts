@@ -8,16 +8,18 @@ export const translations = {
 			subtitle: "Escolha o plano que melhor atende sua escola.",
 			choose_plan: "Selecionar plano",
 
+			free: "Gratuito",
+			free_desc: "Este é o plano que todos tem por padrão: Permite a criação de uma escola.",
 			basic: "Básico",
 			basic_desc:
-				"Ideal para escolas pequenas. Inclui até 5 professores e 2 escolas.",
+				"Ideal para escolas pequenas. Inclui até 2 escolas e 2 funções.",
 
 			pro: "Pro",
 			pro_desc: "Para escolas em crescimento, com recursos ilimitados.",
 
 			enterprise: "Enterprise",
 			enterprise_desc:
-				"Soluções completas e personalizadas para grandes instituições.",
+				"Soluções completas com recursos ilimitados e personalizações para grandes instituições, entraremos em contato.",
 			contact_us: "Fale conosco",
 		},
 		login: {
@@ -64,6 +66,7 @@ export const translations = {
 			theme: "Alternar tema",
 			logout: "Sair",
 			profile: "Perfil",
+			plans: "Planos",
 		},
 		signup: {
 			title: "Crie sua conta",
@@ -147,16 +150,18 @@ export const translations = {
 			subtitle: "Select the plan that best fits your school.",
 			choose_plan: "Choose plan",
 
+			free: "Free",
+			free_desc: "This is the default plan: Allow the creation of 1 school.",
 			basic: "Basic",
 			basic_desc:
-				"Ideal for small schools. Includes up to 5 teachers and 2 schools.",
+				"Ideal for small schools. Includes up to 2 schools and 2 roles.",
 
 			pro: "Pro",
 			pro_desc: "For growing schools, with unlimited features.",
 
 			enterprise: "Enterprise",
 			enterprise_desc:
-				"Complete and customized solutions for large institutions.",
+				"Unlimited resources and complete and customized solutions for large institutions, we'll get in touch.",
 			contact_us: "Contact us",
 		},
 		login: {
@@ -202,6 +207,7 @@ export const translations = {
 			theme: "Toggle Theme",
 			logout: "Logout",
 			profile: "Profile",
+			plans: "Plans",
 		},
 		signup: {
 			title: "Create your account",

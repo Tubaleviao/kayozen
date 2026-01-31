@@ -18,7 +18,7 @@ export default function PlansPage({ data }: PageProps<KayozenState>) {
 		},
 		{
 			key: "enterprise",
-			price: "R$ 150,00", // t("billing.contact_us"),
+			price: "R$ 150,00",
 			url: "https://pag.ae/81eTCED-m",
 		},
 	]

@@ -4,6 +4,8 @@ import { defautGuard } from "../utils/guards.ts"
 import { KayozenState } from "../utils/interfaces.ts"
 import { useTranslationContext } from "../islands/TranslationContext.tsx"
 import AddProfessor from "../islands/AddProfessor.tsx"
+import DashboardSelectors from "../islands/DashboardSelectors.tsx"
+import Footer from "../islands/Footer.tsx"
 
 export const handler = defautGuard
 
@@ -16,40 +18,20 @@ export default function Dashboard(
 	const hasSchool = dbUser?.schools?.length || 0 > 0
 
 	return (
-		<div class="min-h-screen bg-kayozen-light-background dark:bg-kayozen-dark-background text-kayozen-light-text dark:text-kayozen-dark-text">
+		<div class="flex flex-col min-h-screen bg-kayozen-light-background dark:bg-kayozen-dark-background text-kayozen-light-text dark:text-kayozen-dark-text">
 			<Navbar user={dbUser} />
 
-			<main class="p-6 animate-fadeIn">
+			<main class="flex-grow p-6 animate-fadeIn">
 				<div class="flex justify-between items-center mb-6">
 					<h1 class="text-2xl font-bold">
 						{t("dashboard.welcome")}, {dbUser?.name}
 					</h1>
 
 					{(hasRole || hasSchool) && (
-						<div class="flex space-x-4">
-							{hasRole && (
-								<div class="relative">
-									<select class="px-3 py-2 rounded bg-kayozen-light-surface dark:bg-kayozen-dark-surface border border-kayozen-light-muted dark:border-kayozen-dark-muted">
-										{dbUser?.roles?.map((role) => (
-											<option selected>
-												{t(`dashboard.role.${role.role}`)}
-											</option>
-										))}
-										<option value="new">{t("dashboard.role.add_new")}</option>
-									</select>
-								</div>
-							)}
-							{hasSchool && (
-								<div class="relative">
-									<select class="px-3 py-2 rounded bg-kayozen-light-surface dark:bg-kayozen-dark-surface border border-kayozen-light-muted dark:border-kayozen-dark-muted">
-										{dbUser?.schools?.map((school) => (
-											<option selected>{school.name}</option>
-										))}
-										<option value="new">{t("dashboard.school.add_new")}</option>
-									</select>
-								</div>
-							)}
-						</div>
+						<DashboardSelectors
+							roles={dbUser?.roles}
+							schools={dbUser?.schools}
+						/>
 					)}
 				</div>
 
@@ -83,6 +65,8 @@ export default function Dashboard(
 					/>
 				)}
 			</main>
+
+			<Footer />
 		</div>
 	)
 }

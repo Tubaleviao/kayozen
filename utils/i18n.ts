@@ -108,6 +108,10 @@ export const translations = {
 			signin: "Entrar",
 		},
 		school: {
+			field_name: "Nome da escola",
+			field_cnpj: "CNPJ (opcional)",
+			error_name_required: "O nome da escola é obrigatório",
+			success_create: "Escola criada com sucesso!",
 			update_success: "Escola atualizada com sucesso!",
 			update_error: "Erro ao atualizar a escola",
 			form: {
@@ -284,6 +288,10 @@ export const translations = {
 			signin: "Sign in",
 		},
 		school: {
+			field_name: "School name",
+			field_cnpj: "CNPJ (optional)",
+			error_name_required: "School name is required",
+			success_create: "School created successfully!",
 			update_success: "School updated successfully!",
 			update_error: "Failed to update school",
 			form: {

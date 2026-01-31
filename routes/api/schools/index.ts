@@ -6,7 +6,7 @@ import { db } from "../../../utils/db.ts"
 export const handler: Handlers = {
 	async POST(req, _ctx) {
 		const body = await req.json().catch(() => ({}))
-		const { userId, name } = body
+		const { userId, name, cnpj } = body
 		if (!userId) {
 			return new Response(JSON.stringify({ error: "Unauthorized" }), {
 				status: 401,
@@ -24,8 +24,8 @@ export const handler: Handlers = {
 
 		const schoolId = v1.generate()
 		await db.query(
-			"INSERT INTO schools (id, name, owner_id) VALUES ($1, $2, $3)",
-			[schoolId, schoolName, userId],
+			"INSERT INTO schools (id, name, owner_id, cnpj) VALUES ($1, $2, $3, $4)",
+			[schoolId, schoolName, userId, cnpj],
 		)
 
 		await db.query(

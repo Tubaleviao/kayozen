@@ -1,18 +1,35 @@
 // routes/schools/[id].tsx
-import { PageProps } from "$fresh/server.ts"
+import { FreshContext, PageProps } from "$fresh/server.ts"
 import Navbar from "../../islands/Navbar.tsx"
 import SchoolDetailsEditor from "../../islands/SchoolDetailsEditor.tsx"
 import { useTranslationContext } from "../../islands/TranslationContext.tsx"
-import { KayozenState, School } from "../../utils/interfaces.ts"
+import { db } from "../../utils/db.ts"
+import { DbUser, KayozenState, School } from "../../utils/interfaces.ts"
+import { getSessionUser } from "../../utils/middleware.ts"
+
+export const handler = async (
+	req: Request,
+	ctx: FreshContext,
+): Promise<Response> => {
+	const { id } = ctx.params
+	const dbResult = await db.query(`select * from schools where id=$1`, [id])
+	const dbUser = await getSessionUser(req)
+	if (!dbUser?.email) {
+		return new Response(null, { status: 302, headers: { "Location": "/" } })
+	}
+	const resp = await ctx.render({ school: dbResult.rows[0], dbUser })
+	return resp
+}
 
 interface Data {
 	school: School
+	dbUser: DbUser
 }
 
-export default function SchoolPage({ state, data }: PageProps<Data>) {
-	const { dbUser }: Partial<KayozenState> = state
+export default function SchoolPage(
+	{ state, data: { school, dbUser } }: PageProps<Data>,
+) {
 	const { t } = useTranslationContext()
-	const { school } = data
 
 	return (
 		<>

@@ -29,6 +29,7 @@ import * as $AboutContent from "./islands/AboutContent.tsx"
 import * as $AddProfessor from "./islands/AddProfessor.tsx"
 import * as $ChooseRoleBox from "./islands/ChooseRoleBox.tsx"
 import * as $CreateSchool from "./islands/CreateSchool.tsx"
+import * as $DashboardClient from "./islands/DashboardClient.tsx"
 import * as $DashboardSelectors from "./islands/DashboardSelectors.tsx"
 import * as $Error404 from "./islands/Error404.tsx"
 import * as $Footer from "./islands/Footer.tsx"
@@ -37,6 +38,7 @@ import * as $Main from "./islands/Main.tsx"
 import * as $Navbar from "./islands/Navbar.tsx"
 import * as $NewProfessorModal from "./islands/NewProfessorModal.tsx"
 import * as $Plans from "./islands/Plans.tsx"
+import * as $RoleDashboardView from "./islands/RoleDashboardView.tsx"
 import * as $SchoolDetailsEditor from "./islands/SchoolDetailsEditor.tsx"
 import * as $SchoolIllustration from "./islands/SchoolIllustration.tsx"
 import * as $SignupBox from "./islands/SignupBox.tsx"
@@ -75,6 +77,7 @@ const manifest = {
 		"./islands/AddProfessor.tsx": $AddProfessor,
 		"./islands/ChooseRoleBox.tsx": $ChooseRoleBox,
 		"./islands/CreateSchool.tsx": $CreateSchool,
+		"./islands/DashboardClient.tsx": $DashboardClient,
 		"./islands/DashboardSelectors.tsx": $DashboardSelectors,
 		"./islands/Error404.tsx": $Error404,
 		"./islands/Footer.tsx": $Footer,
@@ -83,6 +86,7 @@ const manifest = {
 		"./islands/Navbar.tsx": $Navbar,
 		"./islands/NewProfessorModal.tsx": $NewProfessorModal,
 		"./islands/Plans.tsx": $Plans,
+		"./islands/RoleDashboardView.tsx": $RoleDashboardView,
 		"./islands/SchoolDetailsEditor.tsx": $SchoolDetailsEditor,
 		"./islands/SchoolIllustration.tsx": $SchoolIllustration,
 		"./islands/SignupBox.tsx": $SignupBox,

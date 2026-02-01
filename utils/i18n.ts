@@ -108,6 +108,7 @@ export const translations = {
 			signin: "Entrar",
 		},
 		school: {
+			edit_title: "Editar escola",
 			field_name: "Nome da escola",
 			field_cnpj: "CNPJ (opcional)",
 			error_name_required: "O nome da escola é obrigatório",
@@ -163,6 +164,7 @@ export const translations = {
 			},
 			school: {
 				add_new: "Adicionar nova escola",
+				edit: "Editar escola",
 			},
 			modal: {
 				new_professor: "Novo Professor",
@@ -288,6 +290,7 @@ export const translations = {
 			signin: "Sign in",
 		},
 		school: {
+			edit_title: "Edit school",
 			field_name: "School name",
 			field_cnpj: "CNPJ (optional)",
 			error_name_required: "School name is required",
@@ -343,6 +346,7 @@ export const translations = {
 			},
 			school: {
 				add_new: "Add new school",
+				edit: "Edit school",
 			},
 			modal: {
 				new_professor: "New Professor",

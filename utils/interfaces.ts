@@ -86,7 +86,7 @@ export interface KayozenState {
 }
 
 export interface Plan {
-	key: "basic" | "pro" | "enterprise"
+	key: "free" | "basic" | "pro" | "enterprise"
 	price: string
 	url: string
 }

@@ -25,9 +25,7 @@ export default function SchoolDetailsEditor({ school }: Props) {
 				body: JSON.stringify({ name, cnpj }),
 			})
 
-			if (!res.ok) {
-				throw new Error("save_failed")
-			}
+			if (!res.ok) throw new Error("save_failed")
 
 			toast.success(t("school.update_success"))
 		} catch {
@@ -38,36 +36,46 @@ export default function SchoolDetailsEditor({ school }: Props) {
 	}
 
 	return (
-		<div class="space-y-6 max-w-md mx-auto">
-			<div class="space-y-2">
-				<label class="block text-sm font-medium">
-					{t("school.form.name")}
-				</label>
-				<input
-					value={name}
-					onInput={(e) => setName((e.target as HTMLInputElement).value)}
-					class="w-full px-3 py-2 rounded border bg-transparent"
-				/>
-			</div>
+		<div class="w-screen max-w-md mx-auto bg-kayozen-light-surface dark:bg-kayozen-dark-surface p-8 rounded-lg shadow-md">
+			<h1 class="text-2xl font-bold text-center mb-6">
+				{t("school.edit_title")}
+			</h1>
 
-			<div class="space-y-2">
-				<label class="block text-sm font-medium">
-					{t("school.form.cnpj")}
-				</label>
-				<input
-					value={cnpj}
-					onInput={(e) => setCnpj((e.target as HTMLInputElement).value)}
-					class="w-full px-3 py-2 rounded border bg-transparent"
-				/>
-			</div>
+			<div class="space-y-4">
+				{/* School name */}
+				<div>
+					<label class="block text-sm font-medium text-gray-700 dark:text-gray-300">
+						{t("school.form.name")}
+					</label>
+					<input
+						value={name}
+						onInput={(e) => setName((e.target as HTMLInputElement).value)}
+						class="w-full mt-1 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-kayozen-light-primary dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+					/>
+				</div>
 
-			<button
-				onClick={save}
-				disabled={loading}
-				class="w-full py-2 rounded bg-kayozen-light-primary dark:bg-kayozen-dark-primary text-white font-semibold disabled:opacity-50"
-			>
-				{loading ? t("common.saving") : t("common.save")}
-			</button>
+				{/* CNPJ */}
+				<div>
+					<label class="block text-sm font-medium text-gray-700 dark:text-gray-300">
+						{t("school.form.cnpj")}
+					</label>
+					<input
+						value={cnpj}
+						onInput={(e) => setCnpj((e.target as HTMLInputElement).value)}
+						class="w-full mt-1 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-kayozen-light-primary dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+					/>
+				</div>
+
+				{/* Action */}
+				<button
+					type="button"
+					onClick={save}
+					disabled={loading}
+					class="w-full mt-2 bg-kayozen-light-primary dark:bg-kayozen-dark-primary text-white py-2 px-4 rounded-lg font-semibold hover:opacity-90 transition disabled:opacity-50"
+				>
+					{loading ? t("common.saving") : t("common.save")}
+				</button>
+			</div>
 		</div>
 	)
 }

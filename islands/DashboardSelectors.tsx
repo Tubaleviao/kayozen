@@ -1,14 +1,18 @@
 import { FunctionalComponent } from "preact"
 import { useTranslationContext } from "./TranslationContext.tsx"
 import { DbRole, School } from "../utils/interfaces.ts"
+import { Role } from "../utils/constants.ts"
 
 interface Props {
 	roles?: DbRole[]
 	schools?: School[]
+	selectedSchoolId: string
+	onRoleChange: (role: Role) => void
+	onSchoolChange: (id: string) => void
 }
 
 const DashboardSelectors: FunctionalComponent<Props> = (
-	{ roles = [], schools = [] },
+	{ roles = [], schools = [], selectedSchoolId, onRoleChange, onSchoolChange },
 ) => {
 	const { t } = useTranslationContext()
 
@@ -17,19 +21,26 @@ const DashboardSelectors: FunctionalComponent<Props> = (
 		if (value === "new") {
 			e.preventDefault()
 			globalThis.location.href = "/choose-role"
-		}
+		} else onRoleChange(value as Role)
 	}
 
 	function handleSchoolChange(e: Event) {
 		const value = (e.target as HTMLSelectElement).value
+
 		if (value === "new") {
 			e.preventDefault()
 			globalThis.location.href = "/schools"
-		}
+			return
+		} else onSchoolChange(value)
+	}
+
+	function handleEditSchool() {
+		if (!selectedSchoolId) return
+		globalThis.location.href = `/schools/${selectedSchoolId}`
 	}
 
 	return (
-		<div class="flex space-x-4">
+		<div class="flex space-x-4 items-center">
 			{roles.length > 0 && (
 				<div class="relative">
 					<select
@@ -49,8 +60,9 @@ const DashboardSelectors: FunctionalComponent<Props> = (
 			)}
 
 			{schools.length > 0 && (
-				<div class="relative">
+				<div class="flex items-center space-x-2">
 					<select
+						value={selectedSchoolId}
 						onChange={handleSchoolChange}
 						class="px-3 py-2 rounded bg-kayozen-light-surface dark:bg-kayozen-dark-surface border border-kayozen-light-muted dark:border-kayozen-dark-muted"
 					>
@@ -63,6 +75,18 @@ const DashboardSelectors: FunctionalComponent<Props> = (
 							➕ {t("dashboard.school.add_new")}
 						</option>
 					</select>
+
+					{/* Edit button */}
+					{selectedSchoolId && (
+						<button
+							type="button"
+							onClick={handleEditSchool}
+							title={t("dashboard.school.edit")}
+							class="p-2 rounded hover:bg-kayozen-light-muted dark:hover:bg-kayozen-dark-muted transition"
+						>
+							✏️
+						</button>
+					)}
 				</div>
 			)}
 		</div>

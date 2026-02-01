@@ -2,22 +2,22 @@ import { PageProps } from "$fresh/server.ts"
 import Footer from "../islands/Footer.tsx"
 import Navbar from "../islands/Navbar.tsx"
 import Plans from "../islands/Plans.tsx"
-import { defautGuard } from "../utils/guards.ts"
+import { userGuard } from "../utils/guards.ts"
 import { KayozenState, Plan } from "../utils/interfaces.ts"
 
-export const handler = defautGuard
+export const handler = userGuard
 
 export default function PlansPage({ data }: PageProps<KayozenState>) {
 	const plans: Plan[] = [
 		{
 			key: "basic",
 			price: "R$ 20,00",
-			url: "https://pag.ae/81eSfQ861",
+			url: "https://pag.ae/81taRn74s",
 		},
 		{
 			key: "pro",
 			price: "R$ 50,00",
-			url: "https://pag.ae/81eTC17jr",
+			url: "https://pag.ae/81taS6-2N",
 		},
 		{
 			key: "enterprise",

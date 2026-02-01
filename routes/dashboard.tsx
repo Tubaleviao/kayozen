@@ -17,7 +17,7 @@ export default function Dashboard(
 		<div class="flex flex-col min-h-screen bg-kayozen-light-background dark:bg-kayozen-dark-background">
 			<Navbar user={dbUser} />
 
-			<main class="flex-grow p-6 animate-fadeIn">
+			<main class="flex-grow p-6 animate-fadeIn relative">
 				<h1 class="text-2xl font-bold mb-6">
 					{t("dashboard.welcome")}, {dbUser?.name}
 				</h1>

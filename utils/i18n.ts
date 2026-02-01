@@ -273,7 +273,7 @@ export const translations = {
 			theme: "Toggle Theme",
 			logout: "Logout",
 			profile: "Profile",
-			plans: "Plans",
+			plans: "Pricing",
 		},
 		signup: {
 			title: "Create your account",

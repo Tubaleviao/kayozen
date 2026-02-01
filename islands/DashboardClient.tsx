@@ -19,11 +19,11 @@ export default function DashboardClient({ user }: Props) {
 	const [selectedSchoolId, setSelectedSchoolId] = useState(
 		schools[0]?.id,
 	)
-	
+
 	return (
 		<>
 			{(roles.length > 0 || schools.length > 0) && (
-				<div class="flex justify-end mb-6">
+				<div class="flex justify-start mb-6 md:absolute md:top-6 md:right-6 md:mb-0">
 					<DashboardSelectors
 						roles={roles}
 						schools={schools}

@@ -7,6 +7,7 @@ import * as $_500 from "./routes/_500.tsx"
 import * as $_app from "./routes/_app.tsx"
 import * as $_middleware from "./routes/_middleware.ts"
 import * as $about from "./routes/about.tsx"
+import * as $api_billing_subscribe from "./routes/api/billing/subscribe.ts"
 import * as $api_callback from "./routes/api/callback.ts"
 import * as $api_choose_role from "./routes/api/choose-role.ts"
 import * as $api_login_email from "./routes/api/login/email.ts"
@@ -53,6 +54,7 @@ const manifest = {
 		"./routes/_app.tsx": $_app,
 		"./routes/_middleware.ts": $_middleware,
 		"./routes/about.tsx": $about,
+		"./routes/api/billing/subscribe.ts": $api_billing_subscribe,
 		"./routes/api/callback.ts": $api_callback,
 		"./routes/api/choose-role.ts": $api_choose_role,
 		"./routes/api/login/email.ts": $api_login_email,

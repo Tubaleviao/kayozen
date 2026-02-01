@@ -17,6 +17,15 @@ export const defautGuard = async (
 	return resp
 }
 
+export const userGuard = async (
+	req: Request,
+	ctx: FreshContext,
+): Promise<Response> => {
+	const dbUser = await getSessionUser(req)
+	const resp = await ctx.render({ dbUser })
+	return resp
+}
+
 export const isLang = (val: unknown): val is SupportedLang => {
 	return (val === "pt" || val === "en")
 }

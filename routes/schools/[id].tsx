@@ -1,5 +1,4 @@
-// routes/schools/[id].tsx
-import { FreshContext, PageProps } from "fresh/server.ts"
+import { PageProps } from "fresh"
 import Footer from "../../islands/Footer.tsx"
 import Navbar from "../../islands/Navbar.tsx"
 import SchoolDetailsEditor from "../../islands/SchoolDetailsEditor.tsx"
@@ -8,17 +7,15 @@ import { DbUser, School } from "../../utils/interfaces.ts"
 import { getSessionUser } from "../../utils/middleware.ts"
 
 export const handler = async (
-	req: Request,
-	ctx: FreshContext,
-): Promise<Response> => {
+	ctx: PageProps
+) => {
 	const { id } = ctx.params
 	const dbResult = await db.query(`select * from schools where id=$1`, [id])
-	const dbUser = await getSessionUser(req)
+	const dbUser = await getSessionUser(ctx.req)
 	if (!dbUser?.email) {
 		return new Response(null, { status: 302, headers: { "Location": "/" } })
 	}
-	const resp = await ctx.render({ school: dbResult.rows[0], dbUser })
-	return resp
+	return { school: dbResult.rows[0], dbUser }
 }
 
 interface Data {

@@ -1,5 +1,4 @@
-// routes/schools/new.tsx
-import { PageProps } from "fresh/server.ts"
+import { PageProps } from "fresh"
 import CreateSchool from "../../islands/CreateSchool.tsx"
 import Navbar from "../../islands/Navbar.tsx"
 import { useTranslationContext } from "../../islands/TranslationContext.tsx"

@@ -1,10 +1,10 @@
-import { FreshContext } from "fresh/server.ts"
 import { db } from "../../../utils/db.ts"
 import { compare } from "bcrypt"
 import { getAuthHeader } from "../../../utils/getAuthHeader.ts"
+import { PageProps } from "fresh"
 
-export const handler = async (req: Request, _ctx: FreshContext) => {
-	const form = await req.formData()
+export const handler = async (ctx: PageProps) => {
+	const form = await ctx.req.formData()
 	console.log(form, form.get("remember"))
 	const userEmail = form.get("email")?.toString() || ""
 	const user = await db.getUserByEmail(userEmail)

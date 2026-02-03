@@ -1,11 +1,11 @@
-import { Handler } from "fresh/server.ts"
+import { PageProps } from "fresh"
 import { Subscribers } from "../../../utils/billing/Subscribers.ts"
 import { Subscriptions } from "../../../utils/billing/Subscriptions.ts"
 import { getSessionUser } from "../../../utils/middleware.ts"
 
-export const handler: Handler = async (req, _ctx) => {
-	const { planId } = await req.json()
-	const dbUser = await getSessionUser(req)
+export const handler = async (ctx: PageProps) => {
+	const { planId } = await ctx.req.json()
+	const dbUser = await getSessionUser(ctx.req)
 
 	const subscribers = new Subscribers()
 	const subscriptions = new Subscriptions()

@@ -1,11 +1,10 @@
-// routes/api/schools.ts
-import { Handlers } from "fresh/server.ts"
 import { v1 } from "uuid"
 import { db } from "../../../utils/db.ts"
+import { PageProps } from "fresh"
 
-export const handler: Handlers = {
-	async POST(req, _ctx) {
-		const body = await req.json().catch(() => ({}))
+export const handler = {
+	async POST(ctx: PageProps) {
+		const body = await ctx.req.json().catch(() => ({}))
 		const { userId, name, cnpj } = body
 		if (!userId) {
 			return new Response(JSON.stringify({ error: "Unauthorized" }), {

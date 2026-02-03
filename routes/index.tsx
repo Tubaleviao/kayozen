@@ -4,8 +4,9 @@ import Main from "../islands/Main.tsx"
 import Navbar from "../islands/Navbar.tsx"
 import { KayozenState } from "../utils/interfaces.ts"
 import { getSessionUser } from "../utils/middleware.ts"
+import { define } from "../utils.ts"
 
-export const handler= {
+export const handler = {
 	async GET(ctx: PageProps) {
 		const dbUser = await getSessionUser(ctx.req)
 
@@ -22,7 +23,7 @@ export const handler= {
 	},
 }
 
-export default function Home({ data }: PageProps<KayozenState>) {
+export default define.page(function Home({ data }: PageProps<KayozenState>) {
 	const { dbUser } = data
 	return (
 		<div class="flex flex-col min-h-screen">
@@ -31,4 +32,4 @@ export default function Home({ data }: PageProps<KayozenState>) {
 			<Footer />
 		</div>
 	)
-}
+})

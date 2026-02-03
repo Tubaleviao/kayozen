@@ -1,9 +1,9 @@
-import { Handlers } from "fresh/server.ts"
+import { PageProps } from "fresh"
 import { db } from "../../utils/db.ts"
 
-export const handler: Handlers = {
-	async POST(req, _ctx) {
-		const form = await req.formData()
+export const handler = {
+	async POST(ctx: PageProps) {
+		const form = await ctx.req.formData()
 		const role = form.get("role")?.toString()
 		const userId = form.get("id")?.toString()
 
@@ -23,6 +23,6 @@ export const handler: Handlers = {
 			],
 		)
 
-		return Response.redirect(new URL("/dashboard", req.url))
+		return Response.redirect(new URL("/dashboard", ctx.req.url))
 	},
 }

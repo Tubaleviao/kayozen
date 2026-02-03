@@ -1,17 +1,12 @@
-import { Handlers } from "fresh/server.ts"
 import { db } from "../../utils/db.ts"
 import { makeUsername } from "../../utils/make_username.ts"
 import { v1 } from "uuid"
 import { logError } from "../../utils/errors.ts"
+import { PageProps } from "fresh"
 
-interface Data {
-	error?: string
-	success?: boolean
-}
-
-export const handler: Handlers<Data> = { // needs to be protected in the future
-	async POST(req, _ctx) {
-		const form = await req.json()
+export const handler = { // needs to be protected in the future
+	async POST(ctx: PageProps) {
+		const form = await ctx.req.json()
 
 		const { name, email, subject, schoolId } = form
 
@@ -57,7 +52,7 @@ export const handler: Handlers<Data> = { // needs to be protected in the future
 		})
 	},
 
-	async GET(_, ctx) {
-		return await ctx.render({})
+	GET(_ctx: PageProps) {
+		return {}
 	},
 }

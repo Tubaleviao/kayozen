@@ -6,6 +6,8 @@ import * as $_404 from "./routes/_404.tsx"
 import * as $_500 from "./routes/_500.tsx"
 import * as $_app from "./routes/_app.tsx"
 import * as $_middleware from "./routes/_middleware.ts"
+import * as $about from "./routes/about.tsx"
+import * as $api_billing_subscribe from "./routes/api/billing/subscribe.ts"
 import * as $api_callback from "./routes/api/callback.ts"
 import * as $api_choose_role from "./routes/api/choose-role.ts"
 import * as $api_login_email from "./routes/api/login/email.ts"
@@ -24,9 +26,12 @@ import * as $plans from "./routes/plans.tsx"
 import * as $schools_id_ from "./routes/schools/[id].tsx"
 import * as $schools_index from "./routes/schools/index.tsx"
 import * as $signup from "./routes/signup.tsx"
+import * as $AboutContent from "./islands/AboutContent.tsx"
 import * as $AddProfessor from "./islands/AddProfessor.tsx"
 import * as $ChooseRoleBox from "./islands/ChooseRoleBox.tsx"
 import * as $CreateSchool from "./islands/CreateSchool.tsx"
+import * as $DashboardClient from "./islands/DashboardClient.tsx"
+import * as $DashboardSelectors from "./islands/DashboardSelectors.tsx"
 import * as $Error404 from "./islands/Error404.tsx"
 import * as $Footer from "./islands/Footer.tsx"
 import * as $LoginBox from "./islands/LoginBox.tsx"
@@ -34,6 +39,9 @@ import * as $Main from "./islands/Main.tsx"
 import * as $Navbar from "./islands/Navbar.tsx"
 import * as $NewProfessorModal from "./islands/NewProfessorModal.tsx"
 import * as $Plans from "./islands/Plans.tsx"
+import * as $RoleDashboardView from "./islands/RoleDashboardView.tsx"
+import * as $SchoolDetailsEditor from "./islands/SchoolDetailsEditor.tsx"
+import * as $SchoolIllustration from "./islands/SchoolIllustration.tsx"
 import * as $SignupBox from "./islands/SignupBox.tsx"
 import * as $ToastProvider from "./islands/ToastProvider.tsx"
 import * as $TranslationContext from "./islands/TranslationContext.tsx"
@@ -45,6 +53,8 @@ const manifest = {
 		"./routes/_500.tsx": $_500,
 		"./routes/_app.tsx": $_app,
 		"./routes/_middleware.ts": $_middleware,
+		"./routes/about.tsx": $about,
+		"./routes/api/billing/subscribe.ts": $api_billing_subscribe,
 		"./routes/api/callback.ts": $api_callback,
 		"./routes/api/choose-role.ts": $api_choose_role,
 		"./routes/api/login/email.ts": $api_login_email,
@@ -65,9 +75,12 @@ const manifest = {
 		"./routes/signup.tsx": $signup,
 	},
 	islands: {
+		"./islands/AboutContent.tsx": $AboutContent,
 		"./islands/AddProfessor.tsx": $AddProfessor,
 		"./islands/ChooseRoleBox.tsx": $ChooseRoleBox,
 		"./islands/CreateSchool.tsx": $CreateSchool,
+		"./islands/DashboardClient.tsx": $DashboardClient,
+		"./islands/DashboardSelectors.tsx": $DashboardSelectors,
 		"./islands/Error404.tsx": $Error404,
 		"./islands/Footer.tsx": $Footer,
 		"./islands/LoginBox.tsx": $LoginBox,
@@ -75,6 +88,9 @@ const manifest = {
 		"./islands/Navbar.tsx": $Navbar,
 		"./islands/NewProfessorModal.tsx": $NewProfessorModal,
 		"./islands/Plans.tsx": $Plans,
+		"./islands/RoleDashboardView.tsx": $RoleDashboardView,
+		"./islands/SchoolDetailsEditor.tsx": $SchoolDetailsEditor,
+		"./islands/SchoolIllustration.tsx": $SchoolIllustration,
 		"./islands/SignupBox.tsx": $SignupBox,
 		"./islands/ToastProvider.tsx": $ToastProvider,
 		"./islands/TranslationContext.tsx": $TranslationContext,

@@ -11,6 +11,7 @@ DROP TABLE IF EXISTS student_class CASCADE;
 DROP TABLE IF EXISTS people CASCADE;
 DROP TABLE IF EXISTS person_role CASCADE;
 DROP TABLE IF EXISTS person_school CASCADE;
+DROP TABLE IF EXISTS plans CASCADE;
 
 CREATE TABLE organization (
 id SERIAL PRIMARY key,
@@ -28,16 +29,22 @@ CREATE TABLE roles (
 id SERIAL PRIMARY key,
 name VARCHAR(100) NOT NULL UNIQUE);
 
+CREATE TABLE plans (
+id SERIAL PRIMARY key,
+name VARCHAR(50) NOT NULL UNIQUE);
+
 CREATE TABLE people (
 id VARCHAR(36) PRIMARY KEY NOT NULL,
 name VARCHAR(250) NOT NULL,
 username VARCHAR(50) NOT NULL UNIQUE,
 email VARCHAR(100),
 password_hash varchar,
+plan VARCHAR(50) NOT NULL DEFAULT 'free',
 fictitious BOOLEAN NOT NULL DEFAULT FALSE,
 cpf VARCHAR(20),
 google_picture VARCHAR,
-created_at TIMESTAMP DEFAULT now());
+created_at TIMESTAMP DEFAULT now(),
+FOREIGN KEY(plan) REFERENCES plans(name));
 
 CREATE TABLE schools (
 id VARCHAR(36) PRIMARY KEY NOT NULL,
@@ -106,3 +113,9 @@ INSERT INTO roles (name)
 VALUES ('student'),
   ('teacher'),
   ('coordinator');
+
+INSERT INTO plans (name)
+VALUES ('free'),
+  ('basic'),
+  ('pro'),
+  ('enterprise');

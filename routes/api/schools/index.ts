@@ -1,5 +1,5 @@
 // routes/api/schools.ts
-import { Handlers } from "$fresh/server.ts"
+import { Handlers } from "fresh/server.ts"
 import { v1 } from "uuid"
 import { db } from "../../../utils/db.ts"
 

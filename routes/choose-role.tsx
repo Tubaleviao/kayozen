@@ -2,7 +2,7 @@ import Navbar from "../islands/Navbar.tsx"
 import ChooseRoleBox from "../islands/ChooseRoleBox.tsx"
 import { defautGuard } from "../utils/guards.ts"
 import { KayozenState } from "../utils/interfaces.ts"
-import { PageProps } from "$fresh/server.ts"
+import { PageProps } from "fresh"
 
 export const handler = defautGuard
 

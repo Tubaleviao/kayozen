@@ -1,29 +1,25 @@
-import { FreshContext } from "$fresh/server.ts"
+import { PageProps } from "fresh"
 import { SupportedLang } from "./i18n.ts"
-import { Theme } from "./interfaces.ts"
+import { KayozenState, Theme } from "./interfaces.ts"
 import { getSessionUser } from "./middleware.ts"
 
 export const defautGuard = async (
-	req: Request,
-	ctx: FreshContext,
-): Promise<Response> => {
-	const dbUser = await getSessionUser(req)
+	ctx: PageProps<KayozenState>,
+) => {
+	const dbUser = await getSessionUser(ctx.req)
 
 	if (!dbUser?.email) {
 		return new Response(null, { status: 302, headers: { "Location": "/" } })
 	}
 
-	const resp = await ctx.render({ dbUser })
-	return resp
+	return { dbUser }
 }
 
 export const userGuard = async (
-	req: Request,
-	ctx: FreshContext,
-): Promise<Response> => {
-	const dbUser = await getSessionUser(req)
-	const resp = await ctx.render({ dbUser })
-	return resp
+	ctx: PageProps<KayozenState>,
+) => {
+	const dbUser = await getSessionUser(ctx.req)
+	return { dbUser }
 }
 
 export const isLang = (val: unknown): val is SupportedLang => {

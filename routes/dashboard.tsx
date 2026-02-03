@@ -1,10 +1,10 @@
-import { PageProps } from "$fresh/server.ts"
 import Navbar from "../islands/Navbar.tsx"
 import { defautGuard } from "../utils/guards.ts"
 import { KayozenState } from "../utils/interfaces.ts"
 import { useTranslationContext } from "../islands/TranslationContext.tsx"
 import Footer from "../islands/Footer.tsx"
 import DashboardClient from "../islands/DashboardClient.tsx"
+import { PageProps } from "fresh"
 
 export const handler = defautGuard
 

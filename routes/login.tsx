@@ -1,11 +1,11 @@
-import { Handlers } from "$fresh/server.ts"
+import { PageProps } from "fresh"
 import Footer from "../islands/Footer.tsx"
 import LoginBox from "../islands/LoginBox.tsx"
 import Navbar from "../islands/Navbar.tsx"
 
-export const handler: Handlers = {
-	GET(_req, ctx) {
-		return ctx.render({})
+export const handler = {
+	GET(_ctx: PageProps) {
+		return {}
 	},
 }
 

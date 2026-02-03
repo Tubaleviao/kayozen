@@ -1,13 +1,13 @@
-import { Handlers, PageProps } from "$fresh/server.ts"
+import { PageProps } from "fresh"
 import Footer from "../islands/Footer.tsx"
 import Main from "../islands/Main.tsx"
 import Navbar from "../islands/Navbar.tsx"
 import { KayozenState } from "../utils/interfaces.ts"
 import { getSessionUser } from "../utils/middleware.ts"
 
-export const handler: Handlers = {
-	async GET(req, ctx) {
-		const dbUser = await getSessionUser(req)
+export const handler= {
+	async GET(ctx: PageProps) {
+		const dbUser = await getSessionUser(ctx.req)
 
 		if (dbUser?.email) {
 			return new Response(null, {
@@ -18,12 +18,12 @@ export const handler: Handlers = {
 			})
 		}
 
-		return await ctx.render()
+		return {}
 	},
 }
 
-export default function Home({ state }: PageProps) {
-	const { dbUser }: Partial<KayozenState> = state
+export default function Home({ data }: PageProps<KayozenState>) {
+	const { dbUser } = data
 	return (
 		<div class="flex flex-col min-h-screen">
 			<Navbar user={dbUser} />

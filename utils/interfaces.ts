@@ -1,7 +1,7 @@
 import { Payload } from "djwt"
 import { SupportedLang } from "./i18n.ts"
 import { Role } from "./constants.ts"
-import type { FreshContext as BaseFreshContext } from "$fresh/server.ts"
+import type { FreshContext as BaseFreshContext } from "fresh/server.ts"
 
 export type Theme = "light" | "dark"
 

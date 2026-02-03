@@ -1,4 +1,4 @@
-import { FreshContext } from "$fresh/server.ts"
+import { FreshContext } from "fresh/server.ts"
 import { db } from "../../../utils/db.ts"
 import { compare } from "bcrypt"
 import { getAuthHeader } from "../../../utils/getAuthHeader.ts"

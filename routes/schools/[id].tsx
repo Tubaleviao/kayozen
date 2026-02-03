@@ -1,5 +1,5 @@
 // routes/schools/[id].tsx
-import { FreshContext, PageProps } from "$fresh/server.ts"
+import { FreshContext, PageProps } from "fresh/server.ts"
 import Footer from "../../islands/Footer.tsx"
 import Navbar from "../../islands/Navbar.tsx"
 import SchoolDetailsEditor from "../../islands/SchoolDetailsEditor.tsx"

@@ -1,11 +1,12 @@
+import { PageProps } from "fresh"
 import Navbar from "../islands/Navbar.tsx"
 import { useTranslationContext } from "../islands/TranslationContext.tsx"
-import { PageProps } from "$fresh/server.ts"
+
 import { KayozenState } from "../utils/interfaces.ts"
 
-export default function DbOfflinePage({ state }: PageProps) {
+export default function DbOfflinePage({ data }: PageProps<KayozenState>) {
 	const { t } = useTranslationContext()
-	const { dbUser }: Partial<KayozenState> = state
+	const { dbUser } = data
 
 	return (
 		<div class="min-h-screen flex flex-col bg-kayozen-light-background dark:bg-kayozen-dark-background text-kayozen-light-text dark:text-kayozen-dark-text">

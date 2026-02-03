@@ -1,4 +1,4 @@
-import { Handlers } from "$fresh/server.ts"
+import { Handlers } from "fresh/server.ts"
 import { db } from "../../utils/db.ts"
 
 export const handler: Handlers = {

@@ -1,4 +1,4 @@
-import { Handler } from "$fresh/server.ts"
+import { Handler } from "fresh/server.ts"
 import { Subscribers } from "../../../utils/billing/Subscribers.ts"
 import { Subscriptions } from "../../../utils/billing/Subscriptions.ts"
 import { getSessionUser } from "../../../utils/middleware.ts"

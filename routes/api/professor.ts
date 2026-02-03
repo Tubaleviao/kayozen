@@ -1,4 +1,4 @@
-import { Handlers } from "$fresh/server.ts"
+import { Handlers } from "fresh/server.ts"
 import { db } from "../../utils/db.ts"
 import { makeUsername } from "../../utils/make_username.ts"
 import { v1 } from "uuid"

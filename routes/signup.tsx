@@ -1,11 +1,12 @@
-import { Handlers } from "$fresh/server.ts"
+import { PageProps } from "fresh"
 import Footer from "../islands/Footer.tsx"
 import Navbar from "../islands/Navbar.tsx"
 import SignupBox from "../islands/SignupBox.tsx"
+import { KayozenState } from "../utils/interfaces.ts"
 
-export const handler: Handlers = {
-	GET(_req, ctx) {
-		return ctx.render({})
+export const handler = {
+	GET(_ctx: PageProps<KayozenState>) {
+		return {}
 	},
 }
 

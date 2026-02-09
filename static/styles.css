@@ -6,10 +6,10 @@ html {
 	font-family: "Inter", sans-serif;
 }
 
-html.dark {
+/* html.dark {
 	background-color: theme("colors.kayozen.dark.background");
 	color: theme("colors.kayozen.dark.text");
-}
+} */
 
 /* Smooth color transition */
 * {

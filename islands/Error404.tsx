@@ -1,11 +1,11 @@
-import { useTranslationContext } from "./TranslationContext.tsx"
+import { useTranslationContext } from "../components/TranslationContext.tsx"
 
 export default function Error404Island() {
 	const { t } = useTranslationContext()
 
 	return (
 		<div class="w-screen flex items-center justify-center bg-kayozen-light-background dark:bg-kayozen-dark-background px-4">
-			<div class="max-w-screen-md text-center animate-fadeIn">
+			<div class="max-w-(--breakpoint-md) text-center animate-fadeIn">
 				<img
 					class="mx-auto mb-6"
 					src="/logo.svg"

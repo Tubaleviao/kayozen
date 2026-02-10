@@ -2,9 +2,9 @@ import { PageProps } from "fresh"
 import Footer from "../islands/Footer.tsx"
 import Main from "../islands/Main.tsx"
 import Navbar from "../islands/Navbar.tsx"
-import { KayozenState } from "../utils/interfaces.ts"
 import { getSessionUser } from "../utils/middleware.ts"
 import { define } from "../utils.ts"
+import AppProviders from "../components/AppProviders.tsx"
 
 export const handler = {
 	async GET(ctx: PageProps) {
@@ -23,13 +23,15 @@ export const handler = {
 	},
 }
 
-export default define.page(function Home({ data }: PageProps<KayozenState>) {
-	const { dbUser } = data
+export default define.page(function Home({ state }) {
+	const { dbUser } = state
 	return (
 		<div class="flex flex-col min-h-screen">
-			<Navbar user={dbUser} />
-			<Main />
-			<Footer />
+			<AppProviders>
+				<Navbar user={dbUser} />
+				<Main />
+				<Footer />
+			</AppProviders>
 		</div>
 	)
 })

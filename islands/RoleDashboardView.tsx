@@ -1,5 +1,5 @@
 // islands/RoleDashboardView.tsx
-import { useTranslationContext } from "./TranslationContext.tsx"
+import { useTranslationContext } from "../components/TranslationContext.tsx"
 import AddProfessor from "./AddProfessor.tsx"
 import { DbUser, School } from "../utils/interfaces.ts"
 

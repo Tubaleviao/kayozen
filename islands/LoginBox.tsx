@@ -1,4 +1,4 @@
-import { useTranslationContext } from "./TranslationContext.tsx"
+import { useTranslationContext } from "../components/TranslationContext.tsx"
 
 export default function LoginBox() {
 	const { t } = useTranslationContext()
@@ -62,11 +62,11 @@ export default function LoginBox() {
 				</form>
 
 				<div class="flex items-center my-6">
-					<div class="flex-grow h-px bg-gray-300 dark:bg-gray-600" />
+					<div class="grow h-px bg-gray-300 dark:bg-gray-600" />
 					<span class="mx-4 text-kayozen-light-muted dark:kayozen-dark-muted text-sm">
 						{t("login.or")}
 					</span>
-					<div class="flex-grow h-px bg-gray-300 dark:bg-gray-600" />
+					<div class="grow h-px bg-gray-300 dark:bg-gray-600" />
 				</div>
 
 				<a

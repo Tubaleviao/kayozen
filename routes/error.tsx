@@ -2,7 +2,7 @@ import { HttpError, PageProps } from "fresh"
 import Navbar from "../islands/Navbar.tsx"
 import Error404Island from "../islands/Error404.tsx"
 import { Head } from "fresh/runtime"
-import { useTranslationContext } from "../islands/TranslationContext.tsx"
+import { useTranslationContext } from "../components/TranslationContext.tsx"
 import { KayozenState } from "../utils/interfaces.ts"
 
 export default function ErrorPage(props: PageProps<KayozenState>) {
@@ -26,7 +26,7 @@ export default function ErrorPage(props: PageProps<KayozenState>) {
       return (
         <div class="min-h-screen flex flex-col bg-kayozen-light-background dark:bg-kayozen-dark-background text-kayozen-light-text dark:text-kayozen-dark-text">
           <Navbar user={props.data.dbUser} />
-          <main class="flex flex-col items-center justify-center flex-grow text-center p-6">
+          <main class="flex flex-col items-center justify-center grow text-center p-6">
             <h1 class="text-3xl font-bold text-red-600 dark:text-red-400">
               {t("error.500.title")}
             </h1>

@@ -1,6 +1,6 @@
 // islands/CreateSchool.tsx
-import { useState } from "preact/hooks"
-import { useTranslationContext } from "./TranslationContext.tsx"
+import { useEffect, useState } from "preact/hooks"
+import { useTranslationContext } from "../components/TranslationContext.tsx"
 import { useToast } from "./ToastProvider.tsx"
 import { DbUser } from "../utils/interfaces.ts"
 import SchoolIllustration from "./SchoolIllustration.tsx"
@@ -14,10 +14,15 @@ export default function CreateSchool({ user }: CreateSchoolProps) {
 	const toast = useToast()
 
 	const [loading, setLoading] = useState(false)
-	const [name, setName] = useState(t("school.default_name"))
+	const [name, setName] = useState("")
 	const [cnpj, setCnpj] = useState("")
 
+	useEffect(() => {
+		setName((prev) => prev || t("school.default_name"))
+	}, [t])
+
 	async function handleCreate() {
+		if (loading) return
 		if (!name.trim()) {
 			toast.error(t("school.error_name_required"))
 			return

@@ -15,7 +15,7 @@ export default function LoginPage() {
 		<div class="flex flex-col min-h-screen">
 			<Navbar />
 
-			<div class="flex-grow max-w-screen-lg mx-auto px-4 py-10 animate-fadeIn">
+			<div class="grow max-w-(--breakpoint-lg) mx-auto px-4 py-10 animate-fadeIn">
 				<SignupBox />
 			</div>
 

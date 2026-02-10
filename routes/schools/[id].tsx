@@ -30,7 +30,7 @@ export default function SchoolPage(
 		<div class="flex flex-col min-h-screen">
 			<Navbar user={dbUser} />
 
-			<main class="flex-grow max-w-screen-lg mx-auto px-4 py-10 animate-fadeIn">
+			<main class="grow max-w-(--breakpoint-lg) mx-auto px-4 py-10 animate-fadeIn">
 				{school && <SchoolDetailsEditor school={school} />}
 			</main>
 

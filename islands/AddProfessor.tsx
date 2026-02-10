@@ -1,7 +1,7 @@
 import { useState } from "preact/hooks"
 import SchoolAddTeacherIllustration from "../components/SchoolProfArt.tsx"
 import NewProfessorModal from "./NewProfessorModal.tsx"
-import { useTranslationContext } from "./TranslationContext.tsx"
+import { useTranslationContext } from "../components/TranslationContext.tsx"
 import { School } from "../utils/interfaces.ts"
 import { useToast } from "./ToastProvider.tsx"
 

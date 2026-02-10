@@ -1,17 +1,17 @@
+import { JSX } from "preact"
 import type { SupportedLang } from "../utils/i18n.ts"
-import { useTranslationContext } from "./TranslationContext.tsx"
+import { useTranslationContext } from "../components/TranslationContext.tsx"
 
 export default function Footer() {
 	const { t, lang, setLang } = useTranslationContext()
 
-	const handleChange = (e: Event) => {
-		const value = (e.target as HTMLSelectElement).value as SupportedLang
-		setLang(value)
+	const handleChange = (e: JSX.TargetedEvent<HTMLSelectElement, Event>) => {
+		setLang(e.currentTarget.value as SupportedLang)
 	}
 
 	return (
 		<footer class="border-t border-white/10 mt-8">
-			<div class="max-w-screen-lg mx-auto px-4 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
+			<div class="max-w-(--breakpoint-lg) mx-auto px-4 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
 				<p class="text-kayozen-light-muted dark:kayozen-dark-muted text-sm">
 					© {new Date().getFullYear()} Kayozen. {t("footer.rights")}
 				</p>
@@ -44,7 +44,7 @@ export default function Footer() {
 					<li>
 						<select
 							value={lang}
-							onChange={handleChange}
+							onInput={handleChange}
 							class="bg-transparent border border-gray-400 dark:border-gray-600 rounded px-2 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-kayozen-light-secondary dark:focus:ring-kayozen-dark-secondary"
 						>
 							<option value="pt">🇧🇷 Português</option>

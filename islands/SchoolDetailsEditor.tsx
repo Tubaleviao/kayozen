@@ -1,5 +1,5 @@
 import { useState } from "preact/hooks"
-import { useTranslationContext } from "./TranslationContext.tsx"
+import { useTranslationContext } from "../components/TranslationContext.tsx"
 import { useToast } from "./ToastProvider.tsx"
 import { School } from "../utils/interfaces.ts"
 

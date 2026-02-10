@@ -1,7 +1,7 @@
 import { PageProps } from "fresh"
 import CreateSchool from "../../islands/CreateSchool.tsx"
 import Navbar from "../../islands/Navbar.tsx"
-import { useTranslationContext } from "../../islands/TranslationContext.tsx"
+import { useTranslationContext } from "../../components/TranslationContext.tsx"
 import { defautGuard } from "../../utils/guards.ts"
 import { KayozenState } from "../../utils/interfaces.ts"
 

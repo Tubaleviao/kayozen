@@ -1,4 +1,4 @@
-import { useTranslationContext } from "./TranslationContext.tsx"
+import { useTranslationContext } from "../components/TranslationContext.tsx"
 
 export default function AboutContent() {
 	const { t } = useTranslationContext()

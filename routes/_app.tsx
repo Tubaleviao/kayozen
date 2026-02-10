@@ -1,6 +1,4 @@
 import { define } from "../utils.ts";
-import ToastProvider from "../islands/ToastProvider.tsx"
-import { TranslationProvider } from "../islands/TranslationContext.tsx"
 
 export default define.page(function App({ Component, state }){
 	return (
@@ -11,11 +9,7 @@ export default define.page(function App({ Component, state }){
 				<title>Kayozen</title>
 			</head>
 			<body class="bg-kayozen-light-background dark:bg-kayozen-dark-background">
-				<TranslationProvider defaultLang={state.lang}>
-					<ToastProvider>
-						<Component />
-					</ToastProvider>
-				</TranslationProvider>
+				<Component />
 			</body>
 		</html>
 	)

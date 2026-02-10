@@ -1,5 +1,5 @@
 import { useState } from "preact/hooks"
-import { useTranslationContext } from "./TranslationContext.tsx"
+import { useTranslationContext } from "../components/TranslationContext.tsx"
 import { TranslationKey } from "../utils/i18n.ts"
 import { DbUser } from "../utils/interfaces.ts"
 

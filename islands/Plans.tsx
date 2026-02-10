@@ -1,12 +1,12 @@
 import { Plan } from "../utils/interfaces.ts"
-import { useTranslationContext } from "./TranslationContext.tsx"
+import { useTranslationContext } from "../components/TranslationContext.tsx"
 
 export default function Plans(
 	{ plans }: { plans: Plan[] },
 ) {
 	const { t } = useTranslationContext()
 	return (
-		<main class="flex-grow max-w-5xl mx-auto p-6 mt-10 animate-fadeIn">
+		<main class="grow max-w-5xl mx-auto p-6 mt-10 animate-fadeIn">
 			<h1 class="text-3xl font-bold text-center mb-3">
 				{t("billing.title")}
 			</h1>

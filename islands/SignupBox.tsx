@@ -1,4 +1,4 @@
-import { useTranslationContext } from "./TranslationContext.tsx"
+import { useTranslationContext } from "../components/TranslationContext.tsx"
 import { useState } from "preact/hooks"
 
 export default function SignupBox() {
@@ -130,11 +130,11 @@ export default function SignupBox() {
 				</form>
 
 				<div class="flex items-center my-6">
-					<div class="flex-grow h-px bg-gray-300 dark:bg-gray-600" />
+					<div class="grow h-px bg-gray-300 dark:bg-gray-600" />
 					<span class="mx-4 text-kayozen-light-muted dark:text-kayozen-dark-muted text-sm">
 						{t("signup.or")}
 					</span>
-					<div class="flex-grow h-px bg-gray-300 dark:bg-gray-600" />
+					<div class="grow h-px bg-gray-300 dark:bg-gray-600" />
 				</div>
 
 				<a

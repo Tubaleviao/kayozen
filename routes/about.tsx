@@ -12,7 +12,7 @@ export default function AboutPage({ data }: PageProps<KayozenState>) {
 		<div class="flex flex-col min-h-screen bg-kayozen-light-bg dark:bg-kayozen-dark-bg text-kayozen-light-text dark:text-kayozen-dark-text">
 			<Navbar user={data?.dbUser} />
 
-			<main class="flex-grow max-w-screen-lg mx-auto px-4 py-12 animate-fadeIn">
+			<main class="grow max-w-(--breakpoint-lg) mx-auto px-4 py-12 animate-fadeIn">
 				<AboutContent />
 			</main>
 

@@ -1,5 +1,5 @@
-import { useTranslationContext } from "./TranslationContext.tsx"
-import { createElement } from "preact/src/index.d.ts"
+import { createElement } from "preact"
+import { useTranslationContext } from "../components/TranslationContext.tsx"
 
 interface Props {
 	open: boolean

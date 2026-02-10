@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "preact/hooks"
 import { useTheme } from "../hooks/useTheme.ts"
 import { Button } from "../components/Button.tsx"
-import { useTranslationContext } from "./TranslationContext.tsx"
+import { useTranslationContext } from "../components/TranslationContext.tsx"
 import { TranslationKey } from "../utils/i18n.ts"
 import { DbUser } from "../utils/interfaces.ts"
 
@@ -41,7 +41,7 @@ export default function Navbar(
 	return (
 		<nav class="bg-kayozen-light-surface text-kayozen-light-text 
       dark:bg-kayozen-dark-surface dark:text-kayozen-dark-text shadow-md">
-			<div class="max-w-screen-lg mx-auto px-4 py-3 flex items-center justify-between">
+			<div class="max-w-(--breakpoint-lg) mx-auto px-4 py-3 flex items-center justify-between">
 				<a
 					href="/"
 					class="text-kayozen-light-text dark:text-kayozen-dark-text text-lg font-bold"
@@ -98,7 +98,7 @@ export default function Navbar(
 						{user
 							? (
 								<button
-									type="submit"
+									type="button"
 									onClick={() => setAvatarMenuOpen(!avatarMenuOpen)}
 									class="flex items-center gap-2 focus:outline-none"
 								>

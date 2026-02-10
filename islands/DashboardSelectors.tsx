@@ -1,5 +1,5 @@
 import { FunctionalComponent } from "preact"
-import { useTranslationContext } from "./TranslationContext.tsx"
+import { useTranslationContext } from "../components/TranslationContext.tsx"
 import { DbRole, School } from "../utils/interfaces.ts"
 import { Role } from "../utils/constants.ts"
 

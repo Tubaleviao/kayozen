@@ -6,7 +6,7 @@ import { KayozenState } from "../utils/interfaces.ts"
 export const handler = defautGuard
 
 export default function ChooseRolePage(
-	{ state}: {state: KayozenState},
+	{ state }: { state: KayozenState },
 ) {
 	return (
 		<div class="min-h-screen bg-kayozen-light-background dark:bg-kayozen-dark-background text-kayozen-light-text dark:text-kayozen-dark-text">

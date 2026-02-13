@@ -6,9 +6,9 @@ interface MainProps {
 	state: KayozenState
 }
 
-export default function Main({state}: MainProps) {
+export default function Main({ state }: MainProps) {
 	const t = defineTFunction(state.lang)
-	
+
 	return (
 		<main class="grow max-w-(--breakpoint-lg) mx-auto px-4 py-10 animate-fadeIn">
 			<h1 class="text-4xl font-bold mb-4">

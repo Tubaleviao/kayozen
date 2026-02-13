@@ -4,8 +4,8 @@ export default function AppProviders(
 	{ children }: { children: preact.ComponentChildren },
 ) {
 	return (
-        <ToastProvider>
-            {children}
-        </ToastProvider>
+		<ToastProvider>
+			{children}
+		</ToastProvider>
 	)
 }

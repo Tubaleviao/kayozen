@@ -7,7 +7,7 @@ import { defineTFunction } from "../../utils/i18n.ts"
 export const handler = defautGuard
 
 export default function NewSchoolPage(
-	{ state }: {state: KayozenState},
+	{ state }: { state: KayozenState },
 ) {
 	const t = defineTFunction(state.lang)
 

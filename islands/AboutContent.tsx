@@ -1,5 +1,7 @@
-export default function AboutContent() {
-	const t = defineTFunction(state.lang)
+import { defineTFunction, SupportedLang } from "../utils/i18n.ts"
+
+export default function AboutContent({ lang }: { lang: SupportedLang }) {
+	const t = defineTFunction(lang)
 
 	return (
 		<div class="space-y-12">

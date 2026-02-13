@@ -3,11 +3,11 @@ import { defineTFunction } from "../utils/i18n.ts"
 import { KayozenState } from "../utils/interfaces.ts"
 import { setCookie } from "../utils/cookies.ts"
 
-interface FooterProps{
+interface FooterProps {
 	state: KayozenState
 }
 
-export default function Footer({state}: FooterProps) {
+export default function Footer({ state }: FooterProps) {
 	const t = defineTFunction(state.lang)
 
 	const handleChange = (e: JSX.TargetedEvent<HTMLSelectElement, Event>) => {

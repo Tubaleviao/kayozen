@@ -26,7 +26,7 @@ export default define.page(function Home({ state }) {
 	return (
 		<div class="flex flex-col min-h-screen">
 			<Navbar state={state} />
-				<Main state={state} /> 
+			<Main state={state} />
 			<Footer state={state} />
 		</div>
 	)

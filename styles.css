@@ -1,4 +1,4 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
 html {
 	font-family: "Inter", sans-serif;
@@ -6,7 +6,7 @@ html {
 
 html.dark {
 	background-color: var(--color-kayozen-dark-background);
-	color: var(--color-kayozen-dark-text)
+	color: var(--color-kayozen-dark-text);
 }
 
 /* Smooth color transition */
@@ -15,43 +15,43 @@ html.dark {
 }
 
 @theme {
-  --color-kayozen-light-primary: #2563EB;
-  --color-kayozen-light-secondary: #16A34A;
-  --color-kayozen-light-background: #F9FAFB;
-  --color-kayozen-light-surface: #FFFFFF;
-  --color-kayozen-light-text: #111827;
-  --color-kayozen-light-muted: #6B7280;
+	--color-kayozen-light-primary: #2563eb;
+	--color-kayozen-light-secondary: #16a34a;
+	--color-kayozen-light-background: #f9fafb;
+	--color-kayozen-light-surface: #ffffff;
+	--color-kayozen-light-text: #111827;
+	--color-kayozen-light-muted: #6b7280;
 
-  --color-kayozen-dark-primary: #60A5FA;
-  --color-kayozen-dark-secondary: #4ADE80;
-  --color-kayozen-dark-background: #111827;
-  --color-kayozen-dark-surface: #1F2937;
-  --color-kayozen-dark-text: #F9FAFB;
-  --color-kayozen-dark-muted: #9CA3AF;
+	--color-kayozen-dark-primary: #60a5fa;
+	--color-kayozen-dark-secondary: #4ade80;
+	--color-kayozen-dark-background: #111827;
+	--color-kayozen-dark-surface: #1f2937;
+	--color-kayozen-dark-text: #f9fafb;
+	--color-kayozen-dark-muted: #9ca3af;
 
-  --animate-fadeIn: fadeIn 0.6s ease-out;
-  --animate-school-glow: school-glow 2.5s ease-in-out infinite;
+	--animate-fadeIn: fadeIn 0.6s ease-out;
+	--animate-school-glow: school-glow 2.5s ease-in-out infinite;
 }
 
 @keyframes fadeIn {
-  0% {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
+	0% {
+		opacity: 0;
+		transform: translateY(10px);
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
 }
 
 @keyframes school-glow {
-  0%,
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.8;
-    transform: scale(1.02);
-  }
+	0%,
+	100% {
+		opacity: 1;
+		transform: scale(1);
+	}
+	50% {
+		opacity: 0.8;
+		transform: scale(1.02);
+	}
 }

@@ -64,13 +64,16 @@ export const getAppState = async (ctx: any) => {
 			return handleError(error, req, failedHeaders)
 		}
 	}
-	
+
 	return await ctx.next()
 }
 
 export const getTranslation = async (ctx: any) => {
 	const { lang } = ctx.state
-	ctx.state.t = (key: TranslationKey, vars?: Record<string, string | number>) => {
+	ctx.state.t = (
+		key: TranslationKey,
+		vars?: Record<string, string | number>,
+	) => {
 		defineTFunction(key, lang, vars)
 	}
 

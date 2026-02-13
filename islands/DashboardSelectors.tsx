@@ -13,7 +13,14 @@ interface Props {
 }
 
 const DashboardSelectors: FunctionalComponent<Props> = (
-	{ roles = [], schools = [], selectedSchoolId, onRoleChange, onSchoolChange, lang },
+	{
+		roles = [],
+		schools = [],
+		selectedSchoolId,
+		onRoleChange,
+		onSchoolChange,
+		lang,
+	},
 ) => {
 	const t = defineTFunction(lang)
 

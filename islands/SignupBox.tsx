@@ -1,10 +1,11 @@
 import { useState } from "preact/hooks"
+import { defineTFunction, SupportedLang } from "../utils/i18n.ts"
 
-export default function SignupBox() {
+export default function SignupBox({ lang }: { lang: SupportedLang }) {
 	const [loading, setLoading] = useState(false)
 	const [error, setError] = useState<string | null>(null)
 
-	const t = defineTFunction(state.lang)
+	const t = defineTFunction(lang)
 	async function handleSubmit(e: Event) {
 		e.preventDefault()
 		setLoading(true)
@@ -35,7 +36,7 @@ export default function SignupBox() {
 			}
 
 			// Exemplo: redirecionar ao dashboard
-			window.location.href = "/dashboard"
+			globalThis.location.href = "/dashboard"
 		} catch (err) {
 			setError("⚠️ " + (err instanceof Error ? err.message : "Unknown error"))
 		} finally {

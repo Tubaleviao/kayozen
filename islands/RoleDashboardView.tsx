@@ -11,7 +11,6 @@ interface Props {
 }
 
 export default function RoleDashboardView({ role, school, user, lang }: Props) {
-
 	if (!role) return null
 	const t = defineTFunction(lang)
 
@@ -25,7 +24,7 @@ export default function RoleDashboardView({ role, school, user, lang }: Props) {
 		}
 		return (
 			<section class="flex flex-col items-center gap-8 mt-12">
-				<AddProfessor school={school} />
+				<AddProfessor school={school} lang={lang} />
 			</section>
 		)
 	}

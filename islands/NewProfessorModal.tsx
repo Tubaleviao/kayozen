@@ -1,14 +1,18 @@
 import { createElement } from "preact"
+import { defineTFunction, SupportedLang } from "../utils/i18n.ts"
 
 interface Props {
 	open: boolean
 	onClose: (msg?: { ok: boolean; text: string }) => void
 	schoolId: string
+	lang: SupportedLang
 }
 
-export default function NewProfessorModal({ open, onClose, schoolId }: Props) {
+export default function NewProfessorModal(
+	{ open, onClose, schoolId, lang }: Props,
+) {
 	if (!open) return null
-	const t = defineTFunction(state.lang)
+	const t = defineTFunction(lang)
 
 	const createProfessorCall =
 		() => async (e: createElement.JSX.TargetedSubmitEvent<HTMLFormElement>) => {

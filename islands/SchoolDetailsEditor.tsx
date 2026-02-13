@@ -8,7 +8,10 @@ interface Props {
 }
 
 export default function SchoolDetailsEditor({ school, lang }: Props) {
-	const toast = { error: (msg: string) => console.log(msg), success: (msg: string) => console.log(msg) }
+	const toast = {
+		error: (msg: string) => console.log(msg),
+		success: (msg: string) => console.log(msg),
+	}
 
 	const t = defineTFunction(lang)
 	const [name, setName] = useState(school.name)

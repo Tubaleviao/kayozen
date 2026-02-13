@@ -8,9 +8,8 @@ import { defineTFunction } from "../utils/i18n.ts"
 export const handler = defautGuard
 
 export default function Dashboard(
-	{ state }: {state: KayozenState},
+	{ state }: { state: KayozenState },
 ) {
-
 	const t = defineTFunction(state.lang)
 	return (
 		<div class="flex flex-col min-h-screen bg-kayozen-light-background dark:bg-kayozen-dark-background">
@@ -24,7 +23,7 @@ export default function Dashboard(
 				<DashboardClient state={state} />
 			</main>
 
-			<Footer state={state}/>
+			<Footer state={state} />
 		</div>
 	)
 }

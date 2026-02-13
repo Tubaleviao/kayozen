@@ -1,5 +1,7 @@
-export default function LoginBox() {
-	const t = defineTFunction(state.lang)
+import { defineTFunction, SupportedLang } from "../utils/i18n.ts"
+
+export default function LoginBox({ lang }: { lang: SupportedLang }) {
+	const t = defineTFunction(lang)
 
 	return (
 		<div>

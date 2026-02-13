@@ -1,7 +1,7 @@
-import { defineTFunction } from "../utils/i18n.ts"
+import { defineTFunction, SupportedLang } from "../utils/i18n.ts"
 
-export default function Error404Island() {
-	const t = defineTFunction(state.lang)
+export default function Error404Island({ lang }: { lang: SupportedLang }) {
+	const t = defineTFunction(lang)
 
 	return (
 		<div class="w-screen flex items-center justify-center bg-kayozen-light-background dark:bg-kayozen-dark-background px-4">

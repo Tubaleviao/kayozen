@@ -1,6 +1,6 @@
-import { define } from "../utils.ts";
+import { define } from "../utils.ts"
 
-export default define.page(function App({ Component, state }){
+export default define.page(function App({ Component, state }) {
 	return (
 		<html class={state.theme === "dark" ? "dark" : ""}>
 			<head>

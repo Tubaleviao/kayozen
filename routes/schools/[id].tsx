@@ -7,7 +7,7 @@ import { KayozenState, School } from "../../utils/interfaces.ts"
 import { getSessionUser } from "../../utils/middleware.ts"
 
 export const handler = async (
-	ctx: PageProps
+	ctx: PageProps,
 ) => {
 	const { id } = ctx.params
 	const dbResult = await db.query(`select * from schools where id=$1`, [id])
@@ -34,7 +34,7 @@ export default function SchoolPage(
 				{school && <SchoolDetailsEditor school={school} lang={state.lang} />}
 			</main>
 
-			<Footer state={state}/>
+			<Footer state={state} />
 		</div>
 	)
 }

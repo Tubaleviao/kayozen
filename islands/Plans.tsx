@@ -2,7 +2,7 @@ import { defineTFunction, SupportedLang } from "../utils/i18n.ts"
 import { Plan } from "../utils/interfaces.ts"
 
 export default function Plans(
-	{ plans, lang }: { plans: Plan[], lang: SupportedLang },
+	{ plans, lang }: { plans: Plan[]; lang: SupportedLang },
 ) {
 	const t = defineTFunction(lang)
 	return (

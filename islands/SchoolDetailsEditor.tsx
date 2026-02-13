@@ -1,16 +1,16 @@
 import { useState } from "preact/hooks"
-import { useTranslationContext } from "../components/TranslationContext.tsx"
-import { useToast } from "./ToastProvider.tsx"
 import { School } from "../utils/interfaces.ts"
+import { defineTFunction, SupportedLang } from "../utils/i18n.ts"
 
 interface Props {
 	school: School
+	lang: SupportedLang
 }
 
-export default function SchoolDetailsEditor({ school }: Props) {
-	const { t } = useTranslationContext()
-	const toast = useToast()
+export default function SchoolDetailsEditor({ school, lang }: Props) {
+	const toast = { error: (msg: string) => console.log(msg), success: (msg: string) => console.log(msg) }
 
+	const t = defineTFunction(lang)
 	const [name, setName] = useState(school.name)
 	const [cnpj, setCnpj] = useState(school.cnpj)
 	const [loading, setLoading] = useState(false)

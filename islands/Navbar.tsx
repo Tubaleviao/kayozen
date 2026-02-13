@@ -1,12 +1,11 @@
 import { useEffect, useRef, useState } from "preact/hooks"
 import { useTheme } from "../hooks/useTheme.ts"
 import { Button } from "../components/Button.tsx"
-import { useTranslationContext } from "../components/TranslationContext.tsx"
-import { TranslationKey } from "../utils/i18n.ts"
-import { DbUser } from "../utils/interfaces.ts"
+import { defineTFunction, TranslationKey } from "../utils/i18n.ts"
+import { KayozenState } from "../utils/interfaces.ts"
 
 interface NavbarProps {
-	user?: DbUser | null
+	state: KayozenState
 	itens?: { key: TranslationKey; page: string }[]
 }
 
@@ -16,10 +15,11 @@ export default function Navbar(
 			key: "nav.plans",
 			page: "/plans",
 		}],
-		user,
+		state,
 	}: NavbarProps,
 ) {
-	const { t } = useTranslationContext()
+	const { dbUser: user } = state
+	const t = defineTFunction(state.lang)
 	const [menuOpen, setMenuOpen] = useState(false)
 	const [avatarMenuOpen, setAvatarMenuOpen] = useState(false)
 	const { darkMode, toggleTheme } = useTheme()

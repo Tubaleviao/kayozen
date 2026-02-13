@@ -1,9 +1,14 @@
 import { Button } from "../components/Button.tsx"
-import { useTranslationContext } from "../components/TranslationContext.tsx"
+import { KayozenState } from "../utils/interfaces.ts"
+import { defineTFunction } from "../utils/i18n.ts"
 
-export default function Main() {
-	const { t } = useTranslationContext()
+interface MainProps {
+	state: KayozenState
+}
 
+export default function Main({state}: MainProps) {
+	const t = defineTFunction(state.lang)
+	
 	return (
 		<main class="grow max-w-(--breakpoint-lg) mx-auto px-4 py-10 animate-fadeIn">
 			<h1 class="text-4xl font-bold mb-4">

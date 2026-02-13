@@ -1,12 +1,18 @@
 import { JSX } from "preact"
-import type { SupportedLang } from "../utils/i18n.ts"
-import { useTranslationContext } from "../components/TranslationContext.tsx"
+import { defineTFunction } from "../utils/i18n.ts"
+import { KayozenState } from "../utils/interfaces.ts"
+import { setCookie } from "../utils/cookies.ts"
 
-export default function Footer() {
-	const { t, lang, setLang } = useTranslationContext()
+interface FooterProps{
+	state: KayozenState
+}
+
+export default function Footer({state}: FooterProps) {
+	const t = defineTFunction(state.lang)
 
 	const handleChange = (e: JSX.TargetedEvent<HTMLSelectElement, Event>) => {
-		setLang(e.currentTarget.value as SupportedLang)
+		setCookie("kayolang", e.currentTarget.value)
+		location.reload()
 	}
 
 	return (
@@ -43,7 +49,7 @@ export default function Footer() {
 					</li>
 					<li>
 						<select
-							value={lang}
+							value={state.lang}
 							onInput={handleChange}
 							class="bg-transparent border border-gray-400 dark:border-gray-600 rounded px-2 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-kayozen-light-secondary dark:focus:ring-kayozen-dark-secondary"
 						>

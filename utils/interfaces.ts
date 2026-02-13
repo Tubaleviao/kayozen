@@ -1,5 +1,5 @@
 import { Payload } from "djwt"
-import { SupportedLang } from "./i18n.ts"
+import { SupportedLang, TranslationKey } from "./i18n.ts"
 import { Role } from "./constants.ts"
 
 export type Theme = "light" | "dark"
@@ -71,6 +71,11 @@ export interface JwtPayload extends Payload {
 	email: string
 	exp: number
 }
+
+export type tFunction = (
+	key: TranslationKey,
+	vars?: Record<string, string | number>,
+) => string
 
 export interface KayozenState {
 	theme: Theme

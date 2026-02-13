@@ -1,9 +1,7 @@
 import { useState } from "preact/hooks"
 import SchoolAddTeacherIllustration from "../components/SchoolProfArt.tsx"
 import NewProfessorModal from "./NewProfessorModal.tsx"
-import { useTranslationContext } from "../components/TranslationContext.tsx"
 import { School } from "../utils/interfaces.ts"
-import { useToast } from "./ToastProvider.tsx"
 
 interface Props {
 	school?: School
@@ -11,8 +9,8 @@ interface Props {
 
 export default function AddProfessor({ school }: Props) {
 	const [open, setOpen] = useState(false)
-	const { t } = useTranslationContext()
-	const toast = useToast()
+	const toast = { error: (msg: string) => console.log(msg), success: (msg: string) => console.log(msg) }
+	const t = defineTFunction(state.lang)
 	return (
 		<>
 			<SchoolAddTeacherIllustration

@@ -1,11 +1,10 @@
-import { useTranslationContext } from "../components/TranslationContext.tsx"
 import { useState } from "preact/hooks"
 
 export default function SignupBox() {
-	const { t } = useTranslationContext()
 	const [loading, setLoading] = useState(false)
 	const [error, setError] = useState<string | null>(null)
 
+	const t = defineTFunction(state.lang)
 	async function handleSubmit(e: Event) {
 		e.preventDefault()
 		setLoading(true)

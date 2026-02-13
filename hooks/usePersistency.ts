@@ -1,34 +1,27 @@
 import { useEffect, useState } from "preact/hooks"
 import { getCookie, setCookie } from "../utils/cookies.ts"
-import { KayozenState } from "../utils/interfaces.ts"
 
-export function usePersistency<T>(
-  key: keyof KayozenState,
-  defaultValue: T,
+export function usePersistency(
+  key: string,
+  defaultValue: string,
 ) {
-  // 1️⃣ Always initialize with a pure value
-  const [value, setValue] = useState<T>(defaultValue)
+  const cookieKey = `kayo${key}`
 
-  // 2️⃣ Read from cookie on client only
+  const [value, setValue] = useState<string>(() => {
+    try {
+      return getCookie(cookieKey) ?? defaultValue
+    } catch {
+      return defaultValue
+    }
+  })
+
   useEffect(() => {
     try {
-      const stored = getCookie("kayo" + key)
-      if (stored !== null) {
-        setValue(stored as T)
-      }
+      setCookie(cookieKey, value)
     } catch (e) {
-      console.warn(`Error reading cookie key kayo${key}:`, e)
+      console.warn(`Error writing cookie ${cookieKey}:`, e)
     }
-  }, [key])
-
-  // 3️⃣ Persist on change
-  useEffect(() => {
-    try {
-      setCookie("kayo" + key, value as string)
-    } catch (e) {
-      console.warn(`Error writing cookie key kayo${key}:`, e)
-    }
-  }, [key, value])
+  }, [cookieKey, value])
 
   return [value, setValue] as const
 }

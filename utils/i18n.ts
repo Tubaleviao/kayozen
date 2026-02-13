@@ -1,3 +1,5 @@
+import { tFunction } from "./interfaces.ts"
+
 export type SupportedLang = "pt" | "en"
 
 // Traduções (dinâmicas, sem precisar listar todas as keys manualmente)
@@ -379,21 +381,20 @@ function getNested(obj: any, key: string): string | undefined {
 }
 
 // Função de tradução com fallback e interpolação
-export function t(
-	key: TranslationKey,
+export function defineTFunction(
 	lang: SupportedLang = "pt",
-	vars?: Record<string, string | number>,
-): string {
-	let text = getNested(translations[lang], key) ??
-		getNested(translations["en"], key) ?? key
+): tFunction {
+	return (key, vars) => {
+		let text = getNested(translations[lang], key) ??
+			getNested(translations["en"], key) ?? key
 
-	if (vars) {
-		Object.entries(vars).forEach(([k, v]) => {
-			text = text.replace(new RegExp(`{${k}}`, "g"), String(v))
-		})
+		if (vars) {
+			Object.entries(vars).forEach(([k, v]) => {
+				text = text.replace(new RegExp(`{${k}}`, "g"), String(v))
+			})
+		}
+		return text
 	}
-
-	return text
 }
 
 // 🔧 Tipagem para chaves aninhadas ("login.email" etc.)

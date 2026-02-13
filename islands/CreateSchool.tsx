@@ -1,17 +1,16 @@
 // islands/CreateSchool.tsx
 import { useEffect, useState } from "preact/hooks"
-import { useTranslationContext } from "../components/TranslationContext.tsx"
-import { useToast } from "./ToastProvider.tsx"
-import { DbUser } from "../utils/interfaces.ts"
+import { KayozenState } from "../utils/interfaces.ts"
 import SchoolIllustration from "./SchoolIllustration.tsx"
+import { defineTFunction } from "../utils/i18n.ts"
 
 interface CreateSchoolProps {
-	user?: DbUser | null
+	state: KayozenState
 }
 
-export default function CreateSchool({ user }: CreateSchoolProps) {
-	const { t } = useTranslationContext()
-	const toast = useToast()
+export default function CreateSchool({ state }: CreateSchoolProps) {
+	const t = defineTFunction(state.lang)
+	const toast = { error: (msg: string) => console.log(msg), success: (msg: string) => console.log(msg) }
 
 	const [loading, setLoading] = useState(false)
 	const [name, setName] = useState("")
@@ -37,7 +36,7 @@ export default function CreateSchool({ user }: CreateSchoolProps) {
 				body: JSON.stringify({
 					name,
 					cnpj: cnpj || null,
-					userId: user?.id,
+					userId: state.dbUser?.id,
 				}),
 			})
 

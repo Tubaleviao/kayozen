@@ -22,13 +22,14 @@ export function useToast() {
 	return ctx
 }
 
-export default function ToastProvider(
+export function ToastProvider(
 	{ children }: { children: preact.ComponentChildren },
 ) {
 	const [toasts, setToasts] = useState<Toast[]>([])
 
 	function push(type: ToastType, message: string) {
 		const id = crypto.randomUUID()
+
 		setToasts((prev) => [...prev, { id, type, message }])
 
 		setTimeout(() => {
@@ -45,13 +46,11 @@ export default function ToastProvider(
 		>
 			{children}
 
-			{/* Toast container */}
 			<div class="fixed top-4 right-4 z-50 space-y-3">
 				{toasts.map((toast) => (
 					<div
 						key={toast.id}
-						class={`px-4 py-3 rounded-lg shadow-lg text-white animate-fadeIn
-              ${
+						class={`px-4 py-3 rounded-lg shadow-lg text-white animate-fadeIn ${
 							toast.type === "success"
 								? "bg-kayozen-light-secondary dark:bg-kayozen-dark-secondary"
 								: "bg-red-600"

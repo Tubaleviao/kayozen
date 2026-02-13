@@ -1,18 +1,19 @@
 // islands/RoleDashboardView.tsx
-import { useTranslationContext } from "../components/TranslationContext.tsx"
 import AddProfessor from "./AddProfessor.tsx"
 import { DbUser, School } from "../utils/interfaces.ts"
+import { defineTFunction, SupportedLang } from "../utils/i18n.ts"
 
 interface Props {
 	role?: string
 	school?: School
 	user?: DbUser | null
+	lang: SupportedLang
 }
 
-export default function RoleDashboardView({ role, school, user }: Props) {
-	const { t } = useTranslationContext()
+export default function RoleDashboardView({ role, school, user, lang }: Props) {
 
 	if (!role) return null
+	const t = defineTFunction(lang)
 
 	if (role === "coordinator") {
 		if (!school) {

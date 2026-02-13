@@ -1,7 +1,7 @@
-import { useTranslationContext } from "../components/TranslationContext.tsx"
+import { defineTFunction } from "../utils/i18n.ts"
 
 export default function Error404Island() {
-	const { t } = useTranslationContext()
+	const t = defineTFunction(state.lang)
 
 	return (
 		<div class="w-screen flex items-center justify-center bg-kayozen-light-background dark:bg-kayozen-dark-background px-4">

@@ -1,7 +1,7 @@
 import { FunctionalComponent } from "preact"
-import { useTranslationContext } from "../components/TranslationContext.tsx"
 import { DbRole, School } from "../utils/interfaces.ts"
 import { Role } from "../utils/constants.ts"
+import { defineTFunction, SupportedLang } from "../utils/i18n.ts"
 
 interface Props {
 	roles?: DbRole[]
@@ -9,12 +9,13 @@ interface Props {
 	selectedSchoolId: string
 	onRoleChange: (role: Role) => void
 	onSchoolChange: (id: string) => void
+	lang: SupportedLang
 }
 
 const DashboardSelectors: FunctionalComponent<Props> = (
-	{ roles = [], schools = [], selectedSchoolId, onRoleChange, onSchoolChange },
+	{ roles = [], schools = [], selectedSchoolId, onRoleChange, onSchoolChange, lang },
 ) => {
-	const { t } = useTranslationContext()
+	const t = defineTFunction(lang)
 
 	function handleRoleChange(e: Event) {
 		const value = (e.target as HTMLSelectElement).value

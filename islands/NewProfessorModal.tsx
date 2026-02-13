@@ -1,5 +1,4 @@
 import { createElement } from "preact"
-import { useTranslationContext } from "../components/TranslationContext.tsx"
 
 interface Props {
 	open: boolean
@@ -8,8 +7,8 @@ interface Props {
 }
 
 export default function NewProfessorModal({ open, onClose, schoolId }: Props) {
-	const { t } = useTranslationContext()
 	if (!open) return null
+	const t = defineTFunction(state.lang)
 
 	const createProfessorCall =
 		() => async (e: createElement.JSX.TargetedSubmitEvent<HTMLFormElement>) => {

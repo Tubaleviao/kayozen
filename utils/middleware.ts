@@ -6,6 +6,7 @@ import { logError } from "./errors.ts"
 import { getCookieValue } from "./pureFunctions.ts"
 import { isLang, isTheme } from "./guards.ts"
 import { handleError } from "./errorHandler.ts"
+import { defineTFunction, TranslationKey } from "./i18n.ts"
 
 export async function getSessionUser(
 	req: Request,
@@ -64,5 +65,14 @@ export const getAppState = async (ctx: any) => {
 		}
 	}
 	
+	return await ctx.next()
+}
+
+export const getTranslation = async (ctx: any) => {
+	const { lang } = ctx.state
+	ctx.state.t = (key: TranslationKey, vars?: Record<string, string | number>) => {
+		defineTFunction(key, lang, vars)
+	}
+
 	return await ctx.next()
 }

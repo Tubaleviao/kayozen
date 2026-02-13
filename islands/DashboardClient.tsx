@@ -2,15 +2,15 @@
 import { useState } from "preact/hooks"
 import DashboardSelectors from "./DashboardSelectors.tsx"
 import RoleDashboardView from "./RoleDashboardView.tsx"
-import { DbUser } from "../utils/interfaces.ts"
+import { KayozenState } from "../utils/interfaces.ts"
 
 interface Props {
-	user?: DbUser
+	state: KayozenState
 }
 
-export default function DashboardClient({ user }: Props) {
-	const roles = user?.roles ?? []
-	const schools = user?.schools ?? []
+export default function DashboardClient({ state }: Props) {
+	const roles = state?.dbUser?.roles ?? []
+	const schools = state?.dbUser?.schools ?? []
 
 	const [selectedRole, setSelectedRole] = useState(
 		roles[0]?.role,
@@ -30,6 +30,7 @@ export default function DashboardClient({ user }: Props) {
 						selectedSchoolId={selectedSchoolId}
 						onRoleChange={setSelectedRole}
 						onSchoolChange={setSelectedSchoolId}
+						lang={state.lang}
 					/>
 				</div>
 			)}
@@ -37,7 +38,8 @@ export default function DashboardClient({ user }: Props) {
 			<RoleDashboardView
 				role={selectedRole}
 				school={schools.find((s) => s.id === selectedSchoolId)}
-				user={user}
+				user={state?.dbUser}
+				lang={state.lang}
 			/>
 		</>
 	)

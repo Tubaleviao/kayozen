@@ -7,7 +7,7 @@ import { KayozenState, Plan } from "../utils/interfaces.ts"
 
 export const handler = userGuard
 
-export default function PlansPage({ data }: PageProps<KayozenState>) {
+export default function PlansPage({ state }: {state: KayozenState}) {
 	const plans: Plan[] = [
 		{
 			key: "basic",
@@ -28,11 +28,11 @@ export default function PlansPage({ data }: PageProps<KayozenState>) {
 
 	return (
 		<div class="flex flex-col min-h-screen bg-kayozen-light-bg dark:bg-kayozen-dark-bg text-kayozen-light-text dark:text-kayozen-dark-text">
-			<Navbar user={data?.dbUser} />
+			<Navbar state={state} />
 
-			<Plans plans={plans} />
+			<Plans plans={plans} lang={state.lang}/>
 
-			<Footer />
+			<Footer state={state} />
 		</div>
 	)
 }

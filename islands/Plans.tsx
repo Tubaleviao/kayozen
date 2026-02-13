@@ -1,10 +1,10 @@
+import { defineTFunction, SupportedLang } from "../utils/i18n.ts"
 import { Plan } from "../utils/interfaces.ts"
-import { useTranslationContext } from "../components/TranslationContext.tsx"
 
 export default function Plans(
-	{ plans }: { plans: Plan[] },
+	{ plans, lang }: { plans: Plan[], lang: SupportedLang },
 ) {
-	const { t } = useTranslationContext()
+	const t = defineTFunction(lang)
 	return (
 		<main class="grow max-w-5xl mx-auto p-6 mt-10 animate-fadeIn">
 			<h1 class="text-3xl font-bold text-center mb-3">

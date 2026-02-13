@@ -1,14 +1,11 @@
-import ToastProvider from "../islands/ToastProvider.tsx"
-import { TranslationProvider } from "./TranslationContext.tsx"
+import { ToastProvider } from "./ToastProvider.tsx"
 
 export default function AppProviders(
 	{ children }: { children: preact.ComponentChildren },
 ) {
 	return (
         <ToastProvider>
-            <TranslationProvider>
-                {children}
-            </TranslationProvider>
+            {children}
         </ToastProvider>
 	)
 }

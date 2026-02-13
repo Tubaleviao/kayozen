@@ -1,31 +1,30 @@
 import Navbar from "../islands/Navbar.tsx"
 import { defautGuard } from "../utils/guards.ts"
 import { KayozenState } from "../utils/interfaces.ts"
-import { useTranslationContext } from "../components/TranslationContext.tsx"
 import Footer from "../islands/Footer.tsx"
 import DashboardClient from "../islands/DashboardClient.tsx"
-import { PageProps } from "fresh"
+import { defineTFunction } from "../utils/i18n.ts"
 
 export const handler = defautGuard
 
 export default function Dashboard(
-	{ data: { dbUser } }: PageProps<KayozenState>,
+	{ state }: {state: KayozenState},
 ) {
-	const { t } = useTranslationContext()
 
+	const t = defineTFunction(state.lang)
 	return (
 		<div class="flex flex-col min-h-screen bg-kayozen-light-background dark:bg-kayozen-dark-background">
-			<Navbar user={dbUser} />
+			<Navbar state={state} />
 
 			<main class="grow p-6 animate-fadeIn relative">
 				<h1 class="text-2xl font-bold mb-6">
-					{t("dashboard.welcome")}, {dbUser?.name}
+					{t("dashboard.welcome")}, {state.dbUser?.name}
 				</h1>
 
-				<DashboardClient user={dbUser} />
+				<DashboardClient state={state} />
 			</main>
 
-			<Footer />
+			<Footer state={state}/>
 		</div>
 	)
 }

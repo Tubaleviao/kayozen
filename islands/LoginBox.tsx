@@ -1,7 +1,5 @@
-import { useTranslationContext } from "../components/TranslationContext.tsx"
-
 export default function LoginBox() {
-	const { t } = useTranslationContext()
+	const t = defineTFunction(state.lang)
 
 	return (
 		<div>

@@ -4,6 +4,8 @@ import { getAuthHeader } from "../../../utils/getAuthHeader.ts"
 import { PageProps } from "fresh"
 
 export const handler = async (ctx: PageProps) => {
+ const body = await ctz.req.json()
+ console.log(body)
 	const form = await ctx.req.formData()
 	console.log(form, form.get("remember"))
 	const userEmail = form.get("email")?.toString() || ""

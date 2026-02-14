@@ -59,6 +59,7 @@ export const translations = {
 			no_account: "Não tem uma conta?",
 			signup: "Cadastre-se",
 			remember: "Manter conectado",
+			error: "Erro ao fazer login",
 		},
 		index: {
 			welcome: "Bem-vindo ao",
@@ -242,6 +243,7 @@ export const translations = {
 			no_account: "Don't have an account?",
 			signup: "Sign up",
 			remember: "Keep me signed in",
+			error: "Login error",
 		},
 		index: {
 			welcome: "Welcome to",

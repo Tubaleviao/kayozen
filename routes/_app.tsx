@@ -1,3 +1,4 @@
+import ToastHost from "../islands/ToastHost.tsx"
 import { define } from "../utils.ts"
 
 export default define.page(function App({ Component, state }) {
@@ -9,6 +10,7 @@ export default define.page(function App({ Component, state }) {
 				<title>Kayozen</title>
 			</head>
 			<body class="bg-kayozen-light-background dark:bg-kayozen-dark-background">
+				<ToastHost />
 				<Component />
 			</body>
 		</html>

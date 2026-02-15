@@ -14,6 +14,8 @@ export interface DbUser {
 	created_at: Date
 	roles?: DbRole[]
 	schools?: School[]
+	plan: KayoPlan
+	permission: KayoPermission
 }
 
 export interface DbRole {
@@ -86,7 +88,17 @@ export interface KayozenState {
 }
 
 export interface Plan {
-	key: "free" | "basic" | "pro" | "enterprise"
+	key: KayoPlan
 	price: string
 	url: string
 }
+
+export type KayoPlan = "free" | "basic" | "pro" | "enterprise"
+
+export interface PagBankPlan{
+	name: string
+	amount: number // centavos
+	interval: "MONTHLY" | "YEARLY"
+}
+
+export type KayoPermission = "admin" | "user"

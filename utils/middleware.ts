@@ -2,11 +2,10 @@ import { verify } from "djwt"
 import { JWT_SECRET, PROTECTED_ROUTES } from "./constants.ts"
 import { db } from "./db.ts"
 import { DbUser, JwtPayload } from "./interfaces.ts"
-import { logError } from "./errors.ts"
+import { logError, UnauthorizedError } from "./errors.ts"
 import { getCookieValue } from "./pureFunctions.ts"
 import { isLang, isTheme } from "./guards.ts"
-import { handleError } from "./errorHandler.ts"
-import { defineTFunction, TranslationKey } from "./i18n.ts"
+import { withErrorHandling } from "./errorHandling.ts"
 
 export async function getSessionUser(
 	req: Request,
@@ -42,9 +41,6 @@ export const getAppState = async (ctx: any) => {
 	if (isLang(potentialLang)) ctx.state.lang = potentialLang
 	if (isTheme(potentialTheme)) ctx.state.theme = potentialTheme
 
-	const failedHeaders = {
-		"Set-Cookie": "kayotoken=; Path=/; HttpOnly; SameSite=Lax; Max-Age=0",
-	}
 	ctx.state.dbUser = dbUser
 
 	const url = new URL(req.url)
@@ -53,29 +49,17 @@ export const getAppState = async (ctx: any) => {
 	)
 
 	if (jwt && isProtected) {
-		try {
-			const payload: JwtPayload = await verify(jwt, JWT_SECRET)
-			const user = await db.getUserByEmail(payload.email)
-			if (!user) {
-				return handleError(new Error("Unauthorized"), req, failedHeaders)
-			}
-			dbUser = user
-		} catch (error: any) {
-			return handleError(error, req, failedHeaders)
+		const payload: JwtPayload = await verify(jwt, JWT_SECRET)
+		const user = await db.getUserByEmail(payload.email)
+		if (!user) {
+			throw new UnauthorizedError()
 		}
+		dbUser = user
 	}
 
 	return await ctx.next()
 }
 
-export const getTranslation = async (ctx: any) => {
-	const { lang } = ctx.state
-	ctx.state.t = (
-		key: TranslationKey,
-		vars?: Record<string, string | number>,
-	) => {
-		defineTFunction(key, lang, vars)
-	}
-
-	return await ctx.next()
+export const errorHandling = (ctx: any) => {
+	return withErrorHandling(ctx, () => ctx.next())
 }

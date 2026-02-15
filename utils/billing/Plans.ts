@@ -1,11 +1,8 @@
+import { PagBankPlan } from "../interfaces.ts"
 import { Client } from "./Client.ts"
 
 export class Plans extends Client {
-	createPlan(input: {
-		name: string
-		amount: number // em centavos
-		interval: "MONTHLY" | "YEARLY"
-	}) {
+	createPlan(input: PagBankPlan) {
 		return this.request<{
 			id: string
 			name: string

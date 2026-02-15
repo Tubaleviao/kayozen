@@ -2,6 +2,7 @@ import { PageProps } from "fresh"
 import { SupportedLang } from "./i18n.ts"
 import { KayozenState, Theme } from "./interfaces.ts"
 import { getSessionUser } from "./middleware.ts"
+import { UnauthorizedError } from "./errors.ts"
 
 export const defautGuard = async (
 	ctx: PageProps<KayozenState>,
@@ -13,6 +14,14 @@ export const defautGuard = async (
 	}
 
 	return { dbUser }
+}
+
+export const adminGuard = async (ctx: PageProps<KayozenState>) => {
+	const dbUser = await getSessionUser(ctx.req)
+	if(dbUser?.permission !== 'admin'){
+		throw new UnauthorizedError()
+	}
+	return {}
 }
 
 export const userGuard = async (

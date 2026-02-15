@@ -1,6 +1,6 @@
 import { Pool, QueryObjectResult } from "@db/postgres"
 import { makeUsername } from "./make_username.ts"
-import { DbRole, DbUser, GooglePerson, School } from "./interfaces.ts"
+import { DbRole, DbUser, GooglePerson, KayoPermission, KayoPlan, School } from "./interfaces.ts"
 import { v1 } from "uuid"
 import { DB_TIMEOUT } from "./constants.ts"
 

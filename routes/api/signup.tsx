@@ -14,6 +14,7 @@ interface Data {
 export const handler = {
 	async POST(ctx: PageProps) {
 		const form = await ctx.req.json()
+		console.log(form)
 
 		const { name, email, password, confirmPassword, acceptTerms } = form
 
@@ -37,6 +38,7 @@ export const handler = {
 
 		const passwordHash = await hash(password)
 
+		console.log("inserting into database")
 		try {
 			await db.query(
 				"INSERT INTO people (id, username, name, email, password_hash) VALUES ($1, $2, $3, $4, $5)",

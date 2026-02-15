@@ -2,8 +2,7 @@ import { db } from "../../utils/db.ts"
 import client from "../../utils/google_oauth.ts"
 import { DbUser, GooglePerson } from "../../utils/interfaces.ts"
 import { getAuthHeader } from "../../utils/getAuthHeader.ts"
-import { logError } from "../../utils/errors.ts"
-import { handleError } from "../../utils/errorHandler.ts"
+import { logError, ValidationError } from "../../utils/errors.ts"
 
 export const handler = async (req: Request): Promise<Response> => {
 	const url = new URL(req.url)
@@ -34,7 +33,7 @@ export const handler = async (req: Request): Promise<Response> => {
 		try {
 			dbUser = await db.getUserByEmail(email)
 		} catch (error: any) {
-			return handleError(error, req)
+			throw new ValidationError()
 		}
 		if (dbUser) user = dbUser
 		else {

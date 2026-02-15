@@ -1,6 +1,6 @@
 import { App, staticFiles, trailingSlashes } from "fresh"
 import { KayozenState } from "./utils/interfaces.ts"
-import { getAppState } from "./utils/middleware.ts"
+import { errorHandling, getAppState } from "./utils/middleware.ts"
 
 export const app = new App<KayozenState>()
 	// Add static file serving middleware
@@ -8,4 +8,5 @@ export const app = new App<KayozenState>()
 	.use(getAppState)
 	.use(trailingSlashes("never"))
 	// Enable file-system based routing
+	.use(errorHandling)
 	.fsRoutes()

@@ -1,16 +1,14 @@
 import { v1 } from "uuid"
 import { db } from "../../../utils/db.ts"
 import { PageProps } from "fresh"
+import { UnauthorizedError } from "../../../utils/errors.ts"
 
 export const handler = {
 	async POST(ctx: PageProps) {
 		const body = await ctx.req.json().catch(() => ({}))
 		const { userId, name, cnpj } = body
 		if (!userId) {
-			return new Response(JSON.stringify({ error: "Unauthorized" }), {
-				status: 401,
-				headers: { "Content-Type": "application/json" },
-			})
+			throw new UnauthorizedError
 		}
 
 		const schoolName = (name ?? "Your School").trim()

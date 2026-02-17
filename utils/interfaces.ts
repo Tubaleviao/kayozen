@@ -95,7 +95,7 @@ export interface Plan {
 
 export type KayoPlan = "free" | "basic" | "pro" | "enterprise"
 
-export interface PagBankPlan{
+export interface PagBankPlan {
 	name: string
 	amount: number // centavos
 	interval: "MONTHLY" | "YEARLY"

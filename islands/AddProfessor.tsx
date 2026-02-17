@@ -11,10 +11,6 @@ interface Props {
 
 export default function AddProfessor({ school, lang }: Props) {
 	const [open, setOpen] = useState(false)
-	const toast = {
-		error: (msg: string) => console.log(msg),
-		success: (msg: string) => console.log(msg),
-	}
 	const t = defineTFunction(lang)
 	return (
 		<>
@@ -27,8 +23,14 @@ export default function AddProfessor({ school, lang }: Props) {
 				open={open}
 				onClose={(msg) => {
 					setOpen(false)
-					if (msg?.ok) toast.success(msg.text ?? t("school.professor_created"))
-					else toast.error(msg?.text ?? t("school.error_unexpected"))
+					if (msg?.ok) {
+						globalThis.toast?.(
+							msg.text ?? t("school.professor_created"),
+						)
+					} else {globalThis.toast?.(
+							msg?.text ?? t("school.error_unexpected"),
+							"error",
+						)}
 				}}
 				schoolId={school?.id ?? "undefined"}
 				lang={lang}

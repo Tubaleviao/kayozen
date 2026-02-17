@@ -10,10 +10,6 @@ interface CreateSchoolProps {
 
 export default function CreateSchool({ state }: CreateSchoolProps) {
 	const t = defineTFunction(state.lang)
-	const toast = {
-		error: (msg: string) => console.log(msg),
-		success: (msg: string) => console.log(msg),
-	}
 
 	const [loading, setLoading] = useState(false)
 	const [name, setName] = useState("")
@@ -26,7 +22,7 @@ export default function CreateSchool({ state }: CreateSchoolProps) {
 	async function handleCreate() {
 		if (loading) return
 		if (!name.trim()) {
-			toast.error(t("school.error_name_required"))
+			globalThis.toast?.(t("school.error_name_required"), "error")
 			return
 		}
 
@@ -49,11 +45,12 @@ export default function CreateSchool({ state }: CreateSchoolProps) {
 				throw new Error(data?.error ?? t("school.error_create"))
 			}
 
-			toast.success(t("school.success_create"))
+			globalThis.toast?.(t("school.success_create"))
 			globalThis.location.href = `/schools/${data.id}`
 		} catch (err) {
-			toast.error(
+			globalThis.toast?.(
 				err instanceof Error ? err.message : t("school.error_unexpected"),
+				"error",
 			)
 		} finally {
 			setLoading(false)

@@ -21,7 +21,6 @@ export default function LoginBox({ lang }: { lang: SupportedLang }) {
 				remember: formData.get("remember"),
 			}
 
-			console.log(body)
 			const res = await fetch("/api/login/email", {
 				method: "POST",
 				headers: {

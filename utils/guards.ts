@@ -18,7 +18,7 @@ export const defautGuard = async (
 
 export const adminGuard = async (ctx: PageProps<KayozenState>) => {
 	const dbUser = await getSessionUser(ctx.req)
-	if(dbUser?.permission !== 'admin'){
+	if (dbUser?.permission !== "admin") {
 		throw new UnauthorizedError()
 	}
 	return {}

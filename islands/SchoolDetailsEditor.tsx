@@ -8,11 +8,6 @@ interface Props {
 }
 
 export default function SchoolDetailsEditor({ school, lang }: Props) {
-	const toast = {
-		error: (msg: string) => console.log(msg),
-		success: (msg: string) => console.log(msg),
-	}
-
 	const t = defineTFunction(lang)
 	const [name, setName] = useState(school.name)
 	const [cnpj, setCnpj] = useState(school.cnpj)
@@ -30,9 +25,9 @@ export default function SchoolDetailsEditor({ school, lang }: Props) {
 
 			if (!res.ok) throw new Error("save_failed")
 
-			toast.success(t("school.update_success"))
+			globalThis.toast?.(t("school.update_success"))
 		} catch {
-			toast.error(t("school.update_error"))
+			globalThis.toast?.(t("school.update_error"), "error")
 		} finally {
 			setLoading(false)
 		}

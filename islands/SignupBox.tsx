@@ -1,5 +1,6 @@
 import { useState } from "preact/hooks"
 import { defineTFunction, SupportedLang } from "../utils/i18n.ts"
+import { Button } from "../components/Button.tsx"
 
 export default function SignupBox({ lang }: { lang: SupportedLang }) {
 	const [loading, setLoading] = useState(false)
@@ -28,16 +29,15 @@ export default function SignupBox({ lang }: { lang: SupportedLang }) {
 				headers: { "Content-Type": "application/json" },
 				body: JSON.stringify(body),
 			})
-
+			const responseJson = await res.json()
 			if (!res.ok) {
-				const errorResponse = new Response(res.body)
-				const errorJson = await errorResponse.json()
-				throw new Error(errorJson?.error || "Signup failed")
+				console.error(responseJson.error)
+				globalThis.toast?.(`Signup error: HTTP ERROR ${res.status}`, "error")
+			} else {
+				globalThis.location.href = "/dashboard"
 			}
-
-			// Exemplo: redirecionar ao dashboard
-			globalThis.location.href = "/dashboard"
 		} catch (err) {
+			globalThis.toast?.("Signup failed", "error")
 			setError("⚠️ " + (err instanceof Error ? err.message : "Unknown error"))
 		} finally {
 			setLoading(false)

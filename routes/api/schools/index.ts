@@ -8,7 +8,7 @@ export const handler = {
 		const body = await ctx.req.json().catch(() => ({}))
 		const { userId, name, cnpj } = body
 		if (!userId) {
-			throw new UnauthorizedError
+			throw new UnauthorizedError()
 		}
 
 		const schoolName = (name ?? "Your School").trim()

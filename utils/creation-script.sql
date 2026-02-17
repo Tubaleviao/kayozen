@@ -34,6 +34,11 @@ CREATE TABLE plans (
 id SERIAL PRIMARY key,
 name VARCHAR(50) NOT NULL UNIQUE);
 
+CREATE TABLE permissions (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(100) NOT null unique
+);
+
 CREATE TABLE people (
 id VARCHAR(36) PRIMARY KEY NOT NULL,
 name VARCHAR(250) NOT NULL,
@@ -112,11 +117,6 @@ person VARCHAR(36) NOT NULL,
 FOREIGN KEY(school) REFERENCES schools(id),
 FOREIGN KEY(person) REFERENCES people(id));
 
-CREATE TABLE permissions (
-  id SERIAL PRIMARY KEY,
-  name VARCHAR(100) NOT null unique
-);
-
 INSERT INTO roles (name) 
 VALUES ('student'),
   ('teacher'),
@@ -130,4 +130,5 @@ VALUES ('free'),
 
 INSERT INTO permissions (name)
 VALUES ('admin'),
-  ('user')
+  ('user');
+  

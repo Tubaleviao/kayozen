@@ -16,17 +16,17 @@ export default function Footer({ state }: FooterProps) {
 	}
 
 	return (
-		<footer class="border-t border-white/10 mt-8">
+		<footer class="border-t border-light-muted/20 dark:border-dark-muted/20 mt-8">
 			<div class="max-w-(--breakpoint-lg) mx-auto px-4 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
-				<p class="text-kayozen-light-muted dark:kayozen-dark-muted text-sm">
+				<p class="text-light-muted dark:kayozen-dark-muted text-sm">
 					© {new Date().getFullYear()} Kayozen. {t("footer.rights")}
 				</p>
 
-				<ul class="flex gap-4 text-kayozen-light-muted dark:kayozen-dark-muted text-sm items-center">
+				<ul class="flex gap-4 text-light-muted dark:text-dark-muted text-sm items-center">
 					<li>
 						<a
 							href="/about"
-							class="hover:text-kayozen-light-secondary dark:hover:kayozen-dark-secondary transition"
+							class="hover:text-light-secondary dark:hover:text-dark-secondary transition"
 						>
 							{t("footer.about")}
 						</a>
@@ -34,7 +34,7 @@ export default function Footer({ state }: FooterProps) {
 					<li>
 						<a
 							href="/contact"
-							class="hover:text-kayozen-light-secondary dark:hover:kayozen-dark-secondary transition"
+							class="hover:text-light-secondary dark:hover:text-dark-secondary transition"
 						>
 							{t("footer.contact")}
 						</a>
@@ -42,7 +42,7 @@ export default function Footer({ state }: FooterProps) {
 					<li>
 						<a
 							href="/privacy"
-							class="hover:text-kayozen-light-secondary dark:hover:kayozen-dark-secondary transition"
+							class="hover:text-light-secondary dark:hover:kayozen-dark-secondary transition"
 						>
 							{t("footer.privacy")}
 						</a>

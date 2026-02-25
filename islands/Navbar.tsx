@@ -39,12 +39,12 @@ export default function Navbar(
 	}, [])
 
 	return (
-		<nav class="bg-kayozen-light-surface text-kayozen-light-text 
-      dark:bg-kayozen-dark-surface dark:text-kayozen-dark-text shadow-md">
+		<nav class="bg-light-surface text-light-text 
+      dark:bg-dark-surface dark:text-dark-text shadow-md">
 			<div class="max-w-(--breakpoint-lg) mx-auto px-4 py-3 flex items-center justify-between">
 				<a
 					href="/"
-					class="text-kayozen-light-text dark:text-kayozen-dark-text text-lg font-bold"
+					class="text-light-text dark:text-dark-text text-lg font-bold"
 				>
 					Kayozen
 				</a>
@@ -75,7 +75,7 @@ export default function Navbar(
 						<li>
 							<a
 								href={item.page}
-								class="hover:text-kayozen-light-primary dark:hover:text-kayozen-dark-primary transition"
+								class="hover:text-light-primary dark:hover:text-dark-primary transition"
 							>
 								{t(item.key)}
 							</a>
@@ -145,7 +145,7 @@ export default function Navbar(
 							<li>
 								<a
 									href={item.page}
-									class="hover:text-kayozen-light-primary dark:hover:text-kayozen-dark-primary transition"
+									class="hover:text-light-primary dark:hover:text-dark-primary transition"
 								>
 									{t(item.key)}
 								</a>
@@ -166,7 +166,7 @@ export default function Navbar(
 								: (
 									<a
 										href="/api/login"
-										class="px-4 py-2 bg-kayozen-light-primary dark:bg-kayozen-dark-primary text-white rounded-lg hover:opacity-90 transition"
+										class="px-4 py-2 bg-light-primary text-white rounded-lg hover:opacity-90 transition"
 									>
 										{t("nav.login")}
 									</a>

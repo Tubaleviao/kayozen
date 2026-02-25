@@ -15,13 +15,6 @@ export default function RoleDashboardView({ role, school, user, lang }: Props) {
 	const t = defineTFunction(lang)
 
 	if (role === "coordinator") {
-		if (!school) {
-			return (
-				<div class="text-center mt-10 text-kayozen-light-muted dark:text-kayozen-dark-muted">
-					{t("dashboard.no_school")}
-				</div>
-			)
-		}
 		return (
 			<section class="flex flex-col items-center gap-8 mt-12">
 				<AddProfessor school={school} lang={lang} />
@@ -34,7 +27,7 @@ export default function RoleDashboardView({ role, school, user, lang }: Props) {
 			<section class="flex flex-col items-center gap-8 mt-12">
 				{/* Professor (usuário) */}
 				<div class="w-36 h-36 rounded-full flex items-center justify-center 
-           bg-kayozen-light-surface dark:bg-kayozen-dark-surface 
+           bg-light-surface dark:bg-dark-surface 
            shadow-md text-4xl">
 					👩‍🏫
 				</div>
@@ -47,14 +40,13 @@ export default function RoleDashboardView({ role, school, user, lang }: Props) {
 				<a
 					href="/schools"
 					class="px-6 py-2 rounded-full 
-           bg-kayozen-light-primary dark:bg-kayozen-dark-primary 
-           text-white font-semibold hover:opacity-90 transition"
+           bg-light-primary text-white font-semibold hover:opacity-90 transition"
 				>
 					{t("dashboard.school.edit")}
 				</a>
 
 				{/* Placeholder */}
-				<p class="text-sm text-kayozen-light-muted dark:text-kayozen-dark-muted">
+				<p class="text-sm text-light-muted dark:text-dark-muted">
 					...
 				</p>
 			</section>

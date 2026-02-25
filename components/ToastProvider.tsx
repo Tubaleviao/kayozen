@@ -52,7 +52,7 @@ export function ToastProvider(
 						key={toast.id}
 						class={`px-4 py-3 rounded-lg shadow-lg text-white animate-fadeIn ${
 							toast.type === "success"
-								? "bg-kayozen-light-secondary dark:bg-kayozen-dark-secondary"
+								? "bg-light-secondary dark:bg-dark-secondary"
 								: "bg-red-600"
 						}`}
 					>

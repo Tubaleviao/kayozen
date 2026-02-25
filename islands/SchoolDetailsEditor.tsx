@@ -34,7 +34,7 @@ export default function SchoolDetailsEditor({ school, lang }: Props) {
 	}
 
 	return (
-		<div class="w-screen max-w-md mx-auto bg-kayozen-light-surface dark:bg-kayozen-dark-surface p-8 rounded-lg shadow-md">
+		<div class="w-screen max-w-md mx-auto bg-light-surface dark:bg-dark-surface p-8 rounded-lg shadow-md">
 			<h1 class="text-2xl font-bold text-center mb-6">
 				{t("school.edit_title")}
 			</h1>
@@ -69,7 +69,7 @@ export default function SchoolDetailsEditor({ school, lang }: Props) {
 					type="button"
 					onClick={save}
 					disabled={loading}
-					class="w-full mt-2 bg-kayozen-light-primary dark:bg-kayozen-dark-primary text-white py-2 px-4 rounded-lg font-semibold hover:opacity-90 transition disabled:opacity-50"
+					class="w-full mt-2 bg-light-primary text-white py-2 px-4 rounded-lg font-semibold hover:opacity-90 transition disabled:opacity-50"
 				>
 					{loading ? t("common.saving") : t("common.save")}
 				</button>

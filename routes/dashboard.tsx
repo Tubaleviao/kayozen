@@ -12,7 +12,7 @@ export default function Dashboard(
 ) {
 	const t = defineTFunction(state.lang)
 	return (
-		<div class="flex flex-col min-h-screen bg-kayozen-light-background dark:bg-kayozen-dark-background">
+		<div class="flex flex-col min-h-screen bg-light-background dark:bg-dark-background">
 			<Navbar state={state} />
 
 			<main class="grow p-6 animate-fadeIn relative">

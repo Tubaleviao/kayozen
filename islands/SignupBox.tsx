@@ -45,10 +45,10 @@ export default function SignupBox({ lang }: { lang: SupportedLang }) {
 
 	return (
 		<div>
-			<div class="w-screen max-w-md bg-kayozen-light-surface dark:bg-kayozen-dark-surface p-8 rounded-lg shadow-md relative">
+			<div class="w-screen max-w-md bg-light-surface dark:bg-dark-surface p-8 rounded-lg shadow-md relative">
 				<h1 class="text-2xl font-bold text-center mb-6">
 					{t("signup.title") + " "}
-					<span class="text-kayozen-light-primary dark:text-kayozen-dark-primary">
+					<span class="text-light-primary dark:text-dark-primary">
 						Kayozen
 					</span>
 				</h1>
@@ -130,7 +130,7 @@ export default function SignupBox({ lang }: { lang: SupportedLang }) {
 
 				<div class="flex items-center my-6">
 					<div class="grow h-px bg-gray-300 dark:bg-gray-600" />
-					<span class="mx-4 text-kayozen-light-muted dark:text-kayozen-dark-muted text-sm">
+					<span class="mx-4 text-light-muted dark:text-dark-muted text-sm">
 						{t("signup.or")}
 					</span>
 					<div class="grow h-px bg-gray-300 dark:bg-gray-600" />
@@ -148,7 +148,7 @@ export default function SignupBox({ lang }: { lang: SupportedLang }) {
 					<span>{t("signup.google")}</span>
 				</a>
 
-				<p class="text-center text-sm text-kayozen-light-muted dark:text-kayozen-dark-muted mt-6">
+				<p class="text-center text-sm text-light-muted dark:text-dark-muted mt-6">
 					{t("signup.already_account")}{" "}
 					<a
 						href="/login"

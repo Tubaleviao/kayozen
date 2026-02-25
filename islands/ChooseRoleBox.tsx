@@ -43,7 +43,7 @@ export default function ChooseRoleBox({ state }: ChoseRoleProps) {
 	return (
 		<main class="max-w-3xl mx-auto p-6 animate-fadeIn">
 			<h1 class="text-3xl font-bold text-center mb-2">{t("roles.title")}</h1>
-			<p class="text-center text-kayozen-light-muted dark:text-kayozen-dark-muted mb-8">
+			<p class="text-center text-light-muted dark:text-dark-muted mb-8">
 				{t("roles.choose")}
 			</p>
 
@@ -58,10 +58,10 @@ export default function ChooseRoleBox({ state }: ChoseRoleProps) {
 							class={`p-6 rounded-2xl shadow-md border-2 transition select-none ${
 								isDisabled
 									? "opacity-50 cursor-not-allowed bg-gray-100 dark:bg-gray-800"
-									: "cursor-pointer bg-kayozen-light-surface dark:bg-kayozen-dark-surface hover:border-kayozen-light-muted dark:hover:border-kayozen-dark-muted"
+									: "cursor-pointer bg-light-surface dark:bg-dark-surface hover:border-kayozen-light-muted dark:hover:border-kayozen-dark-muted"
 							} ${
 								isSelected && !isDisabled
-									? "border-kayozen-light-primary dark:border-kayozen-dark-primary"
+									? "border-light-primary dark:border-dark-primary"
 									: "border-transparent"
 							}`}
 							onClick={() => {
@@ -72,7 +72,7 @@ export default function ChooseRoleBox({ state }: ChoseRoleProps) {
 								class={`text-4xl mb-4 text-center ${
 									isDisabled
 										? "text-gray-400"
-										: "text-kayozen-light-text dark:text-kayozen-dark-text"
+										: "text-light-text dark:text-dark-text"
 								}`}
 							>
 								{role.icon}
@@ -81,7 +81,7 @@ export default function ChooseRoleBox({ state }: ChoseRoleProps) {
 								class={`text-xl font-semibold text-center mb-2 ${
 									isDisabled
 										? "text-gray-500"
-										: "text-kayozen-light-text dark:text-kayozen-dark-text"
+										: "text-light-text dark:text-dark-text"
 								}`}
 							>
 								{t(role.key)}
@@ -90,7 +90,7 @@ export default function ChooseRoleBox({ state }: ChoseRoleProps) {
 								class={`text-sm text-center ${
 									isDisabled
 										? "text-gray-400"
-										: "text-kayozen-light-muted dark:text-kayozen-dark-muted"
+										: "text-light-muted dark:text-dark-muted"
 								}`}
 							>
 								{t(role.desc)}
@@ -109,7 +109,7 @@ export default function ChooseRoleBox({ state }: ChoseRoleProps) {
 						disabled={!selectedRole}
 						class={`px-6 py-3 rounded-lg font-medium transition ${
 							selectedRole
-								? "bg-kayozen-light-primary dark:bg-kayozen-dark-primary text-white hover:opacity-90"
+								? "bg-light-primary text-white hover:opacity-90"
 								: "bg-gray-400 text-gray-200 cursor-not-allowed"
 						}`}
 					>

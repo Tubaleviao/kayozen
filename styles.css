@@ -2,17 +2,6 @@
 
 html {
 	font-family: "Inter", sans-serif;
-	color: var(--color-kayozen-light-text);
-}
-
-html.dark {
-	color: var(--color-kayozen-dark-text);
-}
-body {
-	background-color: var(--color-kayozen-light-background);
-}
-html.dark body {
-	background-color: var(--color-kayozen-dark-background);
 }
 
 /* Smooth color transition */
@@ -20,33 +9,20 @@ html.dark body {
 	transition: background-color 0.25s ease, color 0.25s ease;
 }
 
-@layer theme {
-	:root, :host {
-		--bg-primary: #ffffff; /* Light mode default */
-	}
-	/* Dark theme override using a selector */
-	:root, :host {
-		@variant dark {
-			/* this uses the configured dark variant logic */
-			--bg-primary: #000000; /* Dark mode value */
-		}
-	}
-}
-
 @theme {
-	--color-kayozen-light-primary: #2563eb;
-	--color-kayozen-light-secondary: #16a34a;
-	--color-kayozen-light-background: #f9fafb;
-	--color-kayozen-light-surface: #ffffff;
-	--color-kayozen-light-text: #111827;
-	--color-kayozen-light-muted: #6b7280;
+	--color-light-primary: #2563eb;
+	--color-light-secondary: #16a34a;
+	--color-light-background: #f9fafb;
+	--color-light-surface: #ffffff;
+	--color-light-text: #111827;
+	--color-light-muted: #6b7280;
 
-	--color-kayozen-dark-primary: #60a5fa;
-	--color-kayozen-dark-secondary: #4ade80;
-	--color-kayozen-dark-background: #111827;
-	--color-kayozen-dark-surface: #1f2937;
-	--color-kayozen-dark-text: #f9fafb;
-	--color-kayozen-dark-muted: #9ca3af;
+	--color-dark-primary: #60a5fa;
+	--color-dark-secondary: #4ade80;
+	--color-dark-background: #111827;
+	--color-dark-surface: #1f2937;
+	--color-dark-text: #f9fafb;
+	--color-dark-muted: #9ca3af;
 
 	--animate-fadeIn: fadeIn 0.6s ease-out;
 	--animate-school-glow: school-glow 2.5s ease-in-out infinite;

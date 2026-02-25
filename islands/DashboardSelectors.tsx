@@ -53,7 +53,7 @@ const DashboardSelectors: FunctionalComponent<Props> = (
 				<div class="relative">
 					<select
 						onChange={handleRoleChange}
-						class="px-3 py-2 rounded bg-kayozen-light-surface dark:bg-kayozen-dark-surface border border-kayozen-light-muted dark:border-kayozen-dark-muted"
+						class="px-3 py-2 rounded bg-light-surface dark:bg-dark-surface border border-kayozen-light-muted dark:border-kayozen-dark-muted"
 					>
 						{roles.map((role) => (
 							<option value={role.role}>
@@ -72,7 +72,7 @@ const DashboardSelectors: FunctionalComponent<Props> = (
 					<select
 						value={selectedSchoolId}
 						onChange={handleSchoolChange}
-						class="px-3 py-2 rounded bg-kayozen-light-surface dark:bg-kayozen-dark-surface border border-kayozen-light-muted dark:border-kayozen-dark-muted"
+						class="px-3 py-2 rounded bg-light-surface dark:bg-dark-surface border border-kayozen-light-muted dark:border-kayozen-dark-muted"
 					>
 						{schools.map((school) => (
 							<option value={school.id}>
@@ -90,7 +90,7 @@ const DashboardSelectors: FunctionalComponent<Props> = (
 							type="button"
 							onClick={handleEditSchool}
 							title={t("dashboard.school.edit")}
-							class="p-2 rounded hover:bg-kayozen-light-muted dark:hover:bg-kayozen-dark-muted transition"
+							class="p-2 rounded hover:bg-light-muted dark:hover:bg-dark-muted transition"
 						>
 							✏️
 						</button>

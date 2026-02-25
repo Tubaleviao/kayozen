@@ -9,7 +9,7 @@ export default function ChooseRolePage(
 	{ state }: { state: KayozenState },
 ) {
 	return (
-		<div class="min-h-screen bg-kayozen-light-background dark:bg-kayozen-dark-background text-kayozen-light-text dark:text-kayozen-dark-text">
+		<div class="min-h-screen bg-light-background dark:bg-dark-background text-light-text dark:text-dark-text">
 			<Navbar state={state} />
 			<ChooseRoleBox state={state} />
 		</div>

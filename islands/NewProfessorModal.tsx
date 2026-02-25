@@ -61,8 +61,8 @@ export default function NewProfessorModal(
 			/>
 
 			{/* Modal */}
-			<div class="relative z-10 w-full max-w-md rounded-2xl bg-white p-6 shadow-xl">
-				<h2 class="mb-4 text-lg font-semibold text-gray-800">
+			<div class="relative z-10 w-full max-w-md rounded-2xl  bg-light-background dark:bg-dark-background p-6 shadow-xl text-light-text dark:text-dark-text">
+				<h2 class="mb-4 text-lg font-semibold">
 					{t("dashboard.modal.new_professor")}
 				</h2>
 

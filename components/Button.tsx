@@ -13,8 +13,8 @@ export function Button(
 		<button
 			onClick={to ? handleClick : onClick}
 			class={`px-4 py-2 rounded-md font-medium 
-        bg-kayozen-light-primary text-white
-        hover:bg-kayozen-light-secondary
+        bg-light-primary text-white
+        hover:bg-light-secondary
         transition-colors ${className}`}
 			{...rest}
 		>

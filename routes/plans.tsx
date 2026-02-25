@@ -26,7 +26,7 @@ export default function PlansPage({ state }: { state: KayozenState }) {
 	]
 
 	return (
-		<div class="flex flex-col min-h-screen bg-kayozen-light-bg dark:bg-kayozen-dark-bg text-kayozen-light-text dark:text-kayozen-dark-text">
+		<div class="flex flex-col min-h-screen bg-light-bg dark:bg-dark-bg text-light-text dark:text-dark-text">
 			<Navbar state={state} />
 
 			<Plans plans={plans} lang={state.lang} />

@@ -14,12 +14,12 @@ export default function NewSchoolPage(
 	return (
 		<>
 			<Navbar state={state} />
-			<main class="min-h-screen flex items-center justify-center bg-kayozen-light-background dark:bg-kayozen-dark-background">
+			<main class="min-h-screen flex items-center justify-center bg-light-background dark:bg-dark-background">
 				<section class="text-center space-y-6">
-					<h1 class="text-3xl font-bold text-kayozen-light-text dark:text-kayozen-dark-text">
+					<h1 class="text-3xl font-bold text-light-text dark:text-dark-text">
 						{t("school.create_title")}
 					</h1>
-					<p class="text-kayozen-light-muted dark:text-kayozen-dark-muted">
+					<p class="text-light-muted dark:text-dark-muted">
 						{t("school.create_hint")}
 					</p>
 					<CreateSchool state={state} />

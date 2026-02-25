@@ -70,7 +70,7 @@ export default function CreateSchool({ state }: CreateSchoolProps) {
 					onInput={(e) => setName((e.target as HTMLInputElement).value)}
 					disabled={loading}
 					class="w-full px-3 py-2 rounded border
-					bg-kayozen-light-surface dark:bg-kayozen-dark-surface
+					bg-light-surface dark:bg-dark-surface
 					border-kayozen-light-muted dark:border-kayozen-dark-muted"
 				/>
 			</div>
@@ -87,7 +87,7 @@ export default function CreateSchool({ state }: CreateSchoolProps) {
 					disabled={loading}
 					placeholder="00.000.000/0000-00"
 					class="w-full px-3 py-2 rounded border
-					bg-kayozen-light-surface dark:bg-kayozen-dark-surface
+					bg-light-surface dark:bg-dark-surface
 					border-kayozen-light-muted dark:border-kayozen-dark-muted"
 				/>
 			</div>
@@ -108,14 +108,14 @@ export default function CreateSchool({ state }: CreateSchoolProps) {
 
 				{!loading && (
 					<span class="absolute -bottom-8 left-1/2 -translate-x-1/2 text-sm
-					text-kayozen-light-muted dark:text-kayozen-dark-muted">
+					text-light-muted dark:text-dark-muted">
 						{t("school.click_hint")}
 					</span>
 				)}
 			</button>
 
 			{loading && (
-				<p class="text-sm text-kayozen-light-muted dark:text-kayozen-dark-muted">
+				<p class="text-sm text-light-muted dark:text-dark-muted">
 					{t("school.creating")}
 				</p>
 			)}

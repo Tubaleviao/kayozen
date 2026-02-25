@@ -13,11 +13,11 @@ export default function Main({ state }: MainProps) {
 		<main class="grow max-w-(--breakpoint-lg) mx-auto px-4 py-10 animate-fadeIn">
 			<h1 class="text-4xl font-bold mb-4">
 				{`${t("index.welcome")} `}
-				<span class="text-kayozen-light-primary dark:text-kayozen-dark-primary">
+				<span class="text-light-primary dark:text-dark-primary">
 					Kayozen
 				</span>
 			</h1>
-			<p class="text-lg text-kayozen-light-muted dark:text-kayozen-dark-muted mb-6">
+			<p class="text-lg text-light-muted dark:text-dark-muted mb-6">
 				{`${t("index.description")}`}
 			</p>
 

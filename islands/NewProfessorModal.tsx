@@ -1,15 +1,18 @@
-import { useTranslationContext } from "./TranslationContext.tsx"
-import { createElement } from "preact/src/index.d.ts"
+import { createElement } from "preact"
+import { defineTFunction, SupportedLang } from "../utils/i18n.ts"
 
 interface Props {
 	open: boolean
 	onClose: (msg?: { ok: boolean; text: string }) => void
 	schoolId: string
+	lang: SupportedLang
 }
 
-export default function NewProfessorModal({ open, onClose, schoolId }: Props) {
-	const { t } = useTranslationContext()
+export default function NewProfessorModal(
+	{ open, onClose, schoolId, lang }: Props,
+) {
 	if (!open) return null
+	const t = defineTFunction(lang)
 
 	const createProfessorCall =
 		() => async (e: createElement.JSX.TargetedSubmitEvent<HTMLFormElement>) => {
@@ -58,8 +61,8 @@ export default function NewProfessorModal({ open, onClose, schoolId }: Props) {
 			/>
 
 			{/* Modal */}
-			<div class="relative z-10 w-full max-w-md rounded-2xl bg-white p-6 shadow-xl">
-				<h2 class="mb-4 text-lg font-semibold text-gray-800">
+			<div class="relative z-10 w-full max-w-md rounded-2xl  bg-light-background dark:bg-dark-background p-6 shadow-xl text-light-text dark:text-dark-text">
+				<h2 class="mb-4 text-lg font-semibold">
 					{t("dashboard.modal.new_professor")}
 				</h2>
 

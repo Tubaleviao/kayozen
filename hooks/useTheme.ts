@@ -1,30 +1,37 @@
-import { useEffect, useState } from "preact/hooks"
+import { useEffect } from "preact/hooks"
 import { usePersistency } from "./usePersistency.ts"
 import { Theme } from "../utils/interfaces.ts"
 
-export function useTheme() {
-	const [darkMode, setDarkMode] = useState(false)
-	const [theme, setTheme] = usePersistency<Theme>("theme", "light")
+export function useTheme(defaultTheme?: Theme) {
+	const [theme, setTheme] = usePersistency("theme", defaultTheme)
 
 	useEffect(() => {
-		const isDark = theme === "dark"
-		setDarkMode(isDark)
+		if (!theme) {
+			const isDark =
+				globalThis.matchMedia("(prefers-color-scheme: dark)").matches
+			setTheme(isDark ? "dark" : "light")
+		}
 	}, [])
 
-	const toggleTheme = () => {
+	// 🔄 Sync DOM whenever theme changes
+	useEffect(() => {
 		const html = document.documentElement
-		const isDark = html.classList.contains("dark")
 
-		if (isDark) {
-			html.classList.remove("dark")
-			setTheme("light")
-			setDarkMode(false)
-		} else {
+		if (theme === "dark") {
 			html.classList.add("dark")
-			setTheme("dark")
-			setDarkMode(true)
+		} else {
+			html.classList.remove("dark")
 		}
+	}, [theme])
+
+	// 🔘 Toggle based on state, not DOM
+	const toggleTheme = () => {
+		setTheme((prev) => (prev === "dark" ? "light" : "dark"))
 	}
 
-	return { darkMode, toggleTheme }
+	return {
+		theme,
+		darkMode: theme === "dark",
+		toggleTheme,
+	}
 }

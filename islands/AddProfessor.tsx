@@ -1,18 +1,17 @@
 import { useState } from "preact/hooks"
 import SchoolAddTeacherIllustration from "../components/SchoolProfArt.tsx"
 import NewProfessorModal from "./NewProfessorModal.tsx"
-import { useTranslationContext } from "./TranslationContext.tsx"
 import { School } from "../utils/interfaces.ts"
-import { useToast } from "./ToastProvider.tsx"
+import { defineTFunction, SupportedLang } from "../utils/i18n.ts"
 
 interface Props {
 	school?: School
+	lang: SupportedLang
 }
 
-export default function AddProfessor({ school }: Props) {
+export default function AddProfessor({ school, lang }: Props) {
 	const [open, setOpen] = useState(false)
-	const { t } = useTranslationContext()
-	const toast = useToast()
+	const t = defineTFunction(lang)
 	return (
 		<>
 			<SchoolAddTeacherIllustration
@@ -24,10 +23,17 @@ export default function AddProfessor({ school }: Props) {
 				open={open}
 				onClose={(msg) => {
 					setOpen(false)
-					if (msg?.ok) toast.success(msg.text ?? t("school.professor_created"))
-					else toast.error(msg?.text ?? t("school.error_unexpected"))
+					if (msg?.ok) {
+						globalThis.toast?.(
+							msg.text ?? t("school.professor_created"),
+						)
+					} else {globalThis.toast?.(
+							msg?.text ?? t("school.error_unexpected"),
+							"error",
+						)}
 				}}
 				schoolId={school?.id ?? "undefined"}
+				lang={lang}
 			/>
 		</>
 	)

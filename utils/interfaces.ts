@@ -1,13 +1,8 @@
 import { Payload } from "djwt"
-import { SupportedLang } from "./i18n.ts"
+import { SupportedLang, TranslationKey } from "./i18n.ts"
 import { Role } from "./constants.ts"
-import type { FreshContext as BaseFreshContext } from "$fresh/server.ts"
 
 export type Theme = "light" | "dark"
-
-export interface FreshContext extends BaseFreshContext {
-	state: Partial<KayozenState>
-}
 
 export interface DbUser {
 	id: string
@@ -19,6 +14,8 @@ export interface DbUser {
 	created_at: Date
 	roles?: DbRole[]
 	schools?: School[]
+	plan: KayoPlan
+	permission: KayoPermission
 }
 
 export interface DbRole {
@@ -30,9 +27,9 @@ export interface DbRole {
 
 export interface School {
 	id: string
-	cnpj: string
+	cnpj?: string
 	name: string
-	created_at: string
+	created_at?: string
 }
 
 export interface GooglePerson {
@@ -77,8 +74,13 @@ export interface JwtPayload extends Payload {
 	exp: number
 }
 
+export type tFunction = (
+	key: TranslationKey,
+	vars?: Record<string, string | number>,
+) => string
+
 export interface KayozenState {
-	theme: Theme
+	theme?: Theme
 	lang: SupportedLang
 	dbUser?: DbUser
 	currentRole?: string
@@ -86,7 +88,17 @@ export interface KayozenState {
 }
 
 export interface Plan {
-	key: "basic" | "pro" | "enterprise"
+	key: KayoPlan
 	price: string
 	url: string
 }
+
+export type KayoPlan = "free" | "basic" | "pro" | "enterprise"
+
+export interface PagBankPlan {
+	name: string
+	amount: number // centavos
+	interval: "MONTHLY" | "YEARLY"
+}
+
+export type KayoPermission = "admin" | "user"

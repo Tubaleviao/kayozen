@@ -1,25 +1,28 @@
 import { useEffect, useRef, useState } from "preact/hooks"
 import { useTheme } from "../hooks/useTheme.ts"
 import { Button } from "../components/Button.tsx"
-import { useTranslationContext } from "./TranslationContext.tsx"
-import { TranslationKey } from "../utils/i18n.ts"
-import { DbUser } from "../utils/interfaces.ts"
+import { defineTFunction, TranslationKey } from "../utils/i18n.ts"
+import { KayozenState } from "../utils/interfaces.ts"
 
 interface NavbarProps {
-	user?: DbUser | null
+	state: KayozenState
 	itens?: { key: TranslationKey; page: string }[]
 }
 
 export default function Navbar(
 	{
-		itens = [{ key: "nav.we", page: "/about" }],
-		user,
+		itens = [{ key: "nav.about", page: "/about" }, {
+			key: "nav.plans",
+			page: "/plans",
+		}],
+		state,
 	}: NavbarProps,
 ) {
-	const { t } = useTranslationContext()
+	const { dbUser: user, theme } = state
+	const t = defineTFunction(state.lang)
 	const [menuOpen, setMenuOpen] = useState(false)
 	const [avatarMenuOpen, setAvatarMenuOpen] = useState(false)
-	const { darkMode, toggleTheme } = useTheme()
+	const { darkMode, toggleTheme } = useTheme(theme)
 	const avatarRef = useRef<HTMLLIElement>(null)
 
 	// Fecha o menu ao clicar fora
@@ -36,12 +39,12 @@ export default function Navbar(
 	}, [])
 
 	return (
-		<nav class="bg-kayozen-light-surface text-kayozen-light-text 
-      dark:bg-kayozen-dark-surface dark:text-kayozen-dark-text shadow-md">
-			<div class="max-w-screen-lg mx-auto px-4 py-3 flex items-center justify-between">
+		<nav class="bg-light-surface text-light-text 
+      dark:bg-dark-surface dark:text-dark-text shadow-md">
+			<div class="max-w-(--breakpoint-lg) mx-auto px-4 py-3 flex items-center justify-between">
 				<a
 					href="/"
-					class="text-kayozen-light-text dark:text-kayozen-dark-text text-lg font-bold"
+					class="text-light-text dark:text-dark-text text-lg font-bold"
 				>
 					Kayozen
 				</a>
@@ -72,7 +75,7 @@ export default function Navbar(
 						<li>
 							<a
 								href={item.page}
-								class="hover:text-kayozen-light-primary dark:hover:text-kayozen-dark-primary transition"
+								class="hover:text-light-primary dark:hover:text-dark-primary transition"
 							>
 								{t(item.key)}
 							</a>
@@ -95,7 +98,7 @@ export default function Navbar(
 						{user
 							? (
 								<button
-									type="submit"
+									type="button"
 									onClick={() => setAvatarMenuOpen(!avatarMenuOpen)}
 									class="flex items-center gap-2 focus:outline-none"
 								>
@@ -142,7 +145,7 @@ export default function Navbar(
 							<li>
 								<a
 									href={item.page}
-									class="hover:text-kayozen-light-primary dark:hover:text-kayozen-dark-primary transition"
+									class="hover:text-light-primary dark:hover:text-dark-primary transition"
 								>
 									{t(item.key)}
 								</a>
@@ -163,7 +166,7 @@ export default function Navbar(
 								: (
 									<a
 										href="/api/login"
-										class="px-4 py-2 bg-kayozen-light-primary dark:bg-kayozen-dark-primary text-white rounded-lg hover:opacity-90 transition"
+										class="px-4 py-2 bg-light-primary text-white rounded-lg hover:opacity-90 transition"
 									>
 										{t("nav.login")}
 									</a>

@@ -1,18 +1,19 @@
-import { Handlers } from "$fresh/server.ts"
+import { PageProps } from "fresh"
 import { db } from "../../utils/db.ts"
+import { UnauthorizedError } from "../../utils/errors.ts"
 
-export const handler: Handlers = {
-	async POST(req, _ctx) {
-		const form = await req.formData()
+export const handler = {
+	async POST(ctx: PageProps) {
+		const form = await ctx.req.formData()
 		const role = form.get("role")?.toString()
 		const userId = form.get("id")?.toString()
 
-		if (!role) {
-			return new Response("Role required", { status: 400 })
+		if (!userId) {
+			throw new UnauthorizedError()
 		}
 
-		if (!userId) {
-			return new Response("Unauthorized", { status: 401 })
+		if (!role) {
+			throw new UnauthorizedError("User has no role defined.")
 		}
 
 		await db.query(
@@ -23,6 +24,6 @@ export const handler: Handlers = {
 			],
 		)
 
-		return Response.redirect(new URL("/dashboard", req.url))
+		return Response.redirect(new URL("/dashboard", ctx.req.url))
 	},
 }

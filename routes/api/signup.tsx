@@ -1,59 +1,38 @@
-import { Handlers } from "$fresh/server.ts"
-import { hash } from "bcrypt"
+import { hashSync } from "bcrypt"
 import { db } from "../../utils/db.ts"
 import { makeUsername } from "../../utils/make_username.ts"
 import { v1 } from "uuid"
 import { getAuthHeader } from "../../utils/getAuthHeader.ts"
-import { logError } from "../../utils/errors.ts"
+import { ValidationError } from "../../utils/errors.ts"
+import { PageProps } from "fresh"
 
-interface Data {
-	error?: string
-	success?: boolean
-}
-
-export const handler: Handlers<Data> = {
-	async POST(req, _ctx) {
-		const form = await req.json()
-
+export const handler = {
+	async POST(ctx: PageProps) {
+		const form = await ctx.req.json()
 		const { name, email, password, confirmPassword, acceptTerms } = form
 
 		if (!name || !email || !password || !confirmPassword) {
-			return new Response(JSON.stringify({ error: "Missing fields" }), {
-				status: 400,
-			})
+			throw new ValidationError(
+				"Missing one of these fields: name, email, password, confirmPassword or acceptTerms",
+			)
 		}
 
 		if (password !== confirmPassword) {
-			return new Response(JSON.stringify({ error: "Passwords do not match" }), {
-				status: 400,
-			})
+			throw new ValidationError("Passwords do not match")
 		}
 
 		if (!acceptTerms) {
-			return new Response(JSON.stringify({ error: "Terms not accepted" }), {
-				status: 400,
-			})
+			throw new ValidationError("Terms not accepted")
 		}
 
-		const passwordHash = await hash(password)
+		const passwordHash = hashSync(password)
 
-		try {
-			await db.query(
-				"INSERT INTO people (id, username, name, email, password_hash) VALUES ($1, $2, $3, $4, $5)",
-				[v1.generate(), makeUsername(), name, email, passwordHash],
-			)
-		} catch (err) {
-			if (String(err).includes("duplicate key")) {
-				return new Response(JSON.stringify({ error: "Email already exists" }), {
-					status: 400,
-				})
-			}
-			logError(err)
-			return new Response(JSON.stringify({ error: "Internal error" }), {
-				status: 500,
-			})
-		}
+		console.log("Inserting into database")
 
+		await db.query(
+			"INSERT INTO people (id, username, name, email, password_hash) VALUES ($1, $2, $3, $4, $5)",
+			[v1.generate(), makeUsername(), name, email, passwordHash],
+		)
 		const headers = await getAuthHeader(name, email)
 
 		return new Response(JSON.stringify({ success: true }), {
@@ -62,7 +41,7 @@ export const handler: Handlers<Data> = {
 		})
 	},
 
-	async GET(_, ctx) {
-		return await ctx.render({})
+	GET(_ctx: PageProps) {
+		return {}
 	},
 }

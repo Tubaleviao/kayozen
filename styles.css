@@ -1,0 +1,81 @@
+@import "tailwindcss";
+
+html {
+	font-family: "Inter", sans-serif;
+}
+
+/* Smooth color transition */
+* {
+	transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+@theme {
+	--color-light-primary: #2563eb;
+	--color-light-secondary: #16a34a;
+	--color-light-background: #f9fafb;
+	--color-light-surface: #ffffff;
+	--color-light-text: #111827;
+	--color-light-muted: #6b7280;
+
+	--color-dark-primary: #60a5fa;
+	--color-dark-secondary: #4ade80;
+	--color-dark-background: #111827;
+	--color-dark-surface: #1f2937;
+	--color-dark-text: #f9fafb;
+	--color-dark-muted: #9ca3af;
+
+	--animate-fadeIn: fadeIn 0.6s ease-out;
+	--animate-school-glow: school-glow 2.5s ease-in-out infinite;
+}
+
+@keyframes fadeIn {
+	0% {
+		opacity: 0;
+		transform: translateY(10px);
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes school-glow {
+	0%,
+	100% {
+		opacity: 1;
+		transform: scale(1);
+	}
+	50% {
+		opacity: 0.8;
+		transform: scale(1.02);
+	}
+}
+
+/* Toast css */
+@keyframes slide-in {
+	from {
+		opacity: 0;
+		transform: translateX(20px) scale(0.95);
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0) scale(1);
+	}
+}
+
+@keyframes progress {
+	from {
+		width: 100%;
+	}
+	to {
+		width: 0%;
+	}
+}
+
+.animate-slide-in {
+	animation: slide-in 0.25s ease-out;
+}
+
+.animate-progress {
+	animation: progress 2s linear forwards;
+}

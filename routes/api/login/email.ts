@@ -1,23 +1,29 @@
-import { FreshContext } from "$fresh/server.ts"
 import { db } from "../../../utils/db.ts"
-import { compare } from "bcrypt"
+import { compareSync } from "bcrypt"
 import { getAuthHeader } from "../../../utils/getAuthHeader.ts"
+import { PageProps } from "fresh"
+import { ValidationError } from "../../../utils/errors.ts"
 
-export const handler = async (req: Request, _ctx: FreshContext) => {
-	const form = await req.formData()
-	console.log(form, form.get("remember"))
-	const userEmail = form.get("email")?.toString() || ""
-	const user = await db.getUserByEmail(userEmail)
+export const handler = async (ctx: PageProps) => {
+	const body = await ctx.req.json()
+	const user = await db.getUserByEmail(body.email)
 
-	if (!user) return new Response("User not found", { status: 400 })
+	if (!user) {
+		throw new ValidationError("User not found")
+	}
 
-	const isCorrect = await compare(
-		form.get("password")?.toString() || "",
+	const isCorrect = await compareSync(
+		body.password,
 		user.password_hash || "",
 	)
 
-	if (!isCorrect) return new Response("Wrong Password", { status: 400 })
+	if (!isCorrect) {
+		throw new ValidationError("Wrong Password")
+	}
 
 	const headers = await getAuthHeader(user.name, user.email)
-	return new Response(null, { status: 307, headers })
+	return new Response(JSON.stringify({ redirect: "/dashboard" }), {
+		status: 200,
+		headers,
+	})
 }

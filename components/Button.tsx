@@ -1,21 +1,22 @@
-import { JSX } from "preact"
+import { JSX } from "preact/compat/jsx-dev-runtime"
 
 export function Button(
-	{ children, className = "", ...other }:
+	{ children, className = "", to, onClick, ...rest }:
 		& JSX.HTMLAttributes<HTMLButtonElement>
 		& { to?: string },
 ) {
 	const handleClick = () => {
-		globalThis.location.href = other.to || ""
+		if (to) globalThis.location.href = to
 	}
+
 	return (
 		<button
-			onClick={other.to ? handleClick : other.onClick}
+			onClick={to ? handleClick : onClick}
 			class={`px-4 py-2 rounded-md font-medium 
-              bg-kayozen-light-primary text-white
-              hover:bg-kayozen-light-secondary
-              transition-colors ${className}`}
-			{...other}
+        bg-light-primary text-white
+        hover:bg-light-secondary
+        transition-colors ${className}`}
+			{...rest}
 		>
 			{children}
 		</button>

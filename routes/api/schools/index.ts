@@ -1,17 +1,14 @@
-// routes/api/schools.ts
-import { Handlers } from "$fresh/server.ts"
 import { v1 } from "uuid"
 import { db } from "../../../utils/db.ts"
+import { PageProps } from "fresh"
+import { UnauthorizedError } from "../../../utils/errors.ts"
 
-export const handler: Handlers = {
-	async POST(req, _ctx) {
-		const body = await req.json().catch(() => ({}))
-		const { userId, name } = body
+export const handler = {
+	async POST(ctx: PageProps) {
+		const body = await ctx.req.json().catch(() => ({}))
+		const { userId, name, cnpj } = body
 		if (!userId) {
-			return new Response(JSON.stringify({ error: "Unauthorized" }), {
-				status: 401,
-				headers: { "Content-Type": "application/json" },
-			})
+			throw new UnauthorizedError()
 		}
 
 		const schoolName = (name ?? "Your School").trim()
@@ -24,8 +21,8 @@ export const handler: Handlers = {
 
 		const schoolId = v1.generate()
 		await db.query(
-			"INSERT INTO schools (id, name, owner_id) VALUES ($1, $2, $3)",
-			[schoolId, schoolName, userId],
+			"INSERT INTO schools (id, name, owner_id, cnpj) VALUES ($1, $2, $3, $4)",
+			[schoolId, schoolName, userId, cnpj],
 		)
 
 		await db.query(

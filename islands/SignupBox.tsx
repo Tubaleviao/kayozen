@@ -1,11 +1,11 @@
-import { useTranslationContext } from "./TranslationContext.tsx"
 import { useState } from "preact/hooks"
+import { defineTFunction, SupportedLang } from "../utils/i18n.ts"
 
-export default function SignupBox() {
-	const { t } = useTranslationContext()
+export default function SignupBox({ lang }: { lang: SupportedLang }) {
 	const [loading, setLoading] = useState(false)
 	const [error, setError] = useState<string | null>(null)
 
+	const t = defineTFunction(lang)
 	async function handleSubmit(e: Event) {
 		e.preventDefault()
 		setLoading(true)
@@ -28,16 +28,15 @@ export default function SignupBox() {
 				headers: { "Content-Type": "application/json" },
 				body: JSON.stringify(body),
 			})
-
+			const responseJson = await res.json()
 			if (!res.ok) {
-				const errorResponse = new Response(res.body)
-				const errorJson = await errorResponse.json()
-				throw new Error(errorJson?.error || "Signup failed")
+				console.error(responseJson.error)
+				globalThis.toast?.(`Signup error: HTTP ERROR ${res.status}`, "error")
+			} else {
+				globalThis.location.href = "/dashboard"
 			}
-
-			// Exemplo: redirecionar ao dashboard
-			window.location.href = "/dashboard"
 		} catch (err) {
+			globalThis.toast?.("Signup failed", "error")
 			setError("⚠️ " + (err instanceof Error ? err.message : "Unknown error"))
 		} finally {
 			setLoading(false)
@@ -46,10 +45,10 @@ export default function SignupBox() {
 
 	return (
 		<div>
-			<div class="w-screen max-w-md bg-kayozen-light-surface dark:bg-kayozen-dark-surface p-8 rounded-lg shadow-md relative">
+			<div class="w-screen max-w-md bg-light-surface dark:bg-dark-surface p-8 rounded-lg shadow-md relative">
 				<h1 class="text-2xl font-bold text-center mb-6">
 					{t("signup.title") + " "}
-					<span class="text-kayozen-light-primary dark:text-kayozen-dark-primary">
+					<span class="text-light-primary dark:text-dark-primary">
 						Kayozen
 					</span>
 				</h1>
@@ -130,11 +129,11 @@ export default function SignupBox() {
 				</form>
 
 				<div class="flex items-center my-6">
-					<div class="flex-grow h-px bg-gray-300 dark:bg-gray-600" />
-					<span class="mx-4 text-kayozen-light-muted dark:text-kayozen-dark-muted text-sm">
+					<div class="grow h-px bg-gray-300 dark:bg-gray-600" />
+					<span class="mx-4 text-light-muted dark:text-dark-muted text-sm">
 						{t("signup.or")}
 					</span>
-					<div class="flex-grow h-px bg-gray-300 dark:bg-gray-600" />
+					<div class="grow h-px bg-gray-300 dark:bg-gray-600" />
 				</div>
 
 				<a
@@ -149,7 +148,7 @@ export default function SignupBox() {
 					<span>{t("signup.google")}</span>
 				</a>
 
-				<p class="text-center text-sm text-kayozen-light-muted dark:text-kayozen-dark-muted mt-6">
+				<p class="text-center text-sm text-light-muted dark:text-dark-muted mt-6">
 					{t("signup.already_account")}{" "}
 					<a
 						href="/login"

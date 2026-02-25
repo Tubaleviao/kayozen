@@ -1,19 +1,65 @@
-import { useTranslationContext } from "./TranslationContext.tsx"
+import { defineTFunction, SupportedLang } from "../utils/i18n.ts"
+import { useState } from "preact/hooks"
 
-export default function LoginBox() {
-	const { t } = useTranslationContext()
+export default function LoginBox({ lang }: { lang: SupportedLang }) {
+	const t = defineTFunction(lang)
+	const [loading, setLoading] = useState(false)
+
+	const handleSubmit = async (e: Event) => {
+		e.preventDefault()
+
+		if (loading) return
+		setLoading(true)
+
+		const form = e.currentTarget as HTMLFormElement
+		const formData = new FormData(form)
+
+		try {
+			const body = {
+				email: formData.get("email"),
+				password: formData.get("password"),
+				remember: formData.get("remember"),
+			}
+
+			const res = await fetch("/api/login/email", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(body),
+			})
+			const data = await res.json()
+
+			if (!res.ok) {
+				globalThis.toast?.(t("login.error"), "error")
+				console.error(data.error)
+				setLoading(false)
+				return
+			}
+
+			if (data.redirect) {
+				globalThis.location.href = data.redirect
+				return
+			}
+
+			globalThis.location.href = "/dashboard"
+		} catch (_err) {
+			globalThis.toast?.(t("login.error"), "error")
+			setLoading(false)
+		}
+	}
 
 	return (
 		<div>
-			<div class="w-screen max-w-md bg-kayozen-light-surface dark:bg-kayozen-dark-surface p-8 rounded-lg shadow-md relative">
+			<div class="w-screen max-w-md bg-light-surface dark:bg-dark-surface p-8 rounded-lg shadow-md relative">
 				<h1 class="text-2xl font-bold text-center mb-6 ">
-					{t("login.signin") + " "}
-					<span class="text-kayozen-light-primary dark:text-kayozen-dark-primary">
+					{t("login.signin")}{" "}
+					<span class="text-light-primary dark:text-dark-primary">
 						Kayozen
 					</span>
 				</h1>
 
-				<form method="POST" action="/api/login/email" class="space-y-4">
+				<form onSubmit={handleSubmit} class="space-y-4">
 					<div>
 						<label class="block text-sm font-medium text-gray-700 dark:text-gray-300">
 							{t("login.email")}
@@ -55,18 +101,19 @@ export default function LoginBox() {
 
 					<button
 						type="submit"
-						class="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition"
+						disabled={loading}
+						class="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition disabled:opacity-50 disabled:cursor-not-allowed"
 					>
-						{t("login.button")}
+						{loading ? "..." : t("login.button")}
 					</button>
 				</form>
 
 				<div class="flex items-center my-6">
-					<div class="flex-grow h-px bg-gray-300 dark:bg-gray-600" />
-					<span class="mx-4 text-kayozen-light-muted dark:kayozen-dark-muted text-sm">
+					<div class="grow h-px bg-gray-300 dark:bg-gray-600" />
+					<span class="mx-4 text-light-muted dark:kayozen-dark-muted text-sm">
 						{t("login.or")}
 					</span>
-					<div class="flex-grow h-px bg-gray-300 dark:bg-gray-600" />
+					<div class="grow h-px bg-gray-300 dark:bg-gray-600" />
 				</div>
 
 				<a
@@ -81,7 +128,7 @@ export default function LoginBox() {
 					<span>{t("login.google")}</span>
 				</a>
 
-				<p class="text-center text-sm text-kayozen-light-muted dark:kayozen-dark-muted mt-6">
+				<p class="text-center text-sm text-light-muted dark:kayozen-dark-muted mt-6">
 					{t("login.no_account")}{" "}
 					<a
 						href="/signup"

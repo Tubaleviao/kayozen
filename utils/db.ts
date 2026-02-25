@@ -3,8 +3,6 @@ import { makeUsername } from "./make_username.ts"
 import { DbRole, DbUser, GooglePerson, School } from "./interfaces.ts"
 import { v1 } from "uuid"
 import { DB_TIMEOUT } from "./constants.ts"
-import { Server } from "node:http"
-import { ServerError } from "./errors.ts"
 
 const DB_URL = Deno.env.get("DATABASE_URL") ??
 	"postgres://tuba:rato12@localhost:5432/kayozen?connect_timeout=3"
@@ -30,7 +28,10 @@ export class DbGateway {
 			const dbObj = await client.queryObject(sql, params)
 			return dbObj
 		} catch (e) {
-			throw new ServerError(`DB error in query: ${e}`)
+			const encoder = new TextEncoder()
+			const data = encoder.encode("Error in query: ")
+			Deno.stdout.writeSync(data)
+			throw e
 		} finally {
 			client?.release()
 		}
@@ -57,7 +58,10 @@ export class DbGateway {
 				} else console.error("Error trying to insert user")
 			}
 		} catch (e) {
-			console.error(e)
+			const encoder = new TextEncoder()
+			const data = encoder.encode("Error in saveUser: ")
+			Deno.stdout.writeSync(data)
+			throw e
 		} finally {
 			client?.release()
 		}
@@ -89,7 +93,9 @@ export class DbGateway {
 
 			return user
 		} catch (err) {
-			console.error("DB error in getUserByEmail:", err)
+			const encoder = new TextEncoder()
+			const data = encoder.encode("Error in getUserByEmail: ")
+			Deno.stdout.writeSync(data)
 			throw err
 		} finally {
 			client?.release()

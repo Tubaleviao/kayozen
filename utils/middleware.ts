@@ -33,15 +33,13 @@ export async function getSessionUser(
 export const getAppState = async (ctx: any) => {
 	const { req } = ctx
 	const cookie = req.headers.get("cookie")
-	const potentialTheme = getCookieValue(cookie, "kayotheme") ?? "light"
+	const potentialTheme = getCookieValue(cookie, "kayotheme")
 	const potentialLang = getCookieValue(cookie, "kayolang") ?? "pt"
 	const jwt = getCookieValue(cookie, "kayotoken")
 	let dbUser: DbUser | undefined
 
 	if (isLang(potentialLang)) ctx.state.lang = potentialLang
 	if (isTheme(potentialTheme)) ctx.state.theme = potentialTheme
-
-	ctx.state.dbUser = dbUser
 
 	const url = new URL(req.url)
 	const isProtected = PROTECTED_ROUTES.some((route) =>
@@ -56,6 +54,8 @@ export const getAppState = async (ctx: any) => {
 		}
 		dbUser = user
 	}
+
+	ctx.state.dbUser = dbUser
 
 	return await ctx.next()
 }

@@ -2,16 +2,35 @@
 
 html {
 	font-family: "Inter", sans-serif;
+	color: var(--color-kayozen-light-text);
 }
 
 html.dark {
-	background-color: var(--color-kayozen-dark-background);
 	color: var(--color-kayozen-dark-text);
+}
+body {
+	background-color: var(--color-kayozen-light-background);
+}
+html.dark body {
+	background-color: var(--color-kayozen-dark-background);
 }
 
 /* Smooth color transition */
 * {
 	transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+@layer theme {
+	:root, :host {
+		--bg-primary: #ffffff; /* Light mode default */
+	}
+	/* Dark theme override using a selector */
+	:root, :host {
+		@variant dark {
+			/* this uses the configured dark variant logic */
+			--bg-primary: #000000; /* Dark mode value */
+		}
+	}
 }
 
 @theme {

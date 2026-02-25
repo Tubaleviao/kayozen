@@ -1,6 +1,5 @@
 import { useState } from "preact/hooks"
 import { defineTFunction, SupportedLang } from "../utils/i18n.ts"
-import { Button } from "../components/Button.tsx"
 
 export default function SignupBox({ lang }: { lang: SupportedLang }) {
 	const [loading, setLoading] = useState(false)

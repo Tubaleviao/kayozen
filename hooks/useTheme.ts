@@ -2,8 +2,16 @@ import { useEffect } from "preact/hooks"
 import { usePersistency } from "./usePersistency.ts"
 import { Theme } from "../utils/interfaces.ts"
 
-export function useTheme() {
-	const [theme, setTheme] = usePersistency<Theme>("theme", "light")
+export function useTheme(defaultTheme?: Theme) {
+	const [theme, setTheme] = usePersistency("theme", defaultTheme)
+
+	useEffect(() => {
+		if (!theme) {
+			const isDark =
+				globalThis.matchMedia("(prefers-color-scheme: dark)").matches
+			setTheme(isDark ? "dark" : "light")
+		}
+	}, [])
 
 	// 🔄 Sync DOM whenever theme changes
 	useEffect(() => {

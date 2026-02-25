@@ -18,11 +18,11 @@ export default function Navbar(
 		state,
 	}: NavbarProps,
 ) {
-	const { dbUser: user } = state
+	const { dbUser: user, theme } = state
 	const t = defineTFunction(state.lang)
 	const [menuOpen, setMenuOpen] = useState(false)
 	const [avatarMenuOpen, setAvatarMenuOpen] = useState(false)
-	const { darkMode, toggleTheme } = useTheme()
+	const { darkMode, toggleTheme } = useTheme(theme)
 	const avatarRef = useRef<HTMLLIElement>(null)
 
 	// Fecha o menu ao clicar fora

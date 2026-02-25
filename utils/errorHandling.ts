@@ -35,7 +35,7 @@ export async function withErrorHandling(
 		if (isApiRoute) {
 			return jsonErrorResponse(
 				new AppError(
-					"Internal Server Error",
+					err instanceof Error ? err.message : "Internal Server Error",
 					500,
 					"INTERNAL_ERROR",
 				),

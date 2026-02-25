@@ -32,6 +32,7 @@ export default function LoginBox({ lang }: { lang: SupportedLang }) {
 
 			if (!res.ok) {
 				globalThis.toast?.(t("login.error"), "error")
+				console.error(data.error)
 				setLoading(false)
 				return
 			}

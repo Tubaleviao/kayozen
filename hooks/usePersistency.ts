@@ -3,7 +3,7 @@ import { getCookie, setCookie } from "../utils/cookies.ts"
 
 export function usePersistency(
 	key: string,
-	defaultValue: string,
+	defaultValue: string = "",
 ) {
 	const cookieKey = `kayo${key}`
 

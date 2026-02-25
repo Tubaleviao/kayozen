@@ -80,7 +80,7 @@ export type tFunction = (
 ) => string
 
 export interface KayozenState {
-	theme: Theme
+	theme?: Theme
 	lang: SupportedLang
 	dbUser?: DbUser
 	currentRole?: string

@@ -6,25 +6,16 @@ export function useTheme(defaultTheme?: Theme) {
 	const [theme, setTheme] = usePersistency("theme", defaultTheme)
 
 	useEffect(() => {
-		if (!theme) {
-			const isDark =
-				globalThis.matchMedia("(prefers-color-scheme: dark)").matches
-			setTheme(isDark ? "dark" : "light")
-		}
-	}, [])
-
-	// 🔄 Sync DOM whenever theme changes
-	useEffect(() => {
 		const html = document.documentElement
-
-		if (theme === "dark") {
-			html.classList.add("dark")
-		} else {
-			html.classList.remove("dark")
+		const systemDark =
+			globalThis.matchMedia("(prefers-color-scheme: dark)").matches
+		if (!theme) {
+			html.classList.toggle("dark", systemDark)
+			return
 		}
+		html.classList.toggle("dark", theme === "dark")
 	}, [theme])
 
-	// 🔘 Toggle based on state, not DOM
 	const toggleTheme = () => {
 		setTheme((prev) => (prev === "dark" ? "light" : "dark"))
 	}

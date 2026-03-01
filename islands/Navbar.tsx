@@ -18,11 +18,11 @@ export default function Navbar(
 		state,
 	}: NavbarProps,
 ) {
-	const { dbUser: user, theme } = state
+	const { dbUser: user, theme: cookieTheme } = state
 	const t = defineTFunction(state.lang)
 	const [menuOpen, setMenuOpen] = useState(false)
 	const [avatarMenuOpen, setAvatarMenuOpen] = useState(false)
-	const { darkMode, toggleTheme } = useTheme(theme)
+	const { theme, toggleTheme, darkMode } = useTheme(cookieTheme)
 	const avatarRef = useRef<HTMLLIElement>(null)
 
 	// Fecha o menu ao clicar fora
@@ -87,9 +87,13 @@ export default function Navbar(
 							onClick={toggleTheme}
 							class="rounded-full hover:opacity-80 transition"
 							aria-label={t("nav.theme")}
-							title={darkMode ? t("nav.light") : t("nav.dark")}
+							title={theme == ""
+								? t("nav.theme")
+								: darkMode
+								? t("nav.light")
+								: t("nav.dark")}
 						>
-							{darkMode ? "☀️" : "🌙"}
+							{theme == "" ? "🌗" : darkMode ? "☀️" : "🌙"}
 						</button>
 					</li>
 

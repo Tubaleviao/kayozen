@@ -7,31 +7,43 @@ type Toast = {
 	type?: "success" | "error"
 }
 
-export default function ToastHost() {
+interface Props {
+	initialFlash?: string
+}
+
+export default function ToastHost({ initialFlash }: Props) {
 	const [toasts, setToasts] = useState<Toast[]>([])
 
 	const removeToast = (id: string) => {
 		setToasts((prev) => prev.filter((t) => t.id !== id))
 	}
 
+	const showToast = (
+		message: string,
+		type: "success" | "error" = "success",
+	) => {
+		const id = crypto.randomUUID()
+		setToasts((prev) => [...prev, { id, message, type }])
+		setTimeout(() => removeToast(id), 2000)
+	}
+
+	// 🔥 Attach global for manual usage
 	useEffect(() => {
-		globalThis.toast = (
-			message: string,
-			type: "success" | "error" = "success",
-		) => {
-			const id = crypto.randomUUID()
-
-			setToasts((prev) => [...prev, { id, message, type }])
-
-			setTimeout(() => {
-				removeToast(id)
-			}, 2000)
-		}
-
+		globalThis.toast = showToast
 		return () => {
 			globalThis.toast = undefined
 		}
 	}, [])
+
+	// 🔥 Auto-fire flash from server
+	useEffect(() => {
+		if (initialFlash) {
+			showToast(initialFlash, "error")
+
+			// clear cookie
+			document.cookie = "kayoerror=; Path=/; Max-Age=0"
+		}
+	}, [initialFlash])
 
 	return (
 		<div class="fixed top-6 right-6 space-y-4 z-50">
@@ -43,23 +55,23 @@ export default function ToastHost() {
 						key={toast.id}
 						onClick={() => removeToast(toast.id)}
 						class={`
-              group relative overflow-hidden
-              w-80
-              rounded-2xl
-              backdrop-blur-md
-              border
-              shadow-xl
-              transition-all duration-300
-              cursor-pointer
-              hover:scale-[1.02]
-              active:scale-[0.98]
-              animate-slide-in
-              ${
+							group relative overflow-hidden
+							w-80
+							rounded-2xl
+							backdrop-blur-md
+							border
+							shadow-xl
+							transition-all duration-300
+							cursor-pointer
+							hover:scale-[1.02]
+							active:scale-[0.98]
+							animate-slide-in
+							${
 							isError
 								? "bg-red-500/90 border-red-400 text-white"
 								: "bg-emerald-500/90 border-emerald-400 text-white"
 						}
-            `}
+						`}
 					>
 						<div class="flex items-start gap-3 p-4">
 							<div class="text-lg">
@@ -73,10 +85,10 @@ export default function ToastHost() {
 
 						<div
 							class={`
-                absolute bottom-0 left-0 h-1
-                ${isError ? "bg-red-300" : "bg-emerald-300"}
-                animate-progress
-              `}
+								absolute bottom-0 left-0 h-1
+								${isError ? "bg-red-300" : "bg-emerald-300"}
+								animate-progress
+							`}
 						/>
 					</div>
 				)

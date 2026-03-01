@@ -47,12 +47,22 @@ export const getAppState = async (ctx: any) => {
 	)
 
 	if (jwt && isProtected) {
-		const payload: JwtPayload = await verify(jwt, JWT_SECRET)
-		const user = await db.getUserByEmail(payload.email)
-		if (!user) {
-			throw new UnauthorizedError()
+		try {
+			const payload: JwtPayload = await verify(jwt, JWT_SECRET)
+			const user = await db.getUserByEmail(payload.email)
+			if (!user) {
+				throw new UnauthorizedError()
+			}
+			dbUser = user
+		} catch (e: any) {
+			return new Response(null, {
+				status: 302,
+				headers: {
+					"Location": "/",
+					"Set-Cookie": `kayoerror=${e.message}; Path=/; Max-Age=5`,
+				},
+			})
 		}
-		dbUser = user
 	}
 
 	ctx.state.dbUser = dbUser

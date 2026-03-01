@@ -7,59 +7,35 @@ interface Props {
 export default function SchoolIllustration({ label, loading }: Props) {
 	return (
 		<svg
+			viewBox="20 40 240 220"
 			xmlns="http://www.w3.org/2000/svg"
-			viewBox="0 0 128 128"
-			class={`w-40 h-40 drop-shadow-lg transition-transform duration-300
+			class={`w-64 h-auto drop-shadow-lg transition-transform duration-300
 				${loading ? "opacity-60" : "group-hover:scale-105"}`}
 		>
 			{/* Base */}
-			<rect
-				x="12"
-				y="64"
-				width="104"
-				height="44"
-				rx="6"
-				class="fill-kayozen-light-surface dark:fill-kayozen-dark-surface
-				stroke-kayozen-light-primary dark:stroke-kayozen-dark-primary"
-				stroke-width="3"
-			/>
+			<rect x="50" y="120" width="180" height="120" rx="8" fill="#fae26a" />
 
 			{/* Roof */}
-			<path
-				d="M10 66 L64 34 L118 66 Z"
-				class="fill-kayozen-light-primary dark:fill-kayozen-dark-primary animate-school-glow"
-			/>
+			<polygon points="40,120 140,50 240,120" fill="#c52929" />
 
-			{/* Door */}
-			<rect
-				x="58"
-				y="82"
-				width="12"
-				height="26"
-				rx="2"
-				class="fill-kayozen-light-text/70 dark:fill-kayozen-dark-text/70"
-			/>
-
-			{/* Sign */}
-			<rect
-				x="50"
-				y="48"
-				width="28"
-				height="10"
-				rx="2"
-				class="fill-kayozen-light-surface dark:fill-kayozen-dark-surface
-				stroke-kayozen-light-primary dark:stroke-kayozen-dark-primary"
-				stroke-width="2"
-			/>
+			{/* Label */}
 			<text
-				x="64"
-				y="56"
+				x="140"
+				y="145"
 				text-anchor="middle"
-				class="fill-kayozen-light-primary dark:fill-kayozen-dark-primary"
-				style="font: 600 7px sans-serif;"
+				font-size="16"
+				font-weight="600"
+				fill="#42351e"
 			>
 				{label}
 			</text>
+
+			{/* Door */}
+			<rect x="120" y="170" width="40" height="70" rx="4" fill="#9b6e4a" />
+
+			{/* Windows */}
+			<rect x="80" y="150" width="30" height="30" rx="4" fill="#71abf1" />
+			<rect x="170" y="150" width="30" height="30" rx="4" fill="#71abf1" />
 		</svg>
 	)
 }

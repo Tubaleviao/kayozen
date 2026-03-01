@@ -14,8 +14,20 @@ export interface DbUser {
 	created_at: Date
 	roles?: DbRole[]
 	schools?: School[]
+	professors?: Professor[]
 	plan: KayoPlan
 	permission: KayoPermission
+}
+
+interface Professor {
+	name: string
+	email?: string
+	fictitious: boolean
+	subjects: Subject[]
+}
+
+export interface Subject {
+	name: string
 }
 
 export interface DbRole {
@@ -85,6 +97,7 @@ export interface KayozenState {
 	dbUser?: DbUser
 	currentRole?: string
 	currentSchool?: string
+	error?: string
 }
 
 export interface Plan {

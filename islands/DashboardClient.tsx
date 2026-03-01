@@ -1,6 +1,6 @@
 // islands/DashboardClient.tsx
 import { useState } from "preact/hooks"
-import DashboardSelectors from "./DashboardSelectors.tsx"
+import RoleSchoolSelectors from "./RoleSchoolSelectors.tsx"
 import RoleDashboardView from "./RoleDashboardView.tsx"
 import { KayozenState } from "../utils/interfaces.ts"
 import { defineTFunction } from "../utils/i18n.ts"
@@ -57,9 +57,10 @@ export default function DashboardClient({ state }: Props) {
 					</div>
 				</div>
 			)}
+
 			{(roles.length > 0 || schools.length > 0) && (
 				<div class="flex justify-start mb-6 md:absolute md:top-6 md:right-6 md:mb-0">
-					<DashboardSelectors
+					<RoleSchoolSelectors
 						roles={roles}
 						schools={schools}
 						selectedSchoolId={selectedSchoolId}
@@ -70,12 +71,14 @@ export default function DashboardClient({ state }: Props) {
 				</div>
 			)}
 
-			<RoleDashboardView
-				role={selectedRole}
-				school={schools.find((s) => s.id === selectedSchoolId)}
-				user={state?.dbUser}
-				lang={state.lang}
-			/>
+			{(roles.length > 0 && schools.length > 0) && (
+				<RoleDashboardView
+					role={selectedRole}
+					school={schools.find((s) => s.id === selectedSchoolId)}
+					user={state?.dbUser}
+					lang={state.lang}
+				/>
+			)}
 		</>
 	)
 }

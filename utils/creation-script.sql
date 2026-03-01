@@ -13,6 +13,7 @@ DROP TABLE IF EXISTS person_role CASCADE;
 DROP TABLE IF EXISTS person_school CASCADE;
 DROP TABLE IF EXISTS plans CASCADE;
 DROP TABLE IF EXISTS permissions CASCADE;
+DROP TABLE IF EXISTS professor_subject CASCADE;
 
 CREATE TABLE organization (
 id SERIAL PRIMARY key,
@@ -84,6 +85,13 @@ lecture INTEGER NOT NULL,
 employee VARCHAR(36) NOT NULL,
 FOREIGN KEY(lecture) REFERENCES lecture(id),
 FOREIGN KEY(employee ) REFERENCES people(id));
+
+create table professor_subject (
+id SERIAL PRIMARY key,
+professor_id VARCHAR(36) NOT NULL,
+subject_id integer NOT NULL,
+FOREIGN KEY(professor_id) REFERENCES people(id),
+FOREIGN KEY(subject_id) REFERENCES subject(id));
 
 CREATE TABLE student_lecture (
 id SERIAL PRIMARY key,

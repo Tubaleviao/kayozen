@@ -41,7 +41,7 @@ export default define.page(function App({ Component, state }) {
 				/>
 			</head>
 			<body class="bg-light-background dark:bg-dark-background text-light-text dark:text-dark-text">
-				<ToastHost />
+				<ToastHost initialFlash={state.error} />
 				<Component />
 			</body>
 		</html>

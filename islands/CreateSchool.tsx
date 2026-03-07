@@ -46,7 +46,7 @@ export default function CreateSchool({ state }: CreateSchoolProps) {
 			}
 
 			globalThis.toast?.(t("school.success_create"))
-			globalThis.location.href = `/schools/${data.id}`
+			globalThis.location.href = `/dashboard`
 		} catch (err) {
 			globalThis.toast?.(
 				err instanceof Error ? err.message : t("school.error_unexpected"),
@@ -71,7 +71,7 @@ export default function CreateSchool({ state }: CreateSchoolProps) {
 					disabled={loading}
 					class="w-full px-3 py-2 rounded border
 					bg-light-surface dark:bg-dark-surface
-					border-kayozen-light-muted dark:border-kayozen-dark-muted"
+					border-light-muted dark:border-dark-muted"
 				/>
 			</div>
 
@@ -88,7 +88,7 @@ export default function CreateSchool({ state }: CreateSchoolProps) {
 					placeholder="00.000.000/0000-00"
 					class="w-full px-3 py-2 rounded border
 					bg-light-surface dark:bg-dark-surface
-					border-kayozen-light-muted dark:border-kayozen-dark-muted"
+					border-light-muted dark:border-dark-muted"
 				/>
 			</div>
 
@@ -102,16 +102,9 @@ export default function CreateSchool({ state }: CreateSchoolProps) {
 				title={t("school.tooltip")}
 			>
 				<SchoolIllustration
-					label={t("school.label")}
+					label={t("school.click_hint")}
 					loading={loading}
 				/>
-
-				{!loading && (
-					<span class="absolute -bottom-8 left-1/2 -translate-x-1/2 text-sm
-					text-light-muted dark:text-dark-muted">
-						{t("school.click_hint")}
-					</span>
-				)}
 			</button>
 
 			{loading && (

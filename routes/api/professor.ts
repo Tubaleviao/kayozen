@@ -26,9 +26,15 @@ export const handler = { // needs to be protected in the future
 				[personId, makeUsername(), name, email, true],
 			)
 
-			await db.query(
-				"INSERT INTO subject (name) VALUES ($1)",
+			// Verify later if subject already exist
+			const subjectObj: any = await db.query(
+				"INSERT INTO subject (name) VALUES ($1) RETURNING id",
 				[subject],
+			)
+
+			await db.query(
+				"INSERT INTO professor_subject (professor_id, subject_id) VALUES ($1, $2)",
+				[personId, subjectObj.rows[0].id],
 			)
 
 			await db.query(

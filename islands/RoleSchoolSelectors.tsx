@@ -12,7 +12,7 @@ interface Props {
 	lang: SupportedLang
 }
 
-const DashboardSelectors: FunctionalComponent<Props> = (
+const RoleSchoolSelectors: FunctionalComponent<Props> = (
 	{
 		roles = [],
 		schools = [],
@@ -101,4 +101,4 @@ const DashboardSelectors: FunctionalComponent<Props> = (
 	)
 }
 
-export default DashboardSelectors
+export default RoleSchoolSelectors

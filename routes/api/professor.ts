@@ -41,6 +41,11 @@ export const handler = { // needs to be protected in the future
 				"INSERT INTO person_role (person, role) VALUES ($1, $2)",
 				[personId, "teacher"],
 			)
+
+			await db.query(
+				"INSERT INTO person_school (person, school) VALUES ($1, $2)",
+				[personId, schoolId],
+			)
 		} catch (err) {
 			if (String(err).includes("duplicate key")) {
 				return new Response(JSON.stringify({ error: "Email already exists" }), {

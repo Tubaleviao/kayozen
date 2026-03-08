@@ -11,16 +11,16 @@ interface Props {
 	lang: SupportedLang
 }
 
-export default function DashboardViewByRole({ role, school, user, lang }: Props) {
+export default function DashboardViewByRole(
+	{ role, school, user, lang }: Props,
+) {
 	const [professors, setProfessors] = useState(user?.professors || [])
 	if (!role) return null
 	const t = defineTFunction(lang)
 
 	if (role === "coordinator") {
 		return (
-
 			<section class="relative w-full max-w-[1000px] mx-auto mt-20 px-6 min-h-[520px]">
-
 				{/* PROFESSORS */}
 				<div class="
 					flex flex-wrap justify-center gap-3 mb-10
@@ -28,25 +28,24 @@ export default function DashboardViewByRole({ role, school, user, lang }: Props)
 					lg:max-w-[80%]
 				">
 					{professors?.map((p) => (
-					<div
-						key={p.email}
-						class="
+						<div
+							key={p.email}
+							class="
 						w-16 h-16 md:w-18 md:h-18
 						rounded-full flex items-center justify-center
 						bg-light-surface dark:bg-dark-surface
 						shadow-md text-sm
 						"
-					>
-						{p.name.split(" ")[0]}
-					</div>
+						>
+							{p.name.split(" ")[0]}
+						</div>
 					))}
 
 					<AddProfessor
 						school={school}
 						lang={lang}
 						onProfessorCreated={(prof) =>
-							setProfessors((prev) => [...prev, prof])
-						}
+							setProfessors((prev) => [...prev, prof])}
 					/>
 				</div>
 
@@ -59,7 +58,7 @@ export default function DashboardViewByRole({ role, school, user, lang }: Props)
 					<div class="text-[110px] md:text-[150px] leading-none">🏫</div>
 
 					<p class="mt-3 font-semibold text-lg text-center">
-					{school?.name}
+						{school?.name}
 					</p>
 				</div>
 
@@ -86,10 +85,7 @@ export default function DashboardViewByRole({ role, school, user, lang }: Props)
 				">
 					School Settings
 				</div>
-
 			</section>
-
-
 			// <section class="flex justify-center mt-12">
 
 			// 	<div class="relative w-full max-w-[900px] aspect-[2/1] flex items-center justify-center">

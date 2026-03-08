@@ -48,9 +48,14 @@ export default function NewProfessorModal(
 				msg.ok = data.success
 				msg.text = data.error
 
-				onProfessorCreated({name: professor.name?.toString()!, email: professor.email?.toString(), fictitious: professor.fictitious.toString() ? true : false})
-			} catch (e) {
+				onProfessorCreated({
+					name: professor.name?.toString()!,
+					email: professor.email?.toString(),
+					fictitious: professor.fictitious.toString() ? true : false,
+				})
+			} catch (e: any) {
 				console.error(e)
+				msg.text = e.message
 			} finally {
 				onClose(msg)
 			}

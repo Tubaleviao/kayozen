@@ -11,16 +11,13 @@ interface Props {
 	onProfessorCreated: (p: Professor) => void
 }
 
-export default function AddProfessor({ school, lang, onProfessorCreated }: Props) {
+export default function AddProfessor(
+	{ school, lang, onProfessorCreated }: Props,
+) {
 	const [open, setOpen] = useState(false)
 	const t = defineTFunction(lang)
 	return (
 		<>
-			{/* <SchoolAddTeacherIllustration
-				addProf={t("index.add_prof")}
-				schoolName={school?.name ?? "undefined"}
-				createProfessor={() => setOpen(true)}
-			/> */}
 			<AddProfessorNode
 				label={t("index.add_prof")}
 				onClick={() => setOpen(true)}

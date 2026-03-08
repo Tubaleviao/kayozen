@@ -1,6 +1,12 @@
 import { Pool, QueryObjectResult } from "@db/postgres"
 import { makeUsername } from "./make_username.ts"
-import { DbRole, DbUser, GooglePerson, School, Professor } from "./interfaces.ts"
+import {
+	DbRole,
+	DbUser,
+	GooglePerson,
+	Professor,
+	School,
+} from "./interfaces.ts"
 import { v1 } from "uuid"
 import { DB_TIMEOUT } from "./constants.ts"
 
@@ -96,7 +102,7 @@ export class DbGateway {
 					from people p, person_school ps, person_role pr, roles r 
 					WHERE ps.school = $1 and r.name = $2 and
 						p.id = ps.person and pr.role = r.name and pr.person = p.id`,
-				[schools.rows[0].id, 'teacher'],
+				[schools.rows[0].id, "teacher"],
 			)
 			user.professors = professors.rows
 

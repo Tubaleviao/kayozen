@@ -46,9 +46,9 @@ export const handler = { // needs to be protected in the future
 				"INSERT INTO person_school (person, school) VALUES ($1, $2)",
 				[personId, schoolId],
 			)
-		} catch (err) {
+		} catch (err: any) {
 			if (String(err).includes("duplicate key")) {
-				return new Response(JSON.stringify({ error: "Email already exists" }), {
+				return new Response(JSON.stringify({ error: err.message }), {
 					status: 400,
 				})
 			}
@@ -56,6 +56,7 @@ export const handler = { // needs to be protected in the future
 			return new Response(JSON.stringify({ error: "Internal error" }), {
 				status: 500,
 			})
+			// TODO: rollback if error happens
 		}
 
 		return new Response(JSON.stringify({ success: true }), {

@@ -1,15 +1,17 @@
 import { createElement } from "preact"
 import { defineTFunction, SupportedLang } from "../utils/i18n.ts"
+import { DbUser, Professor } from "../utils/interfaces.ts"
 
 interface Props {
 	open: boolean
 	onClose: (msg?: { ok: boolean; text: string }) => void
 	schoolId: string
 	lang: SupportedLang
+	onProfessorCreated: (p: Professor) => void
 }
 
 export default function NewProfessorModal(
-	{ open, onClose, schoolId, lang }: Props,
+	{ open, onClose, schoolId, lang, onProfessorCreated }: Props,
 ) {
 	if (!open) return null
 	const t = defineTFunction(lang)
@@ -45,8 +47,15 @@ export default function NewProfessorModal(
 
 				msg.ok = data.success
 				msg.text = data.error
-			} catch (e) {
+
+				onProfessorCreated({
+					name: professor.name?.toString()!,
+					email: professor.email?.toString(),
+					fictitious: professor.fictitious.toString() ? true : false,
+				})
+			} catch (e: any) {
 				console.error(e)
+				msg.text = e.message
 			} finally {
 				onClose(msg)
 			}

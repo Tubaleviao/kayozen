@@ -19,11 +19,10 @@ export interface DbUser {
 	permission: KayoPermission
 }
 
-interface Professor {
+export interface Professor {
 	name: string
 	email?: string
 	fictitious: boolean
-	subjects: Subject[]
 }
 
 export interface Subject {

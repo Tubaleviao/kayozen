@@ -19,45 +19,53 @@ export default function DashboardViewByRole({ role, school, user, lang }: Props)
 	if (role === "coordinator") {
 		return (
 
-			<section class="w-full max-w-[900px] mx-auto mt-12 px-4">
+			<section class="relative w-full max-w-[1000px] mx-auto mt-20 px-6 min-h-[520px]">
 
 				{/* PROFESSORS */}
 				<div class="
-					flex flex-wrap justify-center gap-3 mb-8
+					flex flex-wrap justify-center gap-3 mb-10
 					lg:absolute lg:top-0 lg:left-1/2 lg:-translate-x-1/2
+					lg:max-w-[80%]
 				">
 					{professors?.map((p) => (
-						<div
+					<div
 						key={p.email}
-						class="w-16 h-16 rounded-full flex items-center justify-center
-						bg-light-surface dark:bg-dark-surface shadow-md text-sm"
-						>
+						class="
+						w-16 h-16 md:w-18 md:h-18
+						rounded-full flex items-center justify-center
+						bg-light-surface dark:bg-dark-surface
+						shadow-md text-sm
+						"
+					>
 						{p.name.split(" ")[0]}
-						</div>
+					</div>
 					))}
 
-					{/* ADD PROFESSOR */}
 					<AddProfessor
 						school={school}
 						lang={lang}
 						onProfessorCreated={(prof) =>
-						setProfessors((prev) => [...prev, prof])
+							setProfessors((prev) => [...prev, prof])
 						}
 					/>
 				</div>
 
 				{/* CENTER SCHOOL */}
 				<div class="
-					flex flex-col items-center mb-8
-					lg:absolute lg:top-1/2 lg:left-1/2 lg:-translate-x-1/2 lg:-translate-y-1/2
+					flex flex-col items-center mb-10
+					lg:absolute lg:top-1/2 lg:left-1/2
+					lg:-translate-x-1/2 lg:-translate-y-1/2
 				">
-					🏫
-					<p>{school?.name}</p>
+					<div class="text-[110px] md:text-[150px] leading-none">🏫</div>
+
+					<p class="mt-3 font-semibold text-lg text-center">
+					{school?.name}
+					</p>
 				</div>
 
 				{/* CLASSES */}
 				<div class="
-					text-center mb-6
+					text-center mb-8
 					lg:absolute lg:left-0 lg:top-1/2 lg:-translate-y-1/2
 				">
 					Classes
@@ -65,7 +73,7 @@ export default function DashboardViewByRole({ role, school, user, lang }: Props)
 
 				{/* SCHEDULE */}
 				<div class="
-					text-center mb-6
+					text-center mb-8
 					lg:absolute lg:right-0 lg:top-1/2 lg:-translate-y-1/2
 				">
 					Schedule

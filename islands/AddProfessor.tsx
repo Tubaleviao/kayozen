@@ -1,5 +1,4 @@
 import { useState } from "preact/hooks"
-import SchoolAddTeacherIllustration from "../components/SchoolProfArt.tsx"
 import NewProfessorModal from "./NewProfessorModal.tsx"
 import { Professor, School } from "../utils/interfaces.ts"
 import { defineTFunction, SupportedLang } from "../utils/i18n.ts"

@@ -1,4 +1,3 @@
-// islands/RoleDashboardView.tsx
 import AddProfessor from "./AddProfessor.tsx"
 import { DbUser, School } from "../utils/interfaces.ts"
 import { defineTFunction, SupportedLang } from "../utils/i18n.ts"
@@ -86,56 +85,6 @@ export default function DashboardViewByRole(
 					School Settings
 				</div>
 			</section>
-			// <section class="flex justify-center mt-12">
-
-			// 	<div class="relative w-full max-w-[900px] aspect-[2/1] flex items-center justify-center">
-
-			// 		{/* CENTER — SCHOOL */}
-			// 		<div class="z-10 flex flex-col items-center">
-			// 			<div class="text-9xl">🏫</div>
-			// 			<p class="mt-5 font-semibold">{school?.name}</p>
-			// 		</div>
-
-			// 		{/* PROFESSORS ZONE (TOP) */}
-			// 		<div class="absolute top-0 left-1/2 -translate-x-1/2 flex gap-4 flex-wrap justify-center max-w-[80%]">
-			// 			{professors?.map((p) => (
-			// 				<div
-			// 				key={p.email}
-			// 				class="w-16 h-16 rounded-full flex items-center justify-center
-			// 				bg-light-surface dark:bg-dark-surface shadow-md text-sm"
-			// 				>
-			// 				{p.name.split(" ")[0]}
-			// 				</div>
-			// 			))}
-
-			// 			{/* ADD PROFESSOR */}
-			// 			<AddProfessor
-			// 				school={school}
-			// 				lang={lang}
-			// 				onProfessorCreated={(prof) =>
-			// 				setProfessors((prev) => [...prev, prof])
-			// 				}
-			// 			/>
-			// 		</div>
-
-			// 		{/* LEFT ZONE — FUTURE: CLASSES */}
-			// 		<div class="absolute left-0 top-1/2 -translate-y-1/2 text-sm opacity-70">
-			// 			Classes
-			// 		</div>
-
-			// 		{/* RIGHT ZONE — FUTURE: SCHEDULE */}
-			// 		<div class="absolute right-0 top-1/2 -translate-y-1/2 text-sm opacity-70">
-			// 			Schedule
-			// 		</div>
-
-			// 		{/* BOTTOM ZONE — FUTURE: SETTINGS */}
-			// 		<div class="absolute bottom-0 left-1/2 -translate-x-1/2 text-sm opacity-70">
-			// 			School Settings
-			// 		</div>
-
-			// 	</div>
-
-			// </section>
 		)
 	}
 

@@ -1,8 +1,9 @@
-import { db } from "../../utils/db.ts"
+//import { db } from "../../utils/db.ts"
 import client from "../../utils/google_oauth.ts"
 import { DbUser, GooglePerson } from "../../utils/interfaces.ts"
 import { getAuthHeader } from "../../utils/getAuthHeader.ts"
 import { logError, ValidationError } from "../../utils/errors.ts"
+import { getUserByEmail, saveUser } from "../../utils/db/index.ts"
 
 export const handler = async (req: Request): Promise<Response> => {
 	const url = new URL(req.url)
@@ -31,13 +32,13 @@ export const handler = async (req: Request): Promise<Response> => {
 		let email = personFields?.emailAddresses?.[0].value
 		let dbUser
 		try {
-			dbUser = await db.getUserByEmail(email)
+			dbUser = await getUserByEmail(email)
 		} catch (error: any) {
 			throw new ValidationError()
 		}
 		if (dbUser) user = dbUser
 		else {
-			const dbResponse = await db.saveUser(personFields)
+			const dbResponse = await saveUser(personFields)
 			if (dbResponse) user = dbResponse
 			else return new Response("Could not insert new user", { status: 500 })
 		}

@@ -11,6 +11,7 @@
 	"exclude": ["**/_fresh/*"],
 	"imports": {
 		"@/": "./",
+		"@cmd-johnson/oauth2-client": "jsr:@cmd-johnson/oauth2-client@^2.0.0",
 		"drizzle-kit": "npm:drizzle-kit@^0.31.9",
 		"drizzle-orm": "npm:drizzle-orm@^0.45.1",
 		"fresh": "jsr:@fresh/core@^2.2.0",

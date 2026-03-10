@@ -16,5 +16,5 @@ export const people = pgTable("people", {
 	fictitious: boolean("fictitious").notNull().default(false),
 	cpf: varchar("cpf", { length: 20 }),
 	googlePicture: varchar("google_picture"),
-	createdAt: timestamp("created_at").defaultNow(),
+	createdAt: timestamp("created_at").notNull().defaultNow(),
 })

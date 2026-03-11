@@ -1,11 +1,8 @@
-import { db } from "./index.ts"
+import { convertUser, db } from "./index.ts"
 import { people } from "./schema/people.ts"
 import { makeUsername } from "../make_username.ts"
 import { v1 } from "uuid"
 import { DbUser, GooglePerson } from "../interfaces.ts"
-import { eq } from "drizzle-orm"
-import { personRole } from "./schema/person-role.ts"
-import { schools } from "./schema/schools.ts"
 
 export async function saveUser(user: GooglePerson): Promise<DbUser | undefined> {
 	const email = user.emailAddresses?.[0].value
@@ -26,27 +23,16 @@ export async function saveUser(user: GooglePerson): Promise<DbUser | undefined> 
 
 export async function getUserByEmail(email: string): Promise<DbUser | undefined> {
 
-	const person = await db
-		.select()
-		.from(people)
-		.where(eq(people.email, email))
+	const person = await db.query.people.findMany({
+		where: { email },
+		with: {
+			roles: true,
+			schools: true
+		}
+	})
 
 	const user = person[0]
 	if (!user) return undefined
 
-	const roles = await db
-		.select()
-		.from(personRole)
-		.where(eq(personRole.person, user.id))
-
-	const userSchools = await db
-		.select()
-		.from(schools)
-		.where(eq(schools.ownerId, user.id))
-
-	return {
-		...user,
-		roles,
-		schools: userSchools,
-	}
+	return convertUser(user)
 }

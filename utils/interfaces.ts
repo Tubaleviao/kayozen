@@ -32,7 +32,7 @@ export interface Subject {
 }
 
 export interface DbRole {
-	id: string
+	id: string | number
 	role: Role
 	person: string
 	enrolled: string

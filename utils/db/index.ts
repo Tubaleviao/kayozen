@@ -1,14 +1,14 @@
-import postgres from "postgres"
 import { drizzle } from "drizzle-orm/postgres-js"
 import { DbUser, GooglePerson, KayoPermission, KayoPlan } from "../interfaces.ts"
 import { people } from "./schema/people.ts"
 import { eq } from "drizzle-orm"
 import { makeUsername } from "../make_username.ts"
 import { v1 } from "uuid"
+import { relations } from "./relations.ts"
 
-const client = postgres(Deno.env.get("DATABASE_URL")!)
+//const client = postgres(Deno.env.get("DATABASE_URL")!, {max: 3})
 
-export const db = drizzle(client)
+export const db = drizzle(Deno.env.get("DATABASE_URL")!, { relations })
 
 // Database Functions
 export const getUserByEmail = async (email: string): Promise<DbUser | undefined> => {
@@ -32,7 +32,7 @@ export const saveUser = async (user: GooglePerson): Promise<DbUser | undefined> 
     return convertUser(insertedUser[0])
 }
 
-const convertUser = (user: typeof people.$inferInsert): DbUser => {
+export const convertUser = (user: typeof people.$inferInsert): DbUser => {
     const dbUser: DbUser = {
         ...user, 
         plan: user.plan as KayoPlan,

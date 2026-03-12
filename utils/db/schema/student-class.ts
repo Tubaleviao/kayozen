@@ -1,4 +1,10 @@
-import { pgTable, serial, varchar, timestamp, integer } from "drizzle-orm/pg-core"
+import {
+	integer,
+	pgTable,
+	serial,
+	timestamp,
+	varchar,
+} from "drizzle-orm/pg-core"
 import { people } from "./people.ts"
 import { classTable } from "./class.ts"
 

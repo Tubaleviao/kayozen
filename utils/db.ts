@@ -98,8 +98,8 @@
 // 			user.schools = schools.rows
 
 // 			const professors = await client.queryObject<Professor>(
-// 				`SELECT p.name, p.email, p.fictitious 
-// 					from people p, person_school ps, person_role pr, roles r 
+// 				`SELECT p.name, p.email, p.fictitious
+// 					from people p, person_school ps, person_role pr, roles r
 // 					WHERE ps.school = $1 and r.name = $2 and
 // 						p.id = ps.person and pr.role = r.name and pr.person = p.id`,
 // 				[schools.rows[0].id, "teacher"],

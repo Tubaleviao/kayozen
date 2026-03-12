@@ -1,4 +1,4 @@
-import { pgTable, serial, varchar, integer } from "drizzle-orm/pg-core"
+import { integer, pgTable, serial, varchar } from "drizzle-orm/pg-core"
 import { people } from "./people.ts"
 import { subject } from "./subjects.ts"
 

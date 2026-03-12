@@ -1,5 +1,5 @@
 import { people } from "./people.ts"
-import { pgTable, serial, varchar, integer } from "drizzle-orm/pg-core"
+import { integer, pgTable, serial, varchar } from "drizzle-orm/pg-core"
 import { subject } from "./subjects.ts"
 
 export const professorSubject = pgTable("professor_subject", {

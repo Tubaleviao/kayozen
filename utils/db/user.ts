@@ -4,7 +4,9 @@ import { makeUsername } from "../make_username.ts"
 import { v1 } from "uuid"
 import { DbUser, GooglePerson } from "../interfaces.ts"
 
-export async function saveUser(user: GooglePerson): Promise<DbUser | undefined> {
+export async function saveUser(
+	user: GooglePerson,
+): Promise<DbUser | undefined> {
 	const email = user.emailAddresses?.[0].value
 	if (!email) return undefined
 
@@ -21,14 +23,15 @@ export async function saveUser(user: GooglePerson): Promise<DbUser | undefined> 
 	return getUserByEmail(email)
 }
 
-export async function getUserByEmail(email: string): Promise<DbUser | undefined> {
-
+export async function getUserByEmail(
+	email: string,
+): Promise<DbUser | undefined> {
 	const person = await db.query.people.findMany({
 		where: { email },
 		with: {
 			roles: true,
-			schools: true
-		}
+			schools: true,
+		},
 	})
 
 	const user = person[0]

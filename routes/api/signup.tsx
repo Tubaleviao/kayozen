@@ -1,10 +1,11 @@
 import { hashSync } from "bcrypt"
-import { db } from "../../utils/db.ts"
 import { makeUsername } from "../../utils/make_username.ts"
 import { v1 } from "uuid"
 import { getAuthHeader } from "../../utils/getAuthHeader.ts"
 import { ValidationError } from "../../utils/errors.ts"
 import { PageProps } from "fresh"
+import { db } from "../../utils/db/index.ts"
+import { people } from "../../utils/db/schema/people.ts"
 
 export const handler = {
 	async POST(ctx: PageProps) {
@@ -29,10 +30,8 @@ export const handler = {
 
 		console.log("Inserting into database")
 
-		await db.query(
-			"INSERT INTO people (id, username, name, email, password_hash) VALUES ($1, $2, $3, $4, $5)",
-			[v1.generate(), makeUsername(), name, email, passwordHash],
-		)
+		await db.insert(people).values({ id: v1.generate().toString(), username: makeUsername(), name, email, passwordHash })
+
 		const headers = await getAuthHeader(name, email)
 
 		return new Response(JSON.stringify({ success: true }), {

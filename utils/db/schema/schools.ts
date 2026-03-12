@@ -1,4 +1,4 @@
-import { pgTable, varchar, timestamp } from "drizzle-orm/pg-core"
+import { pgTable, timestamp, varchar } from "drizzle-orm/pg-core"
 import { people } from "./people.ts"
 
 export const schools = pgTable("schools", {

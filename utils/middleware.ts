@@ -1,11 +1,11 @@
 import { verify } from "djwt"
 import { JWT_SECRET, PROTECTED_ROUTES } from "./constants.ts"
-import { db } from "./db.ts"
 import { DbUser, JwtPayload } from "./interfaces.ts"
 import { logError, UnauthorizedError } from "./errors.ts"
 import { getCookieValue } from "./pureFunctions.ts"
 import { isLang, isTheme } from "./guards.ts"
 import { withErrorHandling } from "./errorHandling.ts"
+import { getUserByEmail } from "./db/index.ts"
 
 export async function getSessionUser(
 	req: Request,
@@ -22,7 +22,7 @@ export async function getSessionUser(
 
 		const payload: JwtPayload = await verify(jwt, JWT_SECRET)
 
-		dbUser = await db.getUserByEmail(payload.email)
+		dbUser = await getUserByEmail(payload.email)
 		if (!dbUser?.email) throw new Error("User was deleted")
 	} catch (error: any) {
 		logError(error)
@@ -49,7 +49,7 @@ export const getAppState = async (ctx: any) => {
 	if (jwt && isProtected) {
 		try {
 			const payload: JwtPayload = await verify(jwt, JWT_SECRET)
-			const user = await db.getUserByEmail(payload.email)
+			const user = await getUserByEmail(payload.email)
 			if (!user) {
 				throw new UnauthorizedError()
 			}

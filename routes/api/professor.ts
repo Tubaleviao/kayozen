@@ -1,8 +1,13 @@
-import { db } from "../../utils/db.ts"
 import { makeUsername } from "../../utils/make_username.ts"
 import { v1 } from "uuid"
-import { logError } from "../../utils/errors.ts"
 import { PageProps } from "fresh"
+import { people } from "../../utils/db/schema/people.ts"
+import { subject as subjectSchema } from "../../utils/db/schema/subjects.ts"
+import { db } from "../../utils/db/index.ts"
+import { eq } from "drizzle-orm"
+import { professorSubject } from "../../utils/db/schema/professor-subject.ts"
+import { personRole } from "../../utils/db/schema/person-role.ts"
+import { personSchool } from "../../utils/db/schema/person-school.ts"
 
 export const handler = { // needs to be protected in the future
 	async POST(ctx: PageProps) {
@@ -16,48 +21,34 @@ export const handler = { // needs to be protected in the future
 				status: 400,
 			})
 		}
+		const personId = v1.generate().toString()
 
-		try {
-			// insert person_role, person_school
-			const personId = v1.generate()
+		await db.insert(people).values({
+			id: personId,
+			username: makeUsername(),
+			name,
+			email,
+			fictitious: true,
+		})
 
-			await db.query(
-				"INSERT INTO people (id, username, name, email, fictitious) VALUES ($1, $2, $3, $4, $5)",
-				[personId, makeUsername(), name, email, true],
-			)
+		let existentSubject = await db.select({ id: subjectSchema.id }).from(
+			subjectSchema,
+		).where(eq(subjectSchema.name, subject))
 
-			// Verify later if subject already exist
-			const subjectObj: any = await db.query(
-				"INSERT INTO subject (name) VALUES ($1) RETURNING id",
-				[subject],
-			)
-
-			await db.query(
-				"INSERT INTO professor_subject (professor_id, subject_id) VALUES ($1, $2)",
-				[personId, subjectObj.rows[0].id],
-			)
-
-			await db.query(
-				"INSERT INTO person_role (person, role) VALUES ($1, $2)",
-				[personId, "teacher"],
-			)
-
-			await db.query(
-				"INSERT INTO person_school (person, school) VALUES ($1, $2)",
-				[personId, schoolId],
-			)
-		} catch (err: any) {
-			if (String(err).includes("duplicate key")) {
-				return new Response(JSON.stringify({ error: err.message }), {
-					status: 400,
-				})
-			}
-			logError(err)
-			return new Response(JSON.stringify({ error: "Internal error" }), {
-				status: 500,
-			})
-			// TODO: rollback if error happens
+		if (!existentSubject[0].id) {
+			existentSubject = await db.insert(subjectSchema).values([{
+				name: subject,
+			}]).returning()
 		}
+
+		await db.insert(professorSubject).values({
+			professorId: personId,
+			subjectId: existentSubject[0].id,
+		})
+
+		await db.insert(personRole).values({ person: personId, role: "teacher" })
+
+		await db.insert(personSchool).values({ person: personId, school: schoolId })
 
 		return new Response(JSON.stringify({ success: true }), {
 			status: 200,
@@ -65,6 +56,9 @@ export const handler = { // needs to be protected in the future
 	},
 
 	GET(_ctx: PageProps) {
-		return {}
+		return db.select().from(people).innerJoin(
+			personRole,
+			eq(people.id, personRole.person),
+		).where(eq(personRole.role, "teacher"))
 	},
 }

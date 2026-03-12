@@ -5,7 +5,7 @@ import { logError, UnauthorizedError } from "./errors.ts"
 import { getCookieValue } from "./pureFunctions.ts"
 import { isLang, isTheme } from "./guards.ts"
 import { withErrorHandling } from "./errorHandling.ts"
-import { getUserByEmail } from "./db/index.ts"
+import { getUserByEmail } from "./db/user.ts"
 
 export async function getSessionUser(
 	req: Request,

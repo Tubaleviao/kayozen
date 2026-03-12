@@ -22,7 +22,12 @@ export const handler = {
 		}
 		const schoolId = v1.generate().toString()
 
-		await db.insert(schools).values({ id: schoolId, name: schoolName, ownerId: userId, cnpj })
+		await db.insert(schools).values({
+			id: schoolId,
+			name: schoolName,
+			ownerId: userId,
+			cnpj,
+		})
 
 		await db.insert(personSchool).values({ school: schoolId, person: userId })
 

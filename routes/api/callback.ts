@@ -3,7 +3,7 @@ import client from "../../utils/google_oauth.ts"
 import { DbUser, GooglePerson } from "../../utils/interfaces.ts"
 import { getAuthHeader } from "../../utils/getAuthHeader.ts"
 import { logError, ValidationError } from "../../utils/errors.ts"
-import { getUserByEmail, saveUser } from "../../utils/db/index.ts"
+import { getUserByEmail, saveUser } from "../../utils/db/user.ts"
 
 export const handler = async (req: Request): Promise<Response> => {
 	const url = new URL(req.url)

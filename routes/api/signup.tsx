@@ -30,7 +30,13 @@ export const handler = {
 
 		console.log("Inserting into database")
 
-		await db.insert(people).values({ id: v1.generate().toString(), username: makeUsername(), name, email, passwordHash })
+		await db.insert(people).values({
+			id: v1.generate().toString(),
+			username: makeUsername(),
+			name,
+			email,
+			passwordHash,
+		})
 
 		const headers = await getAuthHeader(name, email)
 

@@ -12,8 +12,8 @@ export interface DbUser {
 	plan: KayoPlan
 	permission: KayoPermission
 	createdAt: Date
-	google_picture?: string | null
-	password_hash?: string | null
+	googlePicture?: string | null
+	passwordHash?: string | null
 	roles?: DbRole[] | null
 	schools?: School[] | null
 	professors?: Professor[] | null

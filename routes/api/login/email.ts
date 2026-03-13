@@ -14,7 +14,7 @@ export const handler = async (ctx: PageProps) => {
 
 	const isCorrect = await compareSync(
 		body.password,
-		user.password_hash || "",
+		user.passwordHash || "",
 	)
 
 	if (!isCorrect) {

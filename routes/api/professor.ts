@@ -35,7 +35,7 @@ export const handler = { // needs to be protected in the future
 			subjectSchema,
 		).where(eq(subjectSchema.name, subject))
 
-		if (!existentSubject[0].id) {
+		if (!existentSubject[0]?.id) {
 			existentSubject = await db.insert(subjectSchema).values([{
 				name: subject,
 			}]).returning()

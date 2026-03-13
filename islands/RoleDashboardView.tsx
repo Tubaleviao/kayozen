@@ -1,7 +1,8 @@
-import AddProfessor from "./AddProfessor.tsx"
 import { DbUser, School } from "../utils/interfaces.ts"
 import { defineTFunction, SupportedLang } from "../utils/i18n.ts"
 import { useState } from "preact/hooks"
+import AddProfessorNode from "../components/AddProfessorNode.tsx"
+import NewProfessorModal from "./NewProfessorModal.tsx"
 
 interface Props {
 	role?: string
@@ -14,6 +15,7 @@ export default function DashboardViewByRole(
 	{ role, school, user, lang }: Props,
 ) {
 	const [professors, setProfessors] = useState(user?.professors || [])
+	const [professorModalOpen, setProfessorModalOpen] = useState(false)
 	if (!role) return null
 	const t = defineTFunction(lang)
 
@@ -40,11 +42,9 @@ export default function DashboardViewByRole(
 						</div>
 					))}
 
-					<AddProfessor
-						school={school}
-						lang={lang}
-						onProfessorCreated={(prof) =>
-							setProfessors((prev) => [...prev, prof])}
+					<AddProfessorNode
+						label={t("index.add_prof")}
+						onClick={() => setProfessorModalOpen(true)}
 					/>
 				</div>
 
@@ -84,6 +84,27 @@ export default function DashboardViewByRole(
 				">
 					School Settings
 				</div>
+
+				{/* MODAL */}
+				<NewProfessorModal
+					open={professorModalOpen}
+					onClose={(msg) => {
+						setProfessorModalOpen(false)
+						console.log(msg)
+						if (msg?.ok) {
+							globalThis.toast?.(
+								msg.text ?? t("school.professor_created"),
+							)
+						} else {globalThis.toast?.(
+								msg?.text ?? t("school.error_unexpected"),
+								"error",
+							)}
+					}}
+					schoolId={school?.id ?? "undefined"}
+					lang={lang}
+					onProfessorCreated={(prof) =>
+						setProfessors((prev) => [...prev, prof])}
+				/>
 			</section>
 		)
 	}

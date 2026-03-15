@@ -17,16 +17,15 @@ export const handler = async (
 	if (!dbUser?.email) {
 		return new Response(null, { status: 302, headers: { "Location": "/" } })
 	}
-	return { school: dbResult[0] }
+	return { data: { school: dbResult[0] } }
 }
 
 interface Data {
 	school: School
-	state: KayozenState
 }
 
 export default function SchoolPage(
-	{ school, state }: Data,
+	{ data: { school }, state }: PageProps<Data, KayozenState>,
 ) {
 	return (
 		<div class="flex flex-col min-h-screen">

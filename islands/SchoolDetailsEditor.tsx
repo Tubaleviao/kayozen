@@ -13,12 +13,64 @@ export default function SchoolDetailsEditor({ school, lang }: Props) {
 	const [cnpj, setCnpj] = useState(school.cnpj)
 	const [loading, setLoading] = useState(false)
 
+	function formatCNPJ(value: string) {
+		const digits = value.replace(/\D/g, "").slice(0, 14)
+
+		return digits
+			.replace(/^(\d{2})(\d)/, "$1.$2")
+			.replace(/^(\d{2})\.(\d{3})(\d)/, "$1.$2.$3")
+			.replace(/\.(\d{3})(\d)/, ".$1/$2")
+			.replace(/(\d{4})(\d)/, "$1-$2")
+	}
+
+	function isValidCNPJ(cnpj: string): boolean {
+		const cleaned = cnpj.replace(/\D/g, "")
+		console.log(cleaned)
+
+		if (cleaned.length !== 14) return false
+		if (/^(\d)\1+$/.test(cleaned)) return false
+
+		const calcCheck = (base: string, factors: number[]) => {
+			let sum = 0
+			for (let i = 0; i < factors.length; i++) {
+				sum += Number(base[i]) * factors[i]
+			}
+			const result = sum % 11
+			return result < 2 ? 0 : 11 - result
+		}
+
+		const base = cleaned.slice(0, 12)
+
+		const digit1 = calcCheck(base, [5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2])
+		const digit2 = calcCheck(base + digit1, [
+			6,
+			5,
+			4,
+			3,
+			2,
+			9,
+			8,
+			7,
+			6,
+			5,
+			4,
+			3,
+			2,
+		])
+
+		return cleaned === base + digit1 + digit2
+	}
+
 	async function save() {
 		try {
+			if (!isValidCNPJ(cnpj ?? "")) {
+				globalThis.toast?.("Invalid CNPJ", "error")
+				return
+			}
 			setLoading(true)
 
-			const res = await fetch(`/schools/${school.id}`, {
-				method: "POST",
+			const res = await fetch(`/api/schools/${school.id}`, {
+				method: "PATCH",
 				headers: { "Content-Type": "application/json" },
 				body: JSON.stringify({ name, cnpj }),
 			})
@@ -58,8 +110,15 @@ export default function SchoolDetailsEditor({ school, lang }: Props) {
 						{t("school.form.cnpj")}
 					</label>
 					<input
+						inputmode="numeric"
+						pattern="\d*"
+						placeholder="00.000.000/0000-00"
+						maxlength={18}
 						value={cnpj}
-						onInput={(e) => setCnpj((e.target as HTMLInputElement).value)}
+						onInput={(e) => {
+							const value = formatCNPJ((e.target as HTMLInputElement).value)
+							setCnpj(value)
+						}}
 						class="w-full mt-1 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-kayozen-light-primary dark:bg-gray-700 dark:border-gray-600 dark:text-white"
 					/>
 				</div>

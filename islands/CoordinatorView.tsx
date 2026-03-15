@@ -41,7 +41,6 @@ export default function CoordinatorView(
 				<AddProfessorNode
 					label={t("index.add_prof")}
 					onClick={() => {
-						console.log("ae")
 						setProfessorModalOpen(true)
 					}}
 				/>
@@ -89,7 +88,6 @@ export default function CoordinatorView(
 				open={professorModalOpen}
 				onClose={(msg) => {
 					setProfessorModalOpen(false)
-					console.log(msg)
 					if (msg?.ok) {
 						globalThis.toast?.(
 							msg.text ?? t("school.professor_created"),

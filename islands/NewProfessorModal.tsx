@@ -1,6 +1,6 @@
 import { createElement } from "preact"
 import { defineTFunction, SupportedLang } from "../utils/i18n.ts"
-import { DbUser, Professor } from "../utils/interfaces.ts"
+import { Professor } from "../utils/interfaces.ts"
 
 interface Props {
 	open: boolean
@@ -62,7 +62,7 @@ export default function NewProfessorModal(
 		}
 
 	return (
-		<div class="fixed inset-0 z-50 flex items-center justify-center">
+		<div class="fixed inset-0 z-50 flex items-center justify-center p-6">
 			{/* Backdrop */}
 			<div
 				class="absolute inset-0 bg-black/40"
@@ -70,8 +70,10 @@ export default function NewProfessorModal(
 			/>
 
 			{/* Modal */}
-			<div class="relative z-10 w-full max-w-md rounded-2xl  bg-light-background dark:bg-dark-background p-6 shadow-xl text-light-text dark:text-dark-text">
-				<h2 class="mb-4 text-lg font-semibold">
+			<div class="relative z-10 w-full max-w-md md:max-w-lg lg:max-w-xl
+rounded-2xl bg-light-background dark:bg-dark-background
+p-6 md:p-8 shadow-xl text-light-text dark:text-dark-text">
+				<h2 class="text-lg font-semibold border-b pb-3 mb-4">
 					{t("dashboard.modal.new_professor")}
 				</h2>
 
@@ -83,20 +85,20 @@ export default function NewProfessorModal(
 						name="name"
 						required
 						placeholder={t("dashboard.modal.name")}
-						class="w-full rounded-lg border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+						class="md:col-span-2 w-full rounded-lg border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
 					/>
 
 					<input
 						name="email"
 						type="email"
 						placeholder={t("dashboard.modal.optional_email")}
-						class="w-full rounded-lg border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+						class="md:col-span-2 w-full rounded-lg border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
 					/>
 
 					<input
 						name="subject"
 						placeholder={t("dashboard.modal.subject")}
-						class="w-full rounded-lg border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+						class="md:col-span-2 w-full rounded-lg border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
 					/>
 
 					<div class="flex items-center mb-4">

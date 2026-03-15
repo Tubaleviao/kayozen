@@ -1,12 +1,12 @@
-import { db } from "../../../utils/db.ts"
 import { compareSync } from "bcrypt"
 import { getAuthHeader } from "../../../utils/getAuthHeader.ts"
 import { PageProps } from "fresh"
 import { ValidationError } from "../../../utils/errors.ts"
+import { getUserByEmail } from "../../../utils/db/user.ts"
 
 export const handler = async (ctx: PageProps) => {
 	const body = await ctx.req.json()
-	const user = await db.getUserByEmail(body.email)
+	const user = await getUserByEmail(body.email)
 
 	if (!user) {
 		throw new ValidationError("User not found")
@@ -14,7 +14,7 @@ export const handler = async (ctx: PageProps) => {
 
 	const isCorrect = await compareSync(
 		body.password,
-		user.password_hash || "",
+		user.passwordHash || "",
 	)
 
 	if (!isCorrect) {

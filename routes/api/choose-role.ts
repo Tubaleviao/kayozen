@@ -1,11 +1,14 @@
 import { PageProps } from "fresh"
-import { db } from "../../utils/db.ts"
+
 import { UnauthorizedError } from "../../utils/errors.ts"
+import { db } from "../../utils/db/index.ts"
+import { personRole } from "../../utils/db/schema/person-role.ts"
+import { Role } from "../../utils/constants.ts"
 
 export const handler = {
 	async POST(ctx: PageProps) {
 		const form = await ctx.req.formData()
-		const role = form.get("role")?.toString()
+		const role = form.get("role")?.toString() || "coordinator"
 		const userId = form.get("id")?.toString()
 
 		if (!userId) {
@@ -16,13 +19,7 @@ export const handler = {
 			throw new UnauthorizedError("User has no role defined.")
 		}
 
-		await db.query(
-			"insert into person_role (person, role, enrolled) values ($1, $2, NOW())",
-			[
-				userId,
-				role,
-			],
-		)
+		await db.insert(personRole).values([{ person: userId, role: role as Role }])
 
 		return Response.redirect(new URL("/dashboard", ctx.req.url))
 	},

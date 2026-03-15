@@ -31,7 +31,7 @@ export default function LoginBox({ lang }: { lang: SupportedLang }) {
 			const data = await res.json()
 
 			if (!res.ok) {
-				globalThis.toast?.(t("login.error"), "error")
+				globalThis.toast?.(t("login.error", { e: data.error.message }), "error")
 				console.error(data.error)
 				setLoading(false)
 				return

@@ -1,7 +1,9 @@
 import { v1 } from "uuid"
-import { db } from "../../../utils/db.ts"
 import { PageProps } from "fresh"
 import { UnauthorizedError } from "../../../utils/errors.ts"
+import { schools } from "../../../utils/db/schema/schools.ts"
+import { db } from "../../../utils/db/index.ts"
+import { personSchool } from "../../../utils/db/schema/person-school.ts"
 
 export const handler = {
 	async POST(ctx: PageProps) {
@@ -18,17 +20,16 @@ export const handler = {
 				headers: { "Content-Type": "application/json" },
 			})
 		}
+		const schoolId = v1.generate().toString()
 
-		const schoolId = v1.generate()
-		await db.query(
-			"INSERT INTO schools (id, name, owner_id, cnpj) VALUES ($1, $2, $3, $4)",
-			[schoolId, schoolName, userId, cnpj],
-		)
+		await db.insert(schools).values({
+			id: schoolId,
+			name: schoolName,
+			ownerId: userId,
+			cnpj,
+		})
 
-		await db.query(
-			"INSERT INTO person_school (school, person) VALUES ($1, $2)",
-			[schoolId, userId],
-		)
+		await db.insert(personSchool).values({ school: schoolId, person: userId })
 
 		return new Response(JSON.stringify({ id: schoolId }), {
 			status: 200,

@@ -107,7 +107,7 @@ export default function Navbar(
 									class="flex items-center gap-2 focus:outline-none"
 								>
 									<img
-										src={user.google_picture ?? "/user.svg"}
+										src={user.googlePicture ?? "/user.svg"}
 										alt={user.name}
 										title={user.name}
 										class="w-8 h-8 rounded-full border border-gray-300 dark:border-gray-600"
@@ -160,7 +160,7 @@ export default function Navbar(
 								? (
 									<a href="/profile" class="flex items-center gap-2">
 										<img
-											src={user.google_picture ?? "/user.svg"}
+											src={user.googlePicture ?? "/user.svg"}
 											alt={user.name}
 											class="w-8 h-8 rounded-full border border-gray-300 dark:border-gray-600"
 										/>

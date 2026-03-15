@@ -9,14 +9,16 @@ export interface DbUser {
 	name: string
 	username: string
 	email: string
-	password_hash?: string
-	google_picture?: string
-	created_at: Date
-	roles?: DbRole[]
-	schools?: School[]
-	professors?: Professor[]
 	plan: KayoPlan
 	permission: KayoPermission
+	createdAt: Date
+	googlePicture?: string | null
+	passwordHash?: string | null
+	roles?: DbRole[] | null
+	schools?: School[] | null
+	professors?: Professor[] | null
+	fictitious?: boolean | null
+	cpf?: string | null
 }
 
 export interface Professor {
@@ -30,7 +32,7 @@ export interface Subject {
 }
 
 export interface DbRole {
-	id: string
+	id: string | number
 	role: Role
 	person: string
 	enrolled: string

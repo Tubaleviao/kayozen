@@ -9,7 +9,7 @@ export default function AddProfessorNode({ label, onClick }: Props) {
 			type="button"
 			onClick={onClick}
 			class="
-        group
+        group z-20 relative
         w-16 h-16
         rounded-full
         flex items-center justify-center

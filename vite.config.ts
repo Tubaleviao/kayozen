@@ -7,4 +7,7 @@ export default defineConfig({
 		fresh({ serverEntry: "./main.tsx" }),
 		tailwindcss(),
 	],
+	server: {
+		port: 3000
+	}
 })

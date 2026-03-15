@@ -1,4 +1,3 @@
-//import { db } from "../../utils/db.ts"
 import client from "../../utils/google_oauth.ts"
 import { DbUser, GooglePerson } from "../../utils/interfaces.ts"
 import { getAuthHeader } from "../../utils/getAuthHeader.ts"
@@ -29,7 +28,7 @@ export const handler = async (req: Request): Promise<Response> => {
 	let user: DbUser
 
 	if (personFields && personFields?.emailAddresses?.[0].value) {
-		let email = personFields?.emailAddresses?.[0].value
+		const email = personFields?.emailAddresses?.[0].value
 		let dbUser
 		try {
 			dbUser = await getUserByEmail(email)

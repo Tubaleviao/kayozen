@@ -6,6 +6,6 @@ export default {
 	out: "./utils/db/migrations",
 	dialect: "postgresql",
 	dbCredentials: {
-		url: getEnvVar("DATABASE_URL")!,
+		url: getEnvVar("DATABASE_URL") || "",
 	},
 } satisfies Config

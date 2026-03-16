@@ -1,3 +1,5 @@
+import process from "node:process"
+
 export function getEnvVar(name: string): string | undefined {
 	// Deno runtime
 	if (typeof globalThis.Deno !== "undefined") {

@@ -22,28 +22,34 @@ export default function CoordinatorView(
 		<section class="relative w-full max-w-[1000px] mx-auto mt-20 px-6 min-h-[520px]">
 			{/* PROFESSORS */}
 			<div class="
-                flex flex-wrap justify-center gap-3 mb-10
-            lg:absolute lg:top-0 lg:left-1/2 lg:-translate-x-1/2
-            lg:max-w-[80%]
-            ">
-				{professors?.map((p) => (
-					<div
-						key={p.name + "-p"}
-						class="w-16 h-16 md:w-18 md:h-18
-      rounded-full flex items-center justify-center
-      bg-light-surface dark:bg-dark-surface
-      shadow-md text-sm"
-					>
-						{p.name.split(" ")[0]}
-					</div>
-				))}
+					flex flex-col items-center gap-3 mb-10
+					lg:absolute lg:top-0 lg:left-1/2 lg:-translate-x-1/2
+					lg:max-w-[80%]
+				">
+				<p class="text-sm font-semibold text-center">
+					Professors
+				</p>
 
-				<AddProfessorNode
-					label={t("index.add_prof")}
-					onClick={() => {
-						setProfessorModalOpen(true)
-					}}
-				/>
+				<div class="flex flex-wrap justify-center gap-3">
+					{professors?.map((p) => (
+						<div
+							key={p.name + "-p"}
+							class="w-16 h-16 md:w-18 md:h-18
+								rounded-full flex items-center justify-center
+								bg-light-surface dark:bg-dark-surface
+								shadow-md text-sm"
+						>
+							{p.name.split(" ")[0]}
+						</div>
+					))}
+
+					<AddProfessorNode
+						label={t("index.add_prof")}
+						onClick={() => {
+							setProfessorModalOpen(true)
+						}}
+					/>
+				</div>
 			</div>
 
 			{/* CENTER SCHOOL */}

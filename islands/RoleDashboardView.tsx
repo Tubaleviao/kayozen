@@ -1,6 +1,6 @@
 import { School } from "../utils/interfaces.ts"
 import { defineTFunction, SupportedLang } from "../utils/i18n.ts"
-import CoordinatorView from "./CoordinatorView.tsx"
+import CoordinatorView from "./coordinator/CoordinatorView.tsx"
 
 interface Props {
 	role?: string

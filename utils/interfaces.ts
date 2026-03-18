@@ -124,3 +124,21 @@ export interface PagBankPlan {
 }
 
 export type KayoPermission = "admin" | "user"
+
+export interface KayoClass {
+	id: number
+	name: string
+}
+
+export interface KayoSubject {
+	id: number
+	name: string
+}
+
+export interface KayoLecture {
+	id: number
+	subject: number
+	school: string
+	startTime: string | Date
+	endTime: string | Date
+}

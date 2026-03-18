@@ -1,6 +1,6 @@
 import { createElement } from "preact"
-import { defineTFunction, SupportedLang } from "../utils/i18n.ts"
-import { Professor } from "../utils/interfaces.ts"
+import { defineTFunction, SupportedLang } from "../../utils/i18n.ts"
+import { Professor } from "../../utils/interfaces.ts"
 
 interface Props {
 	open: boolean

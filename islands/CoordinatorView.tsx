@@ -81,12 +81,12 @@ export default function CoordinatorView(
 				Schedule
 			</div>
 
-			{/* SETTINGS */}
+			{/* WEEK TIMELINE */}
 			<div class="
                 text-center pointer-events-none
                 lg:absolute lg:bottom-0 lg:left-1/2 lg:-translate-x-1/2
             ">
-				School Settings
+				Week Timeline
 			</div>
 
 			{/* MODAL */}

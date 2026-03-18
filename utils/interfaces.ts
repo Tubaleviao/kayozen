@@ -2,6 +2,19 @@ import { Payload } from "djwt"
 import { SupportedLang, TranslationKey } from "./i18n.ts"
 import { Role } from "./constants.ts"
 
+export interface WeekTimelineLecture {
+	id: number
+	startTime: number
+	endTime: number
+	hasTeacher: boolean
+	hasStudent: boolean
+}
+
+export interface WeekTimelineDay {
+	dateMs: number
+	lectures: WeekTimelineLecture[]
+}
+
 export type Theme = "light" | "dark"
 
 export interface DbUser {

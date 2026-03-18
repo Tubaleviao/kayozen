@@ -10,11 +10,6 @@ export interface WeekTimelineLecture {
 	hasStudent: boolean
 }
 
-export interface WeekTimelineDay {
-	dateMs: number
-	lectures: WeekTimelineLecture[]
-}
-
 export type Theme = "light" | "dark"
 
 export interface DbUser {
@@ -29,14 +24,13 @@ export interface DbUser {
 	passwordHash?: string | null
 	roles?: DbRole[] | null
 	schools?: School[] | null
-	professors?: Professor[] | null
 	fictitious?: boolean | null
 	cpf?: string | null
 }
 
 export interface Professor {
 	name: string
-	email?: string
+	email?: string | null
 	fictitious: boolean
 }
 
@@ -56,6 +50,7 @@ export interface School {
 	cnpj?: string
 	name: string
 	created_at?: string
+	professors?: Professor[] | null
 }
 
 export interface GooglePerson {

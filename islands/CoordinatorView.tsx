@@ -1,25 +1,29 @@
-import { useState } from "preact/hooks"
-import { Professor, School } from "../utils/interfaces.ts"
+import { useEffect, useState } from "preact/hooks"
+import { School } from "../utils/interfaces.ts"
 import AddProfessorNode from "../components/AddProfessorNode.tsx"
 import NewProfessorModal from "./NewProfessorModal.tsx"
 import { defineTFunction, SupportedLang } from "../utils/i18n.ts"
+import WeekTimeline from "../components/WeekTimeline.tsx"
 
 interface Props {
-	userProfessors?: Professor[] | null
 	lang: SupportedLang
 	school?: School
 }
 
 export default function CoordinatorView(
-	{ userProfessors, lang, school }: Props,
+	{ lang, school }: Props,
 ) {
-	const [professors, setProfessors] = useState(userProfessors || [])
+	const [professors, setProfessors] = useState(school?.professors || [])
 	const [professorModalOpen, setProfessorModalOpen] = useState(false)
+
+	useEffect(() => {
+		setProfessors(school?.professors || [])
+	}, [school])
 
 	const t = defineTFunction(lang)
 
 	return (
-		<section class="relative w-full max-w-[1000px] mx-auto mt-20 px-6 min-h-[520px]">
+		<section class="relative w-full max-w-250 mx-auto mt-20 px-6 min-h-130">
 			{/* PROFESSORS */}
 			<div class="
 					flex flex-col items-center gap-3 mb-10
@@ -87,6 +91,7 @@ export default function CoordinatorView(
                 lg:absolute lg:bottom-0 lg:left-1/2 lg:-translate-x-1/2
             ">
 				Week Timeline
+				<WeekTimeline lectures={[]} />
 			</div>
 
 			{/* MODAL */}

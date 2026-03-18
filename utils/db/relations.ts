@@ -40,11 +40,11 @@ export const relations = defineRelations(
 		},
 
 		lecture: {
-			subject: r.one.subject({
+			subjectRel: r.one.subject({
 				from: r.lecture.subject,
 				to: r.subject.id,
 			}),
-			school: r.one.schools({
+			schoolRel: r.one.schools({
 				from: r.lecture.school,
 				to: r.schools.id,
 			}),
@@ -59,22 +59,22 @@ export const relations = defineRelations(
 		},
 
 		lectureEmployee: {
-			lecture: r.one.lecture({
+			lectureRel: r.one.lecture({
 				from: r.lectureEmployee.lecture,
 				to: r.lecture.id,
 			}),
-			employee: r.one.people({
+			employeeRel: r.one.people({
 				from: r.lectureEmployee.employee,
 				to: r.people.id,
 			}),
 		},
 
 		studentLecture: {
-			lecture: r.one.lecture({
+			lectureRel: r.one.lecture({
 				from: r.studentLecture.lecture,
 				to: r.lecture.id,
 			}),
-			student: r.one.people({
+			studentRel: r.one.people({
 				from: r.studentLecture.student,
 				to: r.people.id,
 			}),

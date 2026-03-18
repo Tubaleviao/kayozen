@@ -1,9 +1,9 @@
 import { DAY_MS } from "../utils/constants.ts"
-import { WeekTimelineDay, WeekTimelineLecture } from "../utils/interfaces.ts"
+import { WeekTimelineLecture } from "../utils/interfaces.ts"
 
 interface Props {
 	day?: number
-	days: WeekTimelineDay[]
+	lectures: WeekTimelineLecture[]
 }
 
 function getStartOfWeek(dayMs: number) {
@@ -46,18 +46,18 @@ function getLectureColorClass(
 	return "bg-green-200"
 }
 
-export default function WeekTimeline(
-	{ day = Date.now(), days }: Props,
-) {
-	const startOfWeek = getStartOfWeek(day)
+export default function WeekTimeline({ lectures }: Props) {
+	const referenceDay = lectures[0]?.startTime ?? Date.now()
+	const startOfWeek = getStartOfWeek(referenceDay)
 
 	const weekDays = Array.from({ length: 7 }, (_, index) => {
 		const dateMs = startOfWeek + index * DAY_MS
-		const existingDay = days.find((item) => isSameDay(item.dateMs, dateMs))
 
 		return {
 			dateMs,
-			lectures: existingDay?.lectures ?? [],
+			lectures: lectures.filter((lecture) =>
+				isSameDay(lecture.startTime, dateMs)
+			),
 		}
 	})
 
@@ -79,7 +79,9 @@ export default function WeekTimeline(
 							{weekDay.lectures.map((lecture) => (
 								<div
 									key={lecture.id}
-									class={`rounded-md p-2 text-xs text-black ${getLectureColorClass(lecture)}`}
+									class={`rounded-md p-2 text-xs text-black ${
+										getLectureColorClass(lecture)
+									}`}
 								>
 									<div>
 										{new Date(lecture.startTime).toLocaleTimeString("en-US", {
@@ -94,12 +96,6 @@ export default function WeekTimeline(
 									</div>
 								</div>
 							))}
-
-							{weekDay.lectures.length === 0 && (
-								<div class="rounded-md bg-white/10 p-2 text-xs text-white/40">
-									-
-								</div>
-							)}
 						</div>
 					</div>
 				)

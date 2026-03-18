@@ -25,7 +25,6 @@ export default function SchoolDetailsEditor({ school, lang }: Props) {
 
 	function isValidCNPJ(cnpj: string): boolean {
 		const cleaned = cnpj.replace(/\D/g, "")
-		console.log(cleaned)
 
 		if (cleaned.length !== 14) return false
 		if (/^(\d)\1+$/.test(cleaned)) return false

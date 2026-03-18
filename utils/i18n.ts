@@ -84,6 +84,7 @@ export const translations = {
 				title: "500 - Erro Interno do Servidor",
 				description:
 					"Algo deu errado do nosso lado. Por favor, tente novamente em alguns instantes.",
+				back: "Voltar para a página inicial",
 			},
 		},
 		nav: {
@@ -267,6 +268,7 @@ export const translations = {
 				title: "500 - Server Error",
 				description:
 					"Something went wrong on our side. Please try again in a few moments.",
+				back: "Go back home",
 			},
 		},
 		nav: {

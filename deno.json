@@ -6,7 +6,8 @@
 		"build": "vite build",
 		"start": "deno serve -A _fresh/server.js",
 		"update": "deno run -A -r jsr:@fresh/update .",
-		"migrate": "drizzle-kit up && drizzle-kit migrate"
+		"migrate": "drizzle-kit up && drizzle-kit migrate",
+		"build-db": "drizzle-kit push"
 	},
 	"lint": { "rules": { "tags": ["fresh", "recommended"] } },
 	"exclude": ["**/_fresh/*"],

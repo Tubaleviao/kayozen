@@ -6,7 +6,7 @@ import { ValidationError } from "../../utils/errors.ts"
 
 export const handler = {
 	async POST(ctx: Context<KayozenState>): Promise<Response> {
-        const body = await ctx.req.json()
+		const body = await ctx.req.json()
 		const subject = Number(body?.subject)
 		const school = body?.school?.toString().trim()
 		const startTimeRaw = body?.startTime?.toString()

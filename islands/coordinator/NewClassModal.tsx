@@ -14,56 +14,53 @@ export default function NewClassModal(
 	if (!open) return null
 	const t = defineTFunction(lang)
 
-	const createClassCall = () =>
-		async (e: Event) => {
-			e.preventDefault()
+	const createClassCall = () => async (e: Event) => {
+		e.preventDefault()
 
-			const form = e.currentTarget as HTMLFormElement
-			const data = new FormData(form)
-			const msg = { ok: false, text: "" }
+		const form = e.currentTarget as HTMLFormElement
+		const data = new FormData(form)
+		const msg = { ok: false, text: "" }
 
-			const newClass = {
-				name: data.get("name"),
-			}
-
-			try {
-				const res = await fetch("/api/class", {
-					method: "POST",
-					headers: { "Content-Type": "application/json" },
-					body: JSON.stringify(newClass),
-				})
-
-				if (!res.ok) {
-					const data = await res.json().catch(() => ({}))
-					throw new Error(data?.error ?? "Error creating class")
-				}
-
-				const data = await res.json()
-
-				msg.ok = data.success
-				msg.text = data.error ?? "Class created"
-
-				onClassCreated({
-					id: data.id,
-					name: newClass.name?.toString() ?? "",
-				})
-			} catch (e: any) {
-				console.error(e)
-				msg.text = e.message
-			} finally {
-				onClose(msg)
-			}
+		const newClass = {
+			name: data.get("name"),
 		}
+
+		try {
+			const res = await fetch("/api/class", {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify(newClass),
+			})
+
+			if (!res.ok) {
+				const data = await res.json().catch(() => ({}))
+				throw new Error(data?.error ?? "Error creating class")
+			}
+
+			const data = await res.json()
+
+			msg.ok = data.success
+			msg.text = data.error ?? "Class created"
+
+			onClassCreated({
+				id: data.id,
+				name: newClass.name?.toString() ?? "",
+			})
+		} catch (e: any) {
+			console.error(e)
+			msg.text = e.message
+		} finally {
+			onClose(msg)
+		}
+	}
 
 	return (
 		<div class="fixed inset-0 z-50 flex items-center justify-center p-6">
 			<div class="absolute inset-0 bg-black/40" onClick={() => onClose()} />
 
-			<div
-				class="relative z-10 w-full max-w-md md:max-w-lg lg:max-w-xl
+			<div class="relative z-10 w-full max-w-md md:max-w-lg lg:max-w-xl
 					rounded-2xl bg-light-background dark:bg-dark-background
-					p-6 md:p-8 shadow-xl text-light-text dark:text-dark-text"
-			>
+					p-6 md:p-8 shadow-xl text-light-text dark:text-dark-text">
 				<h2 class="text-lg font-semibold border-b pb-3 mb-4">
 					New class
 				</h2>

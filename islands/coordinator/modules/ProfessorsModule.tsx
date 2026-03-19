@@ -1,8 +1,8 @@
 import { useEffect, useState } from "preact/hooks"
-import AddProfessorNode from "../../components/AddProfessorNode.tsx"
-import NewProfessorModal from "./NewProfessorModal.tsx"
-import { defineTFunction, SupportedLang } from "../../utils/i18n.ts"
-import { Professor } from "../../utils/interfaces.ts"
+import AddProfessorNode from "../../../components/AddProfessorNode.tsx"
+import NewProfessorModal from "../modals/NewProfessorModal.tsx"
+import { defineTFunction, SupportedLang } from "../../../utils/i18n.ts"
+import { Professor } from "../../../utils/interfaces.ts"
 
 interface Props {
 	lang: SupportedLang

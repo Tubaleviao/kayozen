@@ -1,9 +1,9 @@
 {
 	"version": "8",
 	"dialect": "postgres",
-	"id": "44d1010e-1926-475c-98a3-dec86484d97c",
+	"id": "1d9dafcc-9776-4953-821d-ae2d14e74023",
 	"prevIds": [
-		"00000000-0000-0000-0000-000000000000"
+		"42fc4543-027b-4f7f-9b3e-3a970a7d6f0a"
 	],
 	"ddl": [
 		{
@@ -880,6 +880,19 @@
 			"table": "subject"
 		},
 		{
+			"type": "varchar(36)",
+			"typeSchema": null,
+			"notNull": false,
+			"dimensions": 0,
+			"default": null,
+			"generated": null,
+			"identity": null,
+			"name": "school",
+			"entityType": "columns",
+			"schema": "public",
+			"table": "subject"
+		},
+		{
 			"nameExplicit": false,
 			"columns": [
 				"school"
@@ -1184,6 +1197,23 @@
 			"entityType": "fks",
 			"schema": "public",
 			"table": "student_lecture"
+		},
+		{
+			"nameExplicit": false,
+			"columns": [
+				"school"
+			],
+			"schemaTo": "public",
+			"tableTo": "schools",
+			"columnsTo": [
+				"id"
+			],
+			"onUpdate": "NO ACTION",
+			"onDelete": "NO ACTION",
+			"name": "subject_school_schools_id_fkey",
+			"entityType": "fks",
+			"schema": "public",
+			"table": "subject"
 		},
 		{
 			"columns": [

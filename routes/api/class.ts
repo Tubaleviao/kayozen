@@ -8,6 +8,7 @@ export const handler = {
 	async POST(ctx: Context<KayozenState>): Promise<Response> {
 		const body = await ctx.req.json()
 		const name = body?.name?.toString().trim()
+		const schoolId = body?.schoolId?.toString().trim()
 
 		if (!name) {
 			throw new ValidationError("Class name is required", {
@@ -17,6 +18,7 @@ export const handler = {
 
 		const result = await db.insert(classTable).values({
 			name,
+			school: schoolId,
 		}).returning()
 
 		const createdClass = result?.[0]

@@ -1,9 +1,4 @@
-import {
-	pgTable,
-	serial,
-	timestamp,
-	varchar,
-} from "drizzle-orm/pg-core"
+import { pgTable, serial, timestamp, varchar } from "drizzle-orm/pg-core"
 import { people } from "./people.ts"
 import { roles, rolesEnum } from "./roles.ts"
 

@@ -1,59 +1,52 @@
-import { defineTFunction, SupportedLang } from "../../utils/i18n.ts"
-import { KayoLecture, KayoSubject } from "../../utils/interfaces.ts"
+import { defineTFunction, SupportedLang } from "../../../utils/i18n.ts"
+import { KayoClass } from "../../../utils/interfaces.ts"
 
-interface NewLectureModalProps {
+interface NewClassModalProps {
 	open: boolean
 	onClose: (msg?: { ok: boolean; text: string }) => void
-	schoolId: string
 	lang: SupportedLang
-	subjects: KayoSubject[]
-	onLectureCreated: (lecture: KayoLecture) => void
+	onClassCreated: (newClass: KayoClass) => void
+	schoolId: string
 }
 
-export default function NewLectureModal(
-	{ open, onClose, schoolId, lang, subjects, onLectureCreated }:
-		NewLectureModalProps,
+export default function NewClassModal(
+	{ open, onClose, lang, onClassCreated, schoolId }: NewClassModalProps,
 ) {
 	if (!open) return null
 	const t = defineTFunction(lang)
 
-	const createLectureCall = () => async (e: Event) => {
+	const createClassCall = () => async (e: Event) => {
 		e.preventDefault()
 
 		const form = e.currentTarget as HTMLFormElement
 		const data = new FormData(form)
 		const msg = { ok: false, text: "" }
 
-		const newLecture = {
-			subject: Number(data.get("subject")),
-			school: schoolId,
-			startTime: data.get("startTime"),
-			endTime: data.get("endTime"),
+		const newClass = {
+			name: data.get("name"),
+			schoolId,
 		}
 
 		try {
-			const res = await fetch("/api/lecture", {
+			const res = await fetch("/api/class", {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
-				body: JSON.stringify(newLecture),
+				body: JSON.stringify(newClass),
 			})
 
 			if (!res.ok) {
 				const data = await res.json().catch(() => ({}))
-				throw new Error(data?.error ?? "Error creating lecture")
+				throw new Error(data?.error ?? "Error creating class")
 			}
 
 			const data = await res.json()
 
 			msg.ok = data.success
-			msg.text = data.error ?? "Lecture created"
+			msg.text = data.error ?? "Class created"
 
-			onLectureCreated({
+			onClassCreated({
 				id: data.id,
-				subject: newLecture.subject,
-				school: newLecture.school,
-				startTime: newLecture.startTime?.toString() ?? "",
-				endTime: newLecture.endTime?.toString() ?? "",
+				name: newClass.name?.toString() ?? "",
 			})
 		} catch (e: any) {
 			console.error(e)
@@ -71,34 +64,14 @@ export default function NewLectureModal(
 					rounded-2xl bg-light-background dark:bg-dark-background
 					p-6 md:p-8 shadow-xl text-light-text dark:text-dark-text">
 				<h2 class="text-lg font-semibold border-b pb-3 mb-4">
-					New lecture
+					New class
 				</h2>
 
-				<form class="space-y-4" onSubmit={createLectureCall()}>
-					<select
-						name="subject"
-						required
-						class="w-full rounded-lg border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-					>
-						<option value="">Select subject</option>
-						{subjects.map((subject) => (
-							<option key={subject.id} value={subject.id}>
-								{subject.name}
-							</option>
-						))}
-					</select>
-
+				<form class="space-y-4" onSubmit={createClassCall()}>
 					<input
-						name="startTime"
-						type="datetime-local"
+						name="name"
 						required
-						class="w-full rounded-lg border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-					/>
-
-					<input
-						name="endTime"
-						type="datetime-local"
-						required
+						placeholder={t("dashboard.modal.name")}
 						class="w-full rounded-lg border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
 					/>
 

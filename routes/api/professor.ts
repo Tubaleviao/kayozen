@@ -38,6 +38,7 @@ export const handler = { // needs to be protected in the future
 		if (!existentSubject[0]?.id) {
 			existentSubject = await db.insert(subjectSchema).values([{
 				name: subject,
+				school: schoolId,
 			}]).returning()
 		}
 

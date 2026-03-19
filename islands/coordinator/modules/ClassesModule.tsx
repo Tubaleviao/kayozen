@@ -1,8 +1,8 @@
 import { useEffect, useState } from "preact/hooks"
-import AddProfessorNode from "../../components/AddProfessorNode.tsx"
-import NewClassModal from "../coordinator/NewClassModal.tsx"
-import { KayoClass } from "../../utils/interfaces.ts"
-import { defineTFunction, SupportedLang } from "../../utils/i18n.ts"
+import AddProfessorNode from "../../../components/AddProfessorNode.tsx"
+import NewClassModal from "../modals/NewClassModal.tsx"
+import { KayoClass } from "../../../utils/interfaces.ts"
+import { defineTFunction, SupportedLang } from "../../../utils/i18n.ts"
 
 interface Props {
 	lang: SupportedLang
@@ -27,30 +27,20 @@ export default function ClassesModule({ lang, schoolId }: Props) {
 				return
 			}
 
-			try {
-				setLoading(true)
-				setError(null)
+			setError(null)
 
-				const response = await fetch(`/api/schools/${schoolId}/classes`)
+			const response = await fetch(`/api/schools/${schoolId}/classes`)
 
-				if (!response.ok) {
-					throw new Error("Failed to load classes")
-				}
-
-				const data = await response.json()
-
-				if (!cancelled) {
-					setClasses(data.classes ?? [])
-				}
-			} catch (_error) {
-				if (!cancelled) {
-					setError(t("school.error_unexpected"))
-				}
-			} finally {
-				if (!cancelled) {
-					setLoading(false)
-				}
+			if (!response.ok) {
+				throw new Error("Failed to load classes")
 			}
+
+			const data = await response.json()
+
+			if (!cancelled) {
+				setClasses(data.classes ?? [])
+			}
+			setLoading(false)
 		}
 
 		loadClasses()
@@ -115,6 +105,7 @@ export default function ClassesModule({ lang, schoolId }: Props) {
 					}
 				}}
 				lang={lang}
+				schoolId={schoolId}
 				onClassCreated={(newClass) => setClasses((prev) => [...prev, newClass])}
 			/>
 		</>

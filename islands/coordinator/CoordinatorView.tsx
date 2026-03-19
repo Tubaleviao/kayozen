@@ -1,9 +1,9 @@
 import { School } from "../../utils/interfaces.ts"
 import { SupportedLang } from "../../utils/i18n.ts"
 import WeekTimeline from "../../components/WeekTimeline.tsx"
-import ProfessorsModule from "./ProfessorsModule.tsx"
-import ClassesModule from "./ClassesModule.tsx"
-import LecturesModule from "./LecturesModule.tsx"
+import ProfessorsModule from "./modules/ProfessorsModule.tsx"
+import ClassesModule from "./modules/ClassesModule.tsx"
+import LecturesModule from "./modules/LecturesModule.tsx"
 
 interface Props {
 	lang: SupportedLang

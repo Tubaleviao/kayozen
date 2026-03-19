@@ -2,7 +2,6 @@ import { eq } from "drizzle-orm"
 import { db } from "./index.ts"
 import { KayoClass } from "../interfaces.ts"
 import { subject } from "./schema/subjects.ts"
-import { lecture } from "./schema/lecture.ts"
 
 export async function getSchoolSubjects(
 	schoolId: string,
@@ -13,8 +12,7 @@ export async function getSchoolSubjects(
 			name: subject.name,
 		})
 		.from(subject)
-		.innerJoin(lecture, eq(lecture.subject, subject.id))
-		.where(eq(lecture.school, schoolId))
+		.where(eq(subject.school, schoolId))
 
 	return classes
 }

@@ -2,11 +2,11 @@ import { PageProps } from "fresh"
 import Footer from "../../islands/Footer.tsx"
 import Navbar from "../../islands/Navbar.tsx"
 import SchoolDetailsEditor from "../../islands/SchoolDetailsEditor.tsx"
-import { KayozenState, School } from "../../utils/interfaces.ts"
-import { getSessionUser } from "../../utils/middleware.ts"
-import { schools } from "../../utils/db/schema/schools.ts"
+import { KayozenState, School } from "@/utils/interfaces.ts"
+import { getSessionUser } from "@/utils/middleware.ts"
+import { schools } from "@/utils/db/schema/schools.ts"
 import { eq } from "drizzle-orm"
-import { db } from "../../utils/db/index.ts"
+import { db } from "@/utils/db/index.ts"
 
 export const handler = async (
 	ctx: PageProps,

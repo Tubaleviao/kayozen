@@ -2,10 +2,10 @@ import { Context } from "fresh"
 import Footer from "../islands/Footer.tsx"
 import Main from "../islands/Main.tsx"
 import Navbar from "../islands/Navbar.tsx"
-import { define } from "../utils.ts"
-import { KayozenState } from "../utils/interfaces.ts"
-import { getCookieValue } from "../utils/pureFunctions.ts"
-import { getSessionUser } from "../utils/middleware.ts"
+import { define } from "@/utils.ts"
+import { KayozenState } from "@/utils/interfaces.ts"
+import { getCookieValue } from "@/utils/pureFunctions.ts"
+import { getSessionUser } from "@/utils/middleware.ts"
 
 export const handler = {
 	async GET(ctx: Context<KayozenState>) {

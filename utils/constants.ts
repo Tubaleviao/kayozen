@@ -14,3 +14,5 @@ export const PROTECTED_ROUTES = [
 ]
 
 export const DB_TIMEOUT = 3000
+
+export const DAY_MS = 24 * 60 * 60 * 1000

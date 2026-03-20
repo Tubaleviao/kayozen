@@ -1,5 +1,5 @@
 import { PageProps } from "fresh"
-import client from "../../../utils/google_oauth.ts"
+import client from "@/utils/google_oauth.ts"
 
 export const handler = async (_ctx: PageProps) => {
 	const { uri, codeVerifier } = await client.code.getAuthorizationUri()

@@ -1,5 +1,5 @@
-import { defineTFunction, SupportedLang } from "../utils/i18n.ts"
-import { Plan } from "../utils/interfaces.ts"
+import { defineTFunction } from "@/utils/i18n/index.ts"
+import { Plan, SupportedLang } from "@/utils/interfaces.ts"
 
 export default function Plans(
 	{ plans, lang }: { plans: Plan[]; lang: SupportedLang },

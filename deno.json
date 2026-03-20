@@ -5,15 +5,20 @@
 		"dev": "vite",
 		"build": "vite build",
 		"start": "deno serve -A _fresh/server.js",
-		"update": "deno run -A -r jsr:@fresh/update ."
+		"update": "deno run -A -r jsr:@fresh/update .",
+		"migrate": "drizzle-kit up && drizzle-kit migrate",
+		"db-generate": "drizzle-kit generate",
+		"db-migrate": "drizzle-kit migrate",
+		"db-check": "drizzle-kit check",
+		"db-studio": "drizzle-kit studio"
 	},
 	"lint": { "rules": { "tags": ["fresh", "recommended"] } },
 	"exclude": ["**/_fresh/*"],
 	"imports": {
 		"@/": "./",
 		"@cmd-johnson/oauth2-client": "jsr:@cmd-johnson/oauth2-client@^2.0.0",
-		"drizzle-kit": "npm:drizzle-kit@^1.0.0-beta.16-ea816b6",
-		"drizzle-orm": "npm:drizzle-orm@^1.0.0-beta.16-ea816b6",
+		"drizzle-kit": "npm:drizzle-kit@^1.0.0-beta.18-7eb39f0",
+		"drizzle-orm": "npm:drizzle-orm@^1.0.0-beta.18-7eb39f0",
 		"fresh": "jsr:@fresh/core@^2.2.0",
 		"postgres": "npm:postgres@^3.4.8",
 		"preact": "npm:preact@^10.27.2",

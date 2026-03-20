@@ -1,5 +1,5 @@
 import ToastHost from "../islands/ToastHost.tsx"
-import { define } from "../utils.ts"
+import { define } from "@/utils.ts"
 
 export default define.page(function App({ Component, state }) {
 	const theme = state.theme

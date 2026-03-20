@@ -2,7 +2,7 @@ import { PageProps } from "fresh"
 import Footer from "../islands/Footer.tsx"
 import Navbar from "../islands/Navbar.tsx"
 import SignupBox from "../islands/SignupBox.tsx"
-import { KayozenState } from "../utils/interfaces.ts"
+import { KayozenState } from "@/utils/interfaces.ts"
 
 export const handler = {
 	GET(_ctx: PageProps<KayozenState>) {

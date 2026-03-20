@@ -1,4 +1,5 @@
-import { defineTFunction, SupportedLang } from "../utils/i18n.ts"
+import { defineTFunction } from "@/utils/i18n/index.ts"
+import { SupportedLang } from "../utils/interfaces.ts"
 
 export default function Error404Island({ lang }: { lang: SupportedLang }) {
 	const t = defineTFunction(lang)

@@ -1,7 +1,7 @@
 import { JSX } from "preact"
-import { defineTFunction } from "../utils/i18n.ts"
-import { KayozenState } from "../utils/interfaces.ts"
-import { setCookie } from "../utils/cookies.ts"
+import { defineTFunction } from "@/utils/i18n/index.ts"
+import { KayozenState } from "@/utils/interfaces.ts"
+import { setCookie } from "@/utils/cookies.ts"
 
 interface FooterProps {
 	state: KayozenState

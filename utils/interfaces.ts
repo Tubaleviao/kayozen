@@ -1,6 +1,19 @@
 import { Payload } from "djwt"
-import { SupportedLang, TranslationKey } from "./i18n.ts"
+import { TranslationKey } from "./i18n/index.ts"
 import { Role } from "./constants.ts"
+
+export type SupportedLang = "pt" | "en"
+export interface WeekTimelineLecture {
+	id: number
+	startTime: number
+	endTime: number
+	hasTeacher: boolean
+	hasStudent: boolean
+}
+
+export interface WeekApiResponse {
+	lectures: WeekTimelineLecture[]
+}
 
 export type Theme = "light" | "dark"
 
@@ -16,14 +29,13 @@ export interface DbUser {
 	passwordHash?: string | null
 	roles?: DbRole[] | null
 	schools?: School[] | null
-	professors?: Professor[] | null
 	fictitious?: boolean | null
 	cpf?: string | null
 }
 
 export interface Professor {
 	name: string
-	email?: string
+	email?: string | null
 	fictitious: boolean
 }
 
@@ -43,6 +55,7 @@ export interface School {
 	cnpj?: string
 	name: string
 	created_at?: string
+	professors?: Professor[] | null
 }
 
 export interface GooglePerson {
@@ -116,3 +129,21 @@ export interface PagBankPlan {
 }
 
 export type KayoPermission = "admin" | "user"
+
+export interface KayoClass {
+	id: number
+	name: string
+}
+
+export interface KayoSubject {
+	id: number
+	name: string
+}
+
+export interface KayoLecture {
+	id: number
+	subject: number
+	school: string
+	startTime: string | Date
+	endTime: string | Date
+}

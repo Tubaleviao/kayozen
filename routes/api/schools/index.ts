@@ -1,9 +1,9 @@
 import { v1 } from "uuid"
 import { PageProps } from "fresh"
-import { UnauthorizedError } from "../../../utils/errors.ts"
-import { schools } from "../../../utils/db/schema/schools.ts"
-import { db } from "../../../utils/db/index.ts"
-import { personSchool } from "../../../utils/db/schema/person-school.ts"
+import { UnauthorizedError } from "@/utils/errors.ts"
+import { schools } from "@/utils/db/schema/schools.ts"
+import { db } from "@/utils/db/index.ts"
+import { personSchool } from "@/utils/db/schema/person-school.ts"
 
 export const handler = {
 	async POST(ctx: PageProps) {

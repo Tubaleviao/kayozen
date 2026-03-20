@@ -1,9 +1,9 @@
 // islands/DashboardClient.tsx
-import { useState } from "preact/hooks"
+import { useEffect, useState } from "preact/hooks"
 import RoleSchoolSelectors from "./RoleSchoolSelectors.tsx"
 import DashboardViewByRole from "./RoleDashboardView.tsx"
-import { KayozenState } from "../utils/interfaces.ts"
-import { defineTFunction } from "../utils/i18n.ts"
+import { KayozenState } from "@/utils/interfaces.ts"
+import { defineTFunction } from "@/utils/i18n/index.ts"
 
 interface Props {
 	state: KayozenState
@@ -75,7 +75,6 @@ export default function DashboardClient({ state }: Props) {
 				<DashboardViewByRole
 					role={selectedRole}
 					school={schools.find((s) => s.id === selectedSchoolId)}
-					user={state?.dbUser}
 					lang={state.lang}
 				/>
 			)}

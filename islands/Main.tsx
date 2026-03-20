@@ -1,6 +1,6 @@
 import { Button } from "../components/Button.tsx"
-import { KayozenState } from "../utils/interfaces.ts"
-import { defineTFunction } from "../utils/i18n.ts"
+import { KayozenState } from "@/utils/interfaces.ts"
+import { defineTFunction } from "@/utils/i18n/index.ts"
 
 interface MainProps {
 	state: KayozenState

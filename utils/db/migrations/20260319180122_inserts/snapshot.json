@@ -1,0 +1,1427 @@
+{
+	"id": "42fc4543-027b-4f7f-9b3e-3a970a7d6f0a",
+	"prevIds": [
+		"44d1010e-1926-475c-98a3-dec86484d97c"
+	],
+	"version": "8",
+	"dialect": "postgres",
+	"ddl": [
+		{
+			"values": [
+				"student",
+				"teacher",
+				"coordinator"
+			],
+			"name": "roles_type",
+			"entityType": "enums",
+			"schema": "public"
+		},
+		{
+			"isRlsEnabled": false,
+			"name": "class",
+			"entityType": "tables",
+			"schema": "public"
+		},
+		{
+			"isRlsEnabled": false,
+			"name": "lecture_employee",
+			"entityType": "tables",
+			"schema": "public"
+		},
+		{
+			"isRlsEnabled": false,
+			"name": "lecture",
+			"entityType": "tables",
+			"schema": "public"
+		},
+		{
+			"isRlsEnabled": false,
+			"name": "org_school",
+			"entityType": "tables",
+			"schema": "public"
+		},
+		{
+			"isRlsEnabled": false,
+			"name": "organization",
+			"entityType": "tables",
+			"schema": "public"
+		},
+		{
+			"isRlsEnabled": false,
+			"name": "people",
+			"entityType": "tables",
+			"schema": "public"
+		},
+		{
+			"isRlsEnabled": false,
+			"name": "permissions",
+			"entityType": "tables",
+			"schema": "public"
+		},
+		{
+			"isRlsEnabled": false,
+			"name": "person_role",
+			"entityType": "tables",
+			"schema": "public"
+		},
+		{
+			"isRlsEnabled": false,
+			"name": "person_school",
+			"entityType": "tables",
+			"schema": "public"
+		},
+		{
+			"isRlsEnabled": false,
+			"name": "plans",
+			"entityType": "tables",
+			"schema": "public"
+		},
+		{
+			"isRlsEnabled": false,
+			"name": "professor_subject",
+			"entityType": "tables",
+			"schema": "public"
+		},
+		{
+			"isRlsEnabled": false,
+			"name": "roles",
+			"entityType": "tables",
+			"schema": "public"
+		},
+		{
+			"isRlsEnabled": false,
+			"name": "schools",
+			"entityType": "tables",
+			"schema": "public"
+		},
+		{
+			"isRlsEnabled": false,
+			"name": "student_class",
+			"entityType": "tables",
+			"schema": "public"
+		},
+		{
+			"isRlsEnabled": false,
+			"name": "student_lecture",
+			"entityType": "tables",
+			"schema": "public"
+		},
+		{
+			"isRlsEnabled": false,
+			"name": "subject",
+			"entityType": "tables",
+			"schema": "public"
+		},
+		{
+			"type": "serial",
+			"typeSchema": null,
+			"notNull": true,
+			"dimensions": 0,
+			"default": null,
+			"generated": null,
+			"identity": null,
+			"name": "id",
+			"entityType": "columns",
+			"schema": "public",
+			"table": "class"
+		},
+		{
+			"type": "varchar(50)",
+			"typeSchema": null,
+			"notNull": true,
+			"dimensions": 0,
+			"default": null,
+			"generated": null,
+			"identity": null,
+			"name": "name",
+			"entityType": "columns",
+			"schema": "public",
+			"table": "class"
+		},
+		{
+			"type": "varchar(36)",
+			"typeSchema": null,
+			"notNull": false,
+			"dimensions": 0,
+			"default": null,
+			"generated": null,
+			"identity": null,
+			"name": "school",
+			"entityType": "columns",
+			"schema": "public",
+			"table": "class"
+		},
+		{
+			"type": "serial",
+			"typeSchema": null,
+			"notNull": true,
+			"dimensions": 0,
+			"default": null,
+			"generated": null,
+			"identity": null,
+			"name": "id",
+			"entityType": "columns",
+			"schema": "public",
+			"table": "lecture_employee"
+		},
+		{
+			"type": "integer",
+			"typeSchema": null,
+			"notNull": true,
+			"dimensions": 0,
+			"default": null,
+			"generated": null,
+			"identity": null,
+			"name": "lecture",
+			"entityType": "columns",
+			"schema": "public",
+			"table": "lecture_employee"
+		},
+		{
+			"type": "varchar(36)",
+			"typeSchema": null,
+			"notNull": true,
+			"dimensions": 0,
+			"default": null,
+			"generated": null,
+			"identity": null,
+			"name": "employee",
+			"entityType": "columns",
+			"schema": "public",
+			"table": "lecture_employee"
+		},
+		{
+			"type": "serial",
+			"typeSchema": null,
+			"notNull": true,
+			"dimensions": 0,
+			"default": null,
+			"generated": null,
+			"identity": null,
+			"name": "id",
+			"entityType": "columns",
+			"schema": "public",
+			"table": "lecture"
+		},
+		{
+			"type": "integer",
+			"typeSchema": null,
+			"notNull": true,
+			"dimensions": 0,
+			"default": null,
+			"generated": null,
+			"identity": null,
+			"name": "subject",
+			"entityType": "columns",
+			"schema": "public",
+			"table": "lecture"
+		},
+		{
+			"type": "varchar(36)",
+			"typeSchema": null,
+			"notNull": true,
+			"dimensions": 0,
+			"default": null,
+			"generated": null,
+			"identity": null,
+			"name": "school",
+			"entityType": "columns",
+			"schema": "public",
+			"table": "lecture"
+		},
+		{
+			"type": "timestamp",
+			"typeSchema": null,
+			"notNull": true,
+			"dimensions": 0,
+			"default": null,
+			"generated": null,
+			"identity": null,
+			"name": "start_time",
+			"entityType": "columns",
+			"schema": "public",
+			"table": "lecture"
+		},
+		{
+			"type": "timestamp",
+			"typeSchema": null,
+			"notNull": true,
+			"dimensions": 0,
+			"default": null,
+			"generated": null,
+			"identity": null,
+			"name": "end_time",
+			"entityType": "columns",
+			"schema": "public",
+			"table": "lecture"
+		},
+		{
+			"type": "serial",
+			"typeSchema": null,
+			"notNull": true,
+			"dimensions": 0,
+			"default": null,
+			"generated": null,
+			"identity": null,
+			"name": "id",
+			"entityType": "columns",
+			"schema": "public",
+			"table": "org_school"
+		},
+		{
+			"type": "integer",
+			"typeSchema": null,
+			"notNull": true,
+			"dimensions": 0,
+			"default": null,
+			"generated": null,
+			"identity": null,
+			"name": "organization",
+			"entityType": "columns",
+			"schema": "public",
+			"table": "org_school"
+		},
+		{
+			"type": "varchar(36)",
+			"typeSchema": null,
+			"notNull": true,
+			"dimensions": 0,
+			"default": null,
+			"generated": null,
+			"identity": null,
+			"name": "school",
+			"entityType": "columns",
+			"schema": "public",
+			"table": "org_school"
+		},
+		{
+			"type": "serial",
+			"typeSchema": null,
+			"notNull": true,
+			"dimensions": 0,
+			"default": null,
+			"generated": null,
+			"identity": null,
+			"name": "id",
+			"entityType": "columns",
+			"schema": "public",
+			"table": "organization"
+		},
+		{
+			"type": "varchar(250)",
+			"typeSchema": null,
+			"notNull": true,
+			"dimensions": 0,
+			"default": null,
+			"generated": null,
+			"identity": null,
+			"name": "name",
+			"entityType": "columns",
+			"schema": "public",
+			"table": "organization"
+		},
+		{
+			"type": "varchar(36)",
+			"typeSchema": null,
+			"notNull": true,
+			"dimensions": 0,
+			"default": null,
+			"generated": null,
+			"identity": null,
+			"name": "id",
+			"entityType": "columns",
+			"schema": "public",
+			"table": "people"
+		},
+		{
+			"type": "varchar(250)",
+			"typeSchema": null,
+			"notNull": true,
+			"dimensions": 0,
+			"default": null,
+			"generated": null,
+			"identity": null,
+			"name": "name",
+			"entityType": "columns",
+			"schema": "public",
+			"table": "people"
+		},
+		{
+			"type": "varchar(50)",
+			"typeSchema": null,
+			"notNull": true,
+			"dimensions": 0,
+			"default": null,
+			"generated": null,
+			"identity": null,
+			"name": "username",
+			"entityType": "columns",
+			"schema": "public",
+			"table": "people"
+		},
+		{
+			"type": "varchar(100)",
+			"typeSchema": null,
+			"notNull": false,
+			"dimensions": 0,
+			"default": null,
+			"generated": null,
+			"identity": null,
+			"name": "email",
+			"entityType": "columns",
+			"schema": "public",
+			"table": "people"
+		},
+		{
+			"type": "varchar",
+			"typeSchema": null,
+			"notNull": false,
+			"dimensions": 0,
+			"default": null,
+			"generated": null,
+			"identity": null,
+			"name": "password_hash",
+			"entityType": "columns",
+			"schema": "public",
+			"table": "people"
+		},
+		{
+			"type": "varchar(50)",
+			"typeSchema": null,
+			"notNull": true,
+			"dimensions": 0,
+			"default": "'free'",
+			"generated": null,
+			"identity": null,
+			"name": "plan",
+			"entityType": "columns",
+			"schema": "public",
+			"table": "people"
+		},
+		{
+			"type": "varchar(100)",
+			"typeSchema": null,
+			"notNull": true,
+			"dimensions": 0,
+			"default": "'user'",
+			"generated": null,
+			"identity": null,
+			"name": "permission",
+			"entityType": "columns",
+			"schema": "public",
+			"table": "people"
+		},
+		{
+			"type": "boolean",
+			"typeSchema": null,
+			"notNull": true,
+			"dimensions": 0,
+			"default": "false",
+			"generated": null,
+			"identity": null,
+			"name": "fictitious",
+			"entityType": "columns",
+			"schema": "public",
+			"table": "people"
+		},
+		{
+			"type": "varchar(20)",
+			"typeSchema": null,
+			"notNull": false,
+			"dimensions": 0,
+			"default": null,
+			"generated": null,
+			"identity": null,
+			"name": "cpf",
+			"entityType": "columns",
+			"schema": "public",
+			"table": "people"
+		},
+		{
+			"type": "varchar",
+			"typeSchema": null,
+			"notNull": false,
+			"dimensions": 0,
+			"default": null,
+			"generated": null,
+			"identity": null,
+			"name": "google_picture",
+			"entityType": "columns",
+			"schema": "public",
+			"table": "people"
+		},
+		{
+			"type": "timestamp",
+			"typeSchema": null,
+			"notNull": true,
+			"dimensions": 0,
+			"default": "now()",
+			"generated": null,
+			"identity": null,
+			"name": "created_at",
+			"entityType": "columns",
+			"schema": "public",
+			"table": "people"
+		},
+		{
+			"type": "serial",
+			"typeSchema": null,
+			"notNull": true,
+			"dimensions": 0,
+			"default": null,
+			"generated": null,
+			"identity": null,
+			"name": "id",
+			"entityType": "columns",
+			"schema": "public",
+			"table": "permissions"
+		},
+		{
+			"type": "varchar(100)",
+			"typeSchema": null,
+			"notNull": true,
+			"dimensions": 0,
+			"default": null,
+			"generated": null,
+			"identity": null,
+			"name": "name",
+			"entityType": "columns",
+			"schema": "public",
+			"table": "permissions"
+		},
+		{
+			"type": "serial",
+			"typeSchema": null,
+			"notNull": true,
+			"dimensions": 0,
+			"default": null,
+			"generated": null,
+			"identity": null,
+			"name": "id",
+			"entityType": "columns",
+			"schema": "public",
+			"table": "person_role"
+		},
+		{
+			"type": "varchar(36)",
+			"typeSchema": null,
+			"notNull": true,
+			"dimensions": 0,
+			"default": null,
+			"generated": null,
+			"identity": null,
+			"name": "person",
+			"entityType": "columns",
+			"schema": "public",
+			"table": "person_role"
+		},
+		{
+			"type": "roles_type",
+			"typeSchema": "public",
+			"notNull": true,
+			"dimensions": 0,
+			"default": null,
+			"generated": null,
+			"identity": null,
+			"name": "role",
+			"entityType": "columns",
+			"schema": "public",
+			"table": "person_role"
+		},
+		{
+			"type": "timestamp",
+			"typeSchema": null,
+			"notNull": false,
+			"dimensions": 0,
+			"default": "now()",
+			"generated": null,
+			"identity": null,
+			"name": "enrolled",
+			"entityType": "columns",
+			"schema": "public",
+			"table": "person_role"
+		},
+		{
+			"type": "timestamp",
+			"typeSchema": null,
+			"notNull": false,
+			"dimensions": 0,
+			"default": null,
+			"generated": null,
+			"identity": null,
+			"name": "unenrolled",
+			"entityType": "columns",
+			"schema": "public",
+			"table": "person_role"
+		},
+		{
+			"type": "serial",
+			"typeSchema": null,
+			"notNull": true,
+			"dimensions": 0,
+			"default": null,
+			"generated": null,
+			"identity": null,
+			"name": "id",
+			"entityType": "columns",
+			"schema": "public",
+			"table": "person_school"
+		},
+		{
+			"type": "varchar(36)",
+			"typeSchema": null,
+			"notNull": true,
+			"dimensions": 0,
+			"default": null,
+			"generated": null,
+			"identity": null,
+			"name": "school",
+			"entityType": "columns",
+			"schema": "public",
+			"table": "person_school"
+		},
+		{
+			"type": "varchar(36)",
+			"typeSchema": null,
+			"notNull": true,
+			"dimensions": 0,
+			"default": null,
+			"generated": null,
+			"identity": null,
+			"name": "person",
+			"entityType": "columns",
+			"schema": "public",
+			"table": "person_school"
+		},
+		{
+			"type": "serial",
+			"typeSchema": null,
+			"notNull": true,
+			"dimensions": 0,
+			"default": null,
+			"generated": null,
+			"identity": null,
+			"name": "id",
+			"entityType": "columns",
+			"schema": "public",
+			"table": "plans"
+		},
+		{
+			"type": "varchar(50)",
+			"typeSchema": null,
+			"notNull": true,
+			"dimensions": 0,
+			"default": null,
+			"generated": null,
+			"identity": null,
+			"name": "name",
+			"entityType": "columns",
+			"schema": "public",
+			"table": "plans"
+		},
+		{
+			"type": "serial",
+			"typeSchema": null,
+			"notNull": true,
+			"dimensions": 0,
+			"default": null,
+			"generated": null,
+			"identity": null,
+			"name": "id",
+			"entityType": "columns",
+			"schema": "public",
+			"table": "professor_subject"
+		},
+		{
+			"type": "varchar(36)",
+			"typeSchema": null,
+			"notNull": true,
+			"dimensions": 0,
+			"default": null,
+			"generated": null,
+			"identity": null,
+			"name": "professor_id",
+			"entityType": "columns",
+			"schema": "public",
+			"table": "professor_subject"
+		},
+		{
+			"type": "integer",
+			"typeSchema": null,
+			"notNull": true,
+			"dimensions": 0,
+			"default": null,
+			"generated": null,
+			"identity": null,
+			"name": "subject_id",
+			"entityType": "columns",
+			"schema": "public",
+			"table": "professor_subject"
+		},
+		{
+			"type": "serial",
+			"typeSchema": null,
+			"notNull": true,
+			"dimensions": 0,
+			"default": null,
+			"generated": null,
+			"identity": null,
+			"name": "id",
+			"entityType": "columns",
+			"schema": "public",
+			"table": "roles"
+		},
+		{
+			"type": "roles_type",
+			"typeSchema": "public",
+			"notNull": true,
+			"dimensions": 0,
+			"default": null,
+			"generated": null,
+			"identity": null,
+			"name": "name",
+			"entityType": "columns",
+			"schema": "public",
+			"table": "roles"
+		},
+		{
+			"type": "varchar(36)",
+			"typeSchema": null,
+			"notNull": true,
+			"dimensions": 0,
+			"default": null,
+			"generated": null,
+			"identity": null,
+			"name": "id",
+			"entityType": "columns",
+			"schema": "public",
+			"table": "schools"
+		},
+		{
+			"type": "varchar(20)",
+			"typeSchema": null,
+			"notNull": false,
+			"dimensions": 0,
+			"default": null,
+			"generated": null,
+			"identity": null,
+			"name": "cnpj",
+			"entityType": "columns",
+			"schema": "public",
+			"table": "schools"
+		},
+		{
+			"type": "varchar(250)",
+			"typeSchema": null,
+			"notNull": false,
+			"dimensions": 0,
+			"default": null,
+			"generated": null,
+			"identity": null,
+			"name": "name",
+			"entityType": "columns",
+			"schema": "public",
+			"table": "schools"
+		},
+		{
+			"type": "varchar(36)",
+			"typeSchema": null,
+			"notNull": true,
+			"dimensions": 0,
+			"default": null,
+			"generated": null,
+			"identity": null,
+			"name": "owner_id",
+			"entityType": "columns",
+			"schema": "public",
+			"table": "schools"
+		},
+		{
+			"type": "timestamp",
+			"typeSchema": null,
+			"notNull": false,
+			"dimensions": 0,
+			"default": "now()",
+			"generated": null,
+			"identity": null,
+			"name": "created_at",
+			"entityType": "columns",
+			"schema": "public",
+			"table": "schools"
+		},
+		{
+			"type": "serial",
+			"typeSchema": null,
+			"notNull": true,
+			"dimensions": 0,
+			"default": null,
+			"generated": null,
+			"identity": null,
+			"name": "id",
+			"entityType": "columns",
+			"schema": "public",
+			"table": "student_class"
+		},
+		{
+			"type": "varchar(36)",
+			"typeSchema": null,
+			"notNull": true,
+			"dimensions": 0,
+			"default": null,
+			"generated": null,
+			"identity": null,
+			"name": "student",
+			"entityType": "columns",
+			"schema": "public",
+			"table": "student_class"
+		},
+		{
+			"type": "integer",
+			"typeSchema": null,
+			"notNull": true,
+			"dimensions": 0,
+			"default": null,
+			"generated": null,
+			"identity": null,
+			"name": "class",
+			"entityType": "columns",
+			"schema": "public",
+			"table": "student_class"
+		},
+		{
+			"type": "timestamp",
+			"typeSchema": null,
+			"notNull": true,
+			"dimensions": 0,
+			"default": null,
+			"generated": null,
+			"identity": null,
+			"name": "joined",
+			"entityType": "columns",
+			"schema": "public",
+			"table": "student_class"
+		},
+		{
+			"type": "timestamp",
+			"typeSchema": null,
+			"notNull": false,
+			"dimensions": 0,
+			"default": null,
+			"generated": null,
+			"identity": null,
+			"name": "departed",
+			"entityType": "columns",
+			"schema": "public",
+			"table": "student_class"
+		},
+		{
+			"type": "serial",
+			"typeSchema": null,
+			"notNull": true,
+			"dimensions": 0,
+			"default": null,
+			"generated": null,
+			"identity": null,
+			"name": "id",
+			"entityType": "columns",
+			"schema": "public",
+			"table": "student_lecture"
+		},
+		{
+			"type": "integer",
+			"typeSchema": null,
+			"notNull": true,
+			"dimensions": 0,
+			"default": null,
+			"generated": null,
+			"identity": null,
+			"name": "lecture",
+			"entityType": "columns",
+			"schema": "public",
+			"table": "student_lecture"
+		},
+		{
+			"type": "varchar(36)",
+			"typeSchema": null,
+			"notNull": true,
+			"dimensions": 0,
+			"default": null,
+			"generated": null,
+			"identity": null,
+			"name": "student",
+			"entityType": "columns",
+			"schema": "public",
+			"table": "student_lecture"
+		},
+		{
+			"type": "serial",
+			"typeSchema": null,
+			"notNull": true,
+			"dimensions": 0,
+			"default": null,
+			"generated": null,
+			"identity": null,
+			"name": "id",
+			"entityType": "columns",
+			"schema": "public",
+			"table": "subject"
+		},
+		{
+			"type": "varchar(100)",
+			"typeSchema": null,
+			"notNull": true,
+			"dimensions": 0,
+			"default": null,
+			"generated": null,
+			"identity": null,
+			"name": "name",
+			"entityType": "columns",
+			"schema": "public",
+			"table": "subject"
+		},
+		{
+			"nameExplicit": false,
+			"columns": [
+				"school"
+			],
+			"schemaTo": "public",
+			"tableTo": "schools",
+			"columnsTo": [
+				"id"
+			],
+			"onUpdate": "NO ACTION",
+			"onDelete": "NO ACTION",
+			"name": "class_school_schools_id_fkey",
+			"entityType": "fks",
+			"schema": "public",
+			"table": "class"
+		},
+		{
+			"nameExplicit": false,
+			"columns": [
+				"lecture"
+			],
+			"schemaTo": "public",
+			"tableTo": "lecture",
+			"columnsTo": [
+				"id"
+			],
+			"onUpdate": "NO ACTION",
+			"onDelete": "NO ACTION",
+			"name": "lecture_employee_lecture_lecture_id_fkey",
+			"entityType": "fks",
+			"schema": "public",
+			"table": "lecture_employee"
+		},
+		{
+			"nameExplicit": false,
+			"columns": [
+				"employee"
+			],
+			"schemaTo": "public",
+			"tableTo": "people",
+			"columnsTo": [
+				"id"
+			],
+			"onUpdate": "NO ACTION",
+			"onDelete": "NO ACTION",
+			"name": "lecture_employee_employee_people_id_fkey",
+			"entityType": "fks",
+			"schema": "public",
+			"table": "lecture_employee"
+		},
+		{
+			"nameExplicit": false,
+			"columns": [
+				"subject"
+			],
+			"schemaTo": "public",
+			"tableTo": "subject",
+			"columnsTo": [
+				"id"
+			],
+			"onUpdate": "NO ACTION",
+			"onDelete": "NO ACTION",
+			"name": "lecture_subject_subject_id_fkey",
+			"entityType": "fks",
+			"schema": "public",
+			"table": "lecture"
+		},
+		{
+			"nameExplicit": false,
+			"columns": [
+				"school"
+			],
+			"schemaTo": "public",
+			"tableTo": "schools",
+			"columnsTo": [
+				"id"
+			],
+			"onUpdate": "NO ACTION",
+			"onDelete": "NO ACTION",
+			"name": "lecture_school_schools_id_fkey",
+			"entityType": "fks",
+			"schema": "public",
+			"table": "lecture"
+		},
+		{
+			"nameExplicit": false,
+			"columns": [
+				"organization"
+			],
+			"schemaTo": "public",
+			"tableTo": "organization",
+			"columnsTo": [
+				"id"
+			],
+			"onUpdate": "NO ACTION",
+			"onDelete": "NO ACTION",
+			"name": "org_school_organization_organization_id_fkey",
+			"entityType": "fks",
+			"schema": "public",
+			"table": "org_school"
+		},
+		{
+			"nameExplicit": false,
+			"columns": [
+				"school"
+			],
+			"schemaTo": "public",
+			"tableTo": "schools",
+			"columnsTo": [
+				"id"
+			],
+			"onUpdate": "NO ACTION",
+			"onDelete": "NO ACTION",
+			"name": "org_school_school_schools_id_fkey",
+			"entityType": "fks",
+			"schema": "public",
+			"table": "org_school"
+		},
+		{
+			"nameExplicit": false,
+			"columns": [
+				"person"
+			],
+			"schemaTo": "public",
+			"tableTo": "people",
+			"columnsTo": [
+				"id"
+			],
+			"onUpdate": "NO ACTION",
+			"onDelete": "NO ACTION",
+			"name": "person_role_person_people_id_fkey",
+			"entityType": "fks",
+			"schema": "public",
+			"table": "person_role"
+		},
+		{
+			"nameExplicit": false,
+			"columns": [
+				"role"
+			],
+			"schemaTo": "public",
+			"tableTo": "roles",
+			"columnsTo": [
+				"name"
+			],
+			"onUpdate": "NO ACTION",
+			"onDelete": "NO ACTION",
+			"name": "person_role_role_roles_name_fkey",
+			"entityType": "fks",
+			"schema": "public",
+			"table": "person_role"
+		},
+		{
+			"nameExplicit": false,
+			"columns": [
+				"school"
+			],
+			"schemaTo": "public",
+			"tableTo": "schools",
+			"columnsTo": [
+				"id"
+			],
+			"onUpdate": "NO ACTION",
+			"onDelete": "NO ACTION",
+			"name": "person_school_school_schools_id_fkey",
+			"entityType": "fks",
+			"schema": "public",
+			"table": "person_school"
+		},
+		{
+			"nameExplicit": false,
+			"columns": [
+				"person"
+			],
+			"schemaTo": "public",
+			"tableTo": "people",
+			"columnsTo": [
+				"id"
+			],
+			"onUpdate": "NO ACTION",
+			"onDelete": "NO ACTION",
+			"name": "person_school_person_people_id_fkey",
+			"entityType": "fks",
+			"schema": "public",
+			"table": "person_school"
+		},
+		{
+			"nameExplicit": false,
+			"columns": [
+				"professor_id"
+			],
+			"schemaTo": "public",
+			"tableTo": "people",
+			"columnsTo": [
+				"id"
+			],
+			"onUpdate": "NO ACTION",
+			"onDelete": "NO ACTION",
+			"name": "professor_subject_professor_id_people_id_fkey",
+			"entityType": "fks",
+			"schema": "public",
+			"table": "professor_subject"
+		},
+		{
+			"nameExplicit": false,
+			"columns": [
+				"subject_id"
+			],
+			"schemaTo": "public",
+			"tableTo": "subject",
+			"columnsTo": [
+				"id"
+			],
+			"onUpdate": "NO ACTION",
+			"onDelete": "NO ACTION",
+			"name": "professor_subject_subject_id_subject_id_fkey",
+			"entityType": "fks",
+			"schema": "public",
+			"table": "professor_subject"
+		},
+		{
+			"nameExplicit": false,
+			"columns": [
+				"owner_id"
+			],
+			"schemaTo": "public",
+			"tableTo": "people",
+			"columnsTo": [
+				"id"
+			],
+			"onUpdate": "NO ACTION",
+			"onDelete": "NO ACTION",
+			"name": "schools_owner_id_people_id_fkey",
+			"entityType": "fks",
+			"schema": "public",
+			"table": "schools"
+		},
+		{
+			"nameExplicit": false,
+			"columns": [
+				"student"
+			],
+			"schemaTo": "public",
+			"tableTo": "people",
+			"columnsTo": [
+				"id"
+			],
+			"onUpdate": "NO ACTION",
+			"onDelete": "NO ACTION",
+			"name": "student_class_student_people_id_fkey",
+			"entityType": "fks",
+			"schema": "public",
+			"table": "student_class"
+		},
+		{
+			"nameExplicit": false,
+			"columns": [
+				"class"
+			],
+			"schemaTo": "public",
+			"tableTo": "class",
+			"columnsTo": [
+				"id"
+			],
+			"onUpdate": "NO ACTION",
+			"onDelete": "NO ACTION",
+			"name": "student_class_class_class_id_fkey",
+			"entityType": "fks",
+			"schema": "public",
+			"table": "student_class"
+		},
+		{
+			"nameExplicit": false,
+			"columns": [
+				"lecture"
+			],
+			"schemaTo": "public",
+			"tableTo": "lecture",
+			"columnsTo": [
+				"id"
+			],
+			"onUpdate": "NO ACTION",
+			"onDelete": "NO ACTION",
+			"name": "student_lecture_lecture_lecture_id_fkey",
+			"entityType": "fks",
+			"schema": "public",
+			"table": "student_lecture"
+		},
+		{
+			"nameExplicit": false,
+			"columns": [
+				"student"
+			],
+			"schemaTo": "public",
+			"tableTo": "people",
+			"columnsTo": [
+				"id"
+			],
+			"onUpdate": "NO ACTION",
+			"onDelete": "NO ACTION",
+			"name": "student_lecture_student_people_id_fkey",
+			"entityType": "fks",
+			"schema": "public",
+			"table": "student_lecture"
+		},
+		{
+			"columns": [
+				"id"
+			],
+			"nameExplicit": false,
+			"name": "class_pkey",
+			"schema": "public",
+			"table": "class",
+			"entityType": "pks"
+		},
+		{
+			"columns": [
+				"id"
+			],
+			"nameExplicit": false,
+			"name": "lecture_employee_pkey",
+			"schema": "public",
+			"table": "lecture_employee",
+			"entityType": "pks"
+		},
+		{
+			"columns": [
+				"id"
+			],
+			"nameExplicit": false,
+			"name": "lecture_pkey",
+			"schema": "public",
+			"table": "lecture",
+			"entityType": "pks"
+		},
+		{
+			"columns": [
+				"id"
+			],
+			"nameExplicit": false,
+			"name": "org_school_pkey",
+			"schema": "public",
+			"table": "org_school",
+			"entityType": "pks"
+		},
+		{
+			"columns": [
+				"id"
+			],
+			"nameExplicit": false,
+			"name": "organization_pkey",
+			"schema": "public",
+			"table": "organization",
+			"entityType": "pks"
+		},
+		{
+			"columns": [
+				"id"
+			],
+			"nameExplicit": false,
+			"name": "people_pkey",
+			"schema": "public",
+			"table": "people",
+			"entityType": "pks"
+		},
+		{
+			"columns": [
+				"id"
+			],
+			"nameExplicit": false,
+			"name": "permissions_pkey",
+			"schema": "public",
+			"table": "permissions",
+			"entityType": "pks"
+		},
+		{
+			"columns": [
+				"id"
+			],
+			"nameExplicit": false,
+			"name": "person_role_pkey",
+			"schema": "public",
+			"table": "person_role",
+			"entityType": "pks"
+		},
+		{
+			"columns": [
+				"id"
+			],
+			"nameExplicit": false,
+			"name": "person_school_pkey",
+			"schema": "public",
+			"table": "person_school",
+			"entityType": "pks"
+		},
+		{
+			"columns": [
+				"id"
+			],
+			"nameExplicit": false,
+			"name": "plans_pkey",
+			"schema": "public",
+			"table": "plans",
+			"entityType": "pks"
+		},
+		{
+			"columns": [
+				"id"
+			],
+			"nameExplicit": false,
+			"name": "professor_subject_pkey",
+			"schema": "public",
+			"table": "professor_subject",
+			"entityType": "pks"
+		},
+		{
+			"columns": [
+				"id"
+			],
+			"nameExplicit": false,
+			"name": "roles_pkey",
+			"schema": "public",
+			"table": "roles",
+			"entityType": "pks"
+		},
+		{
+			"columns": [
+				"id"
+			],
+			"nameExplicit": false,
+			"name": "schools_pkey",
+			"schema": "public",
+			"table": "schools",
+			"entityType": "pks"
+		},
+		{
+			"columns": [
+				"id"
+			],
+			"nameExplicit": false,
+			"name": "student_class_pkey",
+			"schema": "public",
+			"table": "student_class",
+			"entityType": "pks"
+		},
+		{
+			"columns": [
+				"id"
+			],
+			"nameExplicit": false,
+			"name": "student_lecture_pkey",
+			"schema": "public",
+			"table": "student_lecture",
+			"entityType": "pks"
+		},
+		{
+			"columns": [
+				"id"
+			],
+			"nameExplicit": false,
+			"name": "subject_pkey",
+			"schema": "public",
+			"table": "subject",
+			"entityType": "pks"
+		},
+		{
+			"nameExplicit": false,
+			"columns": [
+				"name"
+			],
+			"nullsNotDistinct": false,
+			"name": "organization_name_key",
+			"schema": "public",
+			"table": "organization",
+			"entityType": "uniques"
+		},
+		{
+			"nameExplicit": false,
+			"columns": [
+				"username"
+			],
+			"nullsNotDistinct": false,
+			"name": "people_username_key",
+			"schema": "public",
+			"table": "people",
+			"entityType": "uniques"
+		},
+		{
+			"nameExplicit": false,
+			"columns": [
+				"name"
+			],
+			"nullsNotDistinct": false,
+			"name": "permissions_name_key",
+			"schema": "public",
+			"table": "permissions",
+			"entityType": "uniques"
+		},
+		{
+			"nameExplicit": false,
+			"columns": [
+				"name"
+			],
+			"nullsNotDistinct": false,
+			"name": "plans_name_key",
+			"schema": "public",
+			"table": "plans",
+			"entityType": "uniques"
+		},
+		{
+			"nameExplicit": false,
+			"columns": [
+				"name"
+			],
+			"nullsNotDistinct": false,
+			"name": "roles_name_key",
+			"schema": "public",
+			"table": "roles",
+			"entityType": "uniques"
+		},
+		{
+			"nameExplicit": false,
+			"columns": [
+				"cnpj"
+			],
+			"nullsNotDistinct": false,
+			"name": "schools_cnpj_key",
+			"schema": "public",
+			"table": "schools",
+			"entityType": "uniques"
+		},
+		{
+			"nameExplicit": false,
+			"columns": [
+				"name"
+			],
+			"nullsNotDistinct": false,
+			"name": "subject_name_key",
+			"schema": "public",
+			"table": "subject",
+			"entityType": "uniques"
+		}
+	],
+	"renames": []
+}

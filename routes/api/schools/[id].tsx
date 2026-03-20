@@ -1,7 +1,7 @@
 import { PageProps } from "fresh"
 import { eq } from "drizzle-orm"
-import { db } from "../../../utils/db/index.ts"
-import { schools } from "../../../utils/db/schema/schools.ts"
+import { db } from "@/utils/db/index.ts"
+import { schools } from "@/utils/db/schema/schools.ts"
 
 export const handler = {
 	async PATCH(ctx: PageProps) {

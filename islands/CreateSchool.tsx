@@ -1,8 +1,8 @@
 // islands/CreateSchool.tsx
 import { useEffect, useState } from "preact/hooks"
-import { KayozenState } from "../utils/interfaces.ts"
+import { KayozenState } from "@/utils/interfaces.ts"
 import SchoolIllustration from "./SchoolIllustration.tsx"
-import { defineTFunction } from "../utils/i18n.ts"
+import { defineTFunction } from "@/utils/i18n/index.ts"
 
 interface CreateSchoolProps {
 	state: KayozenState

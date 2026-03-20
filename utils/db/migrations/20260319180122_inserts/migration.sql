@@ -1,3 +1,4 @@
+-- Custom SQL migration file, put your code below! --
 INSERT INTO roles (name) 
 VALUES ('student'),
   ('teacher'),
@@ -12,4 +13,3 @@ VALUES ('free'),
 INSERT INTO permissions (name)
 VALUES ('admin'),
   ('user');
-  

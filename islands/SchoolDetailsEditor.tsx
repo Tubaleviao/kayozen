@@ -1,6 +1,6 @@
 import { useState } from "preact/hooks"
-import { School } from "../utils/interfaces.ts"
-import { defineTFunction, SupportedLang } from "../utils/i18n.ts"
+import { School, SupportedLang } from "@/utils/interfaces.ts"
+import { defineTFunction } from "@/utils/i18n/index.ts"
 
 interface Props {
 	school: School
@@ -25,7 +25,6 @@ export default function SchoolDetailsEditor({ school, lang }: Props) {
 
 	function isValidCNPJ(cnpj: string): boolean {
 		const cleaned = cnpj.replace(/\D/g, "")
-		console.log(cleaned)
 
 		if (cleaned.length !== 14) return false
 		if (/^(\d)\1+$/.test(cleaned)) return false

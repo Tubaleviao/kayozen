@@ -1,8 +1,8 @@
 import CreateSchool from "../../islands/CreateSchool.tsx"
 import Navbar from "../../islands/Navbar.tsx"
-import { defautGuard } from "../../utils/guards.ts"
-import { KayozenState } from "../../utils/interfaces.ts"
-import { defineTFunction } from "../../utils/i18n.ts"
+import { defautGuard } from "@/utils/guards.ts"
+import { KayozenState } from "@/utils/interfaces.ts"
+import { defineTFunction } from "@/utils/i18n/index.ts"
 
 export const handler = defautGuard
 

@@ -1,16 +1,15 @@
-import { DbUser, School } from "../utils/interfaces.ts"
-import { defineTFunction, SupportedLang } from "../utils/i18n.ts"
-import CoordinatorView from "./CoordinatorView.tsx"
+import { School, SupportedLang } from "@/utils/interfaces.ts"
+import { defineTFunction } from "@/utils/i18n/index.ts"
+import CoordinatorView from "./coordinator/CoordinatorView.tsx"
 
 interface Props {
 	role?: string
 	school?: School
-	user?: DbUser | null
 	lang: SupportedLang
 }
 
 export default function DashboardViewByRole(
-	{ role, school, user, lang }: Props,
+	{ role, school, lang }: Props,
 ) {
 	if (!role) return null
 	const t = defineTFunction(lang)
@@ -20,7 +19,6 @@ export default function DashboardViewByRole(
 			<CoordinatorView
 				school={school}
 				lang={lang}
-				userProfessors={user?.professors}
 			/>
 		)
 	}
@@ -36,7 +34,7 @@ export default function DashboardViewByRole(
 				</div>
 
 				<p class="font-medium text-lg">
-					{user?.name}
+					{school?.name}
 				</p>
 
 				{/* CTA */}

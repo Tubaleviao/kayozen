@@ -1,5 +1,5 @@
 import { useEffect, useState } from "preact/hooks"
-import { getCookie, setCookie } from "../utils/cookies.ts"
+import { getCookie, setCookie } from "@/utils/cookies.ts"
 
 export function usePersistency(
 	key: string,

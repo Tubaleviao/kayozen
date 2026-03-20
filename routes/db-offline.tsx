@@ -1,7 +1,7 @@
 import Navbar from "../islands/Navbar.tsx"
 
-import { KayozenState } from "../utils/interfaces.ts"
-import { defineTFunction } from "../utils/i18n.ts"
+import { KayozenState } from "@/utils/interfaces.ts"
+import { defineTFunction } from "@/utils/i18n/index.ts"
 
 export default function DbOfflinePage({ state }: { state: KayozenState }) {
 	const t = defineTFunction(state.lang)

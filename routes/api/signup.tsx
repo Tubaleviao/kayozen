@@ -1,11 +1,11 @@
 import { hashSync } from "bcrypt"
-import { makeUsername } from "../../utils/make_username.ts"
+import { makeUsername } from "@/utils/make_username.ts"
 import { v1 } from "uuid"
-import { getAuthHeader } from "../../utils/getAuthHeader.ts"
-import { ValidationError } from "../../utils/errors.ts"
+import { getAuthHeader } from "@/utils/getAuthHeader.ts"
+import { ValidationError } from "@/utils/errors.ts"
 import { PageProps } from "fresh"
-import { db } from "../../utils/db/index.ts"
-import { people } from "../../utils/db/schema/people.ts"
+import { db } from "@/utils/db/index.ts"
+import { people } from "@/utils/db/schema/people.ts"
 
 export const handler = {
 	async POST(ctx: PageProps) {

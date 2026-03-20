@@ -1,8 +1,8 @@
 import { useEffect, useState } from "preact/hooks"
 import AddProfessorNode from "../../../components/AddProfessorNode.tsx"
 import NewClassModal from "../modals/NewClassModal.tsx"
-import { KayoClass } from "../../../utils/interfaces.ts"
-import { defineTFunction, SupportedLang } from "../../../utils/i18n.ts"
+import { KayoClass, SupportedLang } from "@/utils/interfaces.ts"
+import { defineTFunction } from "@/utils/i18n/index.ts"
 
 interface Props {
 	lang: SupportedLang
@@ -52,10 +52,7 @@ export default function ClassesModule({ lang, schoolId }: Props) {
 
 	return (
 		<>
-			<div class="
-					text-center mb-8
-					lg:absolute lg:left-0 lg:top-1/2 lg:-translate-y-1/2
-				">
+			<div class="text-center">
 				<p class="font-semibold mb-3">Classes</p>
 
 				<div class="flex flex-wrap justify-center gap-3 pointer-events-auto">

@@ -1,6 +1,6 @@
 import { PageProps } from "fresh"
-import { ValidationError } from "../../../../utils/errors.ts"
-import { getSchoolProfessors } from "../../../../utils/db/professors.ts"
+import { ValidationError } from "@/utils/errors.ts"
+import { getSchoolProfessors } from "@/utils/db/professors.ts"
 
 export const handler = {
 	async GET(ctx: PageProps) {

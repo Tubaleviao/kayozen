@@ -81,3 +81,57 @@ html {
 .animate-progress {
 	animation: progress 2s linear forwards;
 }
+
+/* Week timeline slide */
+@keyframes week-swipe-next {
+	0% {
+		opacity: 0;
+		transform: translateX(24px);
+	}
+	100% {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+
+@keyframes week-swipe-prev {
+	0% {
+		opacity: 0;
+		transform: translateX(-24px);
+	}
+	100% {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+
+.animate-week-swipe-next {
+	animation: week-swipe-next 220ms ease-out;
+}
+
+.animate-week-swipe-prev {
+	animation: week-swipe-prev 220ms ease-out;
+}
+
+.scrollbar-theme {
+	scrollbar-width: thin;
+	scrollbar-color: color-mix(in srgb, currentColor 28%, transparent)
+		transparent;
+}
+
+.scrollbar-theme::-webkit-scrollbar {
+	width: 8px;
+}
+
+.scrollbar-theme::-webkit-scrollbar-track {
+	background: transparent;
+}
+
+.scrollbar-theme::-webkit-scrollbar-thumb {
+	background: color-mix(in srgb, currentColor 22%, transparent);
+	border-radius: 9999px;
+}
+
+.scrollbar-theme::-webkit-scrollbar-thumb:hover {
+	background: color-mix(in srgb, currentColor 36%, transparent);
+}

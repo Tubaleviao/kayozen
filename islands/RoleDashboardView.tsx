@@ -1,5 +1,5 @@
-import { School } from "../utils/interfaces.ts"
-import { defineTFunction, SupportedLang } from "../utils/i18n.ts"
+import { School, SupportedLang } from "@/utils/interfaces.ts"
+import { defineTFunction } from "@/utils/i18n/index.ts"
 import CoordinatorView from "./coordinator/CoordinatorView.tsx"
 
 interface Props {

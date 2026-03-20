@@ -1,7 +1,7 @@
 import { FunctionalComponent } from "preact"
-import { DbRole, School } from "../utils/interfaces.ts"
-import { Role } from "../utils/constants.ts"
-import { defineTFunction, SupportedLang } from "../utils/i18n.ts"
+import { DbRole, School, SupportedLang } from "@/utils/interfaces.ts"
+import { Role } from "@/utils/constants.ts"
+import { defineTFunction } from "@/utils/i18n/index.ts"
 
 interface Props {
 	roles?: DbRole[]

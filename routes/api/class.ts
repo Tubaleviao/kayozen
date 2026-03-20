@@ -1,8 +1,8 @@
 import { Context } from "fresh"
-import { KayozenState } from "../../utils/interfaces.ts"
-import { db } from "../../utils/db/index.ts"
-import { classTable } from "../../utils/db/schema/class.ts"
-import { ValidationError } from "../../utils/errors.ts"
+import { KayozenState } from "@/utils/interfaces.ts"
+import { db } from "@/utils/db/index.ts"
+import { classTable } from "@/utils/db/schema/class.ts"
+import { ValidationError } from "@/utils/errors.ts"
 
 export const handler = {
 	async POST(ctx: Context<KayozenState>): Promise<Response> {

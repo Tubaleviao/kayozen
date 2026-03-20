@@ -1,5 +1,6 @@
-import { defineTFunction, SupportedLang } from "../utils/i18n.ts"
+import { defineTFunction } from "@/utils/i18n/index.ts"
 import { useState } from "preact/hooks"
+import { SupportedLang } from "../utils/interfaces.ts"
 
 export default function LoginBox({ lang }: { lang: SupportedLang }) {
 	const t = defineTFunction(lang)

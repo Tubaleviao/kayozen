@@ -1,7 +1,7 @@
 import Navbar from "../islands/Navbar.tsx"
 import Footer from "../islands/Footer.tsx"
-import { KayozenState } from "../utils/interfaces.ts"
-import { adminGuard } from "../utils/guards.ts"
+import { KayozenState } from "@/utils/interfaces.ts"
+import { adminGuard } from "@/utils/guards.ts"
 
 export const handler = adminGuard
 

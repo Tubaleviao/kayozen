@@ -1,8 +1,8 @@
 import Navbar from "../islands/Navbar.tsx"
 import Footer from "../islands/Footer.tsx"
 import AboutContent from "../islands/AboutContent.tsx"
-import { KayozenState } from "../utils/interfaces.ts"
-import { userGuard } from "../utils/guards.ts"
+import { KayozenState } from "@/utils/interfaces.ts"
+import { userGuard } from "@/utils/guards.ts"
 
 export const handler = userGuard
 

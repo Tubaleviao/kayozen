@@ -1,13 +1,18 @@
 import { Payload } from "djwt"
-import { SupportedLang, TranslationKey } from "./i18n.ts"
+import { TranslationKey } from "./i18n/index.ts"
 import { Role } from "./constants.ts"
 
+export type SupportedLang = "pt" | "en"
 export interface WeekTimelineLecture {
 	id: number
 	startTime: number
 	endTime: number
 	hasTeacher: boolean
 	hasStudent: boolean
+}
+
+export interface WeekApiResponse {
+	lectures: WeekTimelineLecture[]
 }
 
 export type Theme = "light" | "dark"

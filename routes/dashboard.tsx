@@ -1,9 +1,9 @@
 import Navbar from "../islands/Navbar.tsx"
-import { defautGuard } from "../utils/guards.ts"
-import { KayozenState } from "../utils/interfaces.ts"
+import { defautGuard } from "@/utils/guards.ts"
+import { KayozenState } from "@/utils/interfaces.ts"
 import Footer from "../islands/Footer.tsx"
 import DashboardClient from "../islands/DashboardClient.tsx"
-import { defineTFunction } from "../utils/i18n.ts"
+import { defineTFunction } from "@/utils/i18n/index.ts"
 
 export const handler = defautGuard
 

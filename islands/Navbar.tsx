@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "preact/hooks"
 import { useTheme } from "../hooks/useTheme.ts"
 import { Button } from "../components/Button.tsx"
-import { defineTFunction, TranslationKey } from "../utils/i18n.ts"
-import { KayozenState } from "../utils/interfaces.ts"
+import { defineTFunction, TranslationKey } from "@/utils/i18n/index.ts"
+import { KayozenState } from "@/utils/interfaces.ts"
 
 interface NavbarProps {
 	state: KayozenState
@@ -50,7 +50,7 @@ export default function Navbar(
 				</a>
 
 				<Button
-					class="lg:hidden p-2 rounded hover:bg-white/10 transition"
+					class="lg:hidden p-2 rounded hover:bg-black/5 dark:bg-white/10 transition"
 					onClick={() => setMenuOpen(!menuOpen)}
 				>
 					<svg

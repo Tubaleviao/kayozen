@@ -1,6 +1,6 @@
 import { useState } from "preact/hooks"
-import { School } from "../utils/interfaces.ts"
-import { defineTFunction, SupportedLang } from "../utils/i18n.ts"
+import { School, SupportedLang } from "@/utils/interfaces.ts"
+import { defineTFunction } from "@/utils/i18n/index.ts"
 
 interface Props {
 	school: School

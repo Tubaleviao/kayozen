@@ -1,7 +1,7 @@
 import { Context } from "fresh"
-import { KayozenState } from "../../../../utils/interfaces.ts"
-import { ValidationError } from "../../../../utils/errors.ts"
-import { getSchoolLectures } from "../../../../utils/db/lectures.ts"
+import { KayozenState } from "@/utils/interfaces.ts"
+import { ValidationError } from "@/utils/errors.ts"
+import { getSchoolLectures } from "@/utils/db/lectures.ts"
 
 export const handler = {
 	async GET(ctx: Context<KayozenState>): Promise<Response> {

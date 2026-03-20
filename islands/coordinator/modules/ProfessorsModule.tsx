@@ -1,8 +1,8 @@
 import { useEffect, useState } from "preact/hooks"
 import AddProfessorNode from "../../../components/AddProfessorNode.tsx"
 import NewProfessorModal from "../modals/NewProfessorModal.tsx"
-import { defineTFunction, SupportedLang } from "../../../utils/i18n.ts"
-import { Professor } from "../../../utils/interfaces.ts"
+import { defineTFunction } from "@/utils/i18n/index.ts"
+import { Professor, SupportedLang } from "@/utils/interfaces.ts"
 
 interface Props {
 	lang: SupportedLang
@@ -62,12 +62,8 @@ export default function ProfessorsModule({ lang, schoolId }: Props) {
 
 	return (
 		<>
-			<div class="
-					flex flex-col items-center gap-3 mb-10
-					lg:absolute lg:top-0 lg:left-1/2 lg:-translate-x-1/2
-					lg:max-w-[80%]
-				">
-				<p class="text-sm font-semibold text-center">
+			<div>
+				<p class="font-semibold text-center mb-3">
 					Professors
 				</p>
 

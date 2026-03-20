@@ -1,9 +1,9 @@
 import { PageProps } from "fresh"
 
-import { UnauthorizedError } from "../../utils/errors.ts"
-import { db } from "../../utils/db/index.ts"
-import { personRole } from "../../utils/db/schema/person-role.ts"
-import { Role } from "../../utils/constants.ts"
+import { UnauthorizedError } from "@/utils/errors.ts"
+import { db } from "@/utils/db/index.ts"
+import { personRole } from "@/utils/db/schema/person-role.ts"
+import { Role } from "@/utils/constants.ts"
 
 export const handler = {
 	async POST(ctx: PageProps) {

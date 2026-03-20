@@ -1,6 +1,5 @@
 import { Context } from "fresh"
-import { SupportedLang } from "./i18n.ts"
-import { KayozenState, Theme } from "./interfaces.ts"
+import { KayozenState, SupportedLang, Theme } from "./interfaces.ts"
 import { getSessionUser } from "./middleware.ts"
 import { UnauthorizedError } from "./errors.ts"
 

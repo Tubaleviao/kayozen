@@ -1,13 +1,13 @@
-import { makeUsername } from "../../utils/make_username.ts"
+import { makeUsername } from "@/utils/make_username.ts"
 import { v1 } from "uuid"
 import { PageProps } from "fresh"
-import { people } from "../../utils/db/schema/people.ts"
-import { subject as subjectSchema } from "../../utils/db/schema/subjects.ts"
-import { db } from "../../utils/db/index.ts"
+import { people } from "@/utils/db/schema/people.ts"
+import { subject as subjectSchema } from "@/utils/db/schema/subjects.ts"
+import { db } from "@/utils/db/index.ts"
 import { eq } from "drizzle-orm"
-import { professorSubject } from "../../utils/db/schema/professor-subject.ts"
-import { personRole } from "../../utils/db/schema/person-role.ts"
-import { personSchool } from "../../utils/db/schema/person-school.ts"
+import { professorSubject } from "@/utils/db/schema/professor-subject.ts"
+import { personRole } from "@/utils/db/schema/person-role.ts"
+import { personSchool } from "@/utils/db/schema/person-school.ts"
 
 export const handler = { // needs to be protected in the future
 	async POST(ctx: PageProps) {

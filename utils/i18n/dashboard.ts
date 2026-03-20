@@ -1,0 +1,66 @@
+export const dashboard = {
+	pt: {
+		welcome: "Bem-vindo ao Kayozen",
+		no_role:
+			"Você ainda não possui um papel. Escolha um para continuar.",
+		choose_role_button: "Escolher Papel",
+		no_school:
+			"Você ainda não possui uma escola. Crie uma para continuar.",
+		create_school_button: "Criar Escola",
+		overview: "Visão Geral do Painel",
+		current_role: "Papel Atual",
+		current_school: "Escola Atual",
+		logout: "Sair",
+		role: {
+			student: "Aluno",
+			teacher: "Professor",
+			coordinator: "Coordenador",
+			add_new: "Adicionar novo papel",
+		},
+		school: {
+			add_new: "Adicionar nova escola",
+			edit: "Editar escola",
+		},
+		modal: {
+			new_professor: "Novo Professor",
+			create: "Criar",
+			cancel: "Cancelar",
+			optional_email: "Email (Opcional)",
+			name: "Nome",
+			subject: "Disciplina",
+			fictitious: "Fictício",
+		},
+	},
+	en: {
+		welcome: "Welcome to Kayozen",
+		no_role:
+			"You don’t have a role yet. Please choose one to continue.",
+		choose_role_button: "Choose Role",
+		no_school:
+			"You don’t have a school yet. Please create one to continue.",
+		create_school_button: "Create School",
+		overview: "Dashboard Overview",
+		current_role: "Current Role",
+		current_school: "Current School",
+		logout: "Logout",
+		role: {
+			student: "Student",
+			teacher: "Teacher",
+			coordinator: "Coordinator",
+			add_new: "Add new role",
+		},
+		school: {
+			add_new: "Add new school",
+			edit: "Edit school",
+		},
+		modal: {
+			new_professor: "New Professor",
+			create: "Create",
+			cancel: "Cancel",
+			optional_email: "Email (Optional)",
+			name: "Name",
+			subject: "Subject",
+			fictitious: "Fictitious",
+		},
+	},
+} as const

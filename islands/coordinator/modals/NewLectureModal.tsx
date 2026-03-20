@@ -1,6 +1,6 @@
 import { useEffect, useState } from "preact/hooks"
-import { defineTFunction, SupportedLang } from "../../../utils/i18n.ts"
-import { KayoLecture, KayoSubject } from "../../../utils/interfaces.ts"
+import { defineTFunction } from "@/utils/i18n/index.ts"
+import { KayoLecture, KayoSubject, SupportedLang } from "@/utils/interfaces.ts"
 
 interface NewLectureModalProps {
 	open: boolean

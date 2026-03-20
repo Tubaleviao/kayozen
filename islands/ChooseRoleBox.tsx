@@ -1,6 +1,6 @@
 import { useState } from "preact/hooks"
-import { defineTFunction, TranslationKey } from "../utils/i18n.ts"
-import { KayozenState } from "../utils/interfaces.ts"
+import { defineTFunction, TranslationKey } from "@/utils/i18n/index.ts"
+import { KayozenState } from "@/utils/interfaces.ts"
 
 interface Role {
 	key: TranslationKey

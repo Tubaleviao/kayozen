@@ -1,5 +1,5 @@
-import { defineTFunction, SupportedLang } from "../../../utils/i18n.ts"
-import { KayoClass } from "../../../utils/interfaces.ts"
+import { defineTFunction } from "@/utils/i18n/index.ts"
+import { KayoClass, SupportedLang } from "@/utils/interfaces.ts"
 
 interface NewClassModalProps {
 	open: boolean

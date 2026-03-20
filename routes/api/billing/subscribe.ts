@@ -1,7 +1,7 @@
 import { PageProps } from "fresh"
-import { Subscribers } from "../../../utils/billing/Subscribers.ts"
-import { Subscriptions } from "../../../utils/billing/Subscriptions.ts"
-import { getSessionUser } from "../../../utils/middleware.ts"
+import { Subscribers } from "@/utils/billing/Subscribers.ts"
+import { Subscriptions } from "@/utils/billing/Subscriptions.ts"
+import { getSessionUser } from "@/utils/middleware.ts"
 
 export const handler = async (ctx: PageProps) => {
 	const { planId } = await ctx.req.json()

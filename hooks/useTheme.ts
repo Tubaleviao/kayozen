@@ -1,6 +1,6 @@
 import { useEffect } from "preact/hooks"
 import { usePersistency } from "./usePersistency.ts"
-import { Theme } from "../utils/interfaces.ts"
+import { Theme } from "@/utils/interfaces.ts"
 
 export function useTheme(defaultTheme?: Theme) {
 	const [theme, setTheme] = usePersistency("theme", defaultTheme)

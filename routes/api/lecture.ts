@@ -1,10 +1,79 @@
 import { Context } from "fresh"
-import { KayozenState } from "../../utils/interfaces.ts"
-import { db } from "../../utils/db/index.ts"
-import { lecture } from "../../utils/db/schema/lecture.ts"
-import { ValidationError } from "../../utils/errors.ts"
+import { KayozenState } from "@/utils/interfaces.ts"
+import { db } from "@/utils/db/index.ts"
+import { lecture } from "@/utils/db/schema/lecture.ts"
+import { ValidationError } from "@/utils/errors.ts"
+import { DAY_MS } from "@/utils/constants.ts"
+import { lectureEmployee } from "@/utils/db/schema/lecture-employee.ts"
+import { studentLecture } from "@/utils/db/schema/student-lecture.ts"
+import { and, eq, gte, lt, sql } from "drizzle-orm"
 
 export const handler = {
+	async GET(ctx: Context<KayozenState>): Promise<Response> {
+		const url = new URL(ctx.req.url)
+		const schoolId = url.searchParams.get("schoolId")?.toString().trim()
+		const weekStartRaw = url.searchParams.get("weekStart")?.toString()
+
+		if (!schoolId) {
+			throw new ValidationError("School is required", {
+				field: "schoolId",
+			})
+		}
+
+		if (!weekStartRaw) {
+			throw new ValidationError("Week start is required", {
+				field: "weekStart",
+			})
+		}
+
+		const weekStart = Number(weekStartRaw)
+
+		if (Number.isNaN(weekStart)) {
+			throw new ValidationError("Invalid week start", {
+				field: "weekStart",
+				value: weekStartRaw,
+			})
+		}
+
+		const weekEnd = weekStart + 7 * DAY_MS
+
+		const result = await db
+			.select({
+				id: lecture.id,
+				startTime: lecture.startTime,
+				endTime: lecture.endTime,
+				hasTeacher: sql<boolean>`exists (
+					select 1
+					from ${lectureEmployee}
+					where ${lectureEmployee.lecture} = ${lecture.id}
+				)`,
+				hasStudent: sql<boolean>`exists (
+					select 1
+					from ${studentLecture}
+					where ${studentLecture.lecture} = ${lecture.id}
+				)`,
+			})
+			.from(lecture)
+			.where(
+				and(
+					eq(lecture.school, schoolId),
+					gte(lecture.startTime, new Date(weekStart)),
+					lt(lecture.startTime, new Date(weekEnd)),
+				),
+			)
+			.orderBy(lecture.startTime)
+
+		return Response.json({
+			success: true,
+			lectures: result.map((item) => ({
+				id: item.id,
+				startTime: new Date(item.startTime).getTime(),
+				endTime: new Date(item.endTime).getTime(),
+				hasTeacher: item.hasTeacher,
+				hasStudent: item.hasStudent,
+			})),
+		})
+	},
 	async POST(ctx: Context<KayozenState>): Promise<Response> {
 		const body = await ctx.req.json()
 		const subject = Number(body?.subject)

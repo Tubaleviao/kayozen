@@ -6,10 +6,8 @@ export const roles = {
 		teacher: "Professor",
 		coordinator: "Coordenador",
 		student_desc: "Acesse materiais, veja horários e participe das aulas.",
-		teacher_desc:
-			"Gerencie aulas, disponibilize materiais e acompanhe alunos.",
-		coordinator_desc:
-			"Administre professores, turmas e toda a instituição.",
+		teacher_desc: "Gerencie aulas, disponibilize materiais e acompanhe alunos.",
+		coordinator_desc: "Administre professores, turmas e toda a instituição.",
 		confirm: "Confirmar",
 	},
 	en: {
@@ -18,12 +16,9 @@ export const roles = {
 		student: "Student",
 		teacher: "Teacher",
 		coordinator: "Coordinator",
-		student_desc:
-			"Access materials, view schedules, and join classes.",
-		teacher_desc:
-			"Manage classes, provide materials, and track students.",
-		coordinator_desc:
-			"Manage teachers, classrooms, and the whole institution.",
+		student_desc: "Access materials, view schedules, and join classes.",
+		teacher_desc: "Manage classes, provide materials, and track students.",
+		coordinator_desc: "Manage teachers, classrooms, and the whole institution.",
 		confirm: "Confirm",
 	},
 } as const

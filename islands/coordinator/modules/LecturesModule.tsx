@@ -67,7 +67,7 @@ export default function LecturesModule({ lang, schoolId }: Props) {
 			<div class="text-center">
 				<p class="font-semibold mb-3">Lectures</p>
 
-				<div class="flex flex-wrap justify-center gap-3 pointer-events-auto">
+				<div class="flex flex-wrap justify-center gap-3 max-h-40 pointer-events-auto overflow-y-auto pr-1">
 					{loading
 						? Array.from({ length: 3 }).map((_, index) => (
 							<div

@@ -46,7 +46,6 @@ export const translations = {
 	},
 } as const
 
-
 // 🔑 Tipagem dinâmica baseada no objeto acima
 export type TranslationKey = NestedKeyOf<typeof translations["pt"]>
 

@@ -1,11 +1,9 @@
 export const dashboard = {
 	pt: {
-		welcome: "Bem-vindo ao Kayozen",
-		no_role:
-			"Você ainda não possui um papel. Escolha um para continuar.",
+		welcome: "Bem-vindo",
+		no_role: "Você ainda não possui um papel. Escolha um para continuar.",
 		choose_role_button: "Escolher Papel",
-		no_school:
-			"Você ainda não possui uma escola. Crie uma para continuar.",
+		no_school: "Você ainda não possui uma escola. Crie uma para continuar.",
 		create_school_button: "Criar Escola",
 		overview: "Visão Geral do Painel",
 		current_role: "Papel Atual",
@@ -32,12 +30,10 @@ export const dashboard = {
 		},
 	},
 	en: {
-		welcome: "Welcome to Kayozen",
-		no_role:
-			"You don’t have a role yet. Please choose one to continue.",
+		welcome: "Welcome",
+		no_role: "You don’t have a role yet. Please choose one to continue.",
 		choose_role_button: "Choose Role",
-		no_school:
-			"You don’t have a school yet. Please create one to continue.",
+		no_school: "You don’t have a school yet. Please create one to continue.",
 		create_school_button: "Create School",
 		overview: "Dashboard Overview",
 		current_role: "Current Role",

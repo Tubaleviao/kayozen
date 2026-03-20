@@ -13,12 +13,12 @@ export default function WeekTimelineDayCard({ day, loading }: Props) {
 	const date = new Date(day.dateMs)
 
 	return (
-		<div class="min-h-32 rounded-lg border border-black/10 dark:border-white/20 bg-black/5 dark:bg-white/10 p-2">
+		<div class="min-h-40 max-h-40 rounded-lg border border-black/10 dark:border-white/20 bg-black/5 dark:bg-white/10 p-2">
 			<div class="mb-1 text-xs text-light-text/70 dark:text-dark-text/70">
 				{date.toLocaleDateString("en-US", { weekday: "short" })}
 			</div>
 
-			<div class="mb-2 text-xs text-light-muted dark:text-dark-muted">
+			<div class="mb-1 text-xs text-light-muted dark:text-dark-muted">
 				{date.toLocaleDateString("en-US", {
 					month: "2-digit",
 					day: "2-digit",
@@ -35,7 +35,7 @@ export default function WeekTimelineDayCard({ day, loading }: Props) {
 					</div>
 				)
 				: (
-					<div class="flex flex-wrap gap-1 max-h-30 overflow-y-auto pr-1 scrollbar-theme">
+					<div class="flex flex-wrap gap-1 max-h-26 overflow-y-auto pr-1 scrollbar-theme">
 						{day.lectures.length === 0
 							? (
 								<div class="rounded-md bg-black/5 dark:bg-white/10 p-2 text-xs text-light-muted/70 dark:text-dark-muted/70">

@@ -1,6 +1,7 @@
 import { createElement } from "preact"
 import { defineTFunction } from "@/utils/i18n/index.ts"
 import { Professor, SupportedLang } from "@/utils/interfaces.ts"
+import ModalLayout from "../../../components/ModalLayout.tsx"
 
 interface Props {
 	open: boolean
@@ -62,76 +63,93 @@ export default function NewProfessorModal(
 		}
 
 	return (
-		<div class="fixed inset-0 z-50 flex items-center justify-center p-6">
-			{/* Backdrop */}
-			<div
-				class="absolute inset-0 bg-black/40"
-				onClick={() => onClose()}
-			/>
+		<ModalLayout
+			open={open}
+			onClose={() => onClose()}
+			title={t("dashboard.modal.new_professor")}
+		>
+			<form class="space-y-6" onSubmit={createProfessorCall()}>
+				<input
+					name="name"
+					required
+					placeholder={t("dashboard.modal.name")}
+					class="
+						w-full rounded-xl px-3 py-2
+						bg-light-surface dark:bg-dark-surface
+						text-light-text dark:text-dark-text
+						border border-black/10 dark:border-white/10
+						focus:outline-none focus:ring-2 focus:ring-blue-500
+					"
+				/>
 
-			{/* Modal */}
-			<div class="relative z-10 w-full max-w-md md:max-w-lg lg:max-w-xl
-rounded-2xl bg-light-background dark:bg-dark-background
-p-6 md:p-8 shadow-xl text-light-text dark:text-dark-text">
-				<h2 class="text-lg font-semibold border-b pb-3 mb-4">
-					{t("dashboard.modal.new_professor")}
-				</h2>
+				<input
+					name="email"
+					type="email"
+					placeholder={t("dashboard.modal.optional_email")}
+					class="
+						w-full rounded-xl px-3 py-2
+						bg-light-surface dark:bg-dark-surface
+						text-light-text dark:text-dark-text
+						border border-black/10 dark:border-white/10
+						focus:outline-none focus:ring-2 focus:ring-blue-500
+					"
+				/>
 
-				<form
-					class="space-y-4"
-					onSubmit={createProfessorCall()}
-				>
+				<input
+					name="subject"
+					placeholder={t("dashboard.modal.subject")}
+					class="
+						w-full rounded-xl px-3 py-2
+						bg-light-surface dark:bg-dark-surface
+						text-light-text dark:text-dark-text
+						border border-black/10 dark:border-white/10
+						focus:outline-none focus:ring-2 focus:ring-blue-500
+					"
+				/>
+
+				<div class="flex items-center gap-2">
 					<input
-						name="name"
-						required
-						placeholder={t("dashboard.modal.name")}
-						class="md:col-span-2 w-full rounded-lg border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+						name="fictitious"
+						type="checkbox"
+						class="
+							w-4 h-4 rounded border
+							border-black/20 dark:border-white/20
+							bg-light-surface dark:bg-dark-surface
+						"
+						checked
+						disabled
 					/>
+					<label class="text-sm text-light-muted dark:text-dark-muted">
+						{t("dashboard.modal.fictitious")}?
+					</label>
+				</div>
 
-					<input
-						name="email"
-						type="email"
-						placeholder={t("dashboard.modal.optional_email")}
-						class="md:col-span-2 w-full rounded-lg border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-					/>
+				<div class="flex justify-end gap-2 pt-2">
+					<button
+						type="button"
+						onClick={() => onClose()}
+						class="
+							rounded-lg px-4 py-2
+							text-light-muted dark:text-dark-muted
+							hover:bg-black/5 dark:hover:bg-white/5
+						"
+					>
+						{t("dashboard.modal.cancel")}
+					</button>
 
-					<input
-						name="subject"
-						placeholder={t("dashboard.modal.subject")}
-						class="md:col-span-2 w-full rounded-lg border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-					/>
-
-					<div class="flex items-center mb-4">
-						<input
-							name="fictitious"
-							type="checkbox"
-							class="w-4 h-4 border border-default-medium rounded-xs bg-neutral-secondary-medium focus:ring-2 focus:ring-brand-soft"
-							checked
-							disabled
-						/>
-						<label class="select-none ms-2 text-sm font-medium text-heading">
-							{t("dashboard.modal.fictitious")}?
-						</label>
-					</div>
-
-					<div class="flex justify-end gap-2 pt-2">
-						<button
-							type="button"
-							onClick={() => onClose()}
-							class="rounded-lg px-4 py-2 text-gray-600 hover:bg-gray-100"
-						>
-							{t("dashboard.modal.cancel")}
-						</button>
-
-						<button
-							type="submit"
-							class="rounded-lg bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
-						>
-							{t("dashboard.modal.create")}
-						</button>
-					</div>
-				</form>
-			</div>
-		</div>
+					<button
+						type="submit"
+						class="
+							rounded-lg px-4 py-2
+							bg-blue-600 text-white
+							hover:bg-blue-700
+							shadow-sm
+						"
+					>
+						{t("dashboard.modal.create")}
+					</button>
+				</div>
+			</form>
+		</ModalLayout>
 	)
 }

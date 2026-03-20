@@ -11,7 +11,6 @@ interface Props {
 
 export default function LecturesModule({ lang, schoolId }: Props) {
 	const [lectures, setLectures] = useState<KayoLecture[]>([])
-	const [subjects, setSubjects] = useState<KayoSubject[]>([])
 	const [loading, setLoading] = useState(true)
 	const [error, setError] = useState<string | null>(null)
 	const [lectureModalOpen, setLectureModalOpen] = useState(false)
@@ -24,7 +23,6 @@ export default function LecturesModule({ lang, schoolId }: Props) {
 		async function loadLecturesModuleData() {
 			if (!schoolId) {
 				setLectures([])
-				setSubjects([])
 				setLoading(false)
 				return
 			}
@@ -33,21 +31,18 @@ export default function LecturesModule({ lang, schoolId }: Props) {
 				setLoading(true)
 				setError(null)
 
-				const [lecturesResponse, subjectsResponse] = await Promise.all([
+				const [lecturesResponse] = await Promise.all([
 					fetch(`/api/schools/${schoolId}/lectures`),
-					fetch(`/api/schools/${schoolId}/subjects`),
 				])
 
-				if (!lecturesResponse.ok || !subjectsResponse.ok) {
+				if (!lecturesResponse.ok) {
 					throw new Error("Failed to load lectures module data")
 				}
 
 				const lecturesData = await lecturesResponse.json()
-				const subjectsData = await subjectsResponse.json()
 
 				if (!cancelled) {
 					setLectures(lecturesData.lectures ?? [])
-					setSubjects(subjectsData.subjects ?? [])
 				}
 			} catch (_error) {
 				if (!cancelled) {
@@ -85,9 +80,7 @@ export default function LecturesModule({ lang, schoolId }: Props) {
 							/>
 						))
 						: lectures.map((lecture) => {
-							const lectureSubject = subjects.find((s) =>
-								s.id === lecture.subject
-							)
+							const start = new Date(lecture.startTime)
 
 							return (
 								<div
@@ -95,7 +88,9 @@ export default function LecturesModule({ lang, schoolId }: Props) {
 									class="min-w-28 px-4 py-3 rounded-xl shadow-md
 										bg-light-surface dark:bg-dark-surface text-sm"
 								>
-									{lectureSubject?.name ?? `Subject ${lecture.subject}`}
+									{`${
+										start.toLocaleDateString("en-US", { weekday: "short" })
+									} - ${start.getHours()}:${start.getMinutes()}`}
 								</div>
 							)
 						})}
@@ -129,7 +124,6 @@ export default function LecturesModule({ lang, schoolId }: Props) {
 				}}
 				lang={lang}
 				schoolId={schoolId}
-				subjects={subjects}
 				onLectureCreated={(newLecture) =>
 					setLectures((prev) => [...prev, newLecture])}
 			/>

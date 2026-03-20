@@ -1,3 +1,4 @@
+import { useEffect, useState } from "preact/hooks"
 import { defineTFunction, SupportedLang } from "../../../utils/i18n.ts"
 import { KayoLecture, KayoSubject } from "../../../utils/interfaces.ts"
 
@@ -6,16 +7,54 @@ interface NewLectureModalProps {
 	onClose: (msg?: { ok: boolean; text: string }) => void
 	schoolId: string
 	lang: SupportedLang
-	subjects: KayoSubject[]
 	onLectureCreated: (lecture: KayoLecture) => void
 }
 
 export default function NewLectureModal(
-	{ open, onClose, schoolId, lang, subjects, onLectureCreated }:
-		NewLectureModalProps,
+	{ open, onClose, schoolId, lang, onLectureCreated }: NewLectureModalProps,
 ) {
-	if (!open) return null
 	const t = defineTFunction(lang)
+
+	const [subjects, setSubjects] = useState<KayoSubject[]>([])
+	const [loading, setLoading] = useState(true)
+
+	useEffect(() => {
+		let cancelled = false
+
+		async function loadLecturesModuleData() {
+			try {
+				setLoading(true)
+
+				const [subjectsResponse] = await Promise.all([
+					fetch(`/api/schools/${schoolId}/subjects`),
+				])
+
+				if (!subjectsResponse.ok) {
+					throw new Error("Failed to load lectures module data")
+				}
+
+				const subjectsData = await subjectsResponse.json()
+
+				if (!cancelled) {
+					setSubjects(subjectsData.subjects ?? [])
+				}
+			} catch (_error) {
+				if (!cancelled) {
+					globalThis.toast?.(t("school.error_unexpected"), "error")
+				}
+			} finally {
+				setLoading(false)
+			}
+		}
+
+		loadLecturesModuleData()
+
+		return () => {
+			cancelled = true
+		}
+	}, [open])
+
+	if (!open) return null
 
 	const createLectureCall = () => async (e: Event) => {
 		e.preventDefault()
